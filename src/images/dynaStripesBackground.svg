@@ -1,0 +1,8 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 2000'><rect x='0' y='0' width='277' height='2000' shape-rendering='crispEdges'><animate begin= '0s' dur='1.2s' attributeName='fill' values='#9CA857;#FDF78E;#9CA857' fill='freeze' repeatCount='indefinite' /></rect>
+<rect x='277' y='0' width='310' height='2000' shape-rendering='crispEdges'><animate begin= '0s' dur='0.6s' attributeName='fill' values='#CC6595;#55AB8B;#CC6595' fill='freeze' repeatCount='indefinite' /></rect>
+<rect x='587' y='0' width='230' height='2000' shape-rendering='crispEdges'><animate begin= '0s' dur='1.3s' attributeName='fill' values='#8F67E6;#F5C96C;#8F67E6' fill='freeze' repeatCount='indefinite' /></rect>
+<rect x='817' y='0' width='380' height='2000' shape-rendering='crispEdges'><animate begin= '0s' dur='1.7s' attributeName='fill' values='#9FE4BA;#775657;#9FE4BA' fill='freeze' repeatCount='indefinite' /></rect>
+<rect x='1197' y='0' width='389' height='2000' shape-rendering='crispEdges'><animate begin= '0s' dur='0.6s' attributeName='fill' values='#95657F;#CACFAF;#95657F' fill='freeze' repeatCount='indefinite' /></rect>
+<rect x='1586' y='0' width='152' height='2000' shape-rendering='crispEdges'><animate begin= '0s' dur='1.4s' attributeName='fill' values='#A7A889;#97C454;#A7A889' fill='freeze' repeatCount='indefinite' /></rect>
+<rect x='1738' y='0' width='262' height='2000' shape-rendering='crispEdges'><animate begin= '0s' dur='0.8s' attributeName='fill' values='#B4AECA;#FBDF4D;#B4AECA' fill='freeze' repeatCount='indefinite' /></rect>
+</svg>
