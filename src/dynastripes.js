@@ -72,12 +72,12 @@ function generateDynaStripes() {
         var currentWidth = randomIntFromInterval(minWidth, maxWidth);
         currentWidth = Math.min(widthRemaining, currentWidth);
 
-        var animateTime = randomIntFromInterval(5, 20) / 10;
+        var animateTime = randomIntFromInterval(500, 2000);
 
         const colourValues = firstColour + ";" + secondColour + ";" + firstColour;
 
         var currentRect = "<rect x='" + currentXPos + "' y='0' width='" + currentWidth + "' height='2000' shape-rendering='crispEdges'>";
-        currentRect += "<animate begin= '0s' dur='" + animateTime + "s' attributeName='fill' values='" + colourValues + "' fill='freeze' repeatCount='indefinite' />";
+        currentRect += "<animate begin= '0s' dur='" + animateTime + "ms' attributeName='fill' values='" + colourValues + "' fill='freeze' repeatCount='indefinite' />";
         currentRect += "</rect>";
 
         allRectsXml += currentRect + "\r\n";
@@ -89,7 +89,6 @@ function generateDynaStripes() {
     var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 2000'>";
     svg += allRectsXml;
     svg +=  "</svg>";
-
 
     return svg;
 }
