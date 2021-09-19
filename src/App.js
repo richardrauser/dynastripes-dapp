@@ -17,6 +17,7 @@ import {Fragment} from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -534,6 +535,7 @@ class ArtworkComponent extends React.Component {
   }
 
   render() {
+
     if (this.state.loading == true) {
       return (
         <div className="dynaStripesArtwork"> 
@@ -541,9 +543,13 @@ class ArtworkComponent extends React.Component {
         </div>   
       );
     } else {
-      // TODO: DOMPurify.sanitize(this.state.svg) below kills the SVG! Figure out why.
-      return (
-        <div className="dynaStripesArtwork" dangerouslySetInnerHTML={{ __html: this.state.svg }} />
+        const svgString = encodeURIComponent(this.state.svg);
+        const svgDataUri = `url("data:image/svg+xml,${svgString}")`;
+  
+        return (
+        <div className="dynaStripesArtwork" style={{background: svgDataUri}}>
+          {/* <Image source={{uri: svgDataUri}}/> */}
+        </div>
       );
     }
   }
@@ -583,9 +589,12 @@ class RandomArtworkComponent extends React.Component {
         </div>   
       );
     } else {
-      // TODO: DOMPurify.sanitize(this.state.svg) below kills the SVG! Figure out why.
+      const svgString = encodeURIComponent(this.state.svg);
+      const svgDataUri = `url("data:image/svg+xml,${svgString}")`;
       return (
-        <div className="dynaStripesArtwork" dangerouslySetInnerHTML={{ __html: this.state.svg }} />
+        <div className="dynaStripesArtwork" style={{background: svgDataUri}}>
+          {/* <Image source={{uri: svgDataUri}}/> */}
+        </div>
       );
     }
   }
