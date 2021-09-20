@@ -185,8 +185,8 @@ class AccountComponent extends React.Component {
 
           </div>
           <center>
-          <Button variant="primary" onClick={this.props.fetchAccountDetails}>Reload Account</Button>
 
+          <Button variant="primary" onClick={this.props.fetchAccountDetails}>Reload Account</Button>
           </center>
 
         </Card>
@@ -336,7 +336,7 @@ class YourTokensComponent extends React.Component {
     } else {
       return (
         <Card>
-        <Card.Title>Your DynaStripes NFTs</Card.Title>
+        <Card.Title>Your <span className="dyna">DynaStripes</span> NFTs</Card.Title>
         <TokenList tokens= { tokenIds } />
       </Card>
       );  
@@ -349,14 +349,21 @@ class MintComponent extends React.Component {
   constructor(props) {
     super(props);
 
+    console.log("MINT COMPONET CONSTRUCTOR");
+
     this.state = {
       doneSuccess: false,
       stripeCount: 8,
+      speed: 50,
+      palette: 50,
+      rotationDegrees: 0,
       isVertical: true
     }
 
     this.stripeCountChanged = this.stripeCountChanged.bind(this);
-    this.orientationChanged = this.orientationChanged.bind(this);
+    this.rotationDegreesChanged = this.rotationDegreesChanged.bind(this);
+    this.speedChanged = this.speedChanged.bind(this);
+    this.paletteChanged = this.paletteChanged.bind(this);
     this.mintAnother = this.mintAnother.bind(this);
     this.mint = this.mint.bind(this);
   }
@@ -369,15 +376,30 @@ class MintComponent extends React.Component {
     })
   }
 
-  orientationChanged(event) {
-    const orientation = event.target.value;
-    console.log("Orientation changed to: " + orientation);
-    const isVertical = orientation == "vertical";
+  rotationDegreesChanged(event) {
+    const degrees = event.target.value;
+    console.log("Rotation degrees changed to: " + degrees);
     this.setState({
-      isVertical: isVertical
+      rotationDegrees: degrees,
     })
   }
 
+  paletteChanged(event) {
+    const palette = event.target.value;
+    console.log("Palette changed to: " + palette);
+    this.setState({
+      palette: palette,
+    })
+  }
+
+  speedChanged(event) {
+    const speed = event.target.value;
+    console.log("Speed changed to: " + speed);
+    this.setState({
+      speed: speed,
+    })
+  }
+  
   mintAnother() {
     this.setState({
       doneSuccess: false
@@ -386,15 +408,16 @@ class MintComponent extends React.Component {
 
   async mint() {
     const stripeCount = this.state.stripeCount;
-    const isVertical = this.state.isVertical;
+    const rotationDegrees = this.state.rotationDegrees;
+    const palette = this.state.palette;
+    const speed = this.state.speed;
 
     if (stripeCount < 1 || stripeCount > 20) {
       showErrorMessage("Stripe count must be between 1 and 20.")
       return;
     }
+    // TODO: validate other params
 
-    // const dynaStripesSvg = generateDynaStripes();
-    // console.log(dynaStripesSvg);
     const contractWithSigner = await getContractWithSigner(); 
     const contract = await getContract();
 
@@ -405,9 +428,9 @@ class MintComponent extends React.Component {
 
     try {
       const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      console.log("Minting stripes with count: " + stripeCount + ", isVertical: " + isVertical);
-
-      await contractWithSigner.mintStripes(stripeCount, isVertical);
+      console.log("Minting stripes with count: " + stripeCount + ", degrees: " + rotationDegrees);
+      
+      await contractWithSigner.mintStripes(stripeCount, rotationDegrees, palette, speed);
 
       this.setState({
         doneSuccess: true
@@ -423,9 +446,9 @@ class MintComponent extends React.Component {
 
     return (
       <Card>
-      <Card.Title>Mint your own DynaStripes NFT</Card.Title>
+      <Card.Title>Mint your own <span className="dyna">DynaStripes</span> NFT</Card.Title>
       <center>
-         { this.state.doneSuccess ? <MintAnotherComponent mintAnother={this.mintAnother} /> : <MintOptions stripeCount={this.state.stripeCount} stripeCountChanged={this.stripeCountChanged} orientationChanged={this.orientationChanged} mint={this.mint} /> }
+         { this.state.doneSuccess ? <MintAnotherComponent mintAnother={this.mintAnother} /> : <MintOptions stripeCount={this.state.stripeCount} rotationDegrees={this.state.rotationDegrees} palette={this.state.palette} speed={this.state.speed} stripeCountChanged={this.stripeCountChanged} rotationDegreesChanged={this.rotationDegreesChanged} orientationChanged={this.orientationChanged} paletteChanged={this.paletteChanged} speedChanged={this.speedChanged} mint={this.mint} /> }
       </center>
     </Card>
     );
@@ -438,38 +461,52 @@ class MintOptions extends React.Component {
     super(props);
   }
 
-  updateDuration() {
-
-  }
-
   render() {
     return (
       <div>
-        <form>
 
           <div className="mintInput">
-            Number of stripes (1 - 20)<br/>
-            <input type='number' min='1' max='20' value={this.props.stripeCount} onChange={ this.props.stripeCountChanged }/>
+            Number of stripes <br/>
+            <RangeSlider
+              value={this.props.stripeCount}  
+              onChange={this.props.stripeCountChanged}
+              min={1}
+              max={20}
+              step={1}
+              />
           </div>
 
           <div className="mintInput">
-            Stripe orientation <br/>
-            <input type='radio' value="vertical" id="vertical" onChange={ this.props.orientationChanged } name="orientation" defaultChecked/>
-            <label for="vertical">vertical</label>
-            <input type='radio' value="horizontal" id="horizontal" onChange={ this.props.orientationChanged }  name="orientation" />
-            <label for="horizontal">horizontal</label>
-          </div>
-        </form>
-        {/* <div className="mintInput">
-          Animation duration Ms<br/>
+            Rotation degrees (0 = horizontal, 90 = vertical) <br/>
+            <RangeSlider
+              value={this.props.rotationDegrees}  
+              onChange={this.props.rotationDegreesChanged}
+              min={0}
+              max={360}
+              step={1}
+              />
+          </div>  
+
+        <div className="mintInput">
+          Colour palette (darker - lighter)<br/>
           <RangeSlider
-            value={this.state.duration}  
-            onChange={this.updateDuration}
-            min={200}
-            max={2000}
-            step={100}
+            value={this.props.palette}  
+            onChange={this.props.paletteChanged}
+            min={0}
+            max={100}
+            step={1}
           />
-        </div> */}
+        </div>
+        <div className="mintInput">
+          Animation speed (slower - faster)<br/>
+          <RangeSlider
+            value={this.props.speed}  
+            onChange={this.props.speedChanged}
+            min={0}
+            max={100}
+            step={1}
+          />
+        </div>
         
         <Button variant="primary" onClick={this.props.mint}>Mint, baby!</Button>
       </div>
@@ -494,7 +531,7 @@ class MintAnotherComponent extends React.Component {
     return (
       <div>
           <p className="success">
-            Your DynaStripes have been successfully minted! Once the transaction is complete, your new artwork will appear above. Refresh to see it, or mint more DynaStripes now!
+            Your <span className="dyna">DynaStripes</span> have been successfully minted! Once the transaction is complete, your new artwork will appear above. Refresh to see it, or mint more <span className="dyna">DynaStripes</span> now!
           </p>
 
           <Button variant="primary" onClick={this.refreshPage}>Refresh</Button>
@@ -547,10 +584,11 @@ class ArtworkComponent extends React.Component {
         const svgDataUri = `url("data:image/svg+xml,${svgString}")`;
   
         return (
-        <div className="dynaStripesArtwork" style={{background: svgDataUri}}>
-          {/* <Image source={{uri: svgDataUri}}/> */}
-        </div>
-      );
+          // TODO: workout why Image is not working below, pivot to that instead of setting background
+          <div className="dynaStripesArtwork" style={{background: svgDataUri}}>
+            {/* <Image source={{uri: svgDataUri}}/> */}
+          </div>
+        );
     }
   }
 }
@@ -605,10 +643,11 @@ class AboutComponent extends React.Component {
   render() {
     return (
       <Card>
-        <Card.Title>More About DynaStripes</Card.Title>
+        <Card.Title>More About <span className="dyna">DynaStripes</span>
+        </Card.Title>
         <Card.Text>
             <p>
-              DynaStripes is an NFT art project created by the colour-blind, colour-obsessed visual artist, <a className="externalLink" href="http://www.volstrate.com" target="_blank">volstrate</a>. DynaStripes represents the on-chain, generative evolution of volstrate's earlier explorations into NFT art.
+            <span className="dyna">DynaStripes</span> is an NFT art project created by the colour-blind, colour-obsessed visual artist, <a className="externalLink volstrate" href="http://www.volstrate.com" target="_blank">volstrate</a>. <span className="dyna">DynaStripes</span> represents the on-chain, generative evolution of volstrate's earlier explorations into NFT art.
             </p>
             <p>
               The DynaStripes project has been heavily influenced by existing on-chain, generative art projects like <a className="externalLink" href="https://www.larvalabs.com/autoglyphs" target="_blank">Autoglyphs</a>, <a className="externalLink" href="https://avastars.io/" target="_blank">Avastars</a>, and <a className="externalLink" href="https://www.artblocks.io/" target="_blank">ArtBlocks</a>, but the most compelling source of inspiration has proven to be Simon de la Rouviere's <a className="externalLink" href="https://neolastics.com/" target="_blank">Neolastics</a> and also his writings, particularly this <a className="externalLink" href='https://blog.simondlr.com/posts/flavours-of-on-chain-svg-nfts-on-ethereum' target="_blank">fascinating piece.</a>
@@ -694,12 +733,11 @@ class DynaNav extends React.Component {
     return (
         <Navbar bg="light" expand="lg" sticky="top">
           <Container>
-            <Navbar.Brand href="#home">DynaStripes</Navbar.Brand>
+            <Navbar.Brand href="#home" className="dyna">DynaStripes</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#recent">Recently Minted</Nav.Link>
+                <Nav.Link href="#recent">Gallery</Nav.Link>
                 <Nav.Link href="#mint">Mint!</Nav.Link>
                 <Nav.Link href="#stripes">Your Stripes</Nav.Link>
                 <Nav.Link href="#admin">How to</Nav.Link>
@@ -725,7 +763,7 @@ class DynaHeaderCard extends React.Component {
           <Card id="mainCard">
             {/* <img src={logo} className="App-logo" alt="logo" /> */}
             <h1 className="homeTitle">
-              DynaStripes is the world's first <b><i>user directed</i></b>, generative, on-chain NFT art project. 
+            <span className="dyna">DynaStripes</span> is the world's first <b><i>user directed</i></b>, generative, on-chain NFT art project. 
             </h1>
             <div className="featureList">
             <ul>
@@ -742,6 +780,10 @@ class DynaHeaderCard extends React.Component {
                 <b>NFT:</b> fully ERC-721 compliant non-fungible token smart contract. 
               </li>              
               </ul>
+              <div className="mainCardActions">
+                <Button variant="primary">Create an Artwork!</Button>
+                <Button variant="primary">Browse recent NFTs</Button>
+              </div>
 
             </div>
         </Card>

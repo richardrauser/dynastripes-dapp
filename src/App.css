@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&amp;display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
 .App {
   text-align: center;
+  font-family: 'Source Sans Pro';
 }
 
 .App-logo {
@@ -39,12 +43,6 @@ a.externalLink {
   }
 }
 
-#mainCard {
-  background-color: #777777;
-   margin: 50px;
-   opacity: 0.9;
-}
-
 div#mainContent {
   background-color: #777777;
   display: flex;
@@ -54,6 +52,17 @@ div#mainContent {
   font-size: calc(10px + 2vmin);
   color: white;
 
+}
+
+#mainCard {
+  background-color: #777777;
+   margin: 50px;
+   opacity: 0.9;
+}
+
+.mainCardActions {
+  text-align: center;
+  margin: auto;
 }
 
 .featureList {
@@ -71,8 +80,12 @@ div#mainContent {
   margin: 16px;
   max-width: 1200px;
 }
-.card h5 {
+/* .card h5 {
   font-size: 32px;
+} */
+
+h5 {
+  font=size: 32px;
 }
 
 .card p {
@@ -128,4 +141,13 @@ img#ethLogo {
   width: 16px;
   height: 16px;
   margin-right: 8px;
+}
+
+.dyna {
+  font-family: 'Rajdhani';
+}
+
+.volstrate {
+  font-family: 'Rajdhani';
+  font-weight: bold;
 }

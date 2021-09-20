@@ -1,48 +1,3 @@
-function convertToHex(decimalDigit) {
-				
-    switch(decimalDigit) {
-        case 10:
-            return 'A';
-            break;
-        case 11:
-            return 'B';
-            break;
-        case 12:
-            return 'C';
-            break;
-        case 13:
-            return 'D';
-            break;
-        case 14:
-            return 'E';
-            break;
-        case 15:
-            return 'F';
-            break;
-        default:
-            return decimalDigit.toString();
-    }
-    
-}			
-
-function getRandomColor() {
-    var digitMin = 4;
-    var digitMax = 15;
-    
-    var firstChar = convertToHex(randomIntFromInterval(digitMin, digitMax));
-    var secondChar = convertToHex(randomIntFromInterval(digitMin, digitMax));
-    var thirdChar = convertToHex(randomIntFromInterval(digitMin, digitMax));
-    var fourthChar = convertToHex(randomIntFromInterval(digitMin, digitMax));
-    var fifthChar = convertToHex(randomIntFromInterval(digitMin, digitMax));
-    var sixthChar = convertToHex(randomIntFromInterval(digitMin, digitMax));
-    
-    
-    var hexVal = firstChar + secondChar + thirdChar + fourthChar + fifthChar + sixthChar;
-    
-    // alert(hexVal);
-
-    return '#' + hexVal;
-}
 
 // Generate random int, inclusive of min/max
 function randomIntFromInterval(min, max) { 
@@ -51,6 +6,17 @@ function randomIntFromInterval(min, max) {
     // alert(min + ", " + max + ", " + value);
 
       return value;
+}
+
+function colourWithBasePallette(base) {
+				
+    const min = 1.5 * base;// 55;
+    const max = 255; //155;
+    const red = randomIntFromInterval(min, max);
+    const blue = randomIntFromInterval(min, max);
+    const green = randomIntFromInterval(min, max);
+        
+    return "rgb(" + red + ", " + blue + ", " + green + ")";
 }
 
 function generateDynaStripes() {
@@ -65,8 +31,10 @@ function generateDynaStripes() {
     while (widthRemaining > 0) {
 
         var className = "bar" + currentXPos;
-        var firstColour = getRandomColor();
-        var secondColour = getRandomColor();
+
+        const userSelectedPallette = 45; // randomIntFromInterval(0, 100);
+        const firstColour = colourWithBasePallette(userSelectedPallette);
+        const secondColour = colourWithBasePallette(userSelectedPallette);
 
         // var currentMaxWidth = Math.min(maxWidth, widthRemaining);
         var currentWidth = randomIntFromInterval(minWidth, maxWidth);
@@ -92,4 +60,5 @@ function generateDynaStripes() {
 
     return svg;
 }
- export default generateDynaStripes;
+
+export default generateDynaStripes;
