@@ -353,27 +353,19 @@ class MintComponent extends React.Component {
 
     this.state = {
       doneSuccess: false,
-      stripeCount: 8,
+      rotationDegrees: 0,
+      stripeWidth: 50,
       speed: 50,
       palette: 50,
-      rotationDegrees: 0,
       isVertical: true
     }
 
-    this.stripeCountChanged = this.stripeCountChanged.bind(this);
     this.rotationDegreesChanged = this.rotationDegreesChanged.bind(this);
+    this.stripeWidthChanged = this.stripeWidthChanged.bind(this);
     this.speedChanged = this.speedChanged.bind(this);
     this.paletteChanged = this.paletteChanged.bind(this);
     this.mintAnother = this.mintAnother.bind(this);
     this.mint = this.mint.bind(this);
-  }
-
-  stripeCountChanged(event) {
-    const stripeCount = event.target.value;
-    console.log("Stripe count changed to: " + stripeCount);
-    this.setState({
-      stripeCount: stripeCount
-    })
   }
 
   rotationDegreesChanged(event) {
@@ -381,6 +373,14 @@ class MintComponent extends React.Component {
     console.log("Rotation degrees changed to: " + degrees);
     this.setState({
       rotationDegrees: degrees,
+    })
+  }
+
+  stripeWidthChanged(event) {
+    const stripeWidth = event.target.value;
+    console.log("Stripe width changed to: " + stripeWidth);
+    this.setState({
+      stripeWidth: stripeWidth
     })
   }
 
@@ -407,13 +407,13 @@ class MintComponent extends React.Component {
   }
 
   async mint() {
-    const stripeCount = this.state.stripeCount;
     const rotationDegrees = this.state.rotationDegrees;
+    const stripeWidth = this.state.stripeWidth;
     const palette = this.state.palette;
     const speed = this.state.speed;
 
-    if (stripeCount < 1 || stripeCount > 20) {
-      showErrorMessage("Stripe count must be between 1 and 20.")
+    if (stripeWidth < 0 || stripeWidth > 100) {
+      showErrorMessage("Stripe count must be between 0 and 100.")
       return;
     }
     // TODO: validate other params
@@ -428,9 +428,9 @@ class MintComponent extends React.Component {
 
     try {
       const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      console.log("Minting stripes with count: " + stripeCount + ", degrees: " + rotationDegrees);
+      console.log("Minting stripes with degrees: " + rotationDegrees + ", width: " + stripeWidth);
       
-      await contractWithSigner.mintStripes(stripeCount, rotationDegrees, palette, speed);
+      await contractWithSigner.mintStripes(rotationDegrees, stripeWidth, palette, speed);
 
       this.setState({
         doneSuccess: true
@@ -448,7 +448,7 @@ class MintComponent extends React.Component {
       <Card>
       <Card.Title>Mint your own <span className="dyna">DynaStripes</span> NFT</Card.Title>
       <center>
-         { this.state.doneSuccess ? <MintAnotherComponent mintAnother={this.mintAnother} /> : <MintOptions stripeCount={this.state.stripeCount} rotationDegrees={this.state.rotationDegrees} palette={this.state.palette} speed={this.state.speed} stripeCountChanged={this.stripeCountChanged} rotationDegreesChanged={this.rotationDegreesChanged} orientationChanged={this.orientationChanged} paletteChanged={this.paletteChanged} speedChanged={this.speedChanged} mint={this.mint} /> }
+         { this.state.doneSuccess ? <MintAnotherComponent mintAnother={this.mintAnother} /> : <MintOptions  rotationDegrees={this.state.rotationDegrees} stripeWidth={this.state.stripeWidth} palette={this.state.palette} speed={this.state.speed} rotationDegreesChanged={this.rotationDegreesChanged} stripeWidthChanged={this.stripeWidthChanged} orientationChanged={this.orientationChanged} paletteChanged={this.paletteChanged} speedChanged={this.speedChanged} mint={this.mint} /> }
       </center>
     </Card>
     );
@@ -466,26 +466,27 @@ class MintOptions extends React.Component {
       <div>
 
           <div className="mintInput">
-            Number of stripes <br/>
-            <RangeSlider
-              value={this.props.stripeCount}  
-              onChange={this.props.stripeCountChanged}
-              min={1}
-              max={20}
-              step={1}
-              />
-          </div>
-
-          <div className="mintInput">
             Rotation degrees (0 = horizontal, 90 = vertical) <br/>
             <RangeSlider
               value={this.props.rotationDegrees}  
               onChange={this.props.rotationDegreesChanged}
               min={0}
-              max={360}
-              step={1}
+              max={180}
+              step={45}
               />
           </div>  
+
+          <div className="mintInput">
+            Stripe width (thinner - fatter) <br/>
+            <RangeSlider
+              value={this.props.stripeWidth}  
+              onChange={this.props.stripeWidthChanged}
+              min={0}
+              max={100}
+              step={1}
+              />
+          </div>
+
 
         <div className="mintInput">
           Colour palette (darker - lighter)<br/>
