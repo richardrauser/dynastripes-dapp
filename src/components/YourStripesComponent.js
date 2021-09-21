@@ -14,7 +14,7 @@ function TokenList(props) {
       <div className="token" key={token.toString()}>Token ID: {token.toString()} <ArtworkComponent tokenId={token} /> </div>
     )
     return (
-      <div>{listItems}</div>
+      <div className="tokenList">{listItems}</div>
     );
   }
   
@@ -61,16 +61,19 @@ function TokenList(props) {
     }
   
     render() {
+
       const tokenIds = this.state.tokenIds;
       console.log("RENDER TOKEN IDS: " + tokenIds);
       if (tokenIds === null || tokenIds.length === 0) {
         return null;
       } else {
         return (
-          <Card>
-          <Card.Title>Your <span className="dyna">DynaStripes</span> NFTs</Card.Title>
-          <TokenList tokens= { tokenIds } />
-        </Card>
+          <div className="mainContent">
+            <Card>
+              <Card.Title><h1>Your <span className="dyna">DynaStripes</span> NFTs</h1></Card.Title>
+              <TokenList tokens= { tokenIds } />
+            </Card>
+          </div>
         );  
       }
     }

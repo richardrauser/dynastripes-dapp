@@ -17,9 +17,8 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  /* background-image: url(./images/dynaStripesBackground.svg); */
+.mainContent {
+  background-color: #777777;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -43,21 +42,8 @@ a.externalLink {
   }
 }
 
-div#mainContent {
-  background-color: #777777;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-
-}
-
-#mainCard {
-  background-color: #777777;
-   margin: 50px;
-   opacity: 0.9;
+#homeMainCard {
+  opacity: 0.9;
 }
 
 .mainCardActions {
@@ -75,9 +61,10 @@ div#mainContent {
 }
 
 .card {
+  background-color: #777777;
+  margin: 50px;
   padding: 16px;
   background: lightgray !important;
-  margin: 16px;
   max-width: 1200px;
 }
 /* .card h5 {
@@ -134,9 +121,6 @@ div.mintInput input {
   margin: 8px;
 }
 
-img#ethLogo {
-}
-
 .navDropdownIcon {
   width: 16px;
   height: 16px;
@@ -150,4 +134,8 @@ img#ethLogo {
 .volstrate {
   font-family: 'Rajdhani';
   font-weight: bold;
+}
+
+.tokenList {
+  margin: auto;
 }

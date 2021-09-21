@@ -3,13 +3,14 @@ import Card from 'react-bootstrap/Card';
 
 import { toast } from 'react-toastify';
 
-import { getContract, getContractWithSigner } from '../utils/blockchain';
-import { handleError } from '../utils/error';
-
 import MintOptions from './MintOptions';
 import MintAnotherComponent from './MintAnotherComponent';
 
+import { getContract, getContractWithSigner } from '../utils/blockchain';
 import { showErrorMessage } from '../utils/ui.js';
+import { handleError } from '../utils/error';
+
+import generateDynaStripes from '../dynastripes.js';
 
 class MintComponent extends React.Component {
 
@@ -110,14 +111,18 @@ class MintComponent extends React.Component {
     }
   
     render() {
-  
+      const svgString = encodeURIComponent(generateDynaStripes());
+      const svgDataUri = `url("data:image/svg+xml,${svgString}")`;
+
       return (
-        <Card>
-        <Card.Title>Mint your own <span className="dyna">DynaStripes</span> NFT</Card.Title>
-        <center>
-           { this.state.doneSuccess ? <MintAnotherComponent mintAnother={this.mintAnother} /> : <MintOptions  rotationDegrees={this.state.rotationDegrees} stripeWidth={this.state.stripeWidth} palette={this.state.palette} speed={this.state.speed} rotationDegreesChanged={this.rotationDegreesChanged} stripeWidthChanged={this.stripeWidthChanged} orientationChanged={this.orientationChanged} paletteChanged={this.paletteChanged} speedChanged={this.speedChanged} mint={this.mint} /> }
-        </center>
-      </Card>
+        <div className="mainContent"  style={{background: svgDataUri}}>
+          <Card>
+            <Card.Title><h1>Mint your own <span className="dyna">DynaStripes</span> NFT</h1></Card.Title>
+            <center>
+              { this.state.doneSuccess ? <MintAnotherComponent mintAnother={this.mintAnother} /> : <MintOptions  rotationDegrees={this.state.rotationDegrees} stripeWidth={this.state.stripeWidth} palette={this.state.palette} speed={this.state.speed} rotationDegreesChanged={this.rotationDegreesChanged} stripeWidthChanged={this.stripeWidthChanged} orientationChanged={this.orientationChanged} paletteChanged={this.paletteChanged} speedChanged={this.speedChanged} mint={this.mint} /> }
+            </center>
+          </Card>
+        </div>
       );
     }
   }

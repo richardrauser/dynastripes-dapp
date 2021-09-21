@@ -1,24 +1,23 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import React, { useState } from 'react';
 
 import { ToastContainer, toast } from 'react-toastify';
 
-import 'react-toastify/dist/ReactToastify.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 import AboutComponent from './components/AboutComponent';
 import ContractAdminComponent from './components/ContractAdminComponent';
-import DynaHeaderCard from './components/DynaHeaderCard';
+import HomeComponent from './components/HomeComponent';
 import DynaNav from './components/DynaNav';
 import MintComponent from './components/MintComponent';
 import YourStripesComponent from './components/YourStripesComponent';
-
-import generateDynaStripes from './dynastripes.js';
- 
-
-
-// ----- UI FUNCTIONS -----
 
 class App extends React.Component {
 
@@ -35,18 +34,10 @@ class App extends React.Component {
   
   render() {
 
-    const svgString = encodeURIComponent(generateDynaStripes());
-    const svgDataUri = `url("data:image/svg+xml,${svgString}")`;
-
     return (
       <div className="App">
-        <DynaNav />
-        <header className="App-header"  style={{background: svgDataUri}} onClick={this.update}>
-          <DynaHeaderCard />
-        </header>
-
-        <div id="mainContent">
-
+        <Router>
+          <DynaNav />
           <ToastContainer
             position="bottom-right"
             autoClose={5000}
@@ -58,17 +49,21 @@ class App extends React.Component {
             draggable
             pauseOnHover
           />
-          
-          {/* <AccountComponent /> */}
-
-          <YourStripesComponent />
-
-          <MintComponent />
-
-          <AboutComponent />
-
-          <ContractAdminComponent />
-        </div>
+          <Switch>
+            <Route path="/mint">
+              <MintComponent />
+            </Route>
+            <Route path="/gallery">
+              <YourStripesComponent />
+            </Route>
+            <Route path="/about">
+              <AboutComponent />
+            </Route>
+            <Route path="/">
+                <HomeComponent />
+            </Route>
+          </Switch>
+        </Router>
       </div>
 
     );
