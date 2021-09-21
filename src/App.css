@@ -139,3 +139,16 @@ div.mintInput input {
 .tokenList {
   margin: auto;
 }
+
+.deepContent {
+  text-align: left;
+  margin: 16px;
+}
+
+h4.dyna {
+  margin-top: 16px;
+}
+
+.deepContent p {
+  margin: 8px 8px;
+}
