@@ -1,12 +1,11 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
 
 import { toast } from 'react-toastify';
 
 import MintOptions from './MintOptions';
 import MintAnotherComponent from './MintAnotherComponent';
 
-import { getContract, getContractWithSigner } from '../utils/blockchain';
+import { getContractWithSigner } from '../utils/blockchain';
 import { showErrorMessage } from '../utils/ui.js';
 import { handleError } from '../utils/error';
 
@@ -80,7 +79,7 @@ class MintComponent extends React.Component {
       const palette = this.state.palette;
       const speed = this.state.speed;
   
-      if (rotationDegrees % 45 != 0) {
+      if (rotationDegrees % 45 !== 0) {
         showErrorMessage("Rotation angle must be a factor of 45.");
         return;
       } else if (stripeWidth < 0 || stripeWidth > 100) {
@@ -95,7 +94,6 @@ class MintComponent extends React.Component {
       }
   
       const contractWithSigner = await getContractWithSigner(); 
-      const contract = await getContract();
   
       if (contractWithSigner === null) {
         showErrorMessage('Could not get signer.');
@@ -103,7 +101,6 @@ class MintComponent extends React.Component {
       }
   
       try {
-        const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
         console.log("Minting stripes with degrees: " + rotationDegrees + ", width: " + stripeWidth);
         
         await contractWithSigner.mintStripes(rotationDegrees, stripeWidth, palette, speed);

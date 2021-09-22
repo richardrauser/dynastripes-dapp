@@ -1,5 +1,5 @@
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 export function showErrorMessage(message) {
     console.log('Displaying error message: ' + message);

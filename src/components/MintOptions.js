@@ -5,10 +5,6 @@ import RangeSlider from 'react-bootstrap-range-slider';
 
 class MintOptions extends React.Component {
   
-    constructor(props) {
-      super(props);
-    }
-  
     render() {
       return (
         <div>

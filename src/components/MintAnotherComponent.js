@@ -3,15 +3,10 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 
 import {
-  BrowserRouter as Router,
   Link
 } from "react-router-dom";
 
 class MintAnotherComponent extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
   
   render() {
     return (

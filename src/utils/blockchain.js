@@ -1,14 +1,14 @@
 import {showErrorMessage} from './ui.js';
 
 import { ethers } from 'ethers';
-import ColourPulse from '../artifacts/contracts/ColourPulse.sol/ColourPulse.json';
+import DynaStripes from '../artifacts/contracts/DynaStripes.sol/DynaStripes.json';
 
-const colourPulseAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+const dynaStripesContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
 
 export async function getContract() {
     if (typeof window.ethereum !== 'undefined') {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const contract = new ethers.Contract(colourPulseAddress, ColourPulse.abi, provider);
+      const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
       return contract;
     } else {
       showErrorMessage('Could not get contract.');
@@ -20,7 +20,7 @@ export async function getContract() {
 export async function getContractWithSigner() {
     if (typeof window.ethereum !== 'undefined') {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const contract = new ethers.Contract(colourPulseAddress, ColourPulse.abi, provider);
+      const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
       const signer = provider.getSigner();
   
       const contractWithSigner = contract.connect(signer);
