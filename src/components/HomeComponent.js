@@ -31,9 +31,10 @@ class HomeComponent extends React.Component {
       return (
         <div className="mainContent"  style={{background: svgDataUri}} onClick={this.update}>
 
-            <Card id="homeMainCard">
+            <div className="content home">
+
               <h1 className="homeTitle">
-              <span className="dyna">DynaStripes</span> is the world's first <b><i>user-directed</i></b>, generative, on-chain NFT art project. 
+              <span className="dyna">DynaStripes</span> is a novel <b>user-directed</b>, generative, on-chain NFT art project. 
               </h1>
               <div className="featureList">
               <ul>
@@ -50,7 +51,7 @@ class HomeComponent extends React.Component {
                   <b>NFT:</b> fully ERC-721 compliant non-fungible token smart contract. 
                 </li>              
                 </ul>
-                <div className="mainCardActions">
+                <div className="homeActions">
                   <Link to="/mint">
                     <Button variant="primary">Create an Artwork!</Button>
                   </Link>
@@ -60,7 +61,7 @@ class HomeComponent extends React.Component {
                 </div>
   
               </div>
-          </Card>
+          </div>
         </div>
 
       );

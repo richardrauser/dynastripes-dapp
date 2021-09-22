@@ -38,7 +38,7 @@ class ArtworkComponent extends React.Component {
       if (this.state.loading == true) {
         return (
           <div className="dynaStripesArtwork"> 
-            <Spinner animation="grow" />
+            <Spinner animation="grow" variant="dark" />
           </div>   
         );
       } else {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-
+import { CardColumns } from 'react-bootstrap';
 import ArtworkComponent from '../components/ArtworkComponent';
 
 import { getContract } from '../utils/blockchain';
@@ -11,10 +11,24 @@ function TokenList(props) {
     const tokens = props.tokens;
     const svg = generateDynaStripes();
     const listItems = tokens.map((token) =>
-      <div className="token" key={token.toString()}>Token ID: {token.toString()} <ArtworkComponent tokenId={token} /> </div>
+      <Card key={token.toString()} className="tokenCard">
+        <Card.Header>
+          Token ID: {token.toString()}
+        </Card.Header>
+        <Card.Body>
+          <Card.Title>
+            
+          </Card.Title>
+          <ArtworkComponent tokenId={token} />
+        </Card.Body>
+      </Card>        
     )
     return (
-      <div className="tokenList">{listItems}</div>
+      <div className="tokenList">
+        <CardColumns>
+          {listItems}
+        </CardColumns>
+        </div>
     );
   }
   
@@ -69,10 +83,10 @@ function TokenList(props) {
       } else {
         return (
           <div className="mainContent">
-            <Card>
-              <Card.Title><h1>Your <span className="dyna">DynaStripes</span> NFTs</h1></Card.Title>
+            <div className="content">
+              <h1>Your <span className="dyna">DynaStripes</span> NFTs</h1>
               <TokenList tokens= { tokenIds } />
-            </Card>
+            </div>
           </div>
         );  
       }

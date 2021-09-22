@@ -80,11 +80,19 @@ class MintComponent extends React.Component {
       const palette = this.state.palette;
       const speed = this.state.speed;
   
-      if (stripeWidth < 0 || stripeWidth > 100) {
-        showErrorMessage("Stripe count must be between 0 and 100.")
+      if (rotationDegrees % 45 != 0) {
+        showErrorMessage("Rotation angle must be a factor of 45.");
+        return;
+      } else if (stripeWidth < 0 || stripeWidth > 100) {
+          showErrorMessage("Stripe width must be between 0 and 100.")
+          return;
+      } else if (palette < 0 || palette > 100) {
+        showErrorMessage("Palette must be between 0 and 100.")
+        return;
+      } else if (speed < 0 || speed > 100) {
+        showErrorMessage("Speed must be between 0 and 100.")
         return;
       }
-      // TODO: validate other params
   
       const contractWithSigner = await getContractWithSigner(); 
       const contract = await getContract();
@@ -116,12 +124,12 @@ class MintComponent extends React.Component {
 
       return (
         <div className="mainContent"  style={{background: svgDataUri}}>
-          <Card>
-            <Card.Title><h1>Mint your own <span className="dyna">DynaStripes</span> NFT</h1></Card.Title>
+          <div className="content">
+            <h1>Mint your own <span className="dyna">DynaStripes</span> NFT</h1>
             <center>
               { this.state.doneSuccess ? <MintAnotherComponent mintAnother={this.mintAnother} /> : <MintOptions  rotationDegrees={this.state.rotationDegrees} stripeWidth={this.state.stripeWidth} palette={this.state.palette} speed={this.state.speed} rotationDegreesChanged={this.rotationDegreesChanged} stripeWidthChanged={this.stripeWidthChanged} orientationChanged={this.orientationChanged} paletteChanged={this.paletteChanged} speedChanged={this.speedChanged} mint={this.mint} /> }
             </center>
-          </Card>
+          </div>
         </div>
       );
     }
