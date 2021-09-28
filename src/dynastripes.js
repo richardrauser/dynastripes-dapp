@@ -1,57 +1,54 @@
 
 // Generate random int, inclusive of min/max
-function randomIntFromInterval(min, max) { 
-      var value =  Math.floor(Math.random() * (max - min + 1) + min);
-
-    // alert(min + ", " + max + ", " + value);
-
+function randomIntFromInterval(randomSeed, min, max) { 
+    if (max <= min) {
+        return min;
+    }
+    const value = randomSeed % (max - min) + min;
+    //   var value =  Math.floor(Math.random() * (max - min + 1) + min);
       return value;
 }
 
-function colourWithBasePallette(base) {
-				
-    const min = 1.5 * base;// 55;
-    const max = 255; //155;
-    const red = randomIntFromInterval(min, max);
-    const blue = randomIntFromInterval(min, max);
-    const green = randomIntFromInterval(min, max);
-        
-    return "rgb(" + red + ", " + blue + ", " + green + ")";
+function colourWithPallette(randomSeed, min, max) {
+    const red = randomIntFromInterval(randomSeed, min, max);
+    const blue = randomIntFromInterval(randomSeed * 2, min, max);
+    const green = randomIntFromInterval(randomSeed * 3, min, max);
+    const colour = "rgb(" + red + ", " + blue + ", " + green + ")";
+    console.log(colour);
+    return colour;
 }
 
-function generateDynaStripes() {
+function generateDynaStripes(randomSeed, rotationMin, rotationMax, widthMin, widthMax, paletteMin, paletteMax, speedMin, speedMax) {
 
-    var widthRemaining = 2000;
-    const minWidth = 50;
-    const maxWidth = 400;
-    var currentXPos = 0;
+    console.log("Building dynastripes: " + rotationMin + " "  + rotationMax + " " + widthMin + " " + widthMax + " " + paletteMin + " " + paletteMax + " " + speedMin + " " + speedMax)
+    var xPos = 0;
+    const maxWidth = 2000;
     var allColorsXml = "";
     var allRectsXml = "";
 
-    while (widthRemaining > 0) {
+    while ((maxWidth - xPos) > 0) {
+        const opacity = 0.8;
 
-        var className = "bar" + currentXPos;
-
-        const userSelectedPallette = 45; // randomIntFromInterval(0, 100);
-        const firstColour = colourWithBasePallette(userSelectedPallette);
-        const secondColour = colourWithBasePallette(userSelectedPallette);
+        const rotationDegrees = randomIntFromInterval(randomSeed, rotationMin, rotationMax);
+        const firstColour = colourWithPallette(randomSeed, paletteMin, paletteMax);
+        const secondColour = colourWithPallette(randomSeed * 2, paletteMin, paletteMax);
 
         // var currentMaxWidth = Math.min(maxWidth, widthRemaining);
-        var currentWidth = randomIntFromInterval(minWidth, maxWidth);
-        currentWidth = Math.min(widthRemaining, currentWidth);
+        var width = randomIntFromInterval(randomSeed, widthMin, widthMax) + 50;
+        width = Math.min((maxWidth - xPos), width);
 
-        var animateTime = randomIntFromInterval(500, 2000);
+        var animateTime = randomIntFromInterval(randomSeed, speedMin, speedMax) * 10;
 
         const colourValues = firstColour + ";" + secondColour + ";" + firstColour;
 
-        var currentRect = "<rect x='" + currentXPos + "' y='0' width='" + currentWidth + "' height='2000' shape-rendering='crispEdges'>";
+        var currentRect = "<rect x='" + xPos + "' y='0' width='" + width + "' height='2000' shape-rendering='crispEdges' opacity='" + opacity + "' transform='rotate(" + rotationDegrees + " 1000 1000)'>";
         currentRect += "<animate begin= '0s' dur='" + animateTime + "ms' attributeName='fill' values='" + colourValues + "' fill='freeze' repeatCount='indefinite' />";
         currentRect += "</rect>";
 
         allRectsXml += currentRect + "\r\n";
 
-        currentXPos += currentWidth;
-        widthRemaining -= currentWidth;
+        xPos += width;
+        randomSeed += xPos;
     }
 
     var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 2000'>";

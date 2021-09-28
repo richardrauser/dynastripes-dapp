@@ -17,7 +17,7 @@ import ContractAdminComponent from './components/ContractAdminComponent';
 import HomeComponent from './components/HomeComponent';
 import DynaNav from './components/DynaNav';
 import MintComponent from './components/MintComponent';
-import YourStripesComponent from './components/YourStripesComponent';
+import GalleryPage from './components/GalleryPage';
 
 class App extends React.Component {
 
@@ -54,7 +54,7 @@ class App extends React.Component {
               <MintComponent />
             </Route>
             <Route path="/gallery">
-              <YourStripesComponent />
+              <GalleryPage />
             </Route>
             <Route path="/about">
               <AboutComponent />

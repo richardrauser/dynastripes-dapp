@@ -18,7 +18,9 @@
 }
 
 .mainContent {
-  background-color: #777777;
+  background-color: #777777; 
+  background: cover;
+  background-size: 100% 100%;
   min-height: calc(100vh - 1rem - 40px);
   display: flex;
   flex-direction: column;
@@ -89,7 +91,7 @@ h5 {
 
 .card-body {
   font-size: 18px;
-}
+} 
 
 .btn {
   margin: 8px;
@@ -98,6 +100,7 @@ h5 {
 .mintInput {
   font-size: 18px;
   margin: 20px;
+  width: 70%;
 }
 
 .card-title {
@@ -112,8 +115,13 @@ div#accountDetails {
 }
 
 .dynaStripesArtwork {
-  width: 300px; 
-  height: 300px;
+  width: 250px; 
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid #DDD; */
+  background:#EEE;
 }
 
 .dynaStripesArtwork div.spinner {
@@ -157,8 +165,9 @@ div.mintInput input {
 .tokenList {
   padding: 16px;
   display: flex;
-  /* flex-direction: row; */
+  flex-direction: row;
   flex-wrap: wrap; 
+  justify-content: center;
 }
 
 .tokenCard {
@@ -186,4 +195,17 @@ h4.dyna {
   padding: 16px;
   background: lightgray !important;
   max-width: min(1200px, 70vw);
+}
+
+.previewContainer {
+  /* background-color: #FFFFFF;
+  padding: 10px;
+  margin: 0 auto; */
+}
+
+.previewArtwork {
+  background-color:#FFF;
+  width: 400px; 
+  height: 400px;
+  border: 10px solid #EEE; 
 }

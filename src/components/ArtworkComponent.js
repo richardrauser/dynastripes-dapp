@@ -8,9 +8,9 @@ class ArtworkComponent extends React.Component {
 
     constructor(props) {
       super(props);
+
       this.state = {
         loading: true,
-        svg: ""
       }
   
       this.getSvg = this.getSvg.bind(this);
@@ -23,6 +23,7 @@ class ArtworkComponent extends React.Component {
   
       const svg = await contract.generateSvg(this.props.tokenId);
       console.log(svg);
+
       this.setState({
         loading: false,
         svg: svg

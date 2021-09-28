@@ -5,7 +5,8 @@ import generateDynaStripes from '../dynastripes.js';
 class AboutComponent extends React.Component {
 
     render() {
-      const svgString = encodeURIComponent(generateDynaStripes());
+      const randomSeed = Math.random() * 100000000000;
+      const svgString = encodeURIComponent(generateDynaStripes(randomSeed, 0, 0, 0, 255, 0, 255, 20, 255));
       const svgDataUri = `url("data:image/svg+xml,${svgString}")`;
 
       return (
