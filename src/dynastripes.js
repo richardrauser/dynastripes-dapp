@@ -23,7 +23,6 @@ function generateDynaStripes(randomSeed, rotationMin, rotationMax, widthMin, wid
     console.log("Building dynastripes: " + rotationMin + " "  + rotationMax + " " + widthMin + " " + widthMax + " " + paletteMin + " " + paletteMax + " " + speedMin + " " + speedMax)
     var xPos = 0;
     const maxWidth = 2000;
-    var allColorsXml = "";
     var allRectsXml = "";
 
     while ((maxWidth - xPos) > 0) {

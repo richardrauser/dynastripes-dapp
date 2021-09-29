@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Spinner from 'react-bootstrap/Spinner';
+
 import TokenList from './TokenList';
 
 import { getContract } from '../utils/blockchain';
@@ -10,6 +12,7 @@ class YourStripesComponent extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
+        loading: true,
         tokenIds: []
       }
     }
@@ -38,10 +41,15 @@ class YourStripesComponent extends React.Component {
         }
         
         this.setState({
+          loading: false,
           tokenIds: tokenIds
         });
       } catch (err) {
         handleError(err);
+        this.setState({
+          loading: false,
+          tokenIds: []
+        });
       }
     }
   
@@ -49,7 +57,14 @@ class YourStripesComponent extends React.Component {
 
       const tokenIds = this.state.tokenIds;
       console.log("RENDER TOKEN IDS: " + tokenIds);
-      if (tokenIds === null || tokenIds.length === 0) {
+      if (this.state.loading === true) {
+        return (
+          <div className="content">
+            <h1>Your <span className="dyna">DynaStripes</span> NFTs</h1>
+            <Spinner animation="grow" variant="dark" />
+          </div>
+        );
+      } else if (tokenIds === null || tokenIds.length === 0) {
         return (
             <div className="content">
               <h1>Your <span className="dyna">DynaStripes</span> NFTs</h1>

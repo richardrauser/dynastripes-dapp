@@ -12,12 +12,12 @@ import {
   Route,
 } from "react-router-dom";
 
-import AboutComponent from './components/AboutComponent';
-import ContractAdminComponent from './components/ContractAdminComponent';
-import HomeComponent from './components/HomeComponent';
 import DynaNav from './components/DynaNav';
-import MintComponent from './components/MintComponent';
-import GalleryPage from './components/GalleryPage';
+import AboutPage from './pages/AboutPage';
+import AdminPage from './pages/AdminPage';
+import HomePage from './pages/HomePage';
+import MintPage from './pages/MintPage';
+import GalleryPage from './pages/GalleryPage';
 
 class App extends React.Component {
 
@@ -51,16 +51,16 @@ class App extends React.Component {
           />
           <Switch>
             <Route path="/mint">
-              <MintComponent />
+              <MintPage />
             </Route>
             <Route path="/gallery">
               <GalleryPage />
             </Route>
             <Route path="/about">
-              <AboutComponent />
+              <AboutPage />
             </Route>
             <Route path="/">
-                <HomeComponent />
+                <HomePage />
             </Route>
           </Switch>
         </Router>

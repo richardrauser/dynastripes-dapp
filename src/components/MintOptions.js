@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Button from 'react-bootstrap/Button';
-import RangeSlider from 'react-bootstrap-range-slider';
 import ReactSlider from 'react-slider'
 import styled from 'styled-components';
 import PreviewComponent from './PreviewComponent';
