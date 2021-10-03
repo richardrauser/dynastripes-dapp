@@ -97,10 +97,25 @@ h5 {
   margin: 8px;
 }
 
+.mint {
+  opacity: 0.95;
+}
+
+.mintRow {
+  margin: 16px 0;
+  display: flex;
+  clear: both;
+}
+
+.mintInputs {
+  float: right;
+}
+
 .mintInput {
   font-size: 18px;
-  margin: 20px;
-  width: 70%;
+
+  margin: 42px 20px;
+  width: 300px;
 }
 
 .card-title {
@@ -204,8 +219,14 @@ h4.dyna {
 }
 
 .previewArtwork {
+
+  margin: 16px;
   background-color:#FFF;
   width: 400px; 
   height: 400px;
   border: 10px solid #EEE; 
+}
+
+.preview {
+  float: left;
 }

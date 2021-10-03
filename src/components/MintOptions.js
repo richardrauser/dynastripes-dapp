@@ -47,59 +47,66 @@ class MintOptions extends React.Component {
         <div>
             Random values will be chosen for each stripe within the range you choose!
             
-            <PreviewComponent svg={this.props.svg} />
+            <div className="mintRow"> 
+              <PreviewComponent className="preview" svg={this.props.svg} />
 
-            <div className="mintInput">
-              Rotation degrees (0 = horizontal, 90 = vertical) <br/>
+              <div className="mintInputs">
+                <div className="mintInput">
+                  Rotation degrees <br/>
 
-              <StyledSlider 
-                  value={this.props.rotationRange}
-                  renderTrack={Track}
-                  renderThumb={Thumb}
-                  min={0}
-                  max={180}
-                  onAfterChange={this.props.rotationRangeChanged}
-              />
-            </div>  
-  
-            <div className="mintInput">
-              Stripe width (thinner - fatter) <br/>
+                  <StyledSlider 
+                      value={this.props.rotationRange}
+                      renderTrack={Track}
+                      renderThumb={Thumb}
+                      min={0}
+                      max={180}
+                      onAfterChange={this.props.rotationRangeChanged}
+                  />
+                </div>  
+      
+                <div className="mintInput">
+                  Stripe width (thinner - fatter) <br/>
 
-              <StyledSlider
-                  value={this.props.widthRange}
-                  renderTrack={Track}
-                  renderThumb={Thumb}
-                  min={0}
-                  max={255}
-                  onAfterChange={this.props.widthRangeChanged}
-              />
+                  <StyledSlider
+                      value={this.props.widthRange}
+                      renderTrack={Track}
+                      renderThumb={Thumb}
+                      min={0}
+                      max={255}
+                      onAfterChange={this.props.widthRangeChanged}
+                  />
+                </div>
+      
+
+              <div className="mintInput">
+                Colour palette (darker - lighter)<br/>
+
+                <StyledSlider
+                      value={this.props.paletteRange}
+                      renderTrack={Track}
+                      renderThumb={Thumb}
+                      min={0}
+                      max={255}
+                      onAfterChange={this.props.paletteRangeChanged}
+                  />
+
+              </div>
+              <div className="mintInput">
+                Animation speed (faster - slower)<br/>
+                <StyledSlider
+                      value={this.props.speedRange}
+                      renderTrack={Track}
+                      renderThumb={Thumb}
+                      min={20}
+                      max={255}
+                      onAfterChange={this.props.speedRangeChanged}
+                  />
+              </div>
+
+
+              </div>
+                
             </div>
-  
-  
-          <div className="mintInput">
-            Colour palette (darker - lighter)<br/>
-
-            <StyledSlider
-                  value={this.props.paletteRange}
-                  renderTrack={Track}
-                  renderThumb={Thumb}
-                  min={0}
-                  max={255}
-                  onAfterChange={this.props.paletteRangeChanged}
-              />
-
-          </div>
-          <div className="mintInput">
-            Animation speed (faster - slower)<br/>
-            <StyledSlider
-                  value={this.props.speedRange}
-                  renderTrack={Track}
-                  renderThumb={Thumb}
-                  min={20}
-                  max={255}
-                  onAfterChange={this.props.speedRangeChanged}
-              />
-          </div>
           
           <Button variant="primary" onClick={this.props.refresh}>New random seed</Button>
           <Button variant="primary" onClick={this.props.mint}>Mint, baby!</Button>
