@@ -14,11 +14,11 @@ class TokenCard extends React.Component {
         loading: true,
       }
   
-      this.getSvg = this.getSvg.bind(this);
+      this.fetchSvg = this.fetchSvg.bind(this);
       this.downloadSvg = this.downloadSvg.bind(this);
     }
 
-    async getSvg() {
+    async fetchSvg() {
         console.log("Getting SVG for token ID: " + this.props.tokenId);
     
         const contract = await getContract();
@@ -33,7 +33,7 @@ class TokenCard extends React.Component {
       }
     
       componentDidMount() {
-        this.getSvg();
+        this.fetchSvg();
       }
     
   
@@ -78,7 +78,7 @@ class TokenCard extends React.Component {
                         
                     </Card.Title>
                     <div className="dynaStripesArtwork">
-                    <img src ={ svgDataUri } />
+                    <img  alt={"DynaStripes token " + this.props.tokenId}   src={ svgDataUri } />
                     </div>
                     <Button onClick={ this.downloadSvg } >Save</Button>
                     </Card.Body>

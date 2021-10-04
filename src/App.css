@@ -157,6 +157,17 @@ div.mintInput input {
   margin: 8px;
 }
 
+#mintSpinner {
+  height: 16px;
+  width: 16px;
+}
+
+.mintEther {
+  margin-top: -4px;
+  height: 16px;
+  width: 16px;
+}
+
 .navDropdownIcon {
   width: 16px;
   height: 16px;

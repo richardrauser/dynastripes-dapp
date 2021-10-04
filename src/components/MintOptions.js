@@ -4,15 +4,11 @@ import Button from 'react-bootstrap/Button';
 import ReactSlider from 'react-slider'
 import styled from 'styled-components';
 import PreviewComponent from './PreviewComponent';
+import MintPriceComponent from './MintPriceComponent';
 
 
 class MintOptions extends React.Component {
-    constructor(props) {
-      super(props);
-
-      console.log("MintOptions constructor rotation range: " + props.rotationRange);
-    }
-
+    
     render() {
 
       const StyledSlider = styled(ReactSlider)`
@@ -108,8 +104,13 @@ class MintOptions extends React.Component {
                 
             </div>
           
+            <p>
+
+            <MintPriceComponent />
+
+          </p>
           <Button variant="primary" onClick={this.props.refresh}>New random seed</Button>
-          <Button variant="primary" onClick={this.props.mint}>Mint, baby!</Button>
+          <Button variant="primary" disabled={this.props.mintPrice === null} onClick={this.props.mint}>Mint, baby!</Button>
         </div>
       );
     }

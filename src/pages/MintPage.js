@@ -11,6 +11,8 @@ import { getContractWithSigner } from '../utils/blockchain';
 import { showErrorMessage } from '../utils/ui.js';
 import { handleError } from '../utils/error';
 
+import { getContract } from '../utils/blockchain';
+
 import generateDynaStripes from '../dynastripes.js';
 
 class MintPage extends React.Component {
@@ -26,6 +28,7 @@ class MintPage extends React.Component {
         widthRange: [0, 255],
         paletteRange: [0, 255],
         speedRange: [20, 255],
+        mintPrice: null
       }
   
       this.rotationRangeChanged = this.rotationRangeChanged.bind(this);
@@ -35,6 +38,11 @@ class MintPage extends React.Component {
       this.mintAnother = this.mintAnother.bind(this);
       this.refresh = this.refresh.bind(this);
       this.mint = this.mint.bind(this);
+      this.fetchMintPrice = this.fetchMintPrice.bind(this);
+    }
+
+    componentDidMount() {
+      this.fetchMintPrice();
     }
   
     rotationRangeChanged(value, index) {
@@ -80,6 +88,29 @@ class MintPage extends React.Component {
       });
     }
   
+    async fetchMintPrice() {
+      const contract = await getContract();
+  
+      if (contract === null) {
+        return;
+      }
+  
+      try {
+
+        const mintPrice = await contract.currentMintPrice();
+        console.log("Mint price: " + mintPrice);
+     
+        this.setState({
+          mintPrice: mintPrice
+        });
+      } catch (err) {
+        handleError(err);
+        this.setState({
+          mintPrice: null
+        });
+      }
+    }
+
     async mint() {
       const rotationDegrees = this.state.rotationDegrees;
       const stripeWidth = this.state.stripeWidth;
@@ -158,7 +189,7 @@ class MintPage extends React.Component {
           <div className="content mint">
             <h1>Mint your own <span className="dyna">DynaStripes</span> NFT</h1>
             <center>
-              { this.state.doneSuccess ? <MintAnotherComponent mintAnother={this.mintAnother} /> : <MintOptions svg={svg} rotationRange={this.state.rotationRange} rotationRangeChanged={this.rotationRangeChanged} widthRange={this.state.widthRange} widthRangeChanged={this.widthRangeChanged}  paletteRange={this.state.paletteRange} paletteRangeChanged={this.paletteRangeChanged}  speedRange={this.state.speedRange} speedRangeChanged={this.speedRangeChanged} mint={this.mint} refresh={this.refresh} /> }
+              { this.state.doneSuccess ? <MintAnotherComponent mintAnother={this.mintAnother} /> : <MintOptions svg={svg} mintPrice={this.state.mintPrice} rotationRange={this.state.rotationRange} rotationRangeChanged={this.rotationRangeChanged} widthRange={this.state.widthRange} widthRangeChanged={this.widthRangeChanged}  paletteRange={this.state.paletteRange} paletteRangeChanged={this.paletteRangeChanged}  speedRange={this.state.speedRange} speedRangeChanged={this.speedRangeChanged} mint={this.mint} refresh={this.refresh} /> }
             </center>
           </div>
         </div>
