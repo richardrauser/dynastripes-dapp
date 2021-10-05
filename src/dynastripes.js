@@ -1,12 +1,18 @@
+import { ethers } from 'ethers';
+import { BigNumber } from '@ethersproject/bignumber';
 
 // Generate random int, inclusive of min/max
 function randomIntFromInterval(randomSeed, min, max) { 
     if (max <= min) {
         return min;
     }
-    const value = randomSeed % (max - min) + min;
+    const abiCodedSeed = ethers.utils.defaultAbiCoder.encode(["uint"], [randomSeed]);
+    const hash = ethers.utils.keccak256(abiCodedSeed);
+    const seed = BigNumber.from(hash);
+    
+    const value = seed.mod(BigNumber.from(max - min)).add(BigNumber.from(min));
     //   var value =  Math.floor(Math.random() * (max - min + 1) + min);
-      return value;
+      return value.toNumber();
 }
 
 function colourWithPallette(randomSeed, min, max) {

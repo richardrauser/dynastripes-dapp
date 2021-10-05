@@ -97,8 +97,8 @@ h5 {
   margin: 8px;
 }
 
-.mint {
-  opacity: 0.95;
+#mint {
+  background: #d3d3d3EE !important;
 }
 
 .mintRow {
@@ -146,6 +146,7 @@ div#accountDetails {
 
 .token {
   margin: 16px;
+  opacity: 1;
 }
 
 p.success {
@@ -219,7 +220,7 @@ h4.dyna {
   border-radius: 0.5rem;
   margin: 50px;
   padding: 16px;
-  background: lightgray !important;
+  background: lightgray;
   max-width: min(1200px, 70vw);
 }
 
@@ -227,10 +228,12 @@ h4.dyna {
   /* background-color: #FFFFFF;
   padding: 10px;
   margin: 0 auto; */
+  opacity: 1;
+
 }
 
 .previewArtwork {
-
+  opacity: 1;
   margin: 16px;
   background-color:#FFF;
   width: 400px; 

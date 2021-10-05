@@ -186,7 +186,7 @@ class MintPage extends React.Component {
 
       return (
         <div className="mainContent"  style={{backgroundImage: svgDataUri, backgroundColor: "#FFFFFF"}}>
-          <div className="content mint">
+          <div id="mint" className="content">
             <h1>Mint your own <span className="dyna">DynaStripes</span> NFT</h1>
             <center>
               { this.state.doneSuccess ? <MintAnotherComponent mintAnother={this.mintAnother} /> : <MintOptions svg={svg} mintPrice={this.state.mintPrice} rotationRange={this.state.rotationRange} rotationRangeChanged={this.rotationRangeChanged} widthRange={this.state.widthRange} widthRangeChanged={this.widthRangeChanged}  paletteRange={this.state.paletteRange} paletteRangeChanged={this.paletteRangeChanged}  speedRange={this.state.speedRange} speedRangeChanged={this.speedRangeChanged} mint={this.mint} refresh={this.refresh} /> }
