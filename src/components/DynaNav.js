@@ -3,9 +3,49 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 
+import { getContract } from '../utils/blockchain';
+
 import DynaNavLoginDropdown from './DynaNavLoginDropdown';
 
 class DynaNav extends React.Component {
+
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          isOwner: false
+        };
+    
+        this.fetchOwnerStatus = this.fetchOwnerStatus.bind(this);
+      }
+    
+    //   componentDidMount() {
+    //     this.fetchOwnerStatus();
+    //   }
+    
+      async fetchOwnerStatus() {
+        const contract = await getContract();
+      
+        if (contract === null) {
+          return;
+        }
+    
+        try {
+          const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    
+          const isOwner = await contract.isSenderOwner();
+          console.log("isOwner: " + isOwner);
+    
+          this.setState({
+            isOwner: isOwner
+          });
+        } catch (err) {
+          this.setState({
+            isOwner: false,
+          });
+        }
+      }
+      
     render() {
         return (
             <Navbar bg="light" expand="lg" sticky="top">
@@ -18,6 +58,7 @@ class DynaNav extends React.Component {
                     <Nav.Link href="gallery">Gallery</Nav.Link>
                     <Nav.Link href="/howto">How to</Nav.Link>
                     <Nav.Link href="/about">About</Nav.Link>
+                    { this.state.isOwner === true ? <Nav.Link href="/admin">Admin</Nav.Link> : null }
                 </Nav>
                 <Nav>
                     <DynaNavLoginDropdown />

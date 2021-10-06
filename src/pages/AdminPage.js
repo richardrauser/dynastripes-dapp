@@ -7,19 +7,21 @@ import { toast } from 'react-toastify';
 import { getContract, getContractWithSigner } from '../utils/blockchain';
 import { handleError } from '../utils/error';
 
+import generateDynaStripes from '../dynastripes.js';
+
 class AdminPage extends React.Component {
 
     constructor(props) {
       super(props);
       this.state = {
-        isAdmin: false
+        isSenderOwner: false
       }
-      this.fetchAdminStatus = this.fetchAdminStatus.bind(this);
+      this.fetchOwnerStatus = this.fetchOwnerStatus.bind(this);
   
     }
   
     componentDidMount() {
-      this.fetchAdminStatus();
+      this.fetchOwnerStatus();
     } 
   
     async pauseContract() {
@@ -54,7 +56,7 @@ class AdminPage extends React.Component {
       }
     }
   
-    async fetchAdminStatus() {
+    async fetchOwnerStatus() {
       const contract = await getContract();
   
       if (contract === null) {
@@ -62,15 +64,15 @@ class AdminPage extends React.Component {
       }
     
       try {
-        const isSenderAdmin = await contract.isSenderAdmin();
-        if (isSenderAdmin != null && isSenderAdmin === true) {
+        const isSenderOwner = await contract.isSenderOwner();
+        if (isSenderOwner === true) {
           toast("You're an admin. You must have built me! You're awesome. 😘");
         } else {
           toast("You're not an admin. Life must be painful and dull.");
         }
   
         this.setState({
-          isAdmin: isSenderAdmin,
+          isSenderOwner: isSenderOwner,
         });  
   
       } catch (err) {
@@ -80,21 +82,32 @@ class AdminPage extends React.Component {
     }
   
     render() {
-  
-      if (!this.state.isAdmin) {
+      const randomSeed = Math.trunc(Math.random() * 500000000);
+      const svgString = encodeURIComponent(generateDynaStripes(randomSeed, 0, 0, 0, 255, 0, 255, 20, 255));
+      const svgDataUri = `url("data:image/svg+xml,${svgString}")`;
+
+      if (!this.state.isSenderOwner) {
         return null;
       }  else {
         return (
-          <Card>
-          <Card.Title> Admin Settings </Card.Title>
-          <center>
-            <Button variant="primary" onClick={this.pauseContract}>Pause</Button>
-            <Button variant="primary" onClick={this.unpauseContract}>Unpause</Button>
-            <br/><hr/>
-            <input value={this.minterAddress} onChange={this.handleChange} /><br/>
-            <Button variant="primary" onClick={this.pauseContract}>Update minter</Button>
-          </center>
-        </Card>
+
+          <div className="mainContent"  style={{background: svgDataUri}}>
+            <div className="content">
+              <h1><span className="dyna">DynaStripes</span> Admin Settings</h1>
+              <div className="deepContent">
+                <center>
+                  <Button variant="primary" onClick={this.pauseContract}>Pause</Button>
+                  <Button variant="primary" onClick={this.unpauseContract}>Unpause</Button>
+                  <br/><hr/>
+                  <input value={this.minterAddress} onChange={this.handleChange} /><br/>
+                  <Button variant="primary" onClick={this.pauseContract}>Pay owner</Button>               
+                  <br/><hr/>
+                  <input value={this.minterAddress} onChange={this.handleChange} /><br/>
+                  <Button variant="primary" onClick={this.pauseContract}>Update minter</Button>               
+                </center>
+              </div>
+            </div>
+          </div>
         );
       }
     }

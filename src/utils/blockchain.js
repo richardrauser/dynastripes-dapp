@@ -8,6 +8,7 @@ const dynaStripesContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
 
 
 export async function getContract() {
+  console.log("Getting contract...");
     if (typeof window.ethereum !== 'undefined') {
       // const provider = new ethers.providers.Web3Provider(window.ethereum);
       // const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
@@ -25,6 +26,7 @@ export async function getContract() {
   }
   
 export async function getContractWithSigner() {
+    console.log("Getting signer...");
     if (typeof window.ethereum !== 'undefined') {
       // const provider = new ethers.providers.Web3Provider(window.ethereum);
       // const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);

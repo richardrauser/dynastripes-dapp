@@ -21,7 +21,7 @@ class HomePage extends React.Component {
   
   
     render() {
-      const randomSeed = Math.random() * 100000000000;
+      const randomSeed = Math.trunc(Math.random() * 500000000);
       const svgString = encodeURIComponent(generateDynaStripes(randomSeed, 0, 0, 0, 255, 0, 255, 20, 255));
 
       const svgDataUri = `url("data:image/svg+xml,${svgString}")`;

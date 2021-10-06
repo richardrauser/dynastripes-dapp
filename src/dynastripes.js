@@ -20,7 +20,6 @@ function colourWithPallette(randomSeed, min, max) {
     const blue = randomIntFromInterval(randomSeed * 2, min, max);
     const green = randomIntFromInterval(randomSeed * 3, min, max);
     const colour = "rgb(" + red + ", " + blue + ", " + green + ")";
-    console.log(colour);
     return colour;
 }
 

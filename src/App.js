@@ -56,6 +56,9 @@ class App extends React.Component {
             <Route path="/gallery">
               <GalleryPage />
             </Route>
+            <Route path="/admin"> 
+              <AdminPage />
+            </Route>
             <Route path="/about">
               <AboutPage />
             </Route>
