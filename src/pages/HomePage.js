@@ -5,7 +5,7 @@ import {
   Link
 } from "react-router-dom";
 
-import generateDynaStripes from '../dynastripes.js';
+import { generateRandomStripesDataUri } from '../dynastripes.js';
  
 class HomePage extends React.Component {
     constructor(props) {
@@ -21,15 +21,12 @@ class HomePage extends React.Component {
   
   
     render() {
-      const randomSeed = Math.trunc(Math.random() * 500000000);
-      const svgString = encodeURIComponent(generateDynaStripes(randomSeed, 0, 0, 0, 255, 0, 255, 20, 255));
-
-      const svgDataUri = `url("data:image/svg+xml,${svgString}")`;
+      const svgDataUri = generateRandomStripesDataUri();
   
       return (
         <div className="mainContent"  style={{background: svgDataUri}} onClick={this.update}>
 
-            <div className="content   ">
+            <div className="content">
 
               <h1 className="homeTitle">
               <span className="dyna">DynaStripes</span> is a novel <b>user-directed</b>, generative, on-chain NFT art project where <b>you</b> earn all royalties. 

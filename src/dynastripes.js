@@ -23,6 +23,12 @@ function colourWithPallette(randomSeed, min, max) {
     return colour;
 }
 
+function generateRandomStripesDataUri() {
+    const randomSeed = Math.trunc(Math.random() * 500000000);
+    const svgString = encodeURIComponent(generateDynaStripes(randomSeed, 0, 0, 0, 255, 0, 255, 20, 255));
+    return `url("data:image/svg+xml,${svgString}")`;
+}
+
 function generateDynaStripes(randomSeed, rotationMin, rotationMax, widthMin, widthMax, paletteMin, paletteMax, speedMin, speedMax) {
 
     console.log("Building dynastripes: " + rotationMin + " "  + rotationMax + " " + widthMin + " " + widthMax + " " + paletteMin + " " + paletteMax + " " + speedMin + " " + speedMax)
@@ -63,3 +69,4 @@ function generateDynaStripes(randomSeed, rotationMin, rotationMax, widthMin, wid
 }
 
 export default generateDynaStripes;
+export { generateRandomStripesDataUri, generateDynaStripes };

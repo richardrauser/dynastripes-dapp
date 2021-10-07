@@ -14,6 +14,7 @@ import { handleError } from '../utils/error';
 import { getContract } from '../utils/blockchain';
 
 import generateDynaStripes from '../dynastripes.js';
+import { generateRandomStripesDataUri } from '../dynastripes.js';
 
 class MintPage extends React.Component {
 
