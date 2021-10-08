@@ -83,6 +83,7 @@ class MintOptions extends React.Component {
                       renderThumb={Thumb}
                       min={0}
                       max={255}
+                      minDistance={20}
                       onAfterChange={this.props.paletteRangeChanged}
                   />
 
