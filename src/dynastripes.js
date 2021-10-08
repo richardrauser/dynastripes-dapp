@@ -15,10 +15,17 @@ function randomIntFromInterval(randomSeed, min, max) {
       return value.toNumber();
 }
 
+function getColours(randomSeed, paletteMin, paletteMax) {
+    const firstColour = colourWithPallette(randomSeed, paletteMin, paletteMax);
+    const secondColour = colourWithPallette(randomSeed + 10, paletteMin, paletteMax);
+    const colourValues = firstColour + ";" + secondColour + ";" + firstColour;
+    return colourValues;
+}
+
 function colourWithPallette(randomSeed, min, max) {
     const red = randomIntFromInterval(randomSeed, min, max);
-    const blue = randomIntFromInterval(randomSeed * 2, min, max);
-    const green = randomIntFromInterval(randomSeed * 3, min, max);
+    const blue = randomIntFromInterval(randomSeed + 1, min, max);
+    const green = randomIntFromInterval(randomSeed + 2, min, max);
     const colour = "rgb(" + red + ", " + blue + ", " + green + ")";
     return colour;
 }
@@ -47,21 +54,17 @@ function generateDynaStripes(randomSeed, rotationMin, rotationMax, widthMin, wid
             stripeWidth += (maxWidth - xPos) - stripeWidth;
         }
 
-        const rotationDegrees = randomIntFromInterval(randomSeed, rotationMin, rotationMax);
-        var speed = randomIntFromInterval(randomSeed, speedMin, speedMax) * 20;
-
-        const firstColour = colourWithPallette(randomSeed, paletteMin, paletteMax);
-        const secondColour = colourWithPallette(randomSeed * 2, paletteMin, paletteMax);
-        const colourValues = firstColour + ";" + secondColour + ";" + firstColour;
+        const rotationDegrees = randomIntFromInterval(randomSeed + 1, rotationMin, rotationMax);
+        var speed = randomIntFromInterval(randomSeed + 2, speedMin, speedMax) * 20;
 
         var currentRect = "<rect x='" + xPos + "' y='0' width='" + stripeWidth + "' height='2000' shape-rendering='crispEdges' opacity='" + opacity + "' transform='rotate(" + rotationDegrees + " 1000 1000)'>";
-        currentRect += "<animate begin= '0s' dur='" + speed + "ms' attributeName='fill' values='" + colourValues + "' fill='freeze' repeatCount='indefinite' />";
+        currentRect += "<animate begin= '0s' dur='" + speed + "ms' attributeName='fill' values='" + getColours(randomSeed + 3, paletteMin, paletteMax) + "' fill='freeze' repeatCount='indefinite' />";
         currentRect += "</rect>";
 
         allRectsXml += currentRect + "\r\n";
 
         xPos += stripeWidth;
-        randomSeed += xPos;
+        randomSeed += 100;
     }
 
     var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 2000'>";
