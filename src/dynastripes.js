@@ -35,29 +35,32 @@ function generateDynaStripes(randomSeed, rotationMin, rotationMax, widthMin, wid
     var xPos = 0;
     const maxWidth = 2000;
     var allRectsXml = "";
+    const opacity = 0.8;
 
     while ((maxWidth - xPos) > 0) {
-        const opacity = 0.8;
+
+        var stripeWidth = randomIntFromInterval(randomSeed, widthMin, widthMax) * 2;
+
+        if (stripeWidth > maxWidth - xPos) {
+            stripeWidth = maxWidth - xPos;
+        } else if ((maxWidth - xPos) - stripeWidth < widthMin) {
+            stripeWidth += (maxWidth - xPos) - stripeWidth;
+        }
 
         const rotationDegrees = randomIntFromInterval(randomSeed, rotationMin, rotationMax);
+        var speed = randomIntFromInterval(randomSeed, speedMin, speedMax) * 20;
+
         const firstColour = colourWithPallette(randomSeed, paletteMin, paletteMax);
         const secondColour = colourWithPallette(randomSeed * 2, paletteMin, paletteMax);
-
-        // var currentMaxWidth = Math.min(maxWidth, widthRemaining);
-        var width = randomIntFromInterval(randomSeed, widthMin, widthMax) + 50;
-        width = Math.min((maxWidth - xPos), width);
-
-        var animateTime = randomIntFromInterval(randomSeed, speedMin, speedMax) * 10;
-
         const colourValues = firstColour + ";" + secondColour + ";" + firstColour;
 
-        var currentRect = "<rect x='" + xPos + "' y='0' width='" + width + "' height='2000' shape-rendering='crispEdges' opacity='" + opacity + "' transform='rotate(" + rotationDegrees + " 1000 1000)'>";
-        currentRect += "<animate begin= '0s' dur='" + animateTime + "ms' attributeName='fill' values='" + colourValues + "' fill='freeze' repeatCount='indefinite' />";
+        var currentRect = "<rect x='" + xPos + "' y='0' width='" + stripeWidth + "' height='2000' shape-rendering='crispEdges' opacity='" + opacity + "' transform='rotate(" + rotationDegrees + " 1000 1000)'>";
+        currentRect += "<animate begin= '0s' dur='" + speed + "ms' attributeName='fill' values='" + colourValues + "' fill='freeze' repeatCount='indefinite' />";
         currentRect += "</rect>";
 
         allRectsXml += currentRect + "\r\n";
 
-        xPos += width;
+        xPos += stripeWidth;
         randomSeed += xPos;
     }
 

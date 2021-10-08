@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { getContract, getContractWithSigner } from '../utils/blockchain';
 import { handleError } from '../utils/error';
 
-import generateDynaStripes from '../dynastripes.js';
+import { generateRandomStripesDataUri } from '../dynastripes.js';
 
 class AdminPage extends React.Component {
 
@@ -82,9 +82,7 @@ class AdminPage extends React.Component {
     }
   
     render() {
-      const randomSeed = Math.trunc(Math.random() * 500000000);
-      const svgString = encodeURIComponent(generateDynaStripes(randomSeed, 0, 0, 0, 255, 0, 255, 20, 255));
-      const svgDataUri = `url("data:image/svg+xml,${svgString}")`;
+      const svgDataUri = generateRandomStripesDataUri();
 
       if (!this.state.isSenderOwner) {
         return null;

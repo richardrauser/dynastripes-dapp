@@ -26,9 +26,9 @@ class MintPage extends React.Component {
         doneSuccess: false,
         randomSeed: randomSeed,
         rotationRange: [0, 180],
-        widthRange: [0, 255],
+        widthRange: [25, 250],
         paletteRange: [0, 255],
-        speedRange: [20, 255],
+        speedRange: [25, 250],
         mintPrice: null
       }
   
@@ -72,8 +72,10 @@ class MintPage extends React.Component {
     }
     
     mintAnother() {
+      const randomSeed = this.randomSeed();
       this.setState({
-        doneSuccess: false
+        doneSuccess: false,
+        randomSeed: randomSeed
       })
     }
 

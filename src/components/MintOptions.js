@@ -67,8 +67,8 @@ class MintOptions extends React.Component {
                       value={this.props.widthRange}
                       renderTrack={Track}
                       renderThumb={Thumb}
-                      min={0}
-                      max={255}
+                      min={25}
+                      max={250}
                       onAfterChange={this.props.widthRangeChanged}
                   />
                 </div>
@@ -93,8 +93,8 @@ class MintOptions extends React.Component {
                       value={this.props.speedRange}
                       renderTrack={Track}
                       renderThumb={Thumb}
-                      min={20}
-                      max={255}
+                      min={25}
+                      max={250}
                       onAfterChange={this.props.speedRangeChanged}
                   />
               </div>

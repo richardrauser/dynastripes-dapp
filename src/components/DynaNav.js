@@ -19,9 +19,9 @@ class DynaNav extends React.Component {
         this.fetchOwnerStatus = this.fetchOwnerStatus.bind(this);
       }
     
-    //   componentDidMount() {
-    //     this.fetchOwnerStatus();
-    //   }
+      componentDidMount() {
+        this.fetchOwnerStatus();
+      }
     
       async fetchOwnerStatus() {
         const contract = await getContract();
