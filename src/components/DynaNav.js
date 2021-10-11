@@ -30,9 +30,7 @@ class DynaNav extends React.Component {
           return;
         }
     
-        try {
-          const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    
+        try {    
           const isOwner = await contract.isSenderOwner();
           console.log("isOwner: " + isOwner);
     

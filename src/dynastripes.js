@@ -16,13 +16,13 @@ function randomIntFromInterval(randomSeed, min, max) {
 }
 
 function getColours(randomSeed, paletteMin, paletteMax) {
-    const firstColour = colourWithPallette(randomSeed, paletteMin, paletteMax);
-    const secondColour = colourWithPallette(randomSeed + 10, paletteMin, paletteMax);
+    const firstColour = getColour(randomSeed, paletteMin, paletteMax);
+    const secondColour = getColour(randomSeed + 10, paletteMin, paletteMax);
     const colourValues = firstColour + ";" + secondColour + ";" + firstColour;
     return colourValues;
 }
 
-function colourWithPallette(randomSeed, min, max) {
+function getColour(randomSeed, min, max) {
     const red = randomIntFromInterval(randomSeed, min, max);
     const blue = randomIntFromInterval(randomSeed + 1, min, max);
     const green = randomIntFromInterval(randomSeed + 2, min, max);

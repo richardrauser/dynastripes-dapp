@@ -29,7 +29,6 @@ import { handleError } from '../utils/error';
       }
   
       try {
-        const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
         var tokenIds = [];
   
         const tokenCount = await contract.totalSupply();

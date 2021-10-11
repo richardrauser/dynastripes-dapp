@@ -57,17 +57,16 @@ class AboutPage extends React.Component {
               </h3>
 
                 <p>
-                  The <span className="dyna">DynaStripes</span> project has been heavily influenced by existing on-chain, generative art projects like <a className="externalLink" href="https://www.larvalabs.com/autoglyphs" target="_blank" rel="noreferrer">Autoglyphs</a>, <a className="externalLink" href="https://avastars.io/" target="_blank" rel="noreferrer">Avastars</a>, <a className="externalLink" href="https://www.artblocks.io/" target="_blank" rel="noreferrer">ArtBlocks</a>, <a className="externalLink" href="https://mandalas.eth.link/" target="_blank" rel="noreferrer">Mandalas</a> and more. There are, however, two projects in particular that have served as the strongest inspiration for <span className="dyna">DynaStripes</span>:
-                  <ol>
+                  The <span className="dyna">DynaStripes</span> project has been heavily influenced by existing on-chain, generative art projects like <a className="externalLink" href="https://www.larvalabs.com/autoglyphs" target="_blank" rel="noreferrer">Autoglyphs</a>, <a className="externalLink" href="https://avastars.io/" target="_blank" rel="noreferrer">Avastars</a>, <a className="externalLink" href="https://www.artblocks.io/" target="_blank" rel="noreferrer">ArtBlocks</a>, <a className="externalLink" href="https://mandalas.eth.link/" target="_blank" rel="noreferrer">Mandalas</a> and more. There are, however, two projects in particular that have served as the strongest inspiration for <span className="dyna">DynaStripes</span>:                    
+                </p>
+                <ol>
                   <li> 
                       <a className="externalLink" href="https://tinybox.shop/" target="_blank" rel="noreferrer">TinyBoxes</a>: This "proto-generative," on-chain generative NFT project forged a new path by allowing users to select input parameters that influence the minted work.
-                    </li>
-                    <li> 
+                  </li>
+                  <li> 
                     Simon de la Rouviere's <a className="externalLink" href="https://neolastics.com/" target="_blank" rel="noreferrer">Neolastics</a> and also his extensive writings, particularly this <a className="externalLink" href='https://blog.simondlr.com/posts/flavours-of-on-chain-svg-nfts-on-ethereum' target="_blank" rel="noreferrer">fascinating piece.</a>
-                    </li>
-                  </ol>
-                    
-                </p>
+                  </li>
+                </ol>
             </div>
 
             <a className="externalLink" href="mail:volstrate@gmail.com">Contact</a>

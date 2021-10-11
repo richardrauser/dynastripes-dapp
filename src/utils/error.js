@@ -6,6 +6,7 @@ export function handleError(err) {
   
     if (err.code === 4001) {
       showErrorMessage('You rejected the transaction. :-(');
+      // -32002: already requesting accounts
     } else if (err.code === -32603) {
       // Internal JSON RPC error
       if (err.data != null && err.data.message != null) {
@@ -14,9 +15,9 @@ export function handleError(err) {
         showErrorMessage('Oops, an Internal JSON RPC error occurred. ');
       }
     } else if (err.code != null) {
-      showErrorMessage('An Error occurred: ' + err.code);
+      showErrorMessage('An error occurred: (' + err.code + ') ' + err.message);
     } else {
-      showErrorMessage('An Error occurred.');
+      showErrorMessage('An error occurred.');
     }
   }
   

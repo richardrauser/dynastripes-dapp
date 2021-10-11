@@ -52,16 +52,16 @@ class MintPriceComponent extends React.Component {
       render() { 
         if (this.state.loading === true) {
             return (
-                <p>
-                    Mint price: <Spinner id="mintSpinner" animation="grow" />
-                </p>
+              <div>
+                Mint price: <Spinner id="mintSpinner" animation="grow" />
+              </div>
             );
     
         } else {
             return (
-                <p>
+                <div>
                   Mint price: { this.state.mintPrice === null ? "-" :  ethers.utils.formatEther(this.state.mintPrice) }<img src={ether} alt="ether logo" className='mintEther'/> 
-                </p>
+                </div>
             );    
         }    
     }

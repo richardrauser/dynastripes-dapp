@@ -105,11 +105,7 @@ class MintOptions extends React.Component {
                 
             </div>
           
-            <p>
-
-            <MintPriceComponent />
-
-          </p>
+          <MintPriceComponent />
           <Button variant="primary" onClick={this.props.refresh}>New random seed</Button>
           <Button variant="primary" disabled={this.props.mintPrice === null} onClick={this.props.mint}>Mint, baby!</Button>
         </div>
@@ -117,5 +113,4 @@ class MintOptions extends React.Component {
     }
   }
   
-
   export default MintOptions;
