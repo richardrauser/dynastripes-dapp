@@ -31,14 +31,13 @@ function getColour(randomSeed, min, max) {
 }
 
 function generateRandomStripesDataUri() {
-    const randomSeed = Math.trunc(Math.random() * 500000000);
-    const svgString = encodeURIComponent(generateDynaStripes(randomSeed, 0, 0, 0, 255, 0, 255, 20, 255));
+    const randomSeed = Math.trunc(Math.random() * 5_000_000);
+    const svgString = encodeURIComponent(generateDynaStripes(randomSeed, 0, 0, 0, 25, 250, 0, 255, 25, 250));
     return `url("data:image/svg+xml,${svgString}")`;
 }
 
-function generateDynaStripes(randomSeed, rotationMin, rotationMax, widthMin, widthMax, paletteMin, paletteMax, speedMin, speedMax) {
-
-    console.log("Building dynastripes: " + rotationMin + " "  + rotationMax + " " + widthMin + " " + widthMax + " " + paletteMin + " " + paletteMax + " " + speedMin + " " + speedMax)
+function generateDynaStripes(randomSeed, zoom, rotationMin, rotationMax, widthMin, widthMax, paletteMin, paletteMax, speedMin, speedMax) {
+    console.log("Generating dynastripes: " + randomSeed + " " + zoom + " " + rotationMin + " "  + rotationMax + " " + widthMin + " " + widthMax + " " + paletteMin + " " + paletteMax + " " + speedMin + " " + speedMax)
     var xPos = 0;
     const maxWidth = 2000;
     var allRectsXml = "";
@@ -55,10 +54,15 @@ function generateDynaStripes(randomSeed, rotationMin, rotationMax, widthMin, wid
         }
 
         const rotationDegrees = randomIntFromInterval(randomSeed + 1, rotationMin, rotationMax);
+        console.log("rotationDegrees: " + rotationDegrees);            
+        // const radians = rotationDegrees * Math.PI / 180;
+        // const rotatedWidthHeight = 2000 * Math.abs(Math.sin(radians)) + 2000 * Math.abs(Math.cos(radians));
+        // maxWidthHeight = Math.max(maxWidthHeight, rotatedWidthHeight);
+
         var speed = randomIntFromInterval(randomSeed + 2, speedMin, speedMax) * 20;
 
-        var currentRect = "<rect x='" + xPos + "' y='0' width='" + stripeWidth + "' height='2000' shape-rendering='crispEdges' opacity='" + opacity + "' transform='rotate(" + rotationDegrees + " 1000 1000)'>";
-        currentRect += "<animate begin= '0s' dur='" + speed + "ms' attributeName='fill' values='" + getColours(randomSeed + 3, paletteMin, paletteMax) + "' fill='freeze' repeatCount='indefinite' />";
+        var currentRect = "<rect x='" + xPos + "' y='0' width='" + stripeWidth + "' height='2000' opacity='" + opacity + "' transform='rotate(" + rotationDegrees + " 1000 1000)'>";
+        currentRect += "<animate begin= '0s' dur='" + speed + "ms' attributeName='fill' values='" + getColours(randomSeed + 3, paletteMin, paletteMax) + "' fill='freeze' repeatCount='indefinite'/>";
         currentRect += "</rect>";
 
         allRectsXml += currentRect + "\r\n";
@@ -67,7 +71,31 @@ function generateDynaStripes(randomSeed, rotationMin, rotationMax, widthMin, wid
         randomSeed += 100;
     }
 
-    var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 2000'>";
+    // var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 2000'>";
+    // console.log("maxWidthHeight: " + maxWidthHeight);
+    // // viewBoxWidth = 2000 * Abs(Cos(Fi)) + 2000 * Abs(Sin(Fi))
+    // // maxWidthHeight = 2000;
+    // // const offset = 0; // (2000 - maxWidthHeight) / 2;
+
+    // var offset = 0;    
+
+    // // if (zoom) {
+    // //     maxWidthHeight = 2830;
+    // //     offset = -415;    
+    // // } else {
+    // //     maxWidthHeight = 2000;
+    // // }
+
+    
+    // // const viewBox = offset + " " + offset + " " + maxWidthHeight + " " + maxWidthHeight;
+    console.log("ZOOM: "+ zoom);
+
+    const offset = zoom * 10 / 2;
+    const maxWidthHeight = 2000 + zoom * 10;
+    const viewBox = "-" + offset + " -" + offset + " " + maxWidthHeight + " " + maxWidthHeight;
+    console.log("viewBox: " + viewBox);
+
+    var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='" + viewBox + "'>";
     svg += allRectsXml;
     svg +=  "</svg>";
 

@@ -25,12 +25,14 @@ class MintPage extends React.Component {
         doneSuccess: false,
         randomSeed: randomSeed,
         rotationRange: [0, 180],
+        zoom: 0,
         widthRange: [25, 250],
         paletteRange: [0, 255],
         speedRange: [25, 250],
         mintPrice: null
       }
   
+      this.zoomChanged = this.zoomChanged.bind(this);
       this.rotationRangeChanged = this.rotationRangeChanged.bind(this);
       this.widthRangeChanged = this.widthRangeChanged.bind(this);
       this.paletteRangeChanged = this.paletteRangeChanged.bind(this);
@@ -45,13 +47,19 @@ class MintPage extends React.Component {
       this.fetchMintPrice();
     }
   
+    zoomChanged(value, index) {
+      console.log("Zoom changed to: " + value);
+      this.setState({
+        zoom: value
+      });
+    }
+
     rotationRangeChanged(value, index) {
       console.log("Rotation range changed to: " + value);
       this.setState({
         rotationRange: value
       });
-    }
-  
+    }  
     widthRangeChanged(value, index) {
       this.setState({
         widthRange: value
@@ -79,8 +87,7 @@ class MintPage extends React.Component {
     }
 
     randomSeed() {
-      const max16bitInt = 500000000 - 1;
-      return Math.trunc(Math.random() * max16bitInt);
+      return Math.trunc(Math.random() * 5_000_000);
     }
 
     refresh() {
@@ -114,24 +121,33 @@ class MintPage extends React.Component {
     }
 
     async mint() {
-      const rotationDegrees = this.state.rotationDegrees;
-      const stripeWidth = this.state.stripeWidth;
-      const palette = this.state.palette;
-      const speed = this.state.speed;
+      const zoom = this.state.zoom;
+      // TODO: validation needs to check range
+      // const rotationDegrees = this.state.rotationDegrees;
+      // const stripeWidth = this.state.stripeWidth;
+      // const palette = this.state.palette;
+      // const speed = this.state.speed;
   
-      if (rotationDegrees < 0 || rotationDegrees > 180) {
-        showErrorMessage("Rotation angle must be a factor of 45.");
-        return;
-      } else if (stripeWidth < 0 || stripeWidth > 255) {
-          showErrorMessage("Stripe width must be between 0 and 255.")
-          return;
-      } else if (palette < 0 || palette > 255) {
-        showErrorMessage("Palette must be between 0 and 255.")
-        return;
-      } else if (speed < 20 || speed > 255) {
-        showErrorMessage("Speed must be between 20 and 255.")
-        return;
-      }
+      if (zoom < 0 || zoom > 100) {
+        showErrorMessage("Zoom must be between 0 and 100.");
+        return      
+      } 
+      // if (rotationDegrees < 0 || rotationDegrees > 180) {
+      //   showErrorMessage("Rotation angle must be a factor of 45.");
+      //   return
+      // } 
+      // if (stripeWidth < 0 || stripeWidth > 255) {
+      //     showErrorMessage("Stripe width must be between 0 and 255.")
+      //     return;
+      // } 
+      // if (palette < 0 || palette > 255) {
+      //   showErrorMessage("Palette must be between 0 and 255.")
+      //   return;
+      // } 
+      // if (speed < 20 || speed > 255) {
+      //   showErrorMessage("Speed must be between 20 and 255.")
+      //   return;
+      // }
   
       const contractWithSigner = await getContractWithSigner(); 
   
@@ -144,6 +160,7 @@ class MintPage extends React.Component {
 
         const rotationMin = this.state.rotationRange[0];
         const rotationMax = this.state.rotationRange[1];
+        const zoom = this.state.zoom;
         const widthMin = this.state.widthRange[0];
         const widthMax = this.state.widthRange[1];
         const paletteMin = this.state.paletteRange[0];
@@ -151,14 +168,14 @@ class MintPage extends React.Component {
         const speedMin = this.state.speedRange[0];
         const speedMax = this.state.speedRange[1];
         
-        console.log("Minting dynastripes: " + rotationMin + " "  + rotationMax + " " + widthMin + " " + widthMax + " " + paletteMin + " " + paletteMax + " " + speedMin + " " + speedMax)
+        console.log("Minting dynastripes: " + rotationMin + " "  + rotationMax + " " + zoom + " " + widthMin + " " + widthMax + " " + paletteMin + " " + paletteMax + " " + speedMin + " " + speedMax)
 
         const overrides = {
           value: ethers.utils.parseEther("0.01"), 
           gasLimit: 300000
       }
   
-        await contractWithSigner.mintStripes(this.state.randomSeed, rotationMin, rotationMax, widthMin, widthMax, paletteMin, paletteMax, speedMin, speedMax, overrides);
+        await contractWithSigner.mintStripes(this.state.randomSeed, zoom, rotationMin, rotationMax, widthMin, widthMax, paletteMin, paletteMax, speedMin, speedMax, overrides);
   
         this.setState({
           doneSuccess: true
@@ -173,6 +190,7 @@ class MintPage extends React.Component {
     render() {
       const rotationMin = this.state.rotationRange[0];
       const rotationMax = this.state.rotationRange[1];
+      const zoom = this.state.zoom;
       const widthMin = this.state.widthRange[0];
       const widthMax = this.state.widthRange[1];
       const paletteMin = this.state.paletteRange[0];
@@ -180,7 +198,7 @@ class MintPage extends React.Component {
       const speedMin = this.state.speedRange[0];
       const speedMax = this.state.speedRange[1];
       
-      const svg = generateDynaStripes(this.state.randomSeed, rotationMin, rotationMax, widthMin, widthMax, paletteMin, paletteMax, speedMin, speedMax);
+      const svg = generateDynaStripes(this.state.randomSeed, zoom, rotationMin, rotationMax, widthMin, widthMax, paletteMin, paletteMax, speedMin, speedMax, false);
       const encodedSvg = encodeURIComponent(svg);
       const svgDataUri = `url("data:image/svg+xml,${encodedSvg}")`;
 
@@ -191,7 +209,7 @@ class MintPage extends React.Component {
           <div id="mint" className="content">
             <h1>Mint your own <span className="dyna">DynaStripes</span> NFT</h1>
             <center>
-              { this.state.doneSuccess ? <MintAnotherComponent mintAnother={this.mintAnother} /> : <MintOptions svg={svg} mintPrice={this.state.mintPrice} rotationRange={this.state.rotationRange} rotationRangeChanged={this.rotationRangeChanged} widthRange={this.state.widthRange} widthRangeChanged={this.widthRangeChanged}  paletteRange={this.state.paletteRange} paletteRangeChanged={this.paletteRangeChanged}  speedRange={this.state.speedRange} speedRangeChanged={this.speedRangeChanged} mint={this.mint} refresh={this.refresh} /> }
+              { this.state.doneSuccess ? <MintAnotherComponent mintAnother={this.mintAnother} /> : <MintOptions svg={svg} mintPrice={this.state.mintPrice} rotationRange={this.state.rotationRange} rotationRangeChanged={this.rotationRangeChanged} zoom={this.state.zoom} zoomChanged={this.zoomChanged} widthRange={this.state.widthRange} widthRangeChanged={this.widthRangeChanged}  paletteRange={this.state.paletteRange} paletteRangeChanged={this.paletteRangeChanged}  speedRange={this.state.speedRange} speedRangeChanged={this.speedRangeChanged} mint={this.mint} refresh={this.refresh} /> }
             </center>
           </div>
         </div>

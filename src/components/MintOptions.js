@@ -30,14 +30,21 @@ class MintOptions extends React.Component {
 
       const Thumb = (props, state) => <StyledThumb {...props}>{state.valueNow}</StyledThumb>;
 
-      const StyledTrack = styled.div`
+      const StyledOneThumbTrack = styled.div`
+        top: 0;
+        bottom: 0;
+        background: #ddd;
+        border-radius: 999px;
+      `;
+      const OneThumbTrack = (props, state) => <StyledOneThumbTrack {...props} index={state.index} />;
+
+      const StyledTwoThumbTrack = styled.div`
           top: 0;
           bottom: 0;
           background: ${props => props.index === 1 ? '#aaa' : '#ddd'};
           border-radius: 999px;
       `;
-
-      const Track = (props, state) => <StyledTrack {...props} index={state.index} />;
+      const TwoThumbTrack = (props, state) => <StyledTwoThumbTrack {...props} index={state.index} />;
 
       return (
         <div>
@@ -48,11 +55,24 @@ class MintOptions extends React.Component {
 
               <div className="mintInputs">
                 <div className="mintInput">
-                  Rotation degrees <br/>
+                  Zoom (closer - farther) <br/>
+
+                  <StyledSlider 
+                      value={this.props.zoom}
+                      renderTrack={OneThumbTrack}
+                      renderThumb={Thumb}
+                      min={0}
+                      max={100}
+                      onAfterChange={this.props.zoomChanged}
+                  />
+                </div>  
+
+                <div className="mintInput">
+                  Rotation<br/>
 
                   <StyledSlider 
                       value={this.props.rotationRange}
-                      renderTrack={Track}
+                      renderTrack={TwoThumbTrack}
                       renderThumb={Thumb}
                       min={0}
                       max={180}
@@ -65,7 +85,7 @@ class MintOptions extends React.Component {
 
                   <StyledSlider
                       value={this.props.widthRange}
-                      renderTrack={Track}
+                      renderTrack={TwoThumbTrack}
                       renderThumb={Thumb}
                       min={25}
                       max={250}
@@ -79,7 +99,7 @@ class MintOptions extends React.Component {
 
                 <StyledSlider
                       value={this.props.paletteRange}
-                      renderTrack={Track}
+                      renderTrack={TwoThumbTrack}
                       renderThumb={Thumb}
                       min={0}
                       max={255}
@@ -92,7 +112,7 @@ class MintOptions extends React.Component {
                 Animation speed (faster - slower)<br/>
                 <StyledSlider
                       value={this.props.speedRange}
-                      renderTrack={Track}
+                      renderTrack={TwoThumbTrack}
                       renderThumb={Thumb}
                       min={25}
                       max={250}

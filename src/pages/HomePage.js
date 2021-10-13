@@ -29,24 +29,24 @@ class HomePage extends React.Component {
             <div className="content">
 
               <h1 className="homeTitle">
-              <span className="dyna">DynaStripes</span> is a novel <b>user-directed</b>, generative, on-chain NFT art project where <b>you</b> earn all royalties. 
+              <span className="dyna">DynaStripes</span> is <b>user-directed</b>, generative, on-chain NFT art where <b>you</b> earn all royalties 
               </h1>
               <div className="featureList">
               <ul>
                 <li>
-                  <b>User-directed:</b> the NFT artwork is minted using inputs that <b>you</b> select.
+                  <b>User-directed:</b> you select the input parameters
                 </li>              
                 <li>
-                  <b>Generative:</b> your inputs and a set of random values are used to programatically create the artwork.
+                  <b>Generative:</b> the artwork is created by an algorithm
                 </li>              
                 <li>
-                <b>On-chain</b>: the creation algorithm, the inputs, and the artwork are entirely stored on the Ethereum blockchain.
+                <b>On-chain</b>: artwork is stored entirely on the Ethereum blockchain
                 </li>              
                 <li>
-                  <b>NFT:</b> fully ERC-721 compliant non-fungible token smart contract with metadata served entirely from the blockchain. 
+                  <b>NFT:</b> ERC-721 compliant non-fungible token smart contract
                 </li>              
                 <li>
-                  <b>Royalties:</b> ERC-2981 compliant, with you, the minter, earning all royalties on secondary sales in perpetuity.
+                  <b>Royalties:</b> ERC-2981 compliant, and you earn all royalties
                 </li>              
                 </ul>
                 <div className="homeActions">
