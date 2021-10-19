@@ -36,6 +36,14 @@ function generateRandomStripesDataUri() {
     return `url("data:image/svg+xml,${svgString}")`;
 }
 
+function generatePlaceholderStripesDataUri() {
+    const randomSeed = Math.trunc(Math.random() * 5_000_000);
+    const zoom = randomIntFromInterval(randomSeed, 0, 100);
+    const svgString = encodeURIComponent(generateDynaStripes(randomSeed, zoom, 0, 180, 25, 250, 0, 255, 25, 250));
+    return `url("data:image/svg+xml,${svgString}")`;
+}
+
+
 function generateDynaStripes(randomSeed, zoom, rotationMin, rotationMax, widthMin, widthMax, paletteMin, paletteMax, speedMin, speedMax) {
     console.log("Generating dynastripes: " + randomSeed + " " + zoom + " " + rotationMin + " "  + rotationMax + " " + widthMin + " " + widthMax + " " + paletteMin + " " + paletteMax + " " + speedMin + " " + speedMax)
 
@@ -110,4 +118,4 @@ function generateViewBox(zoom) {
 }
 
 export default generateDynaStripes;
-export { generateRandomStripesDataUri, generateDynaStripes };
+export { generateRandomStripesDataUri, generatePlaceholderStripesDataUri, generateDynaStripes };

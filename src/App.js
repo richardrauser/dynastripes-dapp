@@ -37,7 +37,6 @@ class App extends React.Component {
     return (
       <div className="App">
         <Router>
-          <DynaNav />
           <ToastContainer
             position="bottom-left"
             autoClose={5000}
@@ -50,18 +49,6 @@ class App extends React.Component {
             pauseOnHover
           />
           <Switch>
-            <Route path="/mint">
-              <MintPage />
-            </Route>
-            <Route path="/gallery">
-              <GalleryPage />
-            </Route>
-            <Route path="/admin"> 
-              <AdminPage />
-            </Route>
-            <Route path="/about">
-              <AboutPage />
-            </Route>
             <Route path="/">
                 <HomePage />
             </Route>
