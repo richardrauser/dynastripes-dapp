@@ -39,12 +39,12 @@ class HomePage extends React.Component {
               <span className="dyna">DynaStripes</span> is <b>user-directed</b>, generative, on-chain NFT art where <b>you</b> earn all royalties 
               </h1>
               <div className="samples">
-              <img className="sample" src={sample1}/>
-              <img className="sample" src={sample2}/>
-              <img className="sample" src={sample3}/>
-              <img className="sample" src={sample4}/>
-              <img className="sample" src={sample5}/>
-              <img className="sample" src={sample6}/>
+              <img className="sample" alt="sample dyna stripes 1" src={sample1}/>
+              <img className="sample" alt="sample dyna stripes 2" src={sample2}/>
+              <img className="sample" alt="sample dyna stripes 3" src={sample3}/>
+              <img className="sample" alt="sample dyna stripes 4" src={sample4}/>
+              <img className="sample" alt="sample dyna stripes 5" src={sample5}/>
+              <img className="sample" alt="sample dyna stripes 6" src={sample6}/>
               </div>
               <div className="featureList">
               <ul>

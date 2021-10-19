@@ -11,7 +11,6 @@ import { Wallet2 } from 'react-bootstrap-icons';
 
 import '../utils/blockchain.js';
 import '../utils/ui.js';
-import { showErrorMessage } from '../utils/ui.js';
 import { handleError } from '../utils/error';
 
 const accountAddressKey = "accountAddress";

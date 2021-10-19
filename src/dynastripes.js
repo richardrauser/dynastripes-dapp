@@ -40,7 +40,6 @@ function generateDynaStripes(randomSeed, zoom, rotationMin, rotationMax, widthMi
     console.log("Generating dynastripes: " + randomSeed + " " + zoom + " " + rotationMin + " "  + rotationMax + " " + widthMin + " " + widthMax + " " + paletteMin + " " + paletteMax + " " + speedMin + " " + speedMax)
 
     var xPos = 0;
-    var widthHeight = 1000 + zoom * 20;
     var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='" + generateViewBox(zoom) + "' clip-path='url(#clip)'>";
     // svg += "<defs><clipPath id='clip'><rect width='" + 2000 + "' height='" + 2000    + "'/></clipPath></defs>";
   
@@ -98,11 +97,11 @@ function generateViewBox(zoom) {
     zoom = zoom * 20;
     const widthHeight = 1000 + zoom;
     var viewBox = "";
+    var offset = (zoom - 1000) / 2;
     if (zoom > 1000) {
-        var offset = (zoom - 1000) / 2;
         viewBox = "-" + offset + " -" + offset + " " + widthHeight + " " + widthHeight;
     } else {
-        var offset = (zoom == 1000 ? 0 : (1000 - zoom) / 2);
+        offset = (zoom === 1000 ? 0 : (1000 - zoom) / 2);
         viewBox = "" + offset + " " + offset + " " + widthHeight + " " + widthHeight;
     }
 
