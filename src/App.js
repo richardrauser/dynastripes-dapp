@@ -13,11 +13,13 @@ import {
 } from "react-router-dom";
 
 import DynaNav from './components/DynaNav';
-import AboutPage from './pages/AboutPage';
-import AdminPage from './pages/AdminPage';
 import HomePage from './pages/HomePage';
 import MintPage from './pages/MintPage';
 import GalleryPage from './pages/GalleryPage';
+import HowToPage from './pages/HowToPage';
+import AboutPage from './pages/AboutPage';
+import AdminPage from './pages/AdminPage';
+import FeedbackPage from './pages/FeedbackPage';
 
 class App extends React.Component {
 
@@ -56,11 +58,17 @@ class App extends React.Component {
             <Route path="/gallery">
               <GalleryPage />
             </Route>
-            <Route path="/admin"> 
-              <AdminPage />
+            <Route path="/howto">
+              <HowToPage />
             </Route>
             <Route path="/about">
               <AboutPage />
+            </Route>
+            <Route path="/admin"> 
+              <AdminPage />
+            </Route>
+            <Route path="/feedback">
+              <FeedbackPage />
             </Route>
             <Route path="/">
                 <HomePage />

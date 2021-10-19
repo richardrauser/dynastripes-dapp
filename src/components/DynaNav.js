@@ -3,10 +3,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 
-import {
-  Link
-} from "react-router-dom";
-
 import { getContract } from '../utils/blockchain';
 
 import DynaNavLoginDropdown from './DynaNavLoginDropdown';
@@ -60,7 +56,8 @@ class DynaNav extends React.Component {
                     <Nav.Link href="/mint">Mint!</Nav.Link>
                     <Nav.Link href="/gallery">Gallery</Nav.Link>
                     <Nav.Link href="/howto">How to</Nav.Link>
-                    <Link to="/about"><Nav.Link>About</Nav.Link></Link>
+                    <Nav.Link href="/about">About</Nav.Link>
+                    <Nav.Link href="/feedback">Feedback</Nav.Link>
                     { this.state.isOwner === true ? <Nav.Link href="/admin">Admin</Nav.Link> : null }
                 </Nav>
                 <Nav>
