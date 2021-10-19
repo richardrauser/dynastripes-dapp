@@ -1,16 +1,4 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-
-import sample1 from '../images/dynasample2.svg';
-import sample2 from '../images/dynasample3.svg';
-import sample3 from '../images/dynasample8.svg';
-import sample4 from '../images/dynasample6.svg';
-import sample5 from '../images/dynasample9.svg';
-import sample6 from '../images/dynasample7.svg';
-
-import {
-  Link
-} from "react-router-dom";
 
 import { generatePlaceholderStripesDataUri } from '../dynastripes.js';
  
@@ -45,7 +33,7 @@ class HomePage extends React.Component {
                 Coming soon.
               </div>		
               <div class ='placeholderAttribution'>
-                by <a class="volstrate" href="http://www.volstrate.com" target="_blank">volstrate</a>
+                by <a class="volstrate" href="http://www.volstrate.com" target="_blank" rel="noreferrer">volstrate</a>
               </div>
 
 
