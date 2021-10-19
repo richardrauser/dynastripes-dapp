@@ -3,9 +3,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 
+import {
+  Link
+} from "react-router-dom";
+
 import { getContract } from '../utils/blockchain';
 
 import DynaNavLoginDropdown from './DynaNavLoginDropdown';
+
 
 class DynaNav extends React.Component {
 
