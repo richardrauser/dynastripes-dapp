@@ -48,6 +48,19 @@ a.externalLink {
   opacity: 0.9;
 }
 
+.samples {
+  background-color: #EEEEEE;
+  border-radius: 0.5rem;
+  margin: 16px auto;
+  width: 80%
+}
+
+.sample {
+  width: 10%;
+  margin: 16px;
+  /* border: 1px solid #CCC; */
+}
+
 .homeActions {
   text-align: center;
   margin: auto;
@@ -216,6 +229,9 @@ h4.dyna {
 
 .content {
   background-color: #d3d3d3EE;
+  /* background-color:#AAAAAADD; */
+  box-shadow: 0 0 10px 5px rgb(100 100 100 / 0.2 );
+
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.5rem;
   margin: 50px;

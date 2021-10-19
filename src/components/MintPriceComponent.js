@@ -4,7 +4,7 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import ether from '../images/ethereum.svg';
 
-import { getContract } from '../utils/blockchain';
+import { fetchMintPrice } from '../utils/blockchain';
 import { handleError } from '../utils/error';
 
 class MintPriceComponent extends React.Component { 
@@ -25,17 +25,8 @@ class MintPriceComponent extends React.Component {
       }
   
       async fetchMintPrice() {
-        const contract = await getContract();
-    
-        if (contract === null) {
-          return;
-        }
-    
         try {
-  
-          const mintPrice = await contract.currentMintPrice();
-          console.log("Mint price: " + mintPrice);
-       
+          const mintPrice = await fetchMintPrice();       
           this.setState({
             loading: false,
             mintPrice: mintPrice

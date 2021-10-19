@@ -38,19 +38,20 @@ function generateRandomStripesDataUri() {
 
 function generateDynaStripes(randomSeed, zoom, rotationMin, rotationMax, widthMin, widthMax, paletteMin, paletteMax, speedMin, speedMax) {
     console.log("Generating dynastripes: " + randomSeed + " " + zoom + " " + rotationMin + " "  + rotationMax + " " + widthMin + " " + widthMax + " " + paletteMin + " " + paletteMax + " " + speedMin + " " + speedMax)
-    var xPos = 0;
-    const maxWidth = 2000;
-    var allRectsXml = "";
-    const opacity = 0.8;
 
-    while ((maxWidth - xPos) > 0) {
+    var xPos = 0;
+    var widthHeight = 1000 + zoom * 20;
+    var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='" + generateViewBox(zoom) + "' clip-path='url(#clip)'>";
+    // svg += "<defs><clipPath id='clip'><rect width='" + 2000 + "' height='" + 2000    + "'/></clipPath></defs>";
+  
+    while ((2000 - xPos) > 0) {
 
         var stripeWidth = randomIntFromInterval(randomSeed, widthMin, widthMax) * 2;
 
-        if (stripeWidth > maxWidth - xPos) {
-            stripeWidth = maxWidth - xPos;
-        } else if ((maxWidth - xPos) - stripeWidth < widthMin) {
-            stripeWidth += (maxWidth - xPos) - stripeWidth;
+        if (stripeWidth > 2000 - xPos) {
+            stripeWidth = 2000 - xPos;
+        } else if ((2000 - xPos) - stripeWidth < widthMin) {
+            stripeWidth += (2000 - xPos) - stripeWidth;
         }
 
         const rotationDegrees = randomIntFromInterval(randomSeed + 1, rotationMin, rotationMax);
@@ -61,11 +62,11 @@ function generateDynaStripes(randomSeed, zoom, rotationMin, rotationMax, widthMi
 
         var speed = randomIntFromInterval(randomSeed + 2, speedMin, speedMax) * 20;
 
-        var currentRect = "<rect x='" + xPos + "' y='0' width='" + stripeWidth + "' height='2000' opacity='" + opacity + "' transform='rotate(" + rotationDegrees + " 1000 1000)'>";
+        var currentRect = "<rect x='" + xPos + "' y='0' width='" + stripeWidth + "' height='2000' opacity='0.8' transform='rotate(" + rotationDegrees + " 1000 1000)'>";
         currentRect += "<animate begin= '0s' dur='" + speed + "ms' attributeName='fill' values='" + getColours(randomSeed + 3, paletteMin, paletteMax) + "' fill='freeze' repeatCount='indefinite'/>";
         currentRect += "</rect>";
 
-        allRectsXml += currentRect + "\r\n";
+        svg += currentRect + "\r\n";
 
         xPos += stripeWidth;
         randomSeed += 100;
@@ -86,20 +87,27 @@ function generateDynaStripes(randomSeed, zoom, rotationMin, rotationMax, widthMi
     // //     maxWidthHeight = 2000;
     // // }
 
-    
     // // const viewBox = offset + " " + offset + " " + maxWidthHeight + " " + maxWidthHeight;
-    console.log("ZOOM: "+ zoom);
-
-    const offset = zoom * 10 / 2;
-    const maxWidthHeight = 2000 + zoom * 10;
-    const viewBox = "-" + offset + " -" + offset + " " + maxWidthHeight + " " + maxWidthHeight;
-    console.log("viewBox: " + viewBox);
-
-    var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='" + viewBox + "'>";
-    svg += allRectsXml;
+ 
     svg +=  "</svg>";
 
     return svg;
+}
+
+function generateViewBox(zoom) {
+    zoom = zoom * 20;
+    const widthHeight = 1000 + zoom;
+    var viewBox = "";
+    if (zoom > 1000) {
+        var offset = (zoom - 1000) / 2;
+        viewBox = "-" + offset + " -" + offset + " " + widthHeight + " " + widthHeight;
+    } else {
+        var offset = (zoom == 1000 ? 0 : (1000 - zoom) / 2);
+        viewBox = "" + offset + " " + offset + " " + widthHeight + " " + widthHeight;
+    }
+
+    console.log("viewBox: " + viewBox);
+    return viewBox;
 }
 
 export default generateDynaStripes;

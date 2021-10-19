@@ -3,9 +3,9 @@ import {showErrorMessage} from './ui.js';
 import { ethers } from 'ethers';
 import DynaStripes from '../artifacts/contracts/DynaStripes.sol/DynaStripes.json';
 
-const dynaStripesContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'; // localhost
-// const dynaStripesContractAddress = '0x379A3dA759A131504085E485a75cA2202fB80476'; /. ropsten
-
+// const dynaStripesContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'; // localhost
+// const dynaStripesContractAddress = '0x379A3dA759A131504085E485a75cA2202fB80476'; // ropsten
+const dynaStripesContractAddress = '0x2BeeB093f65635589007Ba7b85bfc1C82E851412'; // rinkeby
 
 export async function getContract() {
   console.log("Getting contract...");
@@ -45,4 +45,17 @@ export async function getContractWithSigner() {
     return contractWithSigner;
   }
   
+export async function fetchMintPrice() {
+  const contract = await getContract();
+
+  if (contract === null) {
+    return;
+  }
+
+  const mintPrice = await contract.getMintPrice();
+  console.log("Mint price: " + mintPrice);
+
+  return mintPrice;
+}
+
   

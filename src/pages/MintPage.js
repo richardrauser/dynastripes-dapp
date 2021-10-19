@@ -1,7 +1,5 @@
 import React from 'react';
-
 import { ethers } from 'ethers';
-
 import { toast } from 'react-toastify';
 
 import MintOptions from '../components/MintOptions';
@@ -25,7 +23,7 @@ class MintPage extends React.Component {
         doneSuccess: false,
         randomSeed: randomSeed,
         rotationRange: [0, 180],
-        zoom: 0,
+        zoom: 50,
         widthRange: [25, 250],
         paletteRange: [0, 255],
         speedRange: [25, 250],
@@ -106,7 +104,7 @@ class MintPage extends React.Component {
   
       try {
 
-        const mintPrice = await contract.currentMintPrice();
+        const mintPrice = await contract.getMintPrice();
         console.log("Mint price: " + mintPrice);
      
         this.setState({
@@ -171,7 +169,7 @@ class MintPage extends React.Component {
         console.log("Minting dynastripes: " + rotationMin + " "  + rotationMax + " " + zoom + " " + widthMin + " " + widthMax + " " + paletteMin + " " + paletteMax + " " + speedMin + " " + speedMax)
 
         const overrides = {
-          value: ethers.utils.parseEther("0.01"), 
+          value: this.state.mintPrice, 
           gasLimit: 300000
       }
   
