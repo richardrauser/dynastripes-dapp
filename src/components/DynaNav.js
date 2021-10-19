@@ -52,11 +52,11 @@ class DynaNav extends React.Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link href="/mint">Mint!</Nav.Link>
-                    <Nav.Link href="gallery">Gallery</Nav.Link>
-                    <Nav.Link href="/howto">How to</Nav.Link>
-                    <Nav.Link href="/about">About</Nav.Link>
-                    { this.state.isOwner === true ? <Nav.Link href="/admin">Admin</Nav.Link> : null }
+                    <Nav.Link to="/mint">Mint!</Nav.Link>
+                    <Nav.Link to="gallery">Gallery</Nav.Link>
+                    <Nav.Link to="/howto">How to</Nav.Link>
+                    <Nav.Link to="/about">About</Nav.Link>
+                    { this.state.isOwner === true ? <Nav.Link to="/admin">Admin</Nav.Link> : null }
                 </Nav>
                 <Nav>
                     <DynaNavLoginDropdown />

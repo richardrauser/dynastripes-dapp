@@ -228,11 +228,11 @@ h4.dyna {
 }
 
 .content {
-  background-color: #d3d3d3EE;
-  /* background-color:#AAAAAADD; */
+  /* background-color: #d3d3d3EE; */
+  background-color:#AAAAAADD;
   box-shadow: 0 0 10px 5px rgb(100 100 100 / 0.2 );
 
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  /* border: 1px solid rgba(0, 0, 0, 0.125); */
   border-radius: 0.5rem;
   margin: 50px;
   padding: 16px;
