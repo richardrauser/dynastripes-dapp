@@ -12,12 +12,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import DynaNav from './components/DynaNav';
-import AboutPage from './pages/AboutPage';
-import AdminPage from './pages/AdminPage';
 import HomePage from './pages/HomePage';
-import MintPage from './pages/MintPage';
-import GalleryPage from './pages/GalleryPage';
 
 class App extends React.Component {
 
