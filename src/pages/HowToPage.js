@@ -15,16 +15,16 @@ class HowToPage extends React.Component {
             <h1>How to buy a <span className="dyna">DynaStripes</span>NFT</h1>
             <div className="deepContent">
             <h3>
-              It's not easy...
+              It's easy! 😎
             </h3>
             <p>
-            ... but it's also not rocket science. 😎 This guide spells out how to buy a <DynaSpan/> NFT from this site, the <a className="externalLink" href="https://en.wikipedia.org/wiki/Software_release_life_cycle#Beta" target="_blank" rel="noreferrer">beta</a> version of the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_applicationdApp" target="_blank" rel="noreferrer">dApp</a>. It's running on the Rinkeby test network, so you will not be using real ETH/$/£.
+              This guide spells out how to buy a <DynaSpan/> NFT from this site, the <a className="externalLink" href="https://en.wikipedia.org/wiki/Software_release_life_cycle#Beta" target="_blank" rel="noreferrer">beta</a> version of the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_application" target="_blank" rel="noreferrer">dApp</a>. It's running on the Rinkeby test network, so you will not be using real ETH/$/£.
             </p>
 
                   <h3>
                   Install Metamask, an ETH wallet
                   </h3>
-                    Metamask is a popular Ethereum wallet that is a great tool for accessing the decentralised web (i.e. blockchain!).
+                    Metamask is the leading Ethereum wallet for browsing the decentralised web.
                   <ol>
                     <li>Visit <MetaMaskLink /> and download the MetaMask wallet. It will be a <a className="externalLink" href="https://en.wikipedia.org/wiki/Browser_extension" target="_blank" rel="noreferrer">browser extension</a> if you're accessing this from a desktop computer, or a mobile app if using a smartphone. The MetaMask website should detect this.</li> 
                     <li>Unforutnately MetaMask is not supported for Safari on MacOS. 😢 Try the <a className="externalLink" href="https://www.google.com/chrome/Chrome" target="_blank" rel="noreferrer">Chrome</a> browser. You'll love it. It's quick and easy to install.</li>
@@ -58,7 +58,7 @@ class HowToPage extends React.Component {
                   
                   <ol>
                     <li>Return to this website in your browser. If on mobile, you'll need to use the browser in the MetaMask app.</li>
-                    <li>Hit the Connect Wallet button at the top right of this site, the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_applicationdApp" target="_blank" rel="noreferrer">dApp</a>. If you don't see it or an Install MetaMask button apearrs, refresh your browser.</li>
+                    <li>Hit the Connect Wallet button at the top right of this site, the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_application" target="_blank" rel="noreferrer">dApp</a>. If you don't see it or an Install MetaMask button apearrs, refresh your browser.</li>
                     <li>Open MetaMask and create a new account by following the instructions in the app.</li> 
                     <li>Connect your wallet to the Rinkeby network by tapping the text at top that says "Ethereum Main Network" and then selecting "Rinkeby Test Network". Rinkeby is a test network where you will not be spending real funds.</li>
                   </ol>
