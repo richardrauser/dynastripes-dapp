@@ -255,10 +255,10 @@ h4.dyna {
 
   /* border: 1px solid rgba(0, 0, 0, 0.125); */
   border-radius: 0.5rem;
-  margin: 50px;
+  margin: 50px 0;
   padding: 16px;
   max-width: min(1200px, 70vw);
-  min-width: 460px;
+  min-width: 400px;
 }
 
 .previewContainer {
@@ -278,7 +278,7 @@ h4.dyna {
   border: 10px solid #EEE; 
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
   .previewArtwork {
     width: 300px; 
     height: 300px;
