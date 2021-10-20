@@ -125,9 +125,9 @@ class MintOptions extends React.Component {
                 
             </div>
           
-          <MintPriceComponent />
           <Button variant="primary" onClick={this.props.refresh}>New random seed</Button>
           <Button variant="primary" disabled={this.props.mintPrice === null} onClick={this.props.mint}>Mint, baby!</Button>
+          <MintPriceComponent />
         </div>
       );
     }

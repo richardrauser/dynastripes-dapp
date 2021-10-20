@@ -153,7 +153,6 @@ h5 {
 
 .mintInput {
   font-size: 18px;
-
   margin: 25px 0;
 }
 
@@ -288,14 +287,23 @@ h4.dyna {
 
 @media screen and (max-width: 700px) {
   .previewArtwork {
-    width: 250px; 
-    height: 250px;
+    width: 95%; 
+    height: initial;
+    margin: 8px;
   }
   .dynaStripesArtwork {
     width: 200px; 
     height: 200px;
   }
-  
+  .mintInputs {
+    float: right;
+    margin: 0 auto;
+    width: 90%;
+  }  
+  .mintInput {
+    font-size: 18px;
+    margin: 5px 0;
+  }   
 }
 
 .preview {
