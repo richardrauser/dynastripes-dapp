@@ -1,0 +1,3 @@
+
+export const DS_NO_ETH_WALLET = "DS_NO_ETH_WALLET";
+export const DS_WRONG_ETH_NETWORK = "DS_WRONG_ETH_NETWORK";
