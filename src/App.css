@@ -167,10 +167,6 @@ div#accountDetails {
 .dynaStripesArtwork {
   width: 250px; 
   height: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* border: 1px solid #DDD; */
   background:#EEE;
 }
 
@@ -291,6 +287,11 @@ h4.dyna {
     width: 250px; 
     height: 250px;
   }
+  .dynaStripesArtwork {
+    width: 200px; 
+    height: 200px;
+  }
+  
 }
 
 .preview {

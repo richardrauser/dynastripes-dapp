@@ -57,6 +57,7 @@ class HowToPage extends React.Component {
                   You're ready to start having some fun! 😁
                   
                   <ol>
+                    <li>Return to this website in your browser. If on mobile, you'll need to use the browser in the MetaMask app.</li>
                     <li>Hit the Connect Wallet button at the top right of this site, the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_applicationdApp" target="_blank" rel="noreferrer">dApp</a>. If you don't see it or an Install MetaMask button apearrs, refresh your browser.</li>
                     <li>Open MetaMask and create a new account by following the instructions in the app.</li> 
                     <li>Connect your wallet to the Rinkeby network by tapping the text at top that says "Ethereum Main Network" and then selecting "Rinkeby Test Network". Rinkeby is a test network where you will not be spending real funds.</li>
