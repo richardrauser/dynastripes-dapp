@@ -32,8 +32,10 @@ function getColour(randomSeed, min, max) {
 
 function generateRandomStripesDataUri() {
     const randomSeed = Math.trunc(Math.random() * 5_000_000);
-    const randomZoom = randomIntFromInterval(randomSeed, 0, 100)
-    const svgString = encodeURIComponent(generateDynaStripes(randomSeed, randomZoom, 0, 180, 25, 250, 0, 255, 25, 250));
+    // const randomZoom = randomIntFromInterval(randomSeed, 0, 100);
+    // const svgString = encodeURIComponent(generateDynaStripes(randomSeed, randomZoom, 0, 180, 25, 250, 0, 255, 25, 250));
+
+    const svgString = encodeURIComponent(generateDynaStripes(randomSeed, 0, 0, 0, 25, 250, 0, 255, 25, 250));
     return `url("data:image/svg+xml,${svgString}")`;
 }
 

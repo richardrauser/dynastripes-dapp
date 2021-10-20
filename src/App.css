@@ -87,6 +87,11 @@ a.externalLink {
 .homeTitle {
   margin: 20px;
 }
+
+.homeAbout {
+  display: inline-block;
+  margin: auto;
+}
  
 h5 {
   font=size: 32px;
@@ -253,6 +258,7 @@ h4.dyna {
   margin: 50px;
   padding: 16px;
   max-width: min(1200px, 70vw);
+  min-width: 460px;
 }
 
 .previewContainer {
