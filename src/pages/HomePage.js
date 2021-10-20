@@ -1,10 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-import twitterLogo from '../images/twitter.png';
-import discordLogo from '../images/discord_logo1600.png';
-
-
 import sample1 from '../images/dynasample2.svg';
 import sample2 from '../images/dynasample3.svg';
 import sample3 from '../images/dynasample8.svg';
@@ -17,7 +13,8 @@ import {
 } from "react-router-dom";
 
 import { generateRandomStripesDataUri } from '../dynastripes.js';
- 
+import SocialLinks from '../components/SocialLinks';
+
 class HomePage extends React.Component {
     constructor(props) {
       super(props);
@@ -52,22 +49,22 @@ class HomePage extends React.Component {
               <img className="sample" alt="sample dyna stripes 6" src={sample6}/>
               </div>
               <div className="featureList">
-              <ul>
-                <li>
-                  <b>User-directed:</b> you select the input parameters
-                </li>              
-                <li>
-                  <b>Generative:</b> artwork created by an algorithm
-                </li>              
-                <li>
-                <b>On-chain:</b> artwork stored entirely on Ethereum blockchain
-                </li>              
-                <li>
-                  <b>NFT:</b> ERC-721 compliant non-fungible token smart contract
-                </li>              
-                <li>
-                  <b>Royalties:</b> ERC-2981 compliant, you earn all royalties
-                </li>              
+                <ul>
+                  <li>
+                    <b>User-directed:</b> you select the input parameters
+                  </li>              
+                  <li>
+                    <b>Generative:</b> artwork created by an algorithm
+                  </li>              
+                  <li>
+                  <b>On-chain:</b> artwork stored entirely on Ethereum blockchain
+                  </li>              
+                  <li>
+                    <b>NFT:</b> ERC-721 compliant non-fungible token smart contract
+                  </li>              
+                  <li>
+                    <b>Royalties:</b> ERC-2981 compliant, you earn all royalties
+                  </li>              
                 </ul>
                 <div className="homeActions">
                   <Link to="/mint">
@@ -77,13 +74,8 @@ class HomePage extends React.Component {
                     <Button variant="primary">Browse recent NFTs</Button>
                   </Link>
                 </div>
-  
-                <div className="socialLinks">
-                  <img className="socialLogo" alt="twitter logo" src={twitterLogo}/>
-                  <img className="socialLogo" alt="discord logo" src={discordLogo}/>
-                </div>
-
               </div>
+              <SocialLinks/>
           </div>
         </div>
 

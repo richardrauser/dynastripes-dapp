@@ -67,8 +67,11 @@ a.externalLink {
 }
 
 .socialLinks {
+  display: inline-block;
   text-align: center;
-  margin: auto;
+  background-color: #CCC;
+  border-radius: 0.5rem;
+  margin: 24px auto 8px;
 }
 
 .socialLogo {

@@ -1,9 +1,8 @@
 import React from 'react';
 
-import twitterLogo from '../images/twitter.png';
-import discordLogo from '../images/discord_logo1600.png';
-
 import { generateRandomStripesDataUri } from '../dynastripes.js';
+
+import SocialLinks from '../components/SocialLinks';
 
 class AboutPage extends React.Component {
 
@@ -83,15 +82,10 @@ class AboutPage extends React.Component {
               </ol>
 
               <h3>
-                Socials
+                Contact
               </h3>
 
-              <div className="socialLinks">
-                  <img className="socialLogo" alt="twitter logo" src={twitterLogo}/>
-                  <img className="socialLogo" alt="discord logo" src={discordLogo}/>
-              </div>
-              <a className="externalLink" href="mail:volstrate@gmail.com">volstrate@gmail.com</a>
-
+              <SocialLinks/>
             </div>
 
 
