@@ -1,4 +1,5 @@
 import React from 'react';
+import DynaSpan from '../components/DynaSpan';
 
 import { generateRandomStripesDataUri } from '../dynastripes.js';
 
@@ -12,16 +13,20 @@ class FeedbackPage extends React.Component {
           <div className="content">
             <h1>Feedback on <span className="dyna">DynaStripes</span></h1>
 
-            This is just a beta version of <span className="dyna">DynaStripes</span> running on the Rinkeby Ethereum network. If you'be got thoughts of any sort, it would be great to hear them. 😎
-
+         
             <div className="deepContent">
-            <ol>
+              <p> 
+                This is a <a className="externalLink" href="https://en.wikipedia.org/wiki/Software_release_life_cycle#Beta" target="_blank" rel="noreferrer">beta</a> version of the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_applicationdApp" target="_blank" rel="noreferrer">dApp</a> running on the Rinkeby testnet. Any feedback so that improvements can be made before going live on the Ethereum mainnnet would be greatly appreciated! 😁
+                </p>
+            <h5>
               Things that would be useful to get feedback on:
-            <li>Ease of use of this website</li>
-            <li>Ease of the NFT purchase process</li>
-            <li>Mint interface options. Enough? Too many options? Desired options?</li>
-            <li>Design of this website</li>
-            <li>Are explanations clear enough?</li>
+            </h5>
+            <ol>
+              <li>Ease of use of this website</li>
+              <li>Ease of the NFT purchase process</li>
+              <li>Mint interface options. Enough? Too many options? Desired options?</li>
+              <li>Design of this website</li>
+              <li>Are explanations clear enough?</li>
             </ol>
 
             <form name="contact" method="post">

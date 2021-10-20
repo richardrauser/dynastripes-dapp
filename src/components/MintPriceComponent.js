@@ -8,6 +8,7 @@ import MetaMaskLink from '../components/MetaMaskLink';
 
 import { fetchMintPrice } from '../utils/blockchain';
 import { handleError } from '../utils/error';
+import * as Errors from '../utils/errors.js';
 
 class MintPriceComponent extends React.Component { 
 
@@ -35,7 +36,7 @@ class MintPriceComponent extends React.Component {
             mintPrice: mintPrice
           });
         } catch (err) {
-          if (err.message === "NO_ETH_WALLET") {
+          if (err.message === Errors.DS_NO_ETH_WALLET) {
             this.setState({
               loading: false,
               hasWallet: false
@@ -60,7 +61,7 @@ class MintPriceComponent extends React.Component {
         } else if (this.state.hasWallet === false) {
           return (
             <div>
-              You don't appear to have an ETH wallet, which you need for minting. Install <MetaMaskLink />.
+              An ETH wallet is required for minting. Install <MetaMaskLink />.
             </div>
           );    
         } else {

@@ -6,6 +6,7 @@ import MintAnotherComponent from '../components/MintAnotherComponent';
 
 import { showErrorMessage } from '../utils/ui.js';
 import { handleError } from '../utils/error';
+import * as Errors from '../utils/errors.js';
 
 import { getContractWithSigner, fetchMintPrice } from '../utils/blockchain';
 
@@ -95,14 +96,14 @@ class MintPage extends React.Component {
   
     async fetchMintPrice() {
       try {
-        const mintPrice = fetchMintPrice();
+        const mintPrice = await fetchMintPrice();
         console.log("Mint price: " + mintPrice);
      
         this.setState({
           mintPrice: mintPrice
         });
       } catch (err) {
-        if (err === "NO_ETH_WALLET") {
+        if (err === Errors.DS_NO_ETH_WALLET) {
           showErrorMessage("You don't appear to have an Ethereum wallet like Metamask installed.");
         }
         handleError(err);

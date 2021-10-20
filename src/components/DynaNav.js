@@ -32,13 +32,9 @@ class DynaNav extends React.Component {
       }
     
       async fetchOwnerStatus() {
-        const contract = await getContract();
       
-        if (contract === null) {
-          return;
-        }
-    
         try {    
+          const contract = await getContract();
           const isOwner = await contract.isSenderOwner();
           console.log("DynaNav isOwner: " + isOwner);
     

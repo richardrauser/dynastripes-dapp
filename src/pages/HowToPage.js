@@ -18,7 +18,7 @@ class HowToPage extends React.Component {
               It's not easy...
             </h3>
             <p>
-            ... but it's also not rocket science. 🚀😎 This guide spells out how to buy a <DynaSpan/> NFT from this site, the <a className="externalLink" href="https://en.wikipedia.org/wiki/Software_release_life_cycle#Beta" target="_blank" rel="noreferrer">beta</a> <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_applicationdApp" target="_blank" rel="noreferrer">dApp</a>, running on the Rinkeby test network. This is not live and you will not be using realy ETH/$/£.
+            ... but it's also not rocket science. 😎 This guide spells out how to buy a <DynaSpan/> NFT from this site, the <a className="externalLink" href="https://en.wikipedia.org/wiki/Software_release_life_cycle#Beta" target="_blank" rel="noreferrer">beta</a> version of the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_applicationdApp" target="_blank" rel="noreferrer">dApp</a>. It's running on the Rinkeby test network, so you will not be using real ETH/$/£.
             </p>
 
                   <h3>
