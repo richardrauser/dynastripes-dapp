@@ -209,6 +209,12 @@ div.mintInput input {
   margin-right: 8px;
 }
 
+.betaMessage {
+  color: red;
+  font-style: italic;
+  padding: 0.5rem 0;
+}
+
 .dyna {
   font-family: 'Rajdhani';
 }
@@ -280,8 +286,8 @@ h4.dyna {
 
 @media screen and (max-width: 700px) {
   .previewArtwork {
-    width: 300px; 
-    height: 300px;
+    width: 250px; 
+    height: 250px;
   }
 }
 
