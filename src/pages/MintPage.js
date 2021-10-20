@@ -193,7 +193,7 @@ class MintPage extends React.Component {
       console.log("MintComponent render rotation range: " + this.state.rotationRange);
 
       return (
-        <div className="mainContent"  style={{backgroundImage: svgDataUri, backgroundColor: "#FFFFFF"}}>
+        <div className="mainContent singleArtworkBackground"  style={{backgroundImage: svgDataUri}}>
           <div id="mint" className="content">
             <h1>Mint your own <span className="dyna">DynaStripes</span> NFT</h1>
             <center>

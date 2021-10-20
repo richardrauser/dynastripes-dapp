@@ -62,20 +62,16 @@ import { handleError } from '../utils/error';
         );
       } else if (tokenIds === null || tokenIds.length === 0) {
         return (
-          <div className="mainContent">
-            <div className="content">
-              <h1>Recently minted <span className="dyna">DynaStripes</span> NFTs</h1>
-                No stripes have been minted yet.
-            </div>
+          <div className="content">
+            <h1>Recently minted <span className="dyna">DynaStripes</span> NFTs</h1>
+              No stripes have been minted yet.
           </div>
         );
       } else {
         return (
-          <div className="mainContent">
-            <div className="content">
-              <h1>Recently minted <span className="dyna">DynaStripes</span> NFTs</h1>
-              <TokenList tokens= { tokenIds } />
-            </div>
+          <div className="content">
+            <h1>Recently minted <span className="dyna">DynaStripes</span> NFTs</h1>
+            <TokenList tokens= { tokenIds } />
           </div>
         );  
       }
