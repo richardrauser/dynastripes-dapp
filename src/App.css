@@ -127,11 +127,14 @@ h5 {
 .mintRow {
   margin: 16px 0;
   display: flex;
-  clear: both;
+  text-align: center;
+  /* clear: both; */
+  flex-wrap: wrap;
 }
 
 .mintInputs {
   float: right;
+  margin: 0 auto;
 }
 
 .mintInput {
@@ -254,7 +257,7 @@ h4.dyna {
   padding: 10px;
   margin: 0 auto; */
   opacity: 1;
-
+  margin: auto;
 }
 
 .previewArtwork {

@@ -35,7 +35,8 @@ class HomePage extends React.Component {
       const svgDataUri = generateRandomStripesDataUri();
   
       return (
-        <div className="mainContent"  style={{background: svgDataUri}} onClick={this.update}>
+        // <div className="mainContent"  style={{background: svgDataUri}} onClick={this.update}>
+        <div className="mainContent"  style={{backgroundImage: svgDataUri, backgroundColor: "#FFFFFF"}} onClick={this.update}>
 
             <div className="content">
 
