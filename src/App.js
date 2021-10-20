@@ -1,8 +1,8 @@
+import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-toastify/dist/ReactToastify.css';
-
-import React from 'react';
+import ReactGA from 'react-ga';
 
 import { ToastContainer } from 'react-toastify';
 
@@ -21,6 +21,10 @@ import AboutPage from './pages/AboutPage';
 import AdminPage from './pages/AdminPage';
 import FeedbackPage from './pages/FeedbackPage';
 
+import RouteChangeTracker from './utils/RouteChangeTracker';
+
+ReactGA.initialize("G-LM4YQVLGPG");
+
 class App extends React.Component {
 
   constructor(props) {
@@ -38,19 +42,20 @@ class App extends React.Component {
 
     return (
       <div className="App">
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <Router>
+          <RouteChangeTracker />
           <DynaNav />
-          <ToastContainer
-            position="bottom-left"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
           <Switch>
             <Route path="/mint">
               <MintPage />
