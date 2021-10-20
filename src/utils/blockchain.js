@@ -14,38 +14,35 @@ function checkWallet() {
 }
 export async function getContract() {
   console.log("Getting contract...");
-    checkWallet();
-    // const provider = new ethers.providers.Web3Provider(window.ethereum);
-    // const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
-    // const provider = new ethers.providers.getNetwork("Ropsten");
+  checkWallet();
+  // const provider = new ethers.providers.Web3Provider(window.ethereum);
+  // const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
+  // const provider = new ethers.providers.getNetwork("Ropsten");
 
-    // const provider = ethers.getDefaultProvider('ropsten');
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
-    return contract;
-  }
+  // const provider = ethers.getDefaultProvider('ropsten');
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
+  return contract;
+}
   
 export async function getContractWithSigner() {
   checkWallet();
 
-    // const provider = new ethers.providers.Web3Provider(window.ethereum);
-    // const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
+  // const provider = new ethers.providers.Web3Provider(window.ethereum);
+  // const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
+  // const provider = ethers.getDefaultProvider('ropsten');
 
-    // const provider = ethers.getDefaultProvider('ropsten');
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
-
-    const signer = provider.getSigner();
-
-    const contractWithSigner = contract.connect(signer);
-    return contractWithSigner;
-  }
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
+  const signer = provider.getSigner();
+  const contractWithSigner = contract.connect(signer);
+  return contractWithSigner;
+}
   
 export async function fetchMintPrice() {
+  checkWallet();
   const contract = await getContract();
   const mintPrice = await contract.getMintPrice();
-  console.log("blockchain.js: Mint price: " + mintPrice);
-
   return mintPrice;
 }
 

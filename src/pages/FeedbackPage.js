@@ -15,7 +15,17 @@ class FeedbackPage extends React.Component {
             This is just a beta version of <span className="dyna">DynaStripes</span> running on the Rinkeby Ethereum network. If you'be got thoughts of any sort, it would be great to hear them. 😎
 
             <div className="deepContent">
+            <ol>
+              Things that would be useful to get feedback on:
+            <li>Ease of use of this website</li>
+            <li>Ease of the NFT purchase process</li>
+            <li>Mint interface options. Enough? Too many options? Desired options?</li>
+            <li>Design of this website</li>
+            <li>Are explanations clear enough?</li>
+            </ol>
+
             <form name="contact" method="post">
+            <input type="hidden" name="form-name" value="contact" />
               <p>
                 <label>Email (optional): <input type="email" name="email"/></label>
               </p>

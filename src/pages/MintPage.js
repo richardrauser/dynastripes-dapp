@@ -4,11 +4,10 @@ import { toast } from 'react-toastify';
 import MintOptions from '../components/MintOptions';
 import MintAnotherComponent from '../components/MintAnotherComponent';
 
-import { getContractWithSigner } from '../utils/blockchain';
 import { showErrorMessage } from '../utils/ui.js';
 import { handleError } from '../utils/error';
 
-import { getContract } from '../utils/blockchain';
+import { getContractWithSigner, fetchMintPrice } from '../utils/blockchain';
 
 import generateDynaStripes from '../dynastripes.js';
 
@@ -96,8 +95,7 @@ class MintPage extends React.Component {
   
     async fetchMintPrice() {
       try {
-        const contract = await getContract();
-        const mintPrice = await contract.getMintPrice();
+        const mintPrice = fetchMintPrice();
         console.log("Mint price: " + mintPrice);
      
         this.setState({
@@ -143,15 +141,10 @@ class MintPage extends React.Component {
       //   return;
       // }
   
-      const contractWithSigner = await getContractWithSigner(); 
-  
-      if (contractWithSigner === null) {
-        showErrorMessage('Could not get signer.');
-        return;
-      }
   
       try {
-
+        const contractWithSigner = await getContractWithSigner(); 
+    
         const rotationMin = this.state.rotationRange[0];
         const rotationMax = this.state.rotationRange[1];
         const zoom = this.state.zoom;
