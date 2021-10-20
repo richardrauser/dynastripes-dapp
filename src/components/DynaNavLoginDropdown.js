@@ -5,6 +5,7 @@ import ether from '../images/ethereum.svg';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
+
 import { ethers } from 'ethers';
 
 import { Wallet2 } from 'react-bootstrap-icons';
@@ -88,7 +89,11 @@ class DynaNavLoginDropdown extends React.Component {
       //   console.log("Metamask lockiepooed.");
       //   showErrorMessage("Please unlock MetaMask.");
       // } else {
-        this.fetchAccountDetails();
+        try {
+          this.fetchAccountDetails();
+        } catch (err) {
+          handleError(err);
+        }
       // }
     }
 
@@ -180,6 +185,10 @@ class DynaNavLoginDropdown extends React.Component {
       if (this.state.isLoading) {
         return (
         <Spinner></Spinner>
+        );
+      } else if (!this.state.isWalletConnected) {
+        return (
+            <Button target="_blank" href="https://metamask.io">Install MetaMask</Button>
         );
       } else if (!this.state.isWalletConnected) {
         return (

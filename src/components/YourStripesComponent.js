@@ -21,14 +21,9 @@ class YourStripesComponent extends React.Component {
       this.fetchTokens();
     }
   
-    async fetchTokens() {
-      const contract = await getContract();
-  
-      if (contract === null) {
-        return;
-      }
-  
+    async fetchTokens() {  
       try {
+        const contract = await getContract();
         const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
         var tokenIds = [];
   

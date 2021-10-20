@@ -22,13 +22,9 @@ import { handleError } from '../utils/error';
     }
   
     async fetchTokens() {
-      const contract = await getContract();
-  
-      if (contract === null) {
-        return;
-      }
-  
       try {
+        const contract = await getContract();
+  
         var tokenIds = [];
   
         const tokenCount = await contract.totalSupply();

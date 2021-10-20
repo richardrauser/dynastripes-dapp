@@ -95,14 +95,8 @@ class MintPage extends React.Component {
     }
   
     async fetchMintPrice() {
-      const contract = await getContract();
-  
-      if (contract === null) {
-        return;
-      }
-  
       try {
-
+        const contract = await getContract();
         const mintPrice = await contract.getMintPrice();
         console.log("Mint price: " + mintPrice);
      
@@ -110,6 +104,9 @@ class MintPage extends React.Component {
           mintPrice: mintPrice
         });
       } catch (err) {
+        if (err === "NO_ETH_WALLET") {
+          showErrorMessage("You don't appear to have an Ethereum wallet like Metamask installed.");
+        }
         handleError(err);
         this.setState({
           mintPrice: null

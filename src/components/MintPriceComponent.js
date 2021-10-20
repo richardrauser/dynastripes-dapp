@@ -4,6 +4,8 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import ether from '../images/ethereum.svg';
 
+import MetaMaskLink from '../components/MetaMaskLink';
+
 import { fetchMintPrice } from '../utils/blockchain';
 import { handleError } from '../utils/error';
 
@@ -26,28 +28,41 @@ class MintPriceComponent extends React.Component {
   
       async fetchMintPrice() {
         try {
-          const mintPrice = await fetchMintPrice();       
+          const mintPrice = await fetchMintPrice();
+          console.log("Mint price: " + mintPrice);       
           this.setState({
             loading: false,
             mintPrice: mintPrice
           });
         } catch (err) {
-          handleError(err);
-          this.setState({
-            loading: false,
-            mintPrice: null
-          });
+          if (err.message === "NO_ETH_WALLET") {
+            this.setState({
+              loading: false,
+              hasWallet: false
+            });  
+          } else {
+            handleError(err);
+            this.setState({
+              loading: false,
+              mintPrice: null
+            });  
+          }
         }
       }
 
       render() { 
         if (this.state.loading === true) {
-            return (
-              <div>
-                Mint price: <Spinner id="mintSpinner" animation="grow" />
-              </div>
-            );
-    
+          return (
+            <div>
+              Mint price: <Spinner id="mintSpinner" animation="grow" />
+            </div>
+          );
+        } else if (this.state.hasWallet === false) {
+          return (
+            <div>
+              You don't appear to have an ETH wallet, which you need for minting. Install <MetaMaskLink />.
+            </div>
+          );    
         } else {
             return (
                 <div>
