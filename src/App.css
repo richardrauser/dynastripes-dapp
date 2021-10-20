@@ -58,6 +58,7 @@ a.externalLink {
 .sample {
   width: 10%;
   margin: 16px;
+  min-width: 50px;
   /* border: 1px solid #CCC; */
 }
 

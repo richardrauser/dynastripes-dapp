@@ -10,9 +10,6 @@ class GalleryPage extends React.Component {
             <div>
                 <div className="mainContent">
                     <YourStripesComponent />
-                </div>
-
-                <div className="mainContent">
                     <RecentStripesComponent />
                 </div>
             </div>
