@@ -106,7 +106,4 @@ export async function fetchMintPrice() {
   const mintPrice = await contract.getMintPrice();
   return mintPrice;
 }
-
-function checkNetwork() {
-}
   
