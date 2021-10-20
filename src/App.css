@@ -230,7 +230,7 @@ div.mintInput input {
   } */
 
 .tokenList {
-  padding: 16px;
+  /* padding: 16px; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap; 
@@ -239,6 +239,7 @@ div.mintInput input {
 
 .tokenCard {
   /* width: 40vw; */
+  /* margin: 16px 0; */
 }
 
 .deepContent {
