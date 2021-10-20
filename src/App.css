@@ -66,6 +66,16 @@ a.externalLink {
   margin: auto;
 }
 
+.socialLinks {
+  text-align: center;
+  margin: auto;
+}
+
+.socialLogo {
+  height: 40px;
+  margin: 8px;
+}
+
 .featureList {
   text-align: left;
   margin: 0px;

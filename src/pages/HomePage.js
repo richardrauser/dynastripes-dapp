@@ -1,6 +1,10 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
+import twitterLogo from '../images/twitter.png';
+import discordLogo from '../images/discord_logo1600.png';
+
+
 import sample1 from '../images/dynasample2.svg';
 import sample2 from '../images/dynasample3.svg';
 import sample3 from '../images/dynasample8.svg';
@@ -73,8 +77,9 @@ class HomePage extends React.Component {
                   </Link>
                 </div>
   
-                <div>
-                  Twitter, Insta, Discord, Email
+                <div className="socialLinks">
+                  <img className="socialLogo" alt="twitter logo" src={twitterLogo}/>
+                  <img className="socialLogo" alt="discord logo" src={discordLogo}/>
                 </div>
 
               </div>
