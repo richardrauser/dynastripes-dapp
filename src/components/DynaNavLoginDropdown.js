@@ -33,6 +33,17 @@ class DynaNavLoginDropdown extends React.Component {
   }
   
     componentDidMount() {
+
+      if (typeof window.ethereum === 'undefined') {
+
+        this.setState({
+          isLoading: false,
+          isWalletConnected: false
+        });
+
+        return;
+      }
+
       window.ethereum.on('accountsChanged', (accounts) => {
         this.fetchAccountDetails();
       });

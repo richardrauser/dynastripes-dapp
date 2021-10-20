@@ -21,6 +21,13 @@ class DynaNav extends React.Component {
       }
     
       componentDidMount() {
+
+        if (typeof window.ethereum === 'undefined') {
+
+          console.log("No wallet.");
+          return;
+        }
+  
         this.fetchOwnerStatus();
       }
     

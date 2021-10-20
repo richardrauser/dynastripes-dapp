@@ -17,15 +17,19 @@ class HowToPage extends React.Component {
                   </p>
 
                   <h3>
-                  Setup Metamask
+                  Install Metamask
                   </h3>
-
+                    Either as a desktop browser extension, or mobile app.
                   <ol>
                     <li>TODO.</li> 
                     <li>TODO. </li>
                   </ol>
 
                   <h3>Buy some ETH
+                  </h3>
+                  <p> TODO.
+                  </p>
+                  <h3>Connect to the Rinkeby Ethereum network in Metamask.
                   </h3>
                   <p> TODO.
                   </p>
