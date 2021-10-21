@@ -36,7 +36,7 @@ class AboutPage extends React.Component {
                   <h3>
                   Random seed & artwork uniqueness
                   </h3>
-                  <p> The input parameters selected by the user are modulated by a random seed created on the <span className="dyna">DynaStripes</span> server. This is then injected into the smart contract along with the user-selected values in order to allow generation of the artwork. So that duplicates are prevented, the <span className="dyna">DynaStripes</span> server ensures that each random seed has never been previously used and cryptographically signs it. This signature is then verified by the smart contract to ensure that the DynaStripes server has authorised the mint, thereby ensuring that duplicate artworks are an impossibility. An unknown actor cannot submit its own random seed to the smart contract because this would be detected when the signature is analysed.
+                  <p> The input parameters selected by the user are modulated by a random seed created client-side to achieve a better approximation of randomness. Solidity doesn't natively support random number generation. This is then injected into the smart contract along with the user-selected values in order to allow generation of the artwork. Further pseudorandom values are generated in the contract from the injected seed. So that duplicates are prevented, the random seed is captured by the smart contract and may not be used again, thereby ensuring that duplicate artworks are an impossibility.
                   </p>
                   <h3>
                 Artwork generation
@@ -82,10 +82,11 @@ class AboutPage extends React.Component {
               </ol>
 
               <h3>
-                Contact
+                Keep in touch
               </h3>
-
-              <SocialLinks/>
+              <center>
+                <SocialLinks/>
+              </center>
             </div>
 
 
