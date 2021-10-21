@@ -155,8 +155,10 @@ h5 {
   justify-content: space-between;
   float: right;
   margin: 0 auto;
-  padding: 16px 0;
+  padding: 16px;
   width: 30vw; 
+  max-width: 500px;
+  max-height: 500px;
 }
 
 .mintInput {
@@ -288,6 +290,7 @@ h4.dyna {
   margin: 16px;
   background-color:#FFF;
   width: 30vw; 
+  max-width: 500px;
   border: 10px solid #EEE; 
 }
 
