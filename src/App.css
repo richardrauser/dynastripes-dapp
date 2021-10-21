@@ -310,6 +310,11 @@ h4.dyna {
     font-size: 18px;
     margin: 5px 0;
   }   
+
+  .content {
+    margin: 16px 0;
+    padding: 8px;
+  }  
 }
 
 .preview {
