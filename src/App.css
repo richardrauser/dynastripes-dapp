@@ -309,11 +309,15 @@ h4.dyna {
   .mintInput {
     font-size: 18px;
     margin: 5px 0;
-  }   
+  }  
+  .mintRow {
+    margin: 0;
+  } 
 
   .content {
-    margin: 16px 0;
+    margin: 24px 16px;
     padding: 8px;
+    max-width: initial;
   }  
 }
 
