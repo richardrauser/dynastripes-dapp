@@ -22,14 +22,16 @@ class FeedbackPage extends React.Component {
                 This is a <a className="externalLink" href="https://en.wikipedia.org/wiki/Software_release_life_cycle#Beta" target="_blank" rel="noreferrer">beta</a> version of the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_applicationdApp" target="_blank" rel="noreferrer">dApp</a> running on Rinkeby testnet. Feedback would be greatly appreciated to help inform the final product! 😁
               </p>
               <h5>
-                What do you think?
+                What do you think about:
               </h5>
               <ol>
                 <li>Website ease of use</li>
                 <li>Ease of NFT purchase</li>
                 <li>Mint interface options</li>
+                <li>Artwork quality</li>
                 <li>Design of this website</li>
                 <li>Clarity of explanations</li>
+                <li>Anything else at all!</li>
               </ol>
 
               <Form name="feedback" method="POST">
