@@ -6,8 +6,11 @@ import TokenList from './TokenList';
 
 import { getContract } from '../utils/blockchain';
 import { handleError } from '../utils/error';
+import DynaSpan from './DynaSpan';
+import MetaMaskLink from './MetaMaskLink';
+import * as Errors from '../utils/errors.js';
 
-  class RecentStripesComponent extends React.Component {
+class RecentStripesComponent extends React.Component {
   
     constructor(props) {
       super(props);
@@ -40,11 +43,20 @@ import { handleError } from '../utils/error';
           tokenIds: tokenIds
         });
       } catch (err) {
-        this.setState({
-          loading: false,
-          tokenIds: []
-        });
-        handleError(err);
+
+        if (err.message === Errors.DS_NO_ETH_WALLET) {
+          this.setState({
+            loading: false,
+            hasWallet: false
+          });  
+        } else {
+          this.setState({
+            hasWallet: true,
+            loading: false,
+            tokenIds: []
+          });
+          handleError(err);  
+        }
       }
     }
   
@@ -59,6 +71,13 @@ import { handleError } from '../utils/error';
             <h1>Recently minted <span className="dyna">DynaStripes</span> NFTs</h1>
             <Spinner animation="grow" variant="dark" />
           </div>
+        );
+      } else if (this.state.hasWallet !== undefined && this.state.hasWallet === false) {
+        return (
+            <div className="content">
+              <h1>Recently minted <DynaSpan /> NFTs</h1>
+              An ETH wallet is required to view recent <DynaSpan />. Install <MetaMaskLink />.
+            </div>
         );
       } else if (tokenIds === null || tokenIds.length === 0) {
         return (

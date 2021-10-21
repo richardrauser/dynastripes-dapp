@@ -44,6 +44,7 @@ class MintPriceComponent extends React.Component {
           } else {
             handleError(err);
             this.setState({
+              hasWallet: true,
               loading: false,
               mintPrice: null
             });  
