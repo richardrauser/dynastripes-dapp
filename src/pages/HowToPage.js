@@ -3,6 +3,7 @@ import React from 'react';
 import MetaMaskLink from '../components/MetaMaskLink';
 import DynaSpan from '../components/DynaSpan';
 import { generateRandomStripesDataUri } from '../dynastripes.js';
+import { Link } from 'react-router-dom';
 
 class HowToPage extends React.Component {
 
@@ -59,8 +60,8 @@ class HowToPage extends React.Component {
                   <ol>
                     <li>Return to this website in your browser. If on mobile, you'll need to use the browser in the MetaMask app.</li>
                     <li>Hit the Connect Wallet button at the top right of this site, the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_application" target="_blank" rel="noreferrer">dApp</a>. If you don't see it or an Install MetaMask button apearrs, refresh your browser.</li>
-                    <li>Open MetaMask and create a new account by following the instructions in the app.</li> 
-                    <li>Connect your wallet to the Rinkeby network by tapping the text at top that says "Ethereum Main Network" and then selecting "Rinkeby Test Network". Rinkeby is a test network where you will not be spending real funds.</li>
+                    <li>Follow the MetaMask prompts to connect your ETH wallet to <DynaSpan/>.</li>
+                    <li>Browse to the <Link to="/mint">Mint page</Link> to create a new NFT!</li> 
                   </ol>
            </div>
 
