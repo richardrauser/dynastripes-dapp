@@ -34,6 +34,10 @@
   background-color: #FFF; 
 }
 
+a {
+  text-decoration: none;
+}
+
 a.externalLink {
   color: #6666BB;  
   text-decoration: none;

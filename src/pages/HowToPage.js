@@ -66,7 +66,7 @@ class HowToPage extends React.Component {
            </div>
 
 
-            Having trouble? Shoot an email to <a className="externalLink" href="mail:volstrate@gmail.com">volstrate@gmail.com</a>.
+            Having trouble? Shoot an email to <a className="externalLink" href="mail:volstrate@gmail.com">volstrate@gmail.com</a>
             </div>
         </div>
       );
