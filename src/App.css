@@ -146,14 +146,17 @@ h5 {
 }
 
 .mintInputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   float: right;
   margin: 0 auto;
-  max-width: 300px;
+  padding: 16px 0;
+  width: 30vw; 
 }
 
 .mintInput {
   font-size: 18px;
-  margin: 25px 0;
 }
 
 .card-title {
@@ -280,8 +283,7 @@ h4.dyna {
   opacity: 1;
   margin: 16px;
   background-color:#FFF;
-  width: 400px; 
-  height: 400px;
+  width: 30vw; 
   border: 10px solid #EEE; 
 }
 
