@@ -13,13 +13,13 @@ class HowToPage extends React.Component {
       return (
         <div className="mainContent"  style={{background: svgDataUri}}>
           <div className="content">
-            <h1>How to buy a <span className="dyna">DynaStripes</span>NFT</h1>
+            <h1>How to create a <span className="dyna">DynaStripes</span>NFT</h1>
             <div className="deepContent">
             <h3>
               It's easy! 😎
             </h3>
             <p>
-              This guide spells out how to buy a <DynaSpan/> NFT from this site, the <a className="externalLink" href="https://en.wikipedia.org/wiki/Software_release_life_cycle#Beta" target="_blank" rel="noreferrer">beta</a> version of the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_application" target="_blank" rel="noreferrer">dApp</a>. It's running on the Rinkeby test network, so you will not be using real ETH/$/£.
+              This guide spells out how to create a <DynaSpan/> NFT with this site, the <a className="externalLink" href="https://en.wikipedia.org/wiki/Software_release_life_cycle#Beta" target="_blank" rel="noreferrer">beta</a> version of the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_application" target="_blank" rel="noreferrer">dApp</a>. It's running on the Rinkeby test network, so you will not be using real ETH/$/£.
             </p>
 
                   <h3>
