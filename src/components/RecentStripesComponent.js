@@ -69,7 +69,7 @@ class RecentStripesComponent extends React.Component {
       if (this.state.loading === true) {
         return (
           <div className="content">
-            <h1>Recently minted <span className="dyna">DynaStripes</span> NFTs</h1>
+            <h1>Recently minted <DynaSpan/> NFTs</h1>
             <Spinner animation="grow" variant="dark" />
           </div>
         );
@@ -83,14 +83,14 @@ class RecentStripesComponent extends React.Component {
       } else if (tokenIds === null || tokenIds.length === 0) {
         return (
           <div className="content">
-            <h1>Recently minted <span className="dyna">DynaStripes</span> NFTs</h1>
+            <h1>Recently minted <DynaSpan/> NFTs</h1>
               No stripes have been minted yet.
           </div>
         );
       } else {
         return (
           <div className="content">
-            <h1>Recently minted <span className="dyna">DynaStripes</span> NFTs</h1>
+            <h1>Recently minted <DynaSpan/> NFTs</h1>
             <TokenList tokens= { tokenIds } />
           </div>
         );  

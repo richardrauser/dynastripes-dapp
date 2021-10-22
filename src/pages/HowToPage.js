@@ -13,13 +13,10 @@ class HowToPage extends React.Component {
       return (
         <div className="mainContent"  style={{background: svgDataUri}}>
           <div className="content">
-            <h1>How to acquire a <span className="dyna">DynaStripes</span>NFT</h1>
+            <h1>How to acquire a <DynaSpan/> NFT</h1>
             <div className="deepContent">
-            <h3>
-              It's easy! 😎
-            </h3>
             <p>
-              This guide spells out the process for acquiring a <DynaSpan/> NFT, This is a <a className="externalLink" href="https://en.wikipedia.org/wiki/Software_release_life_cycle#Beta" target="_blank" rel="noreferrer">beta</a> version of the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_application" target="_blank" rel="noreferrer">dApp</a> running on the Rinkeby test network, so you will not be using real ETH/$/£.
+              This is a <a className="externalLink" href="https://en.wikipedia.org/wiki/Software_release_life_cycle#Beta" target="_blank" rel="noreferrer">beta</a> version of the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_application" target="_blank" rel="noreferrer">dApp</a> running on the Rinkeby test network, so you will not be using real ETH/$/£.
             </p>
 
                   <h3>
@@ -59,7 +56,7 @@ class HowToPage extends React.Component {
                   
                   <ol>
                     <li>Return to this website in your browser. If on mobile, you'll need to use the browser in the MetaMask app.</li>
-                    <li>Hit the Connect Wallet button at the top right of this site, the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_application" target="_blank" rel="noreferrer">dApp</a>. If you don't see it or an Install MetaMask button apearrs, refresh your browser.</li>
+                    <li>Hit the Connect Wallet button at the top right of <DynaSpan/>. If you don't see it or an Install MetaMask button apearrs, refresh your browser.</li>
                     <li>Follow the MetaMask prompts to connect your ETH wallet to <DynaSpan/>.</li>
                     <li>Browse to the <Link to="/mint">Mint page</Link> to create a new NFT!</li> 
                   </ol>

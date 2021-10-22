@@ -14,7 +14,7 @@ class FeedbackPage extends React.Component {
       return (
         <div className="mainContent"  style={{background: svgDataUri}}>
           <div className="content">
-            <h1>Feedback on <span className="dyna">DynaStripes</span></h1>
+            <h1>Feedback on <DynaSpan/></h1>
 
          
             <div className="deepContent">

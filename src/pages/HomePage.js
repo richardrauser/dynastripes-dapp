@@ -8,12 +8,14 @@ import sample4 from '../images/dynasample6.svg';
 import sample5 from '../images/dynasample9.svg';
 import sample6 from '../images/dynasample7.svg';
 
+
 import {
   Link
 } from "react-router-dom";
 
 import { generateRandomStripesDataUri } from '../dynastripes.js';
 import SocialLinks from '../components/SocialLinks';
+import DynaSpan from '../components/DynaSpan';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -38,7 +40,7 @@ class HomePage extends React.Component {
             <div className="content">
 
               <h1 className="homeTitle">
-              <span className="dyna">DynaStripes</span> is <b>user-directed</b>, generative, on-chain NFT art where <b>you</b> earn all royalties 
+              <DynaSpan/> is <b>user-directed</b>, generative, on-chain NFT art where <b>you</b> earn all royalties 
               </h1>
               <div className="homeAbout">
                 <div className="samples">

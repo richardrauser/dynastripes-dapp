@@ -11,6 +11,7 @@ import * as Errors from '../utils/errors.js';
 import { getContractWithSigner, fetchMintPrice } from '../utils/blockchain';
 
 import generateDynaStripes from '../dynastripes.js';
+import DynaSpan from '../components/DynaSpan';
 
 class MintPage extends React.Component {
 
@@ -199,7 +200,7 @@ class MintPage extends React.Component {
       return (
         <div className="mainContent singleArtworkBackground"  style={{backgroundImage: svgDataUri}}>
           <div id="mint" className="content">
-            <h1>Mint your own <span className="dyna">DynaStripes</span> NFT</h1>
+            <h1>Mint your own <DynaSpan/> NFT</h1>
             <center>
               { this.state.doneSuccess ? <MintAnotherComponent mintAnother={this.mintAnother} /> : <MintOptions svg={svg} mintPrice={this.state.mintPrice} rotationRange={this.state.rotationRange} rotationRangeChanged={this.rotationRangeChanged} zoom={this.state.zoom} zoomChanged={this.zoomChanged} widthRange={this.state.widthRange} widthRangeChanged={this.widthRangeChanged}  paletteRange={this.state.paletteRange} paletteRangeChanged={this.paletteRangeChanged}  speedRange={this.state.speedRange} speedRangeChanged={this.speedRangeChanged} mint={this.mint} refresh={this.refresh} /> }
             </center>

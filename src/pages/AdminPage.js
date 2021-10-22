@@ -10,6 +10,8 @@ import { handleError } from '../utils/error';
 
 import { generateRandomStripesDataUri } from '../dynastripes.js';
 
+import DynaSpan from '../components/DynaSpan';
+
 class AdminPage extends React.Component {
 
     constructor(props) {
@@ -282,7 +284,7 @@ class AdminPage extends React.Component {
 
           <div className="mainContent"  style={{background: svgDataUri}}>
             <div className="content">
-              <h1><span className="dyna">DynaStripes</span> Admin Settings</h1>
+              <h1><DynaSpan/> Admin Settings</h1>
               <div className="deepContent">
                 <center>
                   Contract status: ? <br/>

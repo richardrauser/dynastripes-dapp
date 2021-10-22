@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Button from 'react-bootstrap/Button';
+import DynaSpan from '../components/DynaSpan';
 
 import {
   Link
@@ -12,7 +13,7 @@ class MintAnotherComponent extends React.Component {
     return (
       <div>
           <p className="success">
-            Your <span className="dyna">DynaStripes</span> have been successfully minted! Once the transaction is complete, your new artwork will appear in the gallery. Vist the gallery to see it, or mint more <span className="dyna">DynaStripes</span> now!
+            Your <DynaSpan/> have been successfully minted! Once the transaction is complete, your new artwork will appear in the gallery. Vist the gallery to see it, or mint more <DynaSpan/> now!
           </p>
 
           <Link to="/gallery">
