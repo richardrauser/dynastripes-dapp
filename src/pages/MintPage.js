@@ -171,7 +171,11 @@ class MintPage extends React.Component {
   
         toast.success("Successfully minted your DynaStripes NFT!");
       } catch (err) {
-        handleError(err);
+        if (err.code === "UNSUPPORTED_OPERATION" && err.message.startsWith("unknown account")) {
+          showErrorMessage("You need to connect an account via your ETH wallet.");
+        } else {
+          handleError(err);
+        }
       }
     }
   

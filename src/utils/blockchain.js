@@ -44,11 +44,10 @@ export async function getContractWithSigner() {
   // const provider = new ethers.providers.Web3Provider(window.ethereum);
   // const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
   // const provider = ethers.getDefaultProvider('ropsten');
-
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
   const signer = provider.getSigner();
-  const contractWithSigner = contract.connect(signer);
+  const contractWithSigner = contract.connect(signer);  
   return contractWithSigner;
 }
 
@@ -60,6 +59,10 @@ export async function fetchAccountDetails() {
   checkWallet();
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+  if (account.count < 1) {
+    throw Error(Errors.DS_NO_ETH_ACCOUNT);
+  }
     
   var ethAddress = account.toString();
 
@@ -82,6 +85,10 @@ export async function fetchAccountDetails() {
 export function fetchCachedAccountDetails() {
   const address = localStorage.getItem(accountAddressKey);
   const balance = localStorage.getItem(accountBalanceKey);
+
+  if (address === null || balance === null) {
+    return null;
+  }
 
   var accountDetails = new AccountDetails(address, balance);
 

@@ -15,18 +15,18 @@ import * as Errors from '../utils/errors.js';
 
 class DynaNavLoginDropdown extends React.Component {
 
-    constructor(props) {
-      super(props);
-      
-      this.state = {
-        isLoading: false,
-        isWalletConnected: false
-      };        
-  
-      this.connectWallet = this.connectWallet.bind(this);
-      this.disconnectWallet = this.disconnectWallet.bind(this);
-      this.refreshWallet = this.refreshWallet.bind(this);
-      this.fetchAccountDetails = this.fetchAccountDetails.bind(this);
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      isLoading: false,
+      isWalletConnected: false
+    };        
+
+    this.connectWallet = this.connectWallet.bind(this);
+    this.disconnectWallet = this.disconnectWallet.bind(this);
+    this.refreshWallet = this.refreshWallet.bind(this);
+    this.fetchAccountDetails = this.fetchAccountDetails.bind(this);
   }
   
     componentDidMount() {
@@ -55,8 +55,8 @@ class DynaNavLoginDropdown extends React.Component {
 
       const cachedDetails = fetchCachedAccountDetails();
 
-      if (cachedDetails.address && cachedDetails.balance) {
-        console.log("Got legit address (" + cachedDetails.address + ") and balance (" + cachedDetails.balance + ").");
+      if (cachedDetails !== null) {
+        console.log("Got address (" + cachedDetails.address + ") and balance (" + cachedDetails.balance + ").");
         this.updateAccountDetails(cachedDetails);
       } else {
         this.setState({

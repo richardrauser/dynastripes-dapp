@@ -17,6 +17,8 @@ export function handleError(err) {
       }
     } else if (err.message === Errors.DS_NO_ETH_WALLET) {
       showErrorMessage('No ETH wallet detected. Please install MetaMask.');
+    } else if (err.message === Errors.DS_NO_ETH_ACCOUNT) {
+      showErrorMessage('You need to connect an account via your ETH wallet before you can do that.');      
     } else if (err.message === Errors.DS_WRONG_ETH_NETWORK) {
       showErrorMessage("You're on the wrong ETH network Please switch to Rinkeby.");
     } else if (err.code != null) {
