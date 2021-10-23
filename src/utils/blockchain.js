@@ -17,7 +17,6 @@ function checkWallet() {
   }
 }
 export async function getContract() {
-  console.log("Getting contract...");
   checkWallet();
   // const provider = new ethers.providers.Web3Provider(window.ethereum);
   // const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
@@ -27,17 +26,23 @@ export async function getContract() {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
 
   const { chainId } = await provider.getNetwork()
-  console.log("CHAIN ID: " + chainId) // 42
+  console.log("CHAIN ID: " + chainId); // 42
   
   if (chainId !== 4) {
-    // not on Rinkeby!
     console.log("Not on Rinkeby.");
     throw Error(Errors.DS_WRONG_ETH_NETWORK);
   }
   const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
   return contract;
 }
-  
+
+export async function getSigner() {
+  checkWallet();
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+  return signer;
+}
+
 export async function getContractWithSigner() {
   checkWallet();
 
@@ -58,7 +63,7 @@ export async function fetchAccountDetails() {
   console.log("Fetching account details..");
   checkWallet();
   const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+  const [account] = await provider.listAccounts();
 
   if (account.count < 1) {
     throw Error(Errors.DS_NO_ETH_ACCOUNT);
@@ -81,6 +86,24 @@ export async function fetchAccountDetails() {
 
   return accountDetails;
 }
+
+export async function isCurrentAccountOwner() {
+  console.log("Checking current account owner status..");
+  checkWallet();
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const [account] = await provider.listAccounts();
+
+  if (account.count < 1) {
+    throw Error(Errors.DS_NO_ETH_ACCOUNT);
+  }
+    
+  const ethAddress = account.toString();
+  const contract = await getContract();
+  const ownerAddress = await contract.owner();
+
+  return (ethAddress === ownerAddress);
+}
+
 
 export function fetchCachedAccountDetails() {
   const address = localStorage.getItem(accountAddressKey);

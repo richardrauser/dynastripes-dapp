@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 
-import { getContract } from '../utils/blockchain';
+import { isCurrentAccountOwner } from '../utils/blockchain';
 
 import DynaNavLoginDropdown from './DynaNavLoginDropdown';
 
@@ -21,9 +21,7 @@ class DynaNav extends React.Component {
       }
     
       componentDidMount() {
-
         if (typeof window.ethereum === 'undefined') {
-
           console.log("No wallet.");
           return;
         }
@@ -32,12 +30,9 @@ class DynaNav extends React.Component {
       }
     
       async fetchOwnerStatus() {
-      
         try {    
-          const contract = await getContract();
-          const isOwner = await contract.isSenderOwner();
-          console.log("DynaNav isOwner: " + isOwner);
-    
+          const isOwner = await isCurrentAccountOwner();
+
           this.setState({
             isOwner: isOwner
           });
