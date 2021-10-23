@@ -62,11 +62,11 @@ const accountBalanceKey = "accountBalance";
 async function isAccountConnected() {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const [account] = await provider.listAccounts();
+  console.log("isAccountConnected, account: " + account);
   if (account === undefined || account === null) {
     return false;
   }
   return true;
-
 }
 
 async function fetchAccount() {
@@ -110,14 +110,17 @@ export async function isCurrentAccountOwner() {
 
   const connected = await isAccountConnected();
   if (!connected) {
+    console.log("NOT CONNECTED.");
     return false;
   }
 
   const account = await fetchAccount();
 
-  const ethAddress = account.toString();
+  const ethAddress = account.toString().toLowerCase();
   const contract = await getContract();
-  const ownerAddress = await contract.owner();
+  const ownerAddress = (await contract.owner()).toString().toLowerCase();
+  console.log("connected account address: " + ethAddress);
+  console.log("owner address: " + ownerAddress);
 
   return (ethAddress === ownerAddress);
 }
