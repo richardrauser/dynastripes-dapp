@@ -26,13 +26,11 @@ class HowToPage extends React.Component {
                   <ol>
                     <li>Visit <MetaMaskLink /> and download the MetaMask wallet. It will be a <a className="externalLink" href="https://en.wikipedia.org/wiki/Browser_extension" target="_blank" rel="noreferrer">browser extension</a> if you're accessing this from a desktop computer, or a mobile app if using a smartphone. The MetaMask website should detect this. Most people will find it easier from a desktop browser rather than mobile. The mobile experience of the decentralised web is still a bit crude!</li> 
                     <li>Unfortunately MetaMask is not supported for Safari on MacOS. 😢 Try the <a className="externalLink" href="https://www.google.com/chrome/Chrome" target="_blank" rel="noreferrer">Chrome</a> browser. You'll love it. It's quick and easy to install.</li>
-                    <li>Once installed, open MetaMask. On Chrome, it'll appear as a little fox icon in your extensions toolbar up by the URL bar. </li>
+                    <li>Once installed, open MetaMask. On Chrome, it'll appear as a little fox icon in your browser's toolbar up by the URL bar. </li>
                     <li>Create a new account by following the instructions in MetaMask.</li> 
                     <li>Connect your wallet to the Rinkeby network. Rinkeby is a test network where you will not be spending real funds.</li>
                       <ul>
                         <li>On desktop, tap the "Ethereum Main Network" text at the top of the MetaMask window and select "Rinkeby Test Network". </li>
-                      </ul>    
-                      <ul>
                         <li>On mobile, tap the top left menu button in the MetaMask app and select "Wallet". Then tap the "Ethereum Main Network" text at the top and select "Rinkeby Test Network". </li>
                       </ul>    
             
@@ -45,7 +43,8 @@ class HowToPage extends React.Component {
                   <p> The Rinkeby network is a test network and so you can't spend real money on ETH. You can, however, use a "faucet" to pay out some ETH to your wallet for free.
                   </p>
                   <ol>
-                    <li>Ensure you've selected Rinkeby as your network in MetaMask as per the final step above.</li> 
+                  <li>If using a desktop browser, ensure MetaMask is unlocked. Open MetaMask by tapping the icon in your browser's toolbar to check this. </li> 
+                  <li>Ensure you've selected Rinkeby as your network in MetaMask as per the final step above.</li> 
                     <li> Copy your wallet address from MetaMask: </li>
                     <ul>
                       <li>In a desktop browser, open MetaMask by tapping the Metamask logo (fox) and then tap your account name or address under the network selector. </li>

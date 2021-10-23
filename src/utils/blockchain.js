@@ -59,16 +59,23 @@ export async function getContractWithSigner() {
 const accountAddressKey = "accountAddress";
 const accountBalanceKey = "accountBalance";
 
-export async function fetchAccountDetails() {
-  console.log("Fetching account details..");
+async function fetchAccount() {
   checkWallet();
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const [account] = await provider.listAccounts();
 
-  if (account.count < 1) {
+  if (account === undefined || account === null || account.length < 1) {
     throw Error(Errors.DS_NO_ETH_ACCOUNT);
   }
+  return account;
+}
+
+export async function fetchAccountDetails() {
+  console.log("Fetching account details..");
     
+  const account = await fetchAccount();
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+
   var ethAddress = account.toString();
 
   console.log("Getting details of account: " + ethAddress); 
@@ -89,14 +96,9 @@ export async function fetchAccountDetails() {
 
 export async function isCurrentAccountOwner() {
   console.log("Checking current account owner status..");
-  checkWallet();
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const [account] = await provider.listAccounts();
 
-  if (account.count < 1) {
-    throw Error(Errors.DS_NO_ETH_ACCOUNT);
-  }
-    
+  const account = await fetchAccount();
+
   const ethAddress = account.toString();
   const contract = await getContract();
   const ownerAddress = await contract.owner();
