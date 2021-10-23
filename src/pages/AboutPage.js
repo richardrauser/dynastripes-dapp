@@ -81,7 +81,7 @@ class AboutPage extends React.Component {
                 </li>
                 <li> 
                   <a className="externalLink" href="https://www.proof.xyz/" target="_blank" rel="noreferrer">Proof podcast</a>: full of inspiring NFT discussion, <a className="externalLink" href="https://twitter.com/kevinrose" target="_blank" rel="noreferrer">Kevin Rose's</a>'
-                 Proof podcast has been full of many "ah-ha" moments and NFT stimulation. A must listen to anyone interested in the NFT space.
+                 Proof podcast has been full of many "ah-ha" moments and NFT idea stimulation. A must listen to anyone interested in the NFT space.
                 </li>
               </ol>
 
