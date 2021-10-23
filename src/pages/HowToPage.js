@@ -46,29 +46,25 @@ class HowToPage extends React.Component {
                   </p>
                   <ol>
                     <li>Ensure you've selected Rinkeby as your network in MetaMask as per the final step above.</li> 
-                    <li>Visit an ETH faucet site and request some ETH:</li>
+                    <li> Copy your wallet address from MetaMask: </li>
                     <ul>
-                        <li>Visit <a className="externalLink" href="https://rinkeby-faucet.com/" target="_blank" rel="noreferrer">Rinkeby faucet</a>. Enter you wallet address, which you can copy from MetaMask.</li>
-                      </ul>    
-                      <ul>
-                        <li>In a desktop browser, you can also try <a className="externalLink" href="https://app.mycrypto.com/faucet" target="_blank" rel="noreferrer">MyCrypto faucet</a> which will pay out more.</li>
-                      </ul>    
-                      <ul>
-                        <li>In the MetaMask mobile app, try <a className="externalLink" href="https://faucet.metamask.io/" target="_blank" rel="noreferrer">MetaMask faucet</a>. </li>
-                      </ul>    
-                       
+                      <li>In a desktop browser, open MetaMask by tapping the Metamask logo (fox) and then tap your account name or address under the network selector. </li>
+                      <li>In the MetaMask mobile app, tap the top left menu button, select Wallet, then tap your address (starts with "0x"). It appears under your account name.</li>
+                    </ul>    
+                    <li>Visit one of the following ETH faucet sites and request some ETH:</li>
+                    <ul>
+                      <li>On desktop or mobile, visit <a className="externalLink" href="https://rinkeby-faucet.com/" target="_blank" rel="noreferrer">Rinkeby faucet</a>. </li>
+                      <li>In a desktop browser, try <a className="externalLink" href="https://app.mycrypto.com/faucet" target="_blank" rel="noreferrer">MyCrypto faucet</a> which will pay out more.</li>
+                      <li>On desktop or mobile, visit <a className="externalLink" href="https://faucet.rinkeby.io/" target="_blank" rel="noreferrer">Rinkeby Authenticated Faucet</a>. This one pays out the most, however requires authentication and can be unreliable.</li>
+                    </ul>    
                     <li>Follow the steps for whatever faucet you chose. </li> 
-                    <li>A <a className="externalLink" href="https://en.wikipedia.org/wiki/CAPTCHA" target="_blank" rel="noreferrer">CATCHPA</a> will appear. Enter it and hit submit.</li>
                     <li>Congratulations! you now have some ETH in your wallet. It may take a second to appear. Open your MetaMask wallet and your ETH balance will eventually update.</li>
                   </ol>
-                  Notes:
+                  Note:
                   <ul>
-                    <li>The MyCrypto Faucet only pays out 0.01 ETH at a time to prevent abuse, so refresh the page and do it a few more times if you'd like to collect more ETH.</li>
-                    <li>You can request greater amounts of ETH from the <a className="externalLink" href="https://faucet.rinkeby.io/" target="_blank" rel="noreferrer">Rinkeby Authenticated Faucet</a>, however it is unreliable.</li>
+                    <li>You may wish to repeat a few times to collect more ETH.</li>
                   </ul>
-
-
-
+                  
                   <h3>Return to <DynaSpan/>
                   </h3>
                   You're ready to start having some fun! 😁
