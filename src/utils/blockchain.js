@@ -59,12 +59,23 @@ export async function getContractWithSigner() {
 const accountAddressKey = "accountAddress";
 const accountBalanceKey = "accountBalance";
 
-async function fetchAccount() {
-  checkWallet();
+async function isAccountConnected() {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const [account] = await provider.listAccounts();
+  if (account === undefined || account === null) {
+    return false;
+  }
+  return true;
 
-  if (account === undefined || account === null || account.length < 1) {
+}
+
+async function fetchAccount() {
+  checkWallet();
+  const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+  console.log("ACCOUNT: " + account);
+
+  if (account === undefined || account === null) {
     throw Error(Errors.DS_NO_ETH_ACCOUNT);
   }
   return account;
@@ -96,6 +107,11 @@ export async function fetchAccountDetails() {
 
 export async function isCurrentAccountOwner() {
   console.log("Checking current account owner status..");
+
+  const connected = await isAccountConnected();
+  if (!connected) {
+    return false;
+  }
 
   const account = await fetchAccount();
 

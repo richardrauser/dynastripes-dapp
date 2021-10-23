@@ -7,7 +7,9 @@ export function handleError(err) {
   
     if (err.code === 4001) {
       showErrorMessage('You rejected the transaction. :-(');
+    } else if (err.code === -32002) {
       // -32002: already requesting accounts
+      showErrorMessage('Already requesting accounts. Please open MetaMask to confirm.');
     } else if (err.code === -32603) {
       // Internal JSON RPC error
       if (err.data != null && err.data.message != null) {

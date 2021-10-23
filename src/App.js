@@ -23,7 +23,7 @@ import FeedbackPage from './pages/FeedbackPage';
 
 import RouteChangeTracker from './utils/RouteChangeTracker';
 
-ReactGA.initialize("UA-85524090-9");
+ReactGA.initialize("UA-85524090-8");
 
 class App extends React.Component {
 
