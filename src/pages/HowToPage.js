@@ -48,7 +48,10 @@ class HowToPage extends React.Component {
                     <li>Ensure you've selected Rinkeby as your network in MetaMask as per the final step above.</li> 
                     <li>Visit an ETH faucet site and request some ETH:</li>
                     <ul>
-                        <li>In a desktop browser, try <a className="externalLink" href="https://app.mycrypto.com/faucet" target="_blank" rel="noreferrer">MyCrypto faucet</a>.</li>
+                        <li>Visit <a className="externalLink" href="https://rinkeby-faucet.com/" target="_blank" rel="noreferrer">Rinkeby faucet</a>. Enter you wallet address, which you can copy from MetaMask.</li>
+                      </ul>    
+                      <ul>
+                        <li>In a desktop browser, you can also try <a className="externalLink" href="https://app.mycrypto.com/faucet" target="_blank" rel="noreferrer">MyCrypto faucet</a> which will pay out more.</li>
                       </ul>    
                       <ul>
                         <li>In the MetaMask mobile app, try <a className="externalLink" href="https://faucet.metamask.io/" target="_blank" rel="noreferrer">MetaMask faucet</a>. </li>

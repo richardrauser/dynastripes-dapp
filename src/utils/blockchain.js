@@ -8,12 +8,12 @@ import * as Errors from './errors.js';
 const dynaStripesContractAddress = '0x2BeeB093f65635589007Ba7b85bfc1C82E851412'; // rinkeby
 
 function checkWallet() {
-  console.log("Checking wallet...");
+  // console.log("Checking wallet...");
   if (typeof window.ethereum === 'undefined') {
-    console.log('Could not get wallet. Throwing error NO_ETH_WALLET');
+    // console.log('Could not get wallet. Throwing error NO_ETH_WALLET');
     throw Error(Errors.DS_NO_ETH_WALLET);
   } else {
-    console.log('Has wallet.');
+    // console.log('Has wallet.');
   }
 }
 export async function getContract() {
