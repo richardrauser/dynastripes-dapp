@@ -158,8 +158,8 @@ class DynaNavLoginDropdown extends React.Component {
     render() {
       if (this.state.isLoading) {
         return (
-        <Spinner></Spinner>
-        );
+          <Spinner animation="grow" variant="dark" />
+          );
       } else if (this.state.isWalletInstalled !== undefined && !this.state.isWalletInstalled) {
         return (
             <Button target="_blank" href="https://metamask.io">Install MetaMask</Button>

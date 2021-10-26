@@ -5,11 +5,11 @@ import ReactSlider from 'react-slider'
 import styled from 'styled-components';
 import PreviewComponent from './PreviewComponent';
 import MintPriceComponent from './MintPriceComponent';
+import MintButton from './MintButton';
 
 class MintOptions extends React.Component {
 
     render() {
-      var mintEnabled = this.props.mintPrice !== null;
 
       const StyledSlider = styled(ReactSlider)`
           width: 100%;
@@ -124,9 +124,9 @@ class MintOptions extends React.Component {
               </div>
                 
             </div>
-          
-          <Button variant="primary" onClick={this.props.refresh}>New random seed</Button>
-          <Button variant="primary" disabled={ !mintEnabled } onClick={this.props.mint}>Mint, baby!</Button>
+            <Button variant="primary" onClick={this.props.refresh}>New random seed</Button>
+            <MintButton mint={this.props.mint}/>
+
           <MintPriceComponent />
         </div>
       );
