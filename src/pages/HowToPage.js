@@ -16,7 +16,7 @@ class HowToPage extends React.Component {
             <h1>How to acquire a <DynaSpan/> NFT</h1>
             <div className="deepContent">
             <p>
-               his is a <a className="externalLink" href="https://en.wikipedia.org/wiki/Software_release_life_cycle#Beta" target="_blank" rel="noreferrer">beta</a> version of the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_application" target="_blank" rel="noreferrer">dApp</a> running on the Rinkeby test network, so you will not be using real ETH/$/£. While there are instructions here for both desktop computers (e.g. laptops, PCs, etc) and mobile phones, <b>most people will find it easier from a desktop browser rather than mobile. </b> The mobile experience of web3 is still a bit crude!
+               This is a <a className="externalLink" href="https://en.wikipedia.org/wiki/Software_release_life_cycle#Beta" target="_blank" rel="noreferrer">beta</a> version of the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_application" target="_blank" rel="noreferrer">dApp</a> running on the Rinkeby test network, so you will not be using real ETH/$/£. While there are instructions here for both desktop computers (e.g. laptops, PCs, etc) and mobile phones, <b>most people will find it easier from a desktop browser rather than mobile. </b> The mobile experience of web3 is still a bit crude!
             </p>
 
                   <h3>
@@ -27,8 +27,8 @@ class HowToPage extends React.Component {
                     <ul>
                         <li>On desktop, It will be a <a className="externalLink" href="https://en.wikipedia.org/wiki/Browser_extension" target="_blank" rel="noreferrer">browser extension</a>.</li>
                         <li>On mobile, it is an app you need to download from the app store. </li>
-                        <li> The <MetaMaskLink /> website should detect this and diret you accordingly.</li>
-                        <li>Unfortunately MetaMask is not supported for Safari on MacOS. 😢 Try the <a className="externalLink" href="https://www.google.com/chrome/Chrome" target="_blank" rel="noreferrer">Chrome</a> browser. You'll love it. It's quick and easy to install.</li>
+                        <li> The <MetaMaskLink /> website should detect this and direct you accordingly.</li>
+                        <li>Unfortunately MetaMask is not supported for Safari on MacOS. 😢 Try the <a className="externalLink" href="https://www.google.com/chrome/Chrome" target="_blank" rel="noreferrer">Chrome</a> browser. It's quick and easy to install.</li>
                       </ul>    
                     <li>Once installed, open MetaMask. </li>
                     <ul>
@@ -45,10 +45,10 @@ class HowToPage extends React.Component {
 
                   <h3>Acquire some ETH
                   </h3>
-                  <p> The Rinkeby network is a test network and so you can't spend real money on ETH. You can, however, use a "faucet" to pay out some ETH to your wallet for free.
+                  <p> Rinkeby is a test network and so you can't spend real money on ETH. You can, however, use a "faucet" to pay out some ETH to your wallet for free.
                   </p>
                   <ol>
-                  <li>In a desktop browser, ensure MetaMask is unlocked. Open MetaMask by tapping the icon in your browser's toolbar to check this. </li> 
+                  <li>If using a desktop browser, ensure MetaMask is unlocked. To check this, open MetaMask by tapping the fox icon in your browser's toolbar. </li> 
                   <li>Ensure you've selected Rinkeby as your network in MetaMask as per the final step above.</li> 
                     <li> Copy your wallet address from MetaMask: </li>
                     <ul>
