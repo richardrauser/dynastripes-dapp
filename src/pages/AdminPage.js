@@ -26,7 +26,8 @@ class AdminPage extends React.Component {
         isLoading: true,
         isSenderOwner: false,
         ownerAddress: null,
-        mintPrice: null
+        mintPrice: null,
+        contractBalance: null
       }
 
       this.updateMintPrice = this.updateMintPrice.bind(this);
@@ -48,7 +49,8 @@ class AdminPage extends React.Component {
           toast("You're the owner. You must have built me! You're awesome. 😘");
           this.fetchMintPrice();
           this.fetchTokenLimit();
-          this.fetchOwner();    
+          this.fetchOwner();  
+          this.getContractBalance();  
         } else {
           toast("You're not the owner. Life must be painful and dull. And this page is definitely not for you.");
         }
@@ -221,7 +223,27 @@ class AdminPage extends React.Component {
         handleError(err);
       }
     }
-  
+
+    async getContractBalance() {
+      try {
+        const contract = await getContract();
+
+        this.setState({
+          contractBalance: "-"
+        });
+      
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const contractBalance = await provider.getBalance(contract.address);
+        const formattedBalance = ethers.utils.formatEther(contractBalance);
+        console.log("Contract balance: " + formattedBalance);
+        this.setState({
+          contractBalance: formattedBalance
+        });
+      } catch (err) {
+        handleError(err);
+      }
+    }
+
     render() {
       const svgDataUri = generateRandomStripesDataUri();
 
@@ -275,7 +297,7 @@ class AdminPage extends React.Component {
                     <input ref={this.tokenLimitInput} /><br/>
                     <Button variant="primary" onClick={this.updateTokenLimit}>Update token Limit</Button>               
                     <br/><hr/>
-                    Make payment <br/>
+                    Make payment. Current balance: { this.state.contractBalance } <br/>
                     <input ref={this.paymentInput} /><br/>
                     <Button variant="primary" onClick={this.makePayment}>Pay owner</Button>               
                     <br/><hr/> 
