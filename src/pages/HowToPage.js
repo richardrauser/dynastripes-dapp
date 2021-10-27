@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Tab, Tabs } from 'react-bootstrap';
 
+import { isMobile } from 'react-device-detect';
+
 import MetaMaskLink from '../components/MetaMaskLink';
 import DynaSpan from '../components/DynaSpan';
 import { generateRandomStripesDataUri } from '../dynastripes.js';
@@ -11,6 +13,7 @@ class HowToPage extends React.Component {
 
     render() {
       const svgDataUri = generateRandomStripesDataUri();
+      const selectedTab = isMobile ? "mobile" : "desktop";
 
       return (
         <div className="mainContent"  style={{background: svgDataUri}}>
@@ -20,7 +23,7 @@ class HowToPage extends React.Component {
             <p>
                This is a <a className="externalLink" href="https://en.wikipedia.org/wiki/Software_release_life_cycle#Beta" target="_blank" rel="noreferrer">beta</a> version of the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_application" target="_blank" rel="noreferrer">dApp</a> running on the Rinkeby test network, so you will not be using real ETH/$/£. While there are instructions here for both desktop computers (e.g. laptops, PCs, etc) and mobile phones, <b>most people will find it easier from a desktop browser rather than mobile. </b> The mobile experience of web3 is still a bit crude!
             </p>
-            <Tabs defaultActiveKey="desktop" id="uncontrolled-tab-example" className="mb-3">
+            <Tabs defaultActiveKey={ selectedTab } id="uncontrolled-tab-example" className="mb-3">
               <Tab eventKey="desktop" title="Desktop">
               <h3>
                   Install Metamask, an ETH wallet
@@ -60,7 +63,7 @@ class HowToPage extends React.Component {
                   
                   <h3>Return to <DynaSpan/>
                   </h3>
-                  You're ready to start having some fun! 😁
+                  Time to start having some fun! 😁
                   
                   <ol>
                     <li>Browse to <DynaSpan link={true}/> in which ever web browser you installed <MetaMaskLink/>. </li>
@@ -69,7 +72,7 @@ class HowToPage extends React.Component {
                     <li>Browse to the <Link to="/mint">Mint page</Link> to create a new NFT!</li> 
                   </ol>
               </Tab>
-              <Tab eventKey=" mobile" title="Mobile">
+              <Tab eventKey="mobile" title="Mobile">
               <h3>
                   Install Metamask, an ETH wallet
                   </h3>
@@ -103,11 +106,11 @@ class HowToPage extends React.Component {
                   
                   <h3>Return to <DynaSpan/>
                   </h3>
-                  You're ready to start having some fun! 😁
+                  Time to start having some fun! 😁
                   
                   <ol>
                     <li>Open the MetaMask app, tap the menu button at top left and select Browser. Then browse to <DynaSpan link={true}/>. </li>
-                    <li>Hit the Connect Wallet button at the top right of the <DynaSpan/> site. If you don't see it or an Install MetaMask button apears, refresh your browser.</li>
+                    <li>Hit the Connect Wallet button at the top right of the <DynaSpan/> site.</li>
                     <li>Follow the MetaMask prompts to connect your ETH wallet to <DynaSpan/>.</li>
                     <li>Browse to the <Link to="/mint">Mint page</Link> to create a new NFT!</li> 
                   </ol>
