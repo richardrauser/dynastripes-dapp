@@ -76,8 +76,8 @@ class HowToPage extends React.Component {
                   <ol>
                     <li>Return to this website in your browser. </li>
                     <ul>
-                      <li>On desktop, simply browse to <DynaSpan link={true}/> in which ever browser you install <MetaMaskLink/> </li>
-                      <li>On mobile, open the MetMask, tap the menu button at top left and select Browser. Then browse to <DynaSpan link={true}/>.</li>
+                      <li>On desktop, simply browse to <DynaSpan link={true}/> in which ever browser you installed <MetaMaskLink/>. </li>
+                      <li>On mobile, open the MetaMask app, tap the menu button at top left and select Browser. Then browse to <DynaSpan link={true}/>.</li>
                     </ul>    
                     <li>Hit the Connect Wallet button at the top right of the <DynaSpan/> site. If you don't see it or an Install MetaMask button apears, refresh your browser.</li>
                     <li>Follow the MetaMask prompts to connect your ETH wallet to <DynaSpan/>.</li>

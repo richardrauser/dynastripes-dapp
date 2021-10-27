@@ -161,7 +161,7 @@ class MintPage extends React.Component {
 
         const overrides = {
           value: this.state.mintPrice, 
-          gasLimit: 300000
+          gasLimit: 270000
       }
   
         await contractWithSigner.mintStripes(this.state.randomSeed, zoom, rotationMin, rotationMax, widthMin, widthMax, paletteMin, paletteMax, speedMin, speedMax, overrides);

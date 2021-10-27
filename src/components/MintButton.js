@@ -108,7 +108,7 @@ class ConnectButton extends React.Component {
         
         if (this.state.isLoading === true) {
             return (
-                <Spinner animation="grow" variant="dark" />
+                <Spinner animation="grow" />
                 );    
         }
         if (this.state.isWalletInstalled === false) {
