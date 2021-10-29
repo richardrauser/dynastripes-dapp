@@ -55,8 +55,8 @@ class DynaNavLoginDropdown extends React.Component {
 
       const cachedDetails = fetchCachedAccountDetails();
 
-      if (cachedDetails !== null) {
-        console.log("Got address (" + cachedDetails.address + ") and balance (" + cachedDetails.balance + ").");
+      if (cachedDetails !== undefined && cachedDetails !== null) {
+        console.log("Got address (" + cachedDetails.address + ") and balance (" + cachedDetails.displayBalance + ").");
         this.updateAccountDetails(cachedDetails);
       } else {
         this.setState({
@@ -71,9 +71,6 @@ class DynaNavLoginDropdown extends React.Component {
       // window.ethereum.removeListener('chainChanged', func);
     }
 
-    // async checkWalletConnection() {
-    //   ethereum.isConnected()
-    // }
     
     async connectWallet() {
       // console.log("Attempting to connect wallet..");
@@ -147,12 +144,12 @@ class DynaNavLoginDropdown extends React.Component {
         isLoading: false,
         isWalletConnected: true,
         accountEthAddress: accountDetails.address,
-        accountEthBalance: accountDetails.balance.toString(),
+        accountEthBalance: accountDetails.displayBalance.toString(),
         etherscanUrl: "https://etherscan.io/address/" + accountDetails.address.toString(),
       });
 
       console.log('Address: ', accountDetails.address);
-      console.log('Balance: ', accountDetails.balance);
+      console.log('Balance: ', accountDetails.displayBalance);
     }
   
     render() {

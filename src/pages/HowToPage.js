@@ -48,7 +48,7 @@ class HowToPage extends React.Component {
                     <li> Copy your wallet address from MetaMask. Open MetaMask by tapping the Metamask logo (the fox in your browser toolbar) and then tap your account name or address under the network selector. </li> 
                     <li>Visit one of the following ETH faucet sites and request some ETH:</li>
                     <ul>
-                      <li><a className="externalLink" href="https://faucets.chain.link/rinkeby" target="_blank" rel="noreferrer">Chainlink faucet</a>, which also dispenses LINK as well as ETH) </li>              
+                      <li><a className="externalLink" href="https://faucets.chain.link/rinkeby" target="_blank" rel="noreferrer">Chainlink faucet</a>, but sure to tick the "test eth" checkbox.</li>
                       <li><a className="externalLink" href="https://rinkeby-faucet.com/" target="_blank" rel="noreferrer">Rinkeby faucet</a> </li>
                       <li><a className="externalLink" href="https://app.mycrypto.com/faucet" target="_blank" rel="noreferrer">MyCrypto faucet</a> which will pay out more.</li>
                       <li><a className="externalLink" href="https://faucet.rinkeby.io/" target="_blank" rel="noreferrer">Rinkeby Authenticated Faucet</a>, which pays out the most, however requires authentication and can be unreliable.</li>
@@ -92,7 +92,7 @@ class HowToPage extends React.Component {
                     <li> Copy your wallet address from MetaMask. Tap the top left menu button in the MetaMask mobile app, select Wallet, then tap your address (starts with "0x"). It appears under your account name. </li>
                     <li>Visit one of the following ETH faucet sites and request some ETH:</li>
                     <ul>
-                    <li><a className="externalLink" href="https://faucets.chain.link/rinkeby" target="_blank" rel="noreferrer">Chainlink faucet</a>, which dispenses LINK as well as ETH </li>
+                    <li><a className="externalLink" href="https://faucets.chain.link/rinkeby" target="_blank" rel="noreferrer">Chainlink faucet</a>, and be sure to tick the "test eth" checkbox.</li>
                     <li><a className="externalLink" href="https://rinkeby-faucet.com/" target="_blank" rel="noreferrer">Rinkeby faucet</a> </li>
                     <li><a className="externalLink" href="https://faucet.rinkeby.io/" target="_blank" rel="noreferrer">Rinkeby Authenticated Faucet</a>, which pays out the most, however requires authentication and can be unreliable.</li>
                     </ul>    

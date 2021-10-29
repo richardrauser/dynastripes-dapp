@@ -58,7 +58,7 @@ class DynaNav extends React.Component {
                     <Nav.Link href="/feedback">Feedback</Nav.Link>
                     { this.state.isOwner === true ? <Nav.Link href="/admin">Admin</Nav.Link> : null }
                 </Nav>
-                <div class="betaMessage">Rinkeby testnet beta</div>
+                <div className="betaMessage">Rinkeby testnet beta</div>
                 <Nav>
                     <DynaNavLoginDropdown />
                 </Nav>

@@ -299,6 +299,8 @@ h4.dyna {
     width: 95%; 
     height: initial;
     margin: 8px;
+    border-width: 0px;
+    margin-bottom: 0px;
   }
   .dynaStripesArtwork {
     width: 200px; 
@@ -308,6 +310,10 @@ h4.dyna {
     float: right;
     margin: 0 auto;
     width: 90%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }  
   .mintInput {
     font-size: 18px;

@@ -1,12 +1,12 @@
 import React from 'react';
 import { ethers } from 'ethers';
 import Spinner from 'react-bootstrap/Spinner';
-
+import { Link } from 'react-router-dom';
 import ether from '../images/ethereum.svg';
 
 import MetaMaskLink from '../components/MetaMaskLink';
 
-import { fetchMintPrice } from '../utils/blockchain';
+import { fetchMintPrice, fetchAccountDetails } from '../utils/blockchain';
 import { handleError } from '../utils/error';
 import * as Errors from '../utils/errors.js';
 
@@ -17,7 +17,7 @@ class MintPriceComponent extends React.Component {
   
         this.state = {
             loading: true,
-            mintPrice: null
+            mintPrice: "?"
         };
   
         this.fetchMintPrice = this.fetchMintPrice.bind(this);
@@ -30,10 +30,21 @@ class MintPriceComponent extends React.Component {
       async fetchMintPrice() {
         try {
           const mintPrice = await fetchMintPrice();
+          const accountDetails = await fetchAccountDetails();
+
           console.log("Mint price: " + mintPrice);       
+          console.log("Account balance: " + accountDetails.weiBalance);       
+          
+          var hasEnoughEth = true;
+          if (accountDetails.weiBalance < mintPrice) {
+            hasEnoughEth = false;
+          }
+
           this.setState({
             loading: false,
-            mintPrice: mintPrice
+            mintPrice: ethers.utils.formatEther(mintPrice),
+            hasEnoughEth: hasEnoughEth,
+            balance: accountDetails.displayBalance
           });
         } catch (err) {
           if (err.message === Errors.DS_NO_ETH_WALLET) {
@@ -46,7 +57,7 @@ class MintPriceComponent extends React.Component {
             this.setState({
               hasWallet: true,
               loading: false,
-              mintPrice: null
+              mintPrice: "?"
             });  
           }
         }
@@ -65,10 +76,16 @@ class MintPriceComponent extends React.Component {
               An ETH wallet is required for minting. Install <MetaMaskLink />.
             </div>
           );    
+        } else if (this.state.hasEnoughEth === false) {
+          return (
+            <div>
+              The mint price is <img src={ether} alt="ether logo" className='mintEther'/>{ this.state.mintPrice }, however your balance is <img src={ether} alt="ether logo" className='mintEther'/>{ this.state.balance }. See the <Link to="/howto">How to guide</Link> for info on acquiring ETH.
+            </div>
+         );    
         } else {
             return (
                 <div>
-                  Mint price: { this.state.mintPrice === null ? "-" :  ethers.utils.formatEther(this.state.mintPrice) }<img src={ether} alt="ether logo" className='mintEther'/> 
+                  Mint price: <img src={ether} alt="ether logo" className='mintEther'/> { this.state.mintPrice }
                 </div>
             );    
         }    

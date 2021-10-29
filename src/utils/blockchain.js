@@ -56,8 +56,7 @@ export async function getContractWithSigner() {
   return contractWithSigner;
 }
 
-const accountAddressKey = "accountAddress";
-const accountBalanceKey = "accountBalance";
+const AccountDetailsKey = "DS_ACCOUNT_DETAILS_KEY";
 
 export async function isAccountConnected() {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -103,12 +102,11 @@ export async function fetchAccountDetails() {
   }
 
   const weiBalance = await provider.getBalance(account);
-  const ethBalance = Number(ethers.utils.formatEther(weiBalance)).toFixed(4);
+  const displayBalance = Number(ethers.utils.formatEther(weiBalance)).toFixed(4);
 
-  localStorage.setItem(accountAddressKey, ethAddress);
-  localStorage.setItem(accountBalanceKey, ethBalance);  
-  var accountDetails = new AccountDetails(ethAddress, ethBalance);
+  var accountDetails = new AccountDetails(ethAddress, weiBalance, displayBalance);
 
+  localStorage.setItem(AccountDetailsKey, accountDetails);
   return accountDetails;
 }
 
@@ -134,27 +132,29 @@ export async function isCurrentAccountOwner() {
 
 
 export function fetchCachedAccountDetails() {
-  const address = localStorage.getItem(accountAddressKey);
-  const balance = localStorage.getItem(accountBalanceKey);
-
-  if (address === null || balance === null) {
-    return null;
+  const accountDetails = localStorage.getItem(AccountDetailsKey);
+  
+  if (accountDetails === null) {
+     return null;
   }
 
-  var accountDetails = new AccountDetails(address, balance);
-
-  return accountDetails;
+  if (accountDetails.address === undefined || accountDetails.weiBalance === undefined || accountDetails.displayBalance === undefined) {
+    clearCachedAccountDetails();
+    return null;
+  } else {
+    return accountDetails;
+  }
 }
 
 export function clearCachedAccountDetails() {
-  localStorage.removeItem(accountAddressKey);
-  localStorage.removeItem(accountBalanceKey);
+  localStorage.removeItem(AccountDetailsKey);
 }
 
 class AccountDetails {
-  constructor(address, balance) {
+  constructor(address, weiBalance, displayBalance) {
     this.address = address;
-    this.balance = balance;
+    this.weiBalance = weiBalance;
+    this.displayBalance = displayBalance; // ETH
   }
 }
   
