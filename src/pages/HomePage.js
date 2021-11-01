@@ -30,10 +30,11 @@ class HomePage extends React.Component {
                 A first-in-kind generative, on-chain NFT art project.
               </div>		
               <div id='placeholderContent'>
-                Coming soon.
+              <a className="basicLink" href="http://rinkeby.dynastripes.com" target="_blank" rel="noreferrer">Public beta now live on rinkeby testnet</a>
+              <br></br> 😎
               </div>		
               <div class ='placeholderAttribution'>
-                by <a class="volstrate" href="http://www.volstrate.com" target="_blank" rel="noreferrer">volstrate</a>
+                by <a class="volstrate basicLink" href="http://www.volstrate.com" target="_blank" rel="noreferrer">volstrate</a>
               </div>
 
 
