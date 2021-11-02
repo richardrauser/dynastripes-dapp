@@ -3,6 +3,7 @@ import { ethers } from 'ethers';
 import Spinner from 'react-bootstrap/Spinner';
 import { Link } from 'react-router-dom';
 import ether from '../images/ethereum.svg';
+import { BigNumber } from '@ethersproject/bignumber';
 
 import MetaMaskLink from '../components/MetaMaskLink';
 
@@ -29,14 +30,15 @@ class MintPriceComponent extends React.Component {
   
       async fetchMintPrice() {
         try {
-          const mintPrice = await fetchMintPrice();
+          const mintPrice = BigNumber.from(await fetchMintPrice());
           const accountDetails = await fetchAccountDetails();
+          const accountBalance = BigNumber.from(accountDetails.weiBalance);
 
           console.log("Mint price: " + mintPrice);       
-          console.log("Account balance: " + accountDetails.weiBalance);       
+          console.log("Account balance: " + accountBalance);       
           
           var hasEnoughEth = true;
-          if (accountDetails.weiBalance < mintPrice) {
+          if (mintPrice <= accountBalance) {
             hasEnoughEth = false;
           }
 
