@@ -102,7 +102,7 @@ class AboutPage extends React.Component {
               </ol>
 
               <h3>
-                Keep in touch
+                Keep in touch via the links below
               </h3>
               <center>
                 <SocialLinks/>
