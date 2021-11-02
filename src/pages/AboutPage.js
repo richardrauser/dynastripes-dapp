@@ -93,8 +93,11 @@ class AboutPage extends React.Component {
                   <a className="externalLink" href="https://mandalas.eth.link/" target="_blank" rel="noreferrer">Mandala Tokens</a>: this project from <a className="externalLink" href="https://twitter.com/wighawag" target="_blank" rel="noreferrer">Ronan Sandford</a> pioneered serving base64 encoded bitmap images directly from the Ethereum blockchain. And not only is the artwork stored on chain, but the metadata as well! 😍
                 </li>
                 <li> 
-                  <a className="externalLink" href="https://www.proof.xyz/" target="_blank" rel="noreferrer">Proof podcast</a>: full of inspiring NFT discussion, <a className="externalLink" href="https://twitter.com/kevinrose" target="_blank" rel="noreferrer">Kevin Rose's</a>'
+                <a className="externalLink" href="https://www.proof.xyz/" target="_blank" rel="noreferrer">Proof podcast</a>: full of inspiring NFT discussion, <a className="externalLink" href="https://twitter.com/kevinrose" target="_blank" rel="noreferrer">Kevin Rose's</a>'
                  Proof podcast has been full of many "ah-ha" moments and NFT idea stimulation. A must listen to anyone interested in the NFT space.
+                </li>
+                <li> 
+                  <a className="externalLink" href="https://twitter.com/dievardump" target="_blank" rel="noreferrer">dievardump</a>: Simon Fremaux created the <a className="externalLink" href="https://github.com/dievardump/EIP2981-implementation" target="_blank" rel="noreferrer">reference implmentation</a> of the ERC-2981 per token royalties contract that is used by <DynaSpan /> to pay royalties. He is also the creator of the awesome  <a className="externalLink" href="https://solseedlings.art/" target="_blank" rel="noreferrer">SolSeedlings</a> project, amongst others.
                 </li>
               </ol>
 
