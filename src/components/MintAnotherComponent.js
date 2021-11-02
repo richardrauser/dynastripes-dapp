@@ -2,6 +2,7 @@ import React from 'react';
 
 import Button from 'react-bootstrap/Button';
 import DynaSpan from '../components/DynaSpan';
+import etherscan from '../images/etherscan-logo-light.png';
 
 import {
   Link
@@ -9,7 +10,12 @@ import {
 
 class MintAnotherComponent extends React.Component {
   
+
   render() {
+    const txLink = "https://rinkeby.etherscan.io/tx/" + this.props.txHash;
+
+    console.log("txLink: " + txLink);
+
     return (
       <div>
           <p className="success">
@@ -20,6 +26,12 @@ class MintAnotherComponent extends React.Component {
             <Button variant="primary">Visit Gallery</Button>
           </Link>
           <Button variant="primary" onClick={this.props.mintAnother}>Mint Another</Button>
+          
+          <br/>
+          
+          <a href={ txLink }  target="_blank" rel="noreferrer"> 
+            <img className="etherscan" alt="etherscan" src= { etherscan } />
+          </a>
       </div>
     );
   }
