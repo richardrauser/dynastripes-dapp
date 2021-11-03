@@ -296,7 +296,7 @@ h4.dyna {
 
 @media screen and (max-width: 700px) {
   .previewArtwork {
-    width: 90%; 
+    width: 70%; 
     height: initial;
     margin: 8px;
     border-width: 0px;
