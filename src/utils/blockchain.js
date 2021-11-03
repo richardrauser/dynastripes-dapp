@@ -104,11 +104,47 @@ export async function fetchAccountDetails() {
   const weiBalance = await provider.getBalance(account);
   const displayBalance = Number(ethers.utils.formatEther(weiBalance)).toFixed(4);
 
-  var accountDetails = new AccountDetails(ethAddress, weiBalance, displayBalance);
+  var accountDetails = new AccountDetails(ethAddress.toString(), weiBalance.toString(), displayBalance.toString());
 
-  localStorage.setItem(AccountDetailsKey, accountDetails);
+  localStorage.setItem(AccountDetailsKey, JSON.stringify(accountDetails));
+
+  fetchCachedAccountDetails();
+
   return accountDetails;
 }
+
+export function fetchCachedAccountDetails() {
+  const accountDetails = JSON.parse(localStorage.getItem(AccountDetailsKey));
+  
+  if (accountDetails === null) {
+    console.log("details are null.");
+     return null;
+  }
+
+  if (accountDetails.address === undefined || accountDetails.weiBalance === undefined || accountDetails.displayBalance === undefined) {
+    console.log("some element of details is null. " + accountDetails);
+    console.log("address: " + accountDetails.address);
+    console.log("wei balance: " + accountDetails.weiBalance);
+    console.log("display balance " + accountDetails.displayBalance);
+    clearCachedAccountDetails();
+    return null;
+  } else {
+    return accountDetails;
+  }
+}
+
+export function clearCachedAccountDetails() {
+  localStorage.removeItem(AccountDetailsKey);
+}
+
+class AccountDetails {
+  constructor(address, weiBalance, displayBalance) {
+    this.address = address;
+    this.weiBalance = weiBalance;
+    this.displayBalance = displayBalance; // ETH
+  }
+}
+  
 
 export async function isCurrentAccountOwner() {
   console.log("Checking current account owner status..");
@@ -130,34 +166,6 @@ export async function isCurrentAccountOwner() {
   return (ethAddress === ownerAddress);
 }
 
-
-export function fetchCachedAccountDetails() {
-  const accountDetails = localStorage.getItem(AccountDetailsKey);
-  
-  if (accountDetails === null) {
-     return null;
-  }
-
-  if (accountDetails.address === undefined || accountDetails.weiBalance === undefined || accountDetails.displayBalance === undefined) {
-    clearCachedAccountDetails();
-    return null;
-  } else {
-    return accountDetails;
-  }
-}
-
-export function clearCachedAccountDetails() {
-  localStorage.removeItem(AccountDetailsKey);
-}
-
-class AccountDetails {
-  constructor(address, weiBalance, displayBalance) {
-    this.address = address;
-    this.weiBalance = weiBalance;
-    this.displayBalance = displayBalance; // ETH
-  }
-}
-  
 export async function fetchMintPrice() {
   checkWallet();
   const contract = await getContract();
