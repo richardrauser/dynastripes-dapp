@@ -38,7 +38,7 @@ class MintPriceComponent extends React.Component {
           console.log("Account balance: " + accountBalance);       
           
           var hasEnoughEth = true;
-          if (mintPrice <= accountBalance) {
+          if (mintPrice.gt(accountBalance)) {
             hasEnoughEth = false;
           }
 
