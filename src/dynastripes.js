@@ -43,7 +43,8 @@ function generateDynaStripes(randomSeed, zoom, rotationMin, rotationMax, widthMi
     console.log("Generating dynastripes: " + randomSeed + " " + zoom + " " + rotationMin + " "  + rotationMax + " " + widthMin + " " + widthMax + " " + paletteMin + " " + paletteMax + " " + speedMin + " " + speedMax)
 
     var xPos = 0;
-    var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='" + generateViewBox(zoom) + "' clip-path='url(#clip)'>";
+    const rendering = rotationMin === rotationMax ? 'crispEdges' : 'auto';
+    var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='" + generateViewBox(zoom) + "' shape-rendering='" + rendering + "'>";
     // svg += "<defs><clipPath id='clip'><rect width='" + 2000 + "' height='" + 2000    + "'/></clipPath></defs>";
   
     while ((2000 - xPos) > 0) {
