@@ -3,6 +3,9 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import ReactSlider from 'react-slider'
 import styled from 'styled-components';
+import { ChromePicker } from 'react-color'
+// import { Hue } from 'react-color/lib/components/common';
+
 import PreviewComponent from './PreviewComponent';
 import MintPriceComponent from './MintPriceComponent';
 import MintButton from './MintButton';
@@ -68,6 +71,11 @@ class MintOptions extends React.Component {
                 </div>  
 
                 <div className="mintInput">
+                  Tint colour<br/>
+                  <ChromePicker color={this.props.tintColour} onChangeComplete={this.props.tintColourChanged} />
+                </div>
+
+                <div className="mintInput">
                   Rotation<br/>
 
                   <StyledSlider 
@@ -93,36 +101,18 @@ class MintOptions extends React.Component {
                   />
                 </div>
       
-
-              <div className="mintInput">
-                Colour palette (darker - lighter)<br/>
-
-                <StyledSlider
-                      value={this.props.paletteRange}
-                      renderTrack={TwoThumbTrack}
-                      renderThumb={Thumb}
-                      min={0}
-                      max={255}
-                      minDistance={20}
-                      onAfterChange={this.props.paletteRangeChanged}
-                  />
-
+                <div className="mintInput">
+                  Animation speed (faster - slower)<br/>
+                  <StyledSlider
+                        value={this.props.speedRange}
+                        renderTrack={TwoThumbTrack}
+                        renderThumb={Thumb}
+                        min={25}
+                        max={250}
+                        onAfterChange={this.props.speedRangeChanged}
+                    />
+                </div>
               </div>
-              <div className="mintInput">
-                Animation speed (faster - slower)<br/>
-                <StyledSlider
-                      value={this.props.speedRange}
-                      renderTrack={TwoThumbTrack}
-                      renderThumb={Thumb}
-                      min={25}
-                      max={250}
-                      onAfterChange={this.props.speedRangeChanged}
-                  />
-              </div>
-
-
-              </div>
-                
             </div>
             <Button variant="primary" onClick={this.props.refresh}>New random seed</Button>
             <MintButton mint={this.props.mint}/>

@@ -125,6 +125,16 @@ h5 {
 }
 
 .card-header {
+  color: #eee !important;
+  background-color: #CCC !important;
+}
+
+.card-body {
+  background-color:#DDD;
+
+}
+
+.card-header {
   text-align: left;
   color: #AAAAAA;
 }
@@ -179,7 +189,7 @@ div#accountDetails {
 .dynaStripesArtwork {
   width: 250px; 
   height: 250px;
-  background:#EEE;
+  background: #FFF;
 }
 
 .dynaStripesArtwork div.spinner {

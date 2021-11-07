@@ -18,21 +18,27 @@ function randomIntFromInterval(randomSeed, min, max) {
 function generateRandomStripesDataUri() {
     const randomSeed = Math.trunc(Math.random() * 5_000_000);
     // const randomZoom = randomIntFromInterval(randomSeed, 0, 100);
-    // const svgString = encodeURIComponent(generateDynaStripes(randomSeed, randomZoom, 0, 180, 25, 250, 0, 255, 25, 250));
+    // const svgString = encodeURIComponent(generateDynaStripes(randomSeed, randomZoom, null, 0, 180, 25, 250, 0, 255, 25, 250));
 
-    const svgString = encodeURIComponent(generateDynaStripes(randomSeed, 0, 0, 0, 25, 250, 0, 255, 25, 250));
+    const svgString = encodeURIComponent(generateDynaStripes(randomSeed, 0, null, 0, 0, 25, 250, 25, 250));
     return `url("data:image/svg+xml,${svgString}")`;
 }
 
-function generateDynaStripes(randomSeed, zoom, rotationMin, rotationMax, widthMin, widthMax, paletteMin, paletteMax, speedMin, speedMax) {
-    console.log("Generating dynastripes: " + randomSeed + " " + zoom + " " + rotationMin + " "  + rotationMax + " " + widthMin + " " + widthMax + " " + paletteMin + " " + paletteMax + " " + speedMin + " " + speedMax)
+function generateDynaStripes(randomSeed, zoom, tintColour, rotationMin, rotationMax, widthMin, widthMax, speedMin, speedMax) {
+    console.log("Generating dynastripes: " + randomSeed + " " + zoom + " " + rotationMin + " "  + rotationMax + " " + widthMin + " " + widthMax + " " + speedMin + " " + speedMax)
+
+    if (tintColour === null) {
+        tintColour = { r: 0, g: 0, b: 0, a: 0 };
+    }
+
+    console.log("Tint colour: " + tintColour);
 
     const viewBoxClipRect = getViewBoxClipRect(zoom);
     const viewBox = viewBoxClipRect[0];
     const clipRect = viewBoxClipRect[1];
     const rendering = rotationMin === rotationMax ? 'crispEdges' : 'auto';
     const defs = "<defs><clipPath id='masterClip'><rect " + clipRect + "/></clipPath></defs>";
-    const rects = getRects(randomSeed, rotationMin, rotationMax, widthMin, widthMax, paletteMin, paletteMax, speedMin, speedMax);
+    const rects = getRects(randomSeed, tintColour, rotationMin, rotationMax, widthMin, widthMax, speedMin, speedMax);
 
     return "<svg xmlns='http://www.w3.org/2000/svg' viewBox='" + viewBox + "' shape-rendering='" + rendering + "'>" + defs + "<g clip-path='url(#masterClip)'>" + rects + "</g></svg>";
 }
@@ -58,7 +64,7 @@ function getViewBoxClipRect(zoom) {
     return [viewBox, clipRect];
 }
 
-function getRects(randomSeed, rotationMin, rotationMax, widthMin, widthMax, paletteMin, paletteMax, speedMin, speedMax) {
+function getRects(randomSeed, tintColour, rotationMin, rotationMax, widthMin, widthMax, speedMin, speedMax) {
     var xPos = 0;
     var rects = "";
 
@@ -74,8 +80,8 @@ function getRects(randomSeed, rotationMin, rotationMax, widthMin, widthMax, pale
 
         const rotation = randomIntFromInterval(randomSeed + 1, rotationMin, rotationMax);
         const speed = randomIntFromInterval(randomSeed + 2, speedMin, speedMax) * 20;
-        const firstColour = getColour(randomSeed + 3, paletteMin, paletteMax);
-        const secondColour = getColour(randomSeed + 13, paletteMin, paletteMax);
+        const firstColour = getColour(randomSeed + 3, tintColour);
+        const secondColour = getColour(randomSeed + 13, tintColour);
         const colours = firstColour + ";" + secondColour + ";" + firstColour;
     
         var currentRect = "<rect x='" + xPos + "' y='0' width='" + stripeWidth + "' height='2000' fill='" + firstColour + "' opacity='0.8' transform='rotate(" + rotation + " 1000 1000)'>";
@@ -91,12 +97,29 @@ function getRects(randomSeed, rotationMin, rotationMax, widthMin, widthMax, pale
     return rects;
 }
 
-function getColour(randomSeed, min, max) {
-    const red = randomIntFromInterval(randomSeed, min, max);
-    const blue = randomIntFromInterval(randomSeed + 1, min, max);
-    const green = randomIntFromInterval(randomSeed + 2, min, max);
-    const colour = "rgb(" + red + ", " + blue + ", " + green + ")";
-    return colour;
+function getColour(randomSeed, tintColour) {
+    const redRandom = randomIntFromInterval(randomSeed, 0, 255);
+    const greenRandom = randomIntFromInterval(randomSeed + 2, 0, 255);
+    const blueRandom = randomIntFromInterval(randomSeed + 1, 0, 255);
+
+    console.log("RANDOM COLOUR: " + redRandom + " " + greenRandom + " " + blueRandom);
+
+    const redTint = tintColour.r;
+    const greenTint = tintColour.g;
+    const blueTint = tintColour.b;
+    const alpha = tintColour.a;
+
+    console.log("TINT COLOUR: " + redTint + " " + greenTint + " " + blueTint + " " + alpha);
+
+    const red = redRandom + (redTint - redRandom) * alpha;
+    const green = greenRandom + (greenTint - greenRandom) * alpha;
+    const blue = blueRandom + (blueTint - blueRandom) * alpha;
+
+    const finalColour = "rgb(" + red + ", " + green + ", " + blue + ")";
+
+    console.log("FINAL COLOUR: " + finalColour);
+
+    return finalColour;
 }
 
 export default generateDynaStripes;
