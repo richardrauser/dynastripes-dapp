@@ -5,7 +5,7 @@ import * as Errors from './errors.js';
 
 // const dynaStripesContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'; // localhost
 // const dynaStripesContractAddress = '0x379A3dA759A131504085E485a75cA2202fB80476'; // ropsten
-const dynaStripesContractAddress = '0x2BeeB093f65635589007Ba7b85bfc1C82E851412'; // rinkeby
+const dynaStripesContractAddress = '0x56c1aF8f9840D9Cc5FE8523760280936ed07FA69'; // rinkeby
 
 function checkWallet() {
   // console.log("Checking wallet...");
