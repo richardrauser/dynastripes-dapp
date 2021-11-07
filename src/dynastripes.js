@@ -31,8 +31,6 @@ function generateDynaStripes(randomSeed, zoom, tintColour, rotationMin, rotation
         tintColour = { r: 0, g: 0, b: 0, a: 0 };
     }
 
-    console.log("Tint colour: " + tintColour);
-
     const viewBoxClipRect = getViewBoxClipRect(zoom);
     const viewBox = viewBoxClipRect[0];
     const clipRect = viewBoxClipRect[1];
@@ -59,8 +57,6 @@ function getViewBoxClipRect(zoom) {
         clipRect = "x='" + offset + "' y='" + offset + "' width='" + widthHeight + "' height='" + widthHeight + "'";
     }
 
-    console.log("viewBox: " + viewBox);
-    console.log("clipRect: " + clipRect);
     return [viewBox, clipRect];
 }
 
@@ -102,22 +98,17 @@ function getColour(randomSeed, tintColour) {
     const greenRandom = randomIntFromInterval(randomSeed + 2, 0, 255);
     const blueRandom = randomIntFromInterval(randomSeed + 1, 0, 255);
 
-    console.log("RANDOM COLOUR: " + redRandom + " " + greenRandom + " " + blueRandom);
-
     const redTint = tintColour.r;
     const greenTint = tintColour.g;
     const blueTint = tintColour.b;
     const alpha = tintColour.a;
 
-    console.log("TINT COLOUR: " + redTint + " " + greenTint + " " + blueTint + " " + alpha);
-
+    // alpha blending
     const red = redRandom + (redTint - redRandom) * alpha;
     const green = greenRandom + (greenTint - greenRandom) * alpha;
     const blue = blueRandom + (blueTint - blueRandom) * alpha;
 
     const finalColour = "rgb(" + red + ", " + green + ", " + blue + ")";
-
-    console.log("FINAL COLOUR: " + finalColour);
 
     return finalColour;
 }
