@@ -3,8 +3,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import ReactSlider from 'react-slider'
 import styled from 'styled-components';
-import { ChromePicker } from 'react-color'
-// import { Hue } from 'react-color/lib/components/common';
+import { HuePicker, AlphaPicker } from 'react-color'
 
 import PreviewComponent from './PreviewComponent';
 import MintPriceComponent from './MintPriceComponent';
@@ -72,7 +71,12 @@ class MintOptions extends React.Component {
 
                 <div className="mintInput">
                   Tint colour<br/>
-                  <ChromePicker color={this.props.tintColour} onChangeComplete={this.props.tintColourChanged} />
+                  <HuePicker className="mintPicker" width="100%" height="25px" pointer={Thumb} color={this.props.tintColour} onChange={this.props.tintColourChanged} />
+                </div>
+
+                <div className="mintInput">
+                  Tint impact <br/>
+                  <AlphaPicker className="mintPicker" width="100%" height="25px" pointer={Thumb} color={this.props.tintColour} onChange={this.props.tintAlphaChanged} />
                 </div>
 
                 <div className="mintInput">

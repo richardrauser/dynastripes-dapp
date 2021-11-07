@@ -175,6 +175,11 @@ h5 {
   font-size: 1rem;
 }
 
+/* for tint pickers... making similar to others */
+.mintPicker div {
+  border-radius: 13px !important;
+}
+
 .card-title {
   font-size: 32px;
   font-weight: bold;

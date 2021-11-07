@@ -18,7 +18,7 @@ class MintPage extends React.Component {
     constructor(props) {
       super(props);
 
-      const defaultColour = { r: 51, g: 51, b: 51, a: 0.5 };
+      const defaultColour = { r: 200, g: 200, b: 200, a: 0.2 };
 
       const randomSeed = this.randomSeed();
       this.state = {
@@ -34,6 +34,7 @@ class MintPage extends React.Component {
   
       this.zoomChanged = this.zoomChanged.bind(this);
       this.tintColourChanged = this.tintColourChanged.bind(this);
+      this.tintAlphaChanged = this.tintAlphaChanged.bind(this);
       this.rotationRangeChanged = this.rotationRangeChanged.bind(this);
       this.widthRangeChanged = this.widthRangeChanged.bind(this);
       this.speedRangeChanged = this.speedRangeChanged.bind(this);
@@ -54,12 +55,33 @@ class MintPage extends React.Component {
       });
     }
 
-    tintColourChanged(tintColour) {
-      console.log("Tint colour changed to: " + JSON.stringify(tintColour));
+    tintColourChanged(newTintColour) {
+      
+      const tintColour = this.state.tintColour;
+
+      // Update colour but preserve alpha
+      tintColour.r = newTintColour.rgb.r;
+      tintColour.g = newTintColour.rgb.g;
+      tintColour.b = newTintColour.rgb.b;
+      
       this.setState({
-        tintColour: tintColour.rgb
+        tintColour: tintColour
       })
     }
+    
+
+    tintAlphaChanged(newTintColour) {
+      
+      const tintColour = this.state.tintColour;
+
+      // Update alpha and preserver colour
+      tintColour.a = newTintColour.rgb.a;
+      
+      this.setState({
+        tintColour: tintColour
+      })
+    }
+
 
     rotationRangeChanged(value, index) {
       console.log("Rotation range changed to: " + value);
@@ -204,7 +226,7 @@ class MintPage extends React.Component {
           <div id="mint" className="content">
             <h1>Mint your own <DynaSpan/> NFT</h1>
             <center>
-              { this.state.doneSuccess ? <MintAnotherComponent txHash={this.state.txHash} mintAnother={this.mintAnother} /> : <MintOptions svg={svg} mintPrice={this.state.mintPrice} rotationRange={this.state.rotationRange} rotationRangeChanged={this.rotationRangeChanged} zoom={this.state.zoom} zoomChanged={this.zoomChanged} tintColour={this.state.tintColour} tintColourChanged={this.tintColourChanged}  widthRange={this.state.widthRange} widthRangeChanged={this.widthRangeChanged} speedRange={this.state.speedRange} speedRangeChanged={this.speedRangeChanged} mint={this.mint} refresh={this.refresh} /> }
+              { this.state.doneSuccess ? <MintAnotherComponent txHash={this.state.txHash} mintAnother={this.mintAnother} /> : <MintOptions svg={svg} mintPrice={this.state.mintPrice} rotationRange={this.state.rotationRange} rotationRangeChanged={this.rotationRangeChanged} zoom={this.state.zoom} zoomChanged={this.zoomChanged} tintColour={this.state.tintColour} tintColourChanged={this.tintColourChanged} tintAlphaChanged={this.tintAlphaChanged}  widthRange={this.state.widthRange} widthRangeChanged={this.widthRangeChanged} speedRange={this.state.speedRange} speedRangeChanged={this.speedRangeChanged} mint={this.mint} refresh={this.refresh} /> }
             </center>
           </div>
         </div>
