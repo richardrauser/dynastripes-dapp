@@ -118,6 +118,7 @@ h5 {
 .card {
   background-color: #777777;
   margin: 16px;
+  border: none !important;
 }
 
 .tokenCard {
