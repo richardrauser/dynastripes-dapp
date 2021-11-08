@@ -1,11 +1,8 @@
 
 import { ethers } from 'ethers';
 import DynaStripes from '../artifacts/contracts/DynaStripes.sol/DynaStripes.json';
-import * as Errors from './errors.js';
-
-// const dynaStripesContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'; // localhost
-// const dynaStripesContractAddress = '0x379A3dA759A131504085E485a75cA2202fB80476'; // ropsten
-const dynaStripesContractAddress = '0x89FA47f473c3189E54f0Ed1405BBd566E51d9469'; // rinkeby
+import * as Errors from './Errors';
+import DynaStripesContractAddress from './Constants';
 
 function checkWallet() {
   // console.log("Checking wallet...");
@@ -19,7 +16,7 @@ function checkWallet() {
 export async function getContract() {
   checkWallet();
   // const provider = new ethers.providers.Web3Provider(window.ethereum);
-  // const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
+  // const contract = new ethers.Contract(DynaStripesContractAddress, DynaStripes.abi, provider);
   // const provider = new ethers.providers.getNetwork("Ropsten");
 
   // const provider = ethers.getDefaultProvider('ropsten');
@@ -32,7 +29,7 @@ export async function getContract() {
     console.log("Not on Rinkeby.");
     throw Error(Errors.DS_WRONG_ETH_NETWORK);
   }
-  const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
+  const contract = new ethers.Contract(DynaStripesContractAddress, DynaStripes.abi, provider);
   return contract;
 }
 
@@ -47,10 +44,10 @@ export async function getContractWithSigner() {
   checkWallet();
 
   // const provider = new ethers.providers.Web3Provider(window.ethereum);
-  // const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
+  // const contract = new ethers.Contract(DynaStripesContractAddress, DynaStripes.abi, provider);
   // const provider = ethers.getDefaultProvider('ropsten');
   const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const contract = new ethers.Contract(dynaStripesContractAddress, DynaStripes.abi, provider);
+  const contract = new ethers.Contract(DynaStripesContractAddress, DynaStripes.abi, provider);
   const signer = provider.getSigner();
   const contractWithSigner = contract.connect(signer);  
   return contractWithSigner;

@@ -6,7 +6,7 @@ import { isMobile } from 'react-device-detect';
 
 import MetaMaskLink from '../components/MetaMaskLink';
 import DynaSpan from '../components/DynaSpan';
-import { generateRandomStripesDataUri } from '../dynastripes.js';
+import { generateRandomStripesDataUri } from '../utils/DynaStripes.js';
 import { Link } from 'react-router-dom';
 
 class HowToPage extends React.Component {

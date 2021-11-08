@@ -1,6 +1,5 @@
-
-import { showErrorMessage } from './ui';
-import * as Errors from './errors.js';
+import { showErrorMessage } from './UI';
+import * as Errors from './Errors';
 
 export function handleError(err) {
     console.log('Handling error ' + err.code + ': ' + err.message);

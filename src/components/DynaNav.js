@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 
-import { isCurrentAccountOwner } from '../utils/blockchain';
+import { isCurrentAccountOwner } from '../utils/Blockchain';
 
 import DynaNavLoginDropdown from './DynaNavLoginDropdown';
 

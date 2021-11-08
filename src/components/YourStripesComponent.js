@@ -4,11 +4,11 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import TokenList from './TokenList';
 
-import { getContract } from '../utils/blockchain';
-import { handleError } from '../utils/error';
+import { getContract } from '../utils/Blockchain';
 import DynaSpan from './DynaSpan';
 import MetaMaskLink from './MetaMaskLink';
-import * as Errors from '../utils/errors.js';
+import { handleError } from '../utils/Error';
+import * as Errors from '../utils/Errors';
 
 class YourStripesComponent extends React.Component {
   

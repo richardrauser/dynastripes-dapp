@@ -13,7 +13,7 @@ import {
   Link
 } from "react-router-dom";
 
-import { generateRandomStripesDataUri } from '../dynastripes.js';
+import { generateRandomStripesDataUri } from '../utils/DynaStripes.js';
 import SocialLinks from '../components/SocialLinks';
 import DynaSpan from '../components/DynaSpan';
 

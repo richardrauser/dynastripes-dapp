@@ -1,9 +1,10 @@
+
 import React from 'react';
 import DynaSpan from '../components/DynaSpan';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import { generateRandomStripesDataUri } from '../dynastripes.js';
+import { generateRandomStripesDataUri } from '../utils/DynaStripes.js';
 import SocialLinks from '../components/SocialLinks';
 
 class FeedbackPage extends React.Component {

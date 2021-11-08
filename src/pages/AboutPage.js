@@ -1,15 +1,18 @@
 import React from 'react';
 
-import { generateRandomStripesDataUri } from '../dynastripes.js';
+import { generateRandomStripesDataUri } from '../utils/DynaStripes.js';
 
 import SocialLinks from '../components/SocialLinks';
 import DynaSpan from '../components/DynaSpan.js';
 import etherscan from '../images/etherscan-logo-light.png';
+import DynaStripesContractAddress from '../utils/Constants';
 
 class AboutPage extends React.Component {
 
     render() {
       const svgDataUri = generateRandomStripesDataUri();
+    
+      const contractAddress = "https://rinkeby.etherscan.io/address/" + DynaStripesContractAddress;
 
       return (
         <div className="mainContent"  style={{background: svgDataUri}}>
@@ -69,7 +72,7 @@ class AboutPage extends React.Component {
                 </h3>
 
               <p>
-                The verified <DynaSpan/> smart contract can be viewed on <a href="https://rinkeby.etherscan.io/address/0x2beeb093f65635589007ba7b85bfc1c82e851412" target="_blank" rel="noreferrer"> 
+                The verified <DynaSpan/> smart contract can be viewed on <a href={ contractAddress } target="_blank" rel="noreferrer"> 
                   <img className="etherscan" alt="etherscan" src= { etherscan } />
                 </a>
                      

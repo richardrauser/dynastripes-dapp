@@ -6,10 +6,10 @@ import { Spinner } from 'react-bootstrap';
 
 import ether from '../images/ethereum.svg';
 
-import { getContract, getContractWithSigner, fetchMintPrice, isCurrentAccountOwner } from '../utils/blockchain';
-import { handleError } from '../utils/error';
+import { getContract, getContractWithSigner, fetchMintPrice, isCurrentAccountOwner } from '../utils/Blockchain';
+import { handleError } from '../utils/Error';
 
-import { generateRandomStripesDataUri } from '../dynastripes.js';
+import { generateRandomStripesDataUri } from '../utils/DynaStripes';
 
 import DynaSpan from '../components/DynaSpan';
 
@@ -254,7 +254,7 @@ class AdminPage extends React.Component {
               <h1>Loading..</h1>
               <div className="deepContent">
                 <center>
-                  <Spinner animation="grow" variant="dark" />                  
+                  <Spinner animation="grow" />                  
                 </center>
               </div>  
             </div>

@@ -8,10 +8,10 @@ import Button from 'react-bootstrap/Button';
 
 import { Wallet2 } from 'react-bootstrap-icons';
 
-import { fetchAccountDetails, fetchCachedAccountDetails, clearCachedAccountDetails } from '../utils/blockchain';
-import '../utils/ui.js';
-import { handleError } from '../utils/error';
-import * as Errors from '../utils/errors.js';
+import { fetchAccountDetails, fetchCachedAccountDetails, clearCachedAccountDetails } from '../utils/Blockchain';
+import '../utils/UI';
+import { handleError } from '../utils/Error';
+import * as Errors from '../utils/Errors';
 
 class DynaNavLoginDropdown extends React.Component {
 

@@ -4,13 +4,13 @@ import { toast } from 'react-toastify';
 import MintOptions from '../components/MintOptions';
 import MintAnotherComponent from '../components/MintAnotherComponent';
 
-import { showErrorMessage } from '../utils/ui.js';
-import { handleError } from '../utils/error';
-import * as Errors from '../utils/errors.js';
+import { showErrorMessage } from '../utils/UI';
+import { handleError } from '../utils/Error';
+import * as Errors from '../utils/Errors';
 
-import { getContractWithSigner, fetchMintPrice } from '../utils/blockchain';
+import { getContractWithSigner, fetchMintPrice } from '../utils/Blockchain';
 
-import generateDynaStripes from '../dynastripes.js';
+import generateDynaStripes from '../utils/DynaStripes';
 import DynaSpan from '../components/DynaSpan';
 
 class MintPage extends React.Component {
