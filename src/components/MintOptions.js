@@ -31,6 +31,7 @@ class MintOptions extends React.Component {
       `;
 
       const Thumb = (props, state) => <StyledThumb {...props}>{state.valueNow}</StyledThumb>;
+      const AlphaThumb = (props, state) => <StyledThumb {...props}>{this.props.tintColour.a * 100}</StyledThumb>;
 
       const StyledOneThumbTrack = styled.div`
         top: 0;
@@ -75,8 +76,8 @@ class MintOptions extends React.Component {
                 </div>
 
                 <div className="mintInput">
-                  Tint impact <br/>
-                  <AlphaPicker className="mintPicker" width="100%" height="25px" pointer={Thumb} color={this.props.tintColour} onChange={this.props.tintAlphaChanged} />
+                  Tint % <br/>
+                  <AlphaPicker className="mintPicker" width="100%" height="25px" pointer={AlphaThumb} color={this.props.tintColour} onChange={this.props.tintAlphaChanged} />
                 </div>
 
                 <div className="mintInput">

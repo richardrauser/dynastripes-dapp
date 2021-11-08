@@ -34,14 +34,15 @@
   background-color: #FFF; 
 }
 
-a {
-  text-decoration: none;
+.traits {
+  font-family: var(--bs-font-monospace);
 }
 
-a.externalLink {
-  color: #6666BB;  
-  text-decoration: none;
+a {
+  color: #8888BB !important;  
+  text-decoration: none !important;
 }
+
 
 @keyframes App-logo-spin {
   from {
@@ -192,15 +193,28 @@ div#accountDetails {
   text-align: left;
 }
 
-.dynaStripesArtwork {
+.cardArtwork {
   width: 250px; 
   height: 250px;
   background: #FFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.singleArtwork {
+  background: #FFF;
+  border: 10px solid #EEE; 
+}
+
 
 .dynaStripesArtwork div.spinner {
   color: green;
 
+}
+
+.spinner-grow {
+  
 }
 
 .token {
@@ -318,7 +332,7 @@ h4.dyna {
     border-width: 0px;
     margin-bottom: 0px;
   }
-  .dynaStripesArtwork {
+  .cardArtwork {
     width: 200px; 
     height: 200px;
   }

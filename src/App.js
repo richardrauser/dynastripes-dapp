@@ -16,6 +16,7 @@ import DynaNav from './components/DynaNav';
 import HomePage from './pages/HomePage';
 import MintPage from './pages/MintPage';
 import GalleryPage from './pages/GalleryPage';
+import TokenPage from './pages/TokenPage';
 import HowToPage from './pages/HowToPage';
 import AboutPage from './pages/AboutPage';
 import AdminPage from './pages/AdminPage';
@@ -74,6 +75,8 @@ class App extends React.Component {
             </Route>
             <Route path="/feedback">
               <FeedbackPage />
+            </Route>
+            <Route path="/token/:tokenId" component={ TokenPage }>
             </Route>
             <Route path="/">
                 <HomePage />
