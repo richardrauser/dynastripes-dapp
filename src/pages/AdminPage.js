@@ -7,7 +7,7 @@ import { Spinner } from 'react-bootstrap';
 import ether from '../images/ethereum.svg';
 
 import { getContract, getContractWithSigner, fetchMintPrice, isCurrentAccountOwner } from '../utils/BlockchainAPI';
-import { handleError } from '../utils/Error';
+import { handleError } from '../utils/ErrorHandler';
 
 import { generateRandomStripesDataUri } from '../utils/DynaStripes';
 

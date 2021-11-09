@@ -7,7 +7,7 @@ import TokenList from './TokenList';
 import { getContract } from '../utils/BlockchainAPI';
 import DynaSpan from './DynaSpan';
 import MetaMaskLink from './MetaMaskLink';
-import { handleError } from '../utils/Error';
+import { handleError } from '../utils/ErrorHandler';
 import * as Errors from '../utils/Errors';
 
 class RecentStripesComponent extends React.Component {

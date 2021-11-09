@@ -8,7 +8,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 import MetaMaskLink from '../components/MetaMaskLink';
 
 import { fetchMintPrice, fetchAccountDetails } from '../utils/BlockchainAPI';
-import { handleError } from '../utils/Error';
+import { handleError } from '../utils/ErrorHandler';
 import * as Errors from '../utils/Errors';
 
 class MintPriceComponent extends React.Component { 

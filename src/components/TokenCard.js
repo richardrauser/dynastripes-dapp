@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
 import { Link } from 'react-router-dom';
 import { getContract } from '../utils/BlockchainAPI';
-import { handleError } from '../utils/Error';
+import { handleError } from '../utils/ErrorHandler';
 
 class TokenCard extends React.Component {
     constructor(props) {

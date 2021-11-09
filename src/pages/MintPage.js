@@ -5,7 +5,7 @@ import MintOptions from '../components/MintOptions';
 import MintAnotherComponent from '../components/MintAnotherComponent';
 
 import { showErrorMessage, showWarningMessage } from '../utils/UIUtils';
-import { handleError } from '../utils/Error';
+import { handleError } from '../utils/ErrorHandler';
 import * as Errors from '../utils/Errors';
 
 import { getContractWithSigner, fetchMintPrice } from '../utils/BlockchainAPI';
