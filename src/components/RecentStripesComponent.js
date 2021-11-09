@@ -4,7 +4,7 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import TokenList from './TokenList';
 
-import { getContract } from '../utils/Blockchain';
+import { getContract } from '../utils/BlockchainAPI';
 import DynaSpan from './DynaSpan';
 import MetaMaskLink from './MetaMaskLink';
 import { handleError } from '../utils/Error';

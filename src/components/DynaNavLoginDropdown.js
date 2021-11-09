@@ -8,8 +8,8 @@ import Button from 'react-bootstrap/Button';
 
 import { Wallet2 } from 'react-bootstrap-icons';
 
-import { fetchAccountDetails, fetchCachedAccountDetails, clearCachedAccountDetails } from '../utils/Blockchain';
-import '../utils/UI';
+import { fetchAccountDetails, fetchCachedAccountDetails, clearCachedAccountDetails } from '../utils/BlockchainAPI';
+import '../utils/UIUtils';
 import { handleError } from '../utils/Error';
 import * as Errors from '../utils/Errors';
 

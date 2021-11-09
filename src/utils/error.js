@@ -1,4 +1,4 @@
-import { showErrorMessage } from './UI';
+import { showErrorMessage } from './UIUtils';
 import * as Errors from './Errors';
 
 export function handleError(err) {

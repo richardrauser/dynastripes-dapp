@@ -4,7 +4,7 @@ import { Spinner } from 'react-bootstrap';
 
 import Button from 'react-bootstrap/Button';
 
-import { isAccountConnected, fetchAccount } from '../utils/Blockchain';
+import { isAccountConnected, fetchAccount } from '../utils/BlockchainAPI';
 import { handleError } from '../utils/Error';
 
 class ConnectButton extends React.Component {

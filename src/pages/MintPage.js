@@ -4,11 +4,11 @@ import { toast } from 'react-toastify';
 import MintOptions from '../components/MintOptions';
 import MintAnotherComponent from '../components/MintAnotherComponent';
 
-import { showErrorMessage, showWarningMessage } from '../utils/UI';
+import { showErrorMessage, showWarningMessage } from '../utils/UIUtils';
 import { handleError } from '../utils/Error';
 import * as Errors from '../utils/Errors';
 
-import { getContractWithSigner, fetchMintPrice } from '../utils/Blockchain';
+import { getContractWithSigner, fetchMintPrice } from '../utils/BlockchainAPI';
 
 import generateDynaStripes from '../utils/DynaStripes';
 import DynaSpan from '../components/DynaSpan';

@@ -7,7 +7,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 
 import MetaMaskLink from '../components/MetaMaskLink';
 
-import { fetchMintPrice, fetchAccountDetails } from '../utils/Blockchain';
+import { fetchMintPrice, fetchAccountDetails } from '../utils/BlockchainAPI';
 import { handleError } from '../utils/Error';
 import * as Errors from '../utils/Errors';
 

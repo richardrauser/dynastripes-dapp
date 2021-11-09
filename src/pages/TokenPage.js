@@ -3,8 +3,7 @@ import React from 'react';
 import DynaSpan from '../components/DynaSpan';
 import { Spinner } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
-import { Textarea } from 'react-bootstrap-icons';
-import { getContract } from '../utils/Blockchain';
+import { getContract } from '../utils/BlockchainAPI';
 import { handleError } from '../utils/Error';
 import { Form } from 'react-bootstrap';
 
