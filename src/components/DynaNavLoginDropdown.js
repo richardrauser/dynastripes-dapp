@@ -11,7 +11,7 @@ import { Wallet2 } from 'react-bootstrap-icons';
 import { fetchAccountDetails, fetchCachedAccountDetails, clearCachedAccountDetails } from '../utils/BlockchainAPI';
 import '../utils/UIUtils';
 import { handleError } from '../utils/ErrorHandler';
-import * as Errors from '../utils/Errors';
+import * as Errors from '../utils/ErrorMessages';
 
 class DynaNavLoginDropdown extends React.Component {
 

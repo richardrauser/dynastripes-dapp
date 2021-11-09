@@ -1,5 +1,5 @@
 import { showErrorMessage } from './UIUtils';
-import * as Errors from './Errors';
+import * as Errors from './ErrorMessages';
 
 export function handleError(err) {
     console.log('Handling error ' + err.code + ': ' + err.message);
