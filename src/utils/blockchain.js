@@ -25,10 +25,10 @@ export async function getContract() {
   const { chainId } = await provider.getNetwork()
   console.log("CHAIN ID: " + chainId); // 42
   
-  // if (chainId !== 4) {
-  //   console.log("Not on Rinkeby.");
-  //   throw Error(Errors.DS_WRONG_ETH_NETWORK);
-  // }
+  if (chainId !== 4) {
+    console.log("Not on Rinkeby.");
+    throw Error(Errors.DS_WRONG_ETH_NETWORK);
+  }
   const contract = new ethers.Contract(DynaStripesContractAddress, DynaStripes.abi, provider);
   return contract;
 }

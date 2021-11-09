@@ -32,6 +32,7 @@ class MintPage extends React.Component {
         mintPrice: null
       }
   
+      this.randomIntFromInterval = this.randomIntFromInterval.bind(this);
       this.zoomChanged = this.zoomChanged.bind(this);
       this.tintColourChanged = this.tintColourChanged.bind(this);
       this.tintAlphaChanged = this.tintAlphaChanged.bind(this);
@@ -46,9 +47,52 @@ class MintPage extends React.Component {
 
     componentDidMount() {
       this.fetchMintPrice();
+      this.setRandomInputs();
     }
 
-    getRandomInputs() {
+    randomIntFromInterval(min, max) { 
+      if (max <= min) {
+          return min;
+      }
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      const randomVal =  Math.floor(Math.random() * (max - min + 1)) + min;
+      return Math.round(randomVal);
+    }
+
+
+    setRandomInputs() {
+      const randomZoom = this.randomIntFromInterval(0, 100);
+
+      const randomRed = this.randomIntFromInterval(0, 255);
+      const randomBlue = this.randomIntFromInterval(0, 255);
+      const randomGreen = this.randomIntFromInterval(0, 255);
+      const randomAlpha = Math.random();
+      const randomColour = { r: randomRed, g: randomGreen, b: randomBlue, a: randomAlpha };
+            
+      const randomRotationMin = this.randomIntFromInterval(0, 180);
+      const randomRotationMax = this.randomIntFromInterval(randomRotationMin, 180);
+
+      const randomWidthMin = this.randomIntFromInterval(25, 250);
+      const randomWidthMax = this.randomIntFromInterval(randomWidthMin, 250);
+
+      const randomSpeedMin = this.randomIntFromInterval(25, 250);
+      const randomSpeedMax = this.randomIntFromInterval(randomSpeedMin, 250);
+
+      let state = {
+        zoom: randomZoom,
+        tintColour: randomColour,
+        rotationRange: [randomRotationMin, randomRotationMax],
+        widthRange: [randomWidthMin, randomWidthMax],
+        speedRange: [randomSpeedMin, randomSpeedMax],
+      };
+
+      console.log(JSON.stringify(state));
+
+      this.setState(state);
+
+      
+      
       
     }
   
@@ -117,6 +161,8 @@ class MintPage extends React.Component {
         doneSuccess: false,
         randomSeed: randomSeed
       })
+
+      this.setRandomInputs();
     }
 
     randomSeed() {

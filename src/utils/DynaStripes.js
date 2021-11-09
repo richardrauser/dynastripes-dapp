@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import { BigNumber } from '@ethersproject/bignumber';
 
-// Generate random int, inclusive of min/max
+// Generate random int, inclusive of min/max, using same method as Solidity code
 function randomIntFromInterval(randomSeed, min, max) { 
     if (max <= min) {
         return min;
