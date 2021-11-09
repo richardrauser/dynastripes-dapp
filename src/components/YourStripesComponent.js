@@ -8,7 +8,7 @@ import { getContract } from '../utils/BlockchainAPI';
 import DynaSpan from './DynaSpan';
 import MetaMaskLink from './MetaMaskLink';
 import { handleError } from '../utils/ErrorHandler';
-import * as Errors from '../utils/Errors';
+import * as Errors from '../utils/ErrorMessages';
 
 class YourStripesComponent extends React.Component {
   

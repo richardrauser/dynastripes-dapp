@@ -1,7 +1,7 @@
 
 import { ethers } from 'ethers';
 import DynaStripes from '../artifacts/contracts/DynaStripes.sol/DynaStripes.json';
-import * as Errors from './Errors';
+import * as Errors from './ErrorMessages';
 import DynaStripesContractAddress from './Constants';
 
 function checkWallet() {
