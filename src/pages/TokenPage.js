@@ -49,21 +49,36 @@ class TokenPage extends React.Component {
           console.log("SVG: " + svgDataUri);
 
           const attributes = metadataObject.attributes;
-          const formAttribute = attributes.filter(trait => trait.trait_type === "form")[0];
-          const form = formAttribute["value"];
-        //   const speedAttribute = attributes.filter(trait => trait.trait_type === "speed")[0];
-        //   const speed = speedAttribute["value"];            
-        //   const colourWayAttribute = attributes.filter(trait => trait.trait_type === "colour way")[0];
-        //   const colourWay = colourWayAttribute["value"];
   
+          var descriptiveTraits = "";
+
+          const formAttribute = attributes.filter(trait => trait.trait_type === "form")[0];
+          if (formAttribute !== undefined) {
+            descriptiveTraits += formAttribute["value"];            
+          }
+
+          const speedAttribute = attributes.filter(trait => trait.trait_type === "speed")[0];
+          if (speedAttribute !== undefined) {
+            if (descriptiveTraits !== "") {
+              descriptiveTraits += ", ";
+            }
+            descriptiveTraits += speedAttribute["value"];            
+          }
+
+          const colourWayAttribute = attributes.filter(trait => trait.trait_type === "colour way")[0];
+          if (colourWayAttribute !== undefined) {
+            if (descriptiveTraits !== "") {
+              descriptiveTraits += ", ";
+            }
+            descriptiveTraits += colourWayAttribute["value"];            
+          }
+
   
           this.setState({
             loading: false,
             tokenOwner: tokenOwner,
             tokenSvgDataUri: svgDataUri,
-            tokenForm: form,
-            // tokenSpeed: speed,
-            // tokenColourWay: colourWay,
+            descriptiveTraits: descriptiveTraits,
             tokenTraits: attributes
           });
   
@@ -110,26 +125,23 @@ class TokenPage extends React.Component {
             <div className="content">
               <h1><DynaSpan/> token #{this.props.match.params.tokenId}</h1>
               <div className="deepContent">
-                <center>
 
                   <div className="singleArtwork">
                       <img alt={"DynaStripes token " + this.state.tokenId} src={ this.state.tokenSvgDataUri } />
                   </div>
     
-                    Owner: <a href={etherscanLink}  target="_blank" rel="noreferrer">  { ethAddress } </a> <br/>
+                  Owner: <a href={etherscanLink}  target="_blank" rel="noreferrer">  { ethAddress } </a> <br/>
 
-                    Form: { this.state.tokenForm } <br/>
-                    {/* Speed: { this.state.tokenSpeed } <br/>
-                    Colour way: { this.state.tokenColourWay} <br/> */}
+                  { this.state.descriptiveTraits } <br/>
 
-                    Traits: <br/>
-                    <Form.Control className="traits" as="textarea" rows={5}>
-                        { JSON.stringify(this.state.tokenTraits, null, 2) }
-                    </Form.Control>
-                    <br/>
-                  <Button onClick={ this.downloadSvg } >Save</Button>
-
-                </center>
+                  Traits: <br/>
+                  <Form.Control className="traits" as="textarea" rows={5}>
+                      { JSON.stringify(this.state.tokenTraits, null, 2) }
+                  </Form.Control>
+                  <br/>
+                  <center>
+                    <Button onClick={ this.downloadSvg } >Save</Button>
+                  </center>
 
               </div>  
             </div>

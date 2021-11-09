@@ -37,19 +37,35 @@ class TokenCard extends React.Component {
           console.log("SVG: " + svgDataUri);
           
           const attributes = metadataObject.attributes;
+
+          var descriptiveTraits = "";
+
           const formAttribute = attributes.filter(trait => trait.trait_type === "form")[0];
-          const form = formAttribute["value"];
-          // const speedAttribute = attributes.filter(trait => trait.trait_type === "speed")[0];
-          // const speed = speedAttribute["value"];            
-          // const colourWayAttribute = attributes.filter(trait => trait.trait_type === "colour way")[0];
-          // const colourWay = colourWayAttribute["value"];
+          if (formAttribute !== undefined) {
+            descriptiveTraits += formAttribute["value"];            
+          }
+
+          const speedAttribute = attributes.filter(trait => trait.trait_type === "speed")[0];
+          if (speedAttribute !== undefined) {
+            if (descriptiveTraits !== "") {
+              descriptiveTraits += ", ";
+            }
+            descriptiveTraits += speedAttribute["value"];            
+          }
+
+          const colourWayAttribute = attributes.filter(trait => trait.trait_type === "colour way")[0];
+          if (colourWayAttribute !== undefined) {
+            if (descriptiveTraits !== "") {
+              descriptiveTraits += ", ";
+            }
+            descriptiveTraits += colourWayAttribute["value"];            
+          }
+
 
           this.setState({
             loading: false,
             tokenSvgDataUri: svgDataUri,
-            tokenForm: form,
-            // tokenSpeed: speed,
-            // tokenColourWay: colourWay
+            descriptiveTraits: descriptiveTraits,
           });
   
         } catch (err) {
@@ -101,9 +117,7 @@ class TokenCard extends React.Component {
                             <img  alt={"DynaStripes token " + this.props.tokenId}   src={ this.state.tokenSvgDataUri } />
                         </div>
                       </Link>
-                      Form: { this.state.tokenForm } <br/>
-                      {/* Speed: { this.state.tokenSpeed } <br/>
-                      Colour way: { this.state.tokenColourWay } <br/> */}
+                      { this.state.descriptiveTraits }
                       </Card.Body>
                   </Card>        
 

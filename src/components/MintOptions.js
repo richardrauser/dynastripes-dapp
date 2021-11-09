@@ -31,7 +31,7 @@ class MintOptions extends React.Component {
       `;
 
       const Thumb = (props, state) => <StyledThumb {...props}>{state.valueNow}</StyledThumb>;
-      const AlphaThumb = (props, state) => <StyledThumb {...props}>{this.props.tintColour.a * 100}</StyledThumb>;
+      const AlphaThumb = (props, state) => <StyledThumb {...props}>{Math.trunc(this.props.tintColour.a * 100)}</StyledThumb>;
 
       const StyledOneThumbTrack = styled.div`
         top: 0;

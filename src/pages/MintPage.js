@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import MintOptions from '../components/MintOptions';
 import MintAnotherComponent from '../components/MintAnotherComponent';
 
-import { showErrorMessage } from '../utils/UI';
+import { showErrorMessage, showWarningMessage } from '../utils/UI';
 import { handleError } from '../utils/Error';
 import * as Errors from '../utils/Errors';
 
@@ -47,6 +47,10 @@ class MintPage extends React.Component {
     componentDidMount() {
       this.fetchMintPrice();
     }
+
+    getRandomInputs() {
+      
+    }
   
     zoomChanged(value, index) {
       console.log("Zoom changed to: " + value);
@@ -74,8 +78,14 @@ class MintPage extends React.Component {
       
       const tintColour = this.state.tintColour;
 
+      var newAlpha = newTintColour.rgb.a;
+      
+      if (newAlpha > 0.9) {
+        newAlpha = 0.9;
+        showWarningMessage("Max tint is 90%. ");
+      }
       // Update alpha and preserver colour
-      tintColour.a = newTintColour.rgb.a;
+      tintColour.a = newAlpha;
       
       this.setState({
         tintColour: tintColour
