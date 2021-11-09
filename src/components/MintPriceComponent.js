@@ -9,7 +9,7 @@ import MetaMaskLink from '../components/MetaMaskLink';
 
 import { fetchMintPrice, fetchAccountDetails } from '../utils/BlockchainAPI';
 import { handleError } from '../utils/ErrorHandler';
-import * as Errors from '../utils/Errors';
+import * as Errors from '../utils/ErrorMessages';
 
 class MintPriceComponent extends React.Component { 
 
