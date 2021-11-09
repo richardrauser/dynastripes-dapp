@@ -202,6 +202,10 @@ div#accountDetails {
   align-items: center;
 }
 
+.cardTraits {
+  width: 250px; 
+}
+
 .singleArtwork {
   background: #FFF;
   border: 10px solid #EEE; 
