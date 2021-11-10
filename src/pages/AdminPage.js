@@ -2,13 +2,16 @@ import React from 'react';
 import { ethers } from 'ethers';
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
+import { Spinner } from 'react-bootstrap';
 
 import ether from '../images/ethereum.svg';
 
-import { getContract, getContractWithSigner, fetchMintPrice } from '../utils/blockchain';
-import { handleError } from '../utils/error';
+import { getContract, getContractWithSigner, fetchMintPrice, isCurrentAccountOwner } from '../utils/BlockchainAPI';
+import { handleError } from '../utils/ErrorHandler';
 
-import { generateRandomStripesDataUri } from '../dynastripes.js';
+import { generateRandomStripesDataUri } from '../utils/DynaStripes';
+
+import DynaSpan from '../components/DynaSpan';
 
 class AdminPage extends React.Component {
 
@@ -20,9 +23,11 @@ class AdminPage extends React.Component {
       this.ownerInput = React.createRef();
 
       this.state = {
+        isLoading: true,
         isSenderOwner: false,
         ownerAddress: null,
-        mintPrice: null
+        mintPrice: null,
+        contractBalance: null
       }
 
       this.updateMintPrice = this.updateMintPrice.bind(this);
@@ -33,52 +38,41 @@ class AdminPage extends React.Component {
   
     componentDidMount() {
       this.fetchOwnerStatus();
-      this.fetchMintPrice();
-      this.fetchTokenLimit();
-      this.fetchOwner();
     } 
   
     async fetchOwnerStatus() {
       console.log("Fetching owner status..");
-      const contract = await getContract();
-  
-      if (contract === null) {
-        return;
-      }
-
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const currentAccount = provider.currentAccount;
-      console.log("CURRENT ACCOUNT: " + currentAccount);
-
-
-      const ownerAddress = await contract.owner();
-      console.log("OWNER: " + ownerAddress);
-
       try {
-        const isSenderOwner = await contract.isSenderOwner();
+        const isSenderOwner = await isCurrentAccountOwner();
+        
         if (isSenderOwner === true) {
           toast("You're the owner. You must have built me! You're awesome. 😘");
+          this.fetchMintPrice();
+          this.fetchTokenLimit();
+          this.fetchOwner();  
+          this.getContractBalance();  
         } else {
           toast("You're not the owner. Life must be painful and dull. And this page is definitely not for you.");
         }
   
         this.setState({
+          isLoading: false,
           isSenderOwner: isSenderOwner
         });  
   
       } catch (err) {
         handleError(err);
+        this.setState({
+          isLoading: false,
+          isSenderOwner: false
+        });  
       }
     }
 
     async pauseContract() {
-      const contractWithSigner = await getContractWithSigner();
-  
-      if (contractWithSigner === null) {
-        return;
-      }
   
       try {
+        const contractWithSigner = await getContractWithSigner();
         await contractWithSigner.pause();
         console.log('Contract paused.');
         toast.success('Contract paused.');
@@ -87,14 +81,9 @@ class AdminPage extends React.Component {
       }
     }
   
-    async unpauseContract() {
-      const contractWithSigner = await getContractWithSigner();
-  
-      if (contractWithSigner === null) {
-        return;
-      }
-  
+    async unpauseContract() {  
       try {
+        const contractWithSigner = await getContractWithSigner();
         await contractWithSigner.unpause();
         console.log('Contract unpaused.');
         toast.success('Contract unpaused.');
@@ -103,6 +92,29 @@ class AdminPage extends React.Component {
       }
     }
 
+    
+    async enableDescriptiveTraits() {
+  
+      try {
+        const contractWithSigner = await getContractWithSigner();
+        await contractWithSigner.setDescTraitsEnabled(true);
+        toast.success('Enabled descriptive traits.');
+      } catch (err) {
+        handleError(err);
+      }
+    }
+  
+    async disableDescriptiveTraits() {  
+      try {
+        const contractWithSigner = await getContractWithSigner();
+        await contractWithSigner.setDescTraitsEnabled(false);
+        toast.success('Disabled descriptive traits.');
+      } catch (err) {
+        handleError(err);
+      }
+    }
+
+    
     async fetchMintPrice() {
       this.setState({
         mintPrice: "-"
@@ -121,19 +133,14 @@ class AdminPage extends React.Component {
     }
 
     async updateMintPrice() {
-      const newMintPrice = this.mintPriceInput.current.value;
-      const contractWithSigner = await getContractWithSigner();
-  
+      const newMintPrice = this.mintPriceInput.current.value;  
       console.log("Updating ETH price: " + newMintPrice);
   
       const wei = ethers.utils.parseEther(newMintPrice);
-
       console.log("Updating ETH price: " + wei);
-      if (contractWithSigner === null) {
-        return;
-      }
   
       try {
+        const contractWithSigner = await getContractWithSigner();
         await contractWithSigner.setMintPrice(wei);
 
         this.setState({
@@ -150,9 +157,6 @@ class AdminPage extends React.Component {
     async fetchTokenLimit() {
       try {
         const contract = await getContract();
-        if (contract === null) {
-          return;
-        }
 
         this.setState({
           tokenLimit: "-"
@@ -170,12 +174,9 @@ class AdminPage extends React.Component {
     async updateTokenLimit() {
       const newTokenLimit = this.tokenLimitInput.current.value;
       console.log("Updating token limit: " + newTokenLimit);
-      const contractWithSigner = await getContractWithSigner();  
-      if (contractWithSigner === null) {
-        return;
-      }
   
       try {
+        const contractWithSigner = await getContractWithSigner();  
         await contractWithSigner.setTokenLimit(newTokenLimit);
 
         this.setState({
@@ -191,19 +192,14 @@ class AdminPage extends React.Component {
     }
   
     async makePayment() {
-      const amount = this.paymentInput.current.value;
-      const contractWithSigner = await getContractWithSigner();
-  
+      const amount = this.paymentInput.current.value;  
       console.log("Making payment (ETH): " + amount);
   
       const wei = ethers.utils.parseEther(amount);
-
       console.log("Making payment wei: " + wei);
-      if (contractWithSigner === null) {
-        return;
-      }
-  
+
       try {
+        const contractWithSigner = await getContractWithSigner();
         await contractWithSigner.payOwner(wei);
 
         this.setState({
@@ -217,13 +213,8 @@ class AdminPage extends React.Component {
     }
 
     async fetchOwner() {
-      const contract = await getContract();
-  
-      if (contract === null) {
-        return;
-      }
-    
-      try {
+        try {
+        const contract = await getContract();
         const ownerAddress = await contract.owner();
         console.log("Owner: " + ownerAddress);
         this.setState({
@@ -241,12 +232,9 @@ class AdminPage extends React.Component {
     async updateOwner() {
       const newOwner = this.ownerInput.current.value;
       console.log("Setting owner to: " + newOwner);
-      const contractWithSigner = await getContractWithSigner();
-      if (contractWithSigner === null) {
-        return;
-      }
   
       try {
+        const contractWithSigner = await getContractWithSigner();
         await contractWithSigner.transferOwnership(newOwner);
 
         this.setState({
@@ -258,12 +246,47 @@ class AdminPage extends React.Component {
         handleError(err);
       }
     }
-  
+
+    async getContractBalance() {
+      try {
+        const contract = await getContract();
+
+        this.setState({
+          contractBalance: "-"
+        });
+      
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const contractBalance = await provider.getBalance(contract.address);
+        const formattedBalance = ethers.utils.formatEther(contractBalance);
+        console.log("Contract balance: " + formattedBalance);
+        this.setState({
+          contractBalance: formattedBalance
+        });
+      } catch (err) {
+        handleError(err);
+      }
+    }
+
     render() {
       const svgDataUri = generateRandomStripesDataUri();
 
-      if (!this.state.isSenderOwner) {
+      if (this.state.isLoading) {
         return (
+          <div className="mainContent"  style={{background: svgDataUri}}>
+            <div className="content">
+              <h1>Loading..</h1>
+              <div className="deepContent">
+                <center>
+                  <Spinner animation="grow" />                  
+                </center>
+              </div>  
+            </div>
+  
+          </div>
+        );
+
+      } else if (!this.state.isSenderOwner) {
+          return (
           <div className="mainContent"  style={{background: svgDataUri}}>
             <div className="content">
               <h1>Hmmmmm...</h1>
@@ -282,7 +305,7 @@ class AdminPage extends React.Component {
 
           <div className="mainContent"  style={{background: svgDataUri}}>
             <div className="content">
-              <h1><span className="dyna">DynaStripes</span> Admin Settings</h1>
+              <h1><DynaSpan/> Admin Settings</h1>
               <div className="deepContent">
                 <center>
                   Contract status: ? <br/>
@@ -297,10 +320,14 @@ class AdminPage extends React.Component {
                     <input ref={this.tokenLimitInput} /><br/>
                     <Button variant="primary" onClick={this.updateTokenLimit}>Update token Limit</Button>               
                     <br/><hr/>
-                    Make payment <br/>
+                    Make payment. Current balance: { this.state.contractBalance } <br/>
                     <input ref={this.paymentInput} /><br/>
                     <Button variant="primary" onClick={this.makePayment}>Pay owner</Button>               
                     <br/><hr/> 
+                    Descriptive traits status: ? <br/>
+                    <Button variant="primary" onClick={this.enableDescriptiveTraits}>Enable Descriptive Traits</Button>
+                    <Button variant="primary" onClick={this.disableDescriptiveTraits}>Disable DescriptiveTraits</Button>
+                    <br/><hr/>
                     Current owner ETH address:<br/> { this.state.ownerAddress } <br/>
                     <input ref={ this.ownerInput } /><br/>
                   <Button variant="primary" onClick={this.updateOwner}>Update owner</Button>               

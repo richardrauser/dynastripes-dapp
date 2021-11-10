@@ -3,9 +3,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 
-import { getContract } from '../utils/blockchain';
+import { isCurrentAccountOwner } from '../utils/BlockchainAPI';
 
 import DynaNavLoginDropdown from './DynaNavLoginDropdown';
+
 
 class DynaNav extends React.Component {
 
@@ -20,20 +21,18 @@ class DynaNav extends React.Component {
       }
     
       componentDidMount() {
+        if (typeof window.ethereum === 'undefined') {
+          console.log("No wallet.");
+          return;
+        }
+  
         this.fetchOwnerStatus();
       }
     
       async fetchOwnerStatus() {
-        const contract = await getContract();
-      
-        if (contract === null) {
-          return;
-        }
-    
         try {    
-          const isOwner = await contract.isSenderOwner();
-          console.log("DynaNav isOwner: " + isOwner);
-    
+          const isOwner = await isCurrentAccountOwner();
+
           this.setState({
             isOwner: isOwner
           });
@@ -53,11 +52,13 @@ class DynaNav extends React.Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                     <Nav.Link href="/mint">Mint!</Nav.Link>
-                    <Nav.Link href="gallery">Gallery</Nav.Link>
+                    <Nav.Link href="/gallery">Gallery</Nav.Link>
                     <Nav.Link href="/howto">How to</Nav.Link>
                     <Nav.Link href="/about">About</Nav.Link>
+                    <Nav.Link href="/feedback">Feedback</Nav.Link>
                     { this.state.isOwner === true ? <Nav.Link href="/admin">Admin</Nav.Link> : null }
                 </Nav>
+                {/* <div className="betaMessage">Live mainnet beta</div> */}
                 <Nav>
                     <DynaNavLoginDropdown />
                 </Nav>

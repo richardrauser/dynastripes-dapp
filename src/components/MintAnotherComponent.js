@@ -1,24 +1,38 @@
 import React from 'react';
 
 import Button from 'react-bootstrap/Button';
+import DynaSpan from '../components/DynaSpan';
+import etherscan from '../images/etherscan-logo-light.png';
 
 import {
   Link
 } from "react-router-dom";
+import { DynaStripesEtherscanLink } from '../utils/Constants';
 
 class MintAnotherComponent extends React.Component {
   
+
   render() {
+    const txLink = DynaStripesEtherscanLink + "tx/" + this.props.txHash;
+
+    console.log("txLink: " + txLink);
+
     return (
       <div>
           <p className="success">
-            Your <span className="dyna">DynaStripes</span> have been successfully minted! Once the transaction is complete, your new artwork will appear in the gallery. Vist the gallery to see it, or mint more <span className="dyna">DynaStripes</span> now!
+            Your <DynaSpan/> have been successfully minted! Once the transaction is complete, your new artwork will appear in the gallery. Vist the gallery to see it, or mint more <DynaSpan/> now!
           </p>
 
           <Link to="/gallery">
             <Button variant="primary">Visit Gallery</Button>
           </Link>
           <Button variant="primary" onClick={this.props.mintAnother}>Mint Another</Button>
+          
+          <br/>
+          
+          <a href={ txLink }  target="_blank" rel="noreferrer"> 
+            <img className="etherscan" alt="etherscan" src= { etherscan } />
+          </a>
       </div>
     );
   }

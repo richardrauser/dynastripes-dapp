@@ -1,8 +1,8 @@
+import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-toastify/dist/ReactToastify.css';
-
-import React from 'react';
+import ReactGA from 'react-ga';
 
 import { ToastContainer } from 'react-toastify';
 
@@ -12,7 +12,19 @@ import {
   Route,
 } from "react-router-dom";
 
+import DynaNav from './components/DynaNav';
 import HomePage from './pages/HomePage';
+import MintPage from './pages/MintPage';
+import GalleryPage from './pages/GalleryPage';
+import TokenPage from './pages/TokenPage';
+import HowToPage from './pages/HowToPage';
+import AboutPage from './pages/AboutPage';
+import AdminPage from './pages/AdminPage';
+import FeedbackPage from './pages/FeedbackPage';
+
+import RouteChangeTracker from './utils/RouteChangeTracker';
+
+ReactGA.initialize("UA-85524090-8");
 
 class App extends React.Component {
 
@@ -31,19 +43,41 @@ class App extends React.Component {
 
     return (
       <div className="App">
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <Router>
-          <ToastContainer
-            position="bottom-left"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
+          <RouteChangeTracker />
+          <DynaNav />
           <Switch>
+            <Route path="/mint">
+              <MintPage />
+            </Route>
+            <Route path="/gallery">
+              <GalleryPage />
+            </Route>
+            <Route path="/howto">
+              <HowToPage />
+            </Route>
+            <Route path="/about">
+              <AboutPage />
+            </Route>
+            <Route path="/admin"> 
+              <AdminPage />
+            </Route>
+            <Route path="/feedback">
+              <FeedbackPage />
+            </Route>
+            <Route path="/token/:tokenId" component={ TokenPage }>
+            </Route>
             <Route path="/">
                 <HomePage />
             </Route>

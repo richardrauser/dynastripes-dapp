@@ -5,35 +5,42 @@ import ether from '../images/ethereum.svg';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
-import { ethers } from 'ethers';
 
 import { Wallet2 } from 'react-bootstrap-icons';
 
-import '../utils/blockchain.js';
-import '../utils/ui.js';
-import { handleError } from '../utils/error';
-
-const accountAddressKey = "accountAddress";
-const accountBalanceKey = "accountBalance";
+import { fetchAccountDetails, fetchCachedAccountDetails, clearCachedAccountDetails } from '../utils/BlockchainAPI';
+import '../utils/UIUtils';
+import { handleError } from '../utils/ErrorHandler';
+import * as Errors from '../utils/ErrorMessages';
 
 class DynaNavLoginDropdown extends React.Component {
 
-    constructor(props) {
-      super(props);
-      
-      this.state = {
-        isLoading: false,
-        isWalletConnected: false
-      };        
-  
-      this.connectWallet = this.connectWallet.bind(this);
-      this.disconnectWallet = this.disconnectWallet.bind(this);
-      this.refreshWallet = this.refreshWallet.bind(this);
-      this.fetchAccountDetails = this.fetchAccountDetails.bind(this);
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      isLoading: false,
+      isWalletConnected: false
+    };        
+
+    this.connectWallet = this.connectWallet.bind(this);
+    this.disconnectWallet = this.disconnectWallet.bind(this);
+    this.refreshWallet = this.refreshWallet.bind(this);
+    this.fetchAccountDetails = this.fetchAccountDetails.bind(this);
   }
   
     componentDidMount() {
+      if (typeof window.ethereum === 'undefined') {
+        this.setState({
+          isLoading: false,
+          isWalletConnected: false,
+          isWalletInstalled: (window.ethereum === undefined) ? false : true
+        });
+        return;
+      }
+
       window.ethereum.on('accountsChanged', (accounts) => {
+        clearCachedAccountDetails();
         this.fetchAccountDetails();
       });
       
@@ -45,12 +52,12 @@ class DynaNavLoginDropdown extends React.Component {
         this.disconnectWallet();
       });
 
-      const accountAddress = localStorage.getItem(accountAddressKey);
-      const accountBalance = localStorage.getItem(accountBalanceKey);
 
-      if (accountAddress && accountBalance) {
-        console.log("Got legit address (" + accountAddress + ") and balance (" + accountBalance + ").");
-        this.updateAccountDetails(accountAddress, accountBalance);
+      const cachedDetails = fetchCachedAccountDetails();
+
+      if (cachedDetails !== undefined && cachedDetails !== null) {
+        console.log("Got address (" + cachedDetails.address + ") and balance (" + cachedDetails.displayBalance + ").");
+        this.updateAccountDetails(cachedDetails);
       } else {
         this.setState({
           isLoading: false,
@@ -64,9 +71,6 @@ class DynaNavLoginDropdown extends React.Component {
       // window.ethereum.removeListener('chainChanged', func);
     }
 
-    // async checkWalletConnection() {
-    //   ethereum.isConnected()
-    // }
     
     async connectWallet() {
       // console.log("Attempting to connect wallet..");
@@ -77,15 +81,20 @@ class DynaNavLoginDropdown extends React.Component {
       //   console.log("Metamask lockiepooed.");
       //   showErrorMessage("Please unlock MetaMask.");
       // } else {
-        this.fetchAccountDetails();
+        try {
+          this.fetchAccountDetails();
+        } catch (err) {
+          console.log("ERROR: " + err.message);
+
+          handleError(err);
+        }
       // }
     }
 
     disconnectWallet() {
       console.log("Disconnecting wallet..");
 
-      localStorage.removeItem(accountAddressKey);
-      localStorage.removeItem(accountBalanceKey);
+      clearCachedAccountDetails();
 
       this.setState({
         isLoading: false,
@@ -102,18 +111,10 @@ class DynaNavLoginDropdown extends React.Component {
 
     async fetchAccountDetails() {
       console.log("Fetching account details..");
-      if (typeof window.ethereum === 'undefined') {
 
-        this.setState({
-          isLoading: false,
-          isWalletConnected: false
-        });
-
-        return;
-      }
-  
       this.setState({
         isLoading: true,
+        isWalletInstalled: true,
         isWalletConnected: false,
         accountEthAddress: "",
         accountEthBalance: "",
@@ -121,54 +122,44 @@ class DynaNavLoginDropdown extends React.Component {
       });
 
       try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        
-        var ethAddress = account.toString();
+        const accountDetails = await fetchAccountDetails();
 
-        console.log("Getting details of account: " + ethAddress); 
-  
-        if (ethAddress.length > 10) {
-          ethAddress = ethAddress.substring(0, 6) +  "..." + ethAddress.slice(-4);        
-        }
-  
-        const weiBalance = await provider.getBalance(account);
-        const ethBalance = Number(ethers.utils.formatEther(weiBalance)).toFixed(4);
-
-        localStorage.setItem(accountAddressKey, ethAddress);
-        localStorage.setItem(accountBalanceKey, ethBalance);
-        this.updateAccountDetails(ethAddress, ethBalance);
+        this.updateAccountDetails(accountDetails);
       
       } catch (err) {
         console.log("Error occurred fetching account details.");
 
         handleError(err);
-        // showErrorMessage("Error connecting wallet.");
 
         this.setState({
           isLoading: false,
+          isWalletInstalled: (err.message === Errors.DS_NO_ETH_WALLET) ? false : true,
           isWalletConnected: false
         });
       };
     }
 
-    updateAccountDetails(ethAddress, ethBalance) {
+    updateAccountDetails(accountDetails) {
       this.setState({
         isLoading: false,
         isWalletConnected: true,
-        accountEthAddress: ethAddress,
-        accountEthBalance: ethBalance.toString(),
-        etherscanUrl: "https://etherscan.io/address/" + ethAddress.toString(),
+        accountEthAddress: accountDetails.shortenedAddress,
+        accountEthBalance: accountDetails.displayBalance.toString(),
+        etherscanUrl: "https://etherscan.io/address/" + accountDetails.fullAddress,
       });
 
-      console.log('Address: ', ethAddress);
-      console.log('Balance: ', ethBalance);
+      console.log('Address: ', accountDetails.address);
+      console.log('Balance: ', accountDetails.displayBalance);
     }
   
     render() {
       if (this.state.isLoading) {
         return (
-        <Spinner></Spinner>
+          <Spinner animation="grow" variant="dark" />
+          );
+      } else if (this.state.isWalletInstalled !== undefined && !this.state.isWalletInstalled) {
+        return (
+            <Button target="_blank" href="https://metamask.io">Install MetaMask</Button>
         );
       } else if (!this.state.isWalletConnected) {
         return (

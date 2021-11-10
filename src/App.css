@@ -20,8 +20,7 @@
 .mainContent {
   background-color: #777777; 
   background: cover;
-  background-size: 100% 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 1rem - 40px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,10 +29,20 @@
   color: white;
 }
 
-a.basicLink {
-  color: #6666FF;  
-  text-decoration: none;
+.singleArtworkBackground {
+  background-size: 100% 100%;
+  background-color: #FFF; 
 }
+
+.traits {
+  font-family: var(--bs-font-monospace);
+}
+
+a {
+  color: #8888BB !important;  
+  text-decoration: none !important;
+}
+
 
 @keyframes App-logo-spin {
   from {
@@ -41,7 +50,7 @@ a.basicLink {
   }
   to {
     transform: rotate(360deg);
-  }
+  } 
 }
 
 .home {
@@ -58,12 +67,26 @@ a.basicLink {
 .sample {
   width: 10%;
   margin: 16px;
+  min-width: 120px;
   /* border: 1px solid #CCC; */
 }
 
 .homeActions {
   text-align: center;
   margin: auto;
+}
+
+.socialLinks {
+  display: inline-block;
+  text-align: center;
+  background-color: #CCC;
+  border-radius: 0.5rem;
+  margin: 24px auto 8px;
+}
+
+.socialLogo {
+  height: 40px;
+  margin: 8px;
 }
 
 .featureList {
@@ -73,6 +96,11 @@ a.basicLink {
 
 .homeTitle {
   margin: 20px;
+}
+
+.homeAbout {
+  display: inline-block;
+  margin: auto;
 }
  
 h5 {
@@ -91,10 +119,21 @@ h5 {
 .card {
   background-color: #777777;
   margin: 16px;
+  border: none !important;
 }
 
 .tokenCard {
   background-color: #777777;
+}
+
+.card-header {
+  color: #eee !important;
+  background-color: #CCC !important;
+}
+
+.card-body {
+  background-color:#DDD;
+
 }
 
 .card-header {
@@ -110,25 +149,37 @@ h5 {
   margin: 8px;
 }
 
-#mint {
+/* #mint {
   background: #d3d3d3EE !important;
-}
+} */
 
 .mintRow {
   margin: 16px 0;
   display: flex;
-  clear: both;
+  text-align: center;
+  /* clear: both; */
+  flex-wrap: wrap;
 }
 
 .mintInputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   float: right;
+  margin: 0 auto;
+  padding: 16px;
+  width: 30vw; 
+  max-width: 500px;
+  max-height: 500px;
 }
 
 .mintInput {
-  font-size: 18px;
+  font-size: 1rem;
+}
 
-  margin: 25px 20px;
-  width: 300px;
+/* for tint pickers... making similar to others */
+.mintPicker div {
+  border-radius: 13px !important;
 }
 
 .card-title {
@@ -142,19 +193,38 @@ div#accountDetails {
   text-align: left;
 }
 
-.dynaStripesArtwork {
+.cardArtwork {
   width: 250px; 
   height: 250px;
+  background: #FFF;
   display: flex;
-  align-items: center;
   justify-content: center;
-  /* border: 1px solid #DDD; */
-  background:#EEE;
+  align-items: center;
 }
+
+.galleryImage {
+  width: 250px; 
+  height: 250px;
+}
+
+.cardTraits {
+  width: 250px; 
+}
+
+.singleArtwork {
+  background: #FFF;
+  border: 10px solid #EEE; 
+  width: 500px;
+}
+
 
 .dynaStripesArtwork div.spinner {
   color: green;
 
+}
+
+.spinner-grow {
+  
 }
 
 .token {
@@ -164,7 +234,7 @@ div#accountDetails {
 
 p.success {
   font-size: 18px;
-  width: 400px;
+  max-width: 400px;
 }
 
 div.mintInput input {
@@ -188,6 +258,12 @@ div.mintInput input {
   margin-right: 8px;
 }
 
+.betaMessage {
+  color: red;
+  font-style: italic;
+  padding: 0.5rem 0;
+}
+
 .dyna {
   font-family: 'Rajdhani';
 }
@@ -203,7 +279,7 @@ div.mintInput input {
   } */
 
 .tokenList {
-  padding: 16px;
+  /* padding: 16px; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap; 
@@ -212,6 +288,7 @@ div.mintInput input {
 
 .tokenCard {
   /* width: 40vw; */
+  /* margin: 16px 0; */
 }
 
 .deepContent {
@@ -228,19 +305,16 @@ h4.dyna {
 }
 
 .content {
-  /* border-radius: 10px; */
-  background-color: #AAAAAADD;
-  box-shadow: 0 0 10px 5px rgb(0 0 0 / 18%);
-
   /* background-color: #d3d3d3EE; */
-  /* background-color:#AAAAAADD; */
-  /* box-shadow: 0 0 10px 5px rgb(100 100 100 / 0.2 ); */
+  background-color:#AAAAAADD;
+  box-shadow: 0 0 10px 5px rgb(100 100 100 / 0.2 );
 
   /* border: 1px solid rgba(0, 0, 0, 0.125); */
   border-radius: 0.5rem;
-  margin: 50px;
+  margin: 50px 0;
   padding: 16px;
   max-width: min(1200px, 70vw);
+  min-width: 320px;
 }
 
 .previewContainer {
@@ -248,16 +322,74 @@ h4.dyna {
   padding: 10px;
   margin: 0 auto; */
   opacity: 1;
-
+  margin: auto;
 }
 
 .previewArtwork {
   opacity: 1;
   margin: 16px;
   background-color:#FFF;
-  width: 400px; 
-  height: 400px;
+  width: 30vw; 
+  max-width: 500px;
   border: 10px solid #EEE; 
+}
+
+@media screen and (max-width: 700px) {
+  .samples {
+    width: initial;
+  }
+  
+  .previewArtwork {
+    width: 70%; 
+    height: initial;
+    margin: 8px;
+    border-width: 0px;
+    margin-bottom: 0px;
+  }
+  .cardArtwork {
+    width: 200px; 
+    height: 200px;
+  }
+  
+  .galleryImage {
+    width: 200px; 
+    height: 200px;
+  }
+  
+  .cardTraits {
+    width: 200px;
+  }
+
+  .mintInputs {
+    float: right;
+    margin: 0 auto;
+    width: 90%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }  
+  .mintInput {
+    margin: 5px 0;
+  }  
+  .mintRow {
+    margin: 0;
+  } 
+
+  .content {
+    margin: 32px 16px;
+    padding: 8px;
+    max-width: initial;
+  }  
+
+  .singleArtwork {
+    width: 250px;
+  }
+  
+}
+
+.etherscan {
+  height: 1.5rem;
 }
 
 .preview {

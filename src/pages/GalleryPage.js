@@ -7,14 +7,9 @@ class GalleryPage extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="mainContent">
-                    <YourStripesComponent />
-                </div>
-
-                <div className="mainContent">
-                    <RecentStripesComponent />
-                </div>
+            <div className="mainContent">
+                <YourStripesComponent />
+                <RecentStripesComponent />
             </div>
         );
     }

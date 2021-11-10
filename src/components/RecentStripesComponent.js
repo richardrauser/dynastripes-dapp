@@ -4,10 +4,13 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import TokenList from './TokenList';
 
-import { getContract } from '../utils/blockchain';
-import { handleError } from '../utils/error';
+import { getContract } from '../utils/BlockchainAPI';
+import DynaSpan from './DynaSpan';
+import MetaMaskLink from './MetaMaskLink';
+import { handleError } from '../utils/ErrorHandler';
+import * as Errors from '../utils/ErrorMessages';
 
-  class RecentStripesComponent extends React.Component {
+class RecentStripesComponent extends React.Component {
   
     constructor(props) {
       super(props);
@@ -22,19 +25,16 @@ import { handleError } from '../utils/error';
     }
   
     async fetchTokens() {
-      const contract = await getContract();
-  
-      if (contract === null) {
-        return;
-      }
-  
       try {
+        const contract = await getContract();
+  
         var tokenIds = [];
   
         const tokenCount = await contract.totalSupply();
         console.log("Total supply: " + tokenCount);
-  
-        for (var i = tokenCount - 1; i >= 0 && i >= tokenCount - 7; i--) {
+        const maxToDisplay = 15;
+        
+        for (var i = tokenCount - 1; i >= 0 && i >= tokenCount - maxToDisplay; i--) {
           const tokenId = await contract.tokenByIndex(i);
           tokenIds.push(tokenId);
         }
@@ -44,11 +44,20 @@ import { handleError } from '../utils/error';
           tokenIds: tokenIds
         });
       } catch (err) {
-        this.setState({
-          loading: false,
-          tokenIds: []
-        });
-        handleError(err);
+
+        if (err.message === Errors.DS_NO_ETH_WALLET) {
+          this.setState({
+            loading: false,
+            hasWallet: false
+          });  
+        } else {
+          this.setState({
+            hasWallet: true,
+            loading: false,
+            tokenIds: []
+          });
+          handleError(err);  
+        }
       }
     }
   
@@ -60,26 +69,29 @@ import { handleError } from '../utils/error';
       if (this.state.loading === true) {
         return (
           <div className="content">
-            <h1>Recently minted <span className="dyna">DynaStripes</span> NFTs</h1>
+            <h1>Recently minted <DynaSpan/> NFTs</h1>
             <Spinner animation="grow" variant="dark" />
           </div>
         );
+      } else if (this.state.hasWallet !== undefined && this.state.hasWallet === false) {
+        return (
+            <div className="content">
+              <h1>Recently minted <DynaSpan /> NFTs</h1>
+              An ETH wallet is required to view recent <DynaSpan />. Install <MetaMaskLink />.
+            </div>
+        );
       } else if (tokenIds === null || tokenIds.length === 0) {
         return (
-          <div className="mainContent">
-            <div className="content">
-              <h1>Recently minted <span className="dyna">DynaStripes</span> NFTs</h1>
-                No stripes have been minted yet.
-            </div>
+          <div className="content">
+            <h1>Recently minted <DynaSpan/> NFTs</h1>
+              No stripes have been minted yet.
           </div>
         );
       } else {
         return (
-          <div className="mainContent">
-            <div className="content">
-              <h1>Recently minted <span className="dyna">DynaStripes</span> NFTs</h1>
-              <TokenList tokens= { tokenIds } />
-            </div>
+          <div className="content">
+            <h1>Recently minted <DynaSpan/> NFTs</h1>
+            <TokenList tokens= { tokenIds } />
           </div>
         );  
       }
