@@ -7,12 +7,13 @@ import etherscan from '../images/etherscan-logo-light.png';
 import {
   Link
 } from "react-router-dom";
+import { DynaStripesEtherscanLink } from '../utils/Constants';
 
 class MintAnotherComponent extends React.Component {
   
 
   render() {
-    const txLink = "https://rinkeby.etherscan.io/tx/" + this.props.txHash;
+    const txLink = DynaStripesEtherscanLink + "tx/" + this.props.txHash;
 
     console.log("txLink: " + txLink);
 

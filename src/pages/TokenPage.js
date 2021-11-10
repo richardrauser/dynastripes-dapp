@@ -7,6 +7,7 @@ import { handleError } from '../utils/ErrorHandler';
 import { Form } from 'react-bootstrap';
 import { Dropdown } from 'react-bootstrap';
 import toImg from 'react-svg-to-image';
+import { DynaStripesEtherscanLink } from '../utils/Constants';
 
 class TokenPage extends React.Component {
 
@@ -132,7 +133,7 @@ class TokenPage extends React.Component {
         }
 
         var ethAddress = this.state.tokenOwner;
-        const etherscanLink = "https://rinkeby.etherscan.io/address/" + ethAddress;
+        const etherscanLink =  DynaStripesEtherscanLink + "address/" + ethAddress;
 
         if (ethAddress.length > 10) {
           ethAddress = ethAddress.substring(0, 6) +  "..." + ethAddress.slice(-4);        

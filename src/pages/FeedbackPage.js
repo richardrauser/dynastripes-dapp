@@ -20,20 +20,8 @@ class FeedbackPage extends React.Component {
          
             <div className="deepContent">
               <p> 
-                This is a <a className="externalLink" href="https://en.wikipedia.org/wiki/Software_release_life_cycle#Beta" target="_blank" rel="noreferrer">beta</a> version of the <DynaSpan/> <a className="externalLink" href="https://en.wikipedia.org/wiki/Decentralized_applicationdApp" target="_blank" rel="noreferrer">dApp</a> running on Rinkeby testnet. Feedback would be greatly appreciated to help inform the final product! 😁
+                Got thoughts on <DynaSpan/>? Get in touch!
               </p>
-              <h5>
-                What do you think about:
-              </h5>
-              <ol>
-                <li>Website ease of use</li>
-                <li>Ease of NFT purchase</li>
-                <li>Mint interface options</li>
-                <li>Artwork quality</li>
-                <li>Design of this website</li>
-                <li>Clarity of explanations</li>
-                <li>Anything else at all!</li>
-              </ol>
 
               <Form name="feedback" method="POST">
                 <input type="hidden" name="form-name" value="feedback" />
