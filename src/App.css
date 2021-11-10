@@ -341,6 +341,11 @@ h4.dyna {
     width: 200px; 
     height: 200px;
   }
+
+  .cardTraits {
+    width: 200px;
+  }
+
   .mintInputs {
     float: right;
     margin: 0 auto;

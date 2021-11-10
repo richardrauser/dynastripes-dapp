@@ -116,9 +116,9 @@ class TokenCard extends React.Component {
                             <img  alt={"DynaStripes token " + this.props.tokenId}   src={ this.state.tokenSvgDataUri } />
                         </div>
                       </Link>
-                      <p className="cardTraits">
+                      <div className="cardTraits">
                       { this.state.descriptiveTraits }
-                      </p>
+                      </div>
                       </Card.Body>
                   </Card>        
 
