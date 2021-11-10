@@ -50,7 +50,7 @@ a {
   }
   to {
     transform: rotate(360deg);
-  }
+  } 
 }
 
 .home {
@@ -202,6 +202,11 @@ div#accountDetails {
   align-items: center;
 }
 
+.galleryImage {
+  width: 250px; 
+  height: 250px;
+}
+
 .cardTraits {
   width: 250px; 
 }
@@ -341,7 +346,12 @@ h4.dyna {
     width: 200px; 
     height: 200px;
   }
-
+  
+  .galleryImage {
+    width: 200px; 
+    height: 200px;
+  }
+  
   .cardTraits {
     width: 200px;
   }
