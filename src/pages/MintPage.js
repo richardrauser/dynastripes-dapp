@@ -67,7 +67,7 @@ class MintPage extends React.Component {
       const randomRed = this.randomIntFromInterval(0, 255);
       const randomBlue = this.randomIntFromInterval(0, 255);
       const randomGreen = this.randomIntFromInterval(0, 255);
-      const randomAlpha = Math.random();
+      const randomAlpha = Math.random() * 0.9;
       const randomColour = { r: randomRed, g: randomGreen, b: randomBlue, a: randomAlpha };
             
       const randomRotationMin = this.randomIntFromInterval(0, 180);
@@ -220,17 +220,19 @@ class MintPage extends React.Component {
         showErrorMessage("Zoom must be between 0 and 100.");
         return;
       } 
-      if (rotationMin < 0 || rotationMin > rotationMax || rotationMax > 180) {
-        showErrorMessage("Rotation angle must be between 0 anfd 180.");
+      if (tintRed < 0 || tintRed > 255 || tintGreen < 0 || tintGreen > 255 || tintBlue < 0 || tintBlue > 255) {
+        showErrorMessage("Tint color not valid");
         return;
       }
-    
       if (tintAlpha >= 230) {
-        showErrorMessage("tint percentage is too high.");
+        showErrorMessage("Tint percentage is too high.");
         return;
       }
-
-      if (widthMin < 25 || widthMax > widthMax || widthMax > 250) {
+      if (rotationMin < 0 || rotationMin > rotationMax || rotationMax > 180) {
+        showErrorMessage("Rotation angle must be between 0 and 180.");
+        return;
+      }
+      if (widthMin < 25 || widthMin > widthMax || widthMax > 250) {
           showErrorMessage("Stripe width must be between 25 and 250.")
           return;
       } 
