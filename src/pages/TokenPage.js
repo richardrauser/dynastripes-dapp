@@ -154,7 +154,7 @@ class TokenPage extends React.Component {
                   { this.state.descriptiveTraits } <br/>
 
                   Traits: <br/>
-                  <Form.Control className="traits" as="textarea" rows={5}>
+                  <Form.Control className="traits" as="textarea" rows={10}>
                       { JSON.stringify(this.state.tokenTraits, null, 2) }
                   </Form.Control>
                   <br/>
