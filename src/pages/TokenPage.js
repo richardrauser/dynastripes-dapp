@@ -2,7 +2,6 @@
 import React from 'react';
 import DynaSpan from '../components/DynaSpan';
 import { Spinner } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 import { getContract } from '../utils/BlockchainAPI';
 import { handleError } from '../utils/ErrorHandler';
 import { Form } from 'react-bootstrap';
