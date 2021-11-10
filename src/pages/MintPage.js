@@ -197,44 +197,52 @@ class MintPage extends React.Component {
 
     async mint() {
       const zoom = this.state.zoom;
+      const rotationMin = this.state.rotationRange[0];
+      const rotationMax = this.state.rotationRange[1];
+      const tintRed = this.state.tintColour.r;
+      const tintGreen = this.state.tintColour.g;
+      const tintBlue = this.state.tintColour.b;
+      const tintAlpha = Math.round(this.state.tintColour.a * 255);
+      const widthMin = this.state.widthRange[0];
+      const widthMax = this.state.widthRange[1];
+      const speedMin = this.state.speedRange[0];
+      const speedMax = this.state.speedRange[1];
+
       // TODO: validation needs to check range
       // const rotationDegrees = this.state.rotationDegrees;
       // const stripeWidth = this.state.stripeWidth;
-      // const speed = this.state.speed;
-  
+
+      if (this.randomSeed < 0 || this.randomSeed >= 5_000_000) {
+        showErrorMessage("Random seed invalid.");
+        return;
+      }
       if (zoom < 0 || zoom > 100) {
         showErrorMessage("Zoom must be between 0 and 100.");
-        return      
+        return;
       } 
-      // if (rotationDegrees < 0 || rotationDegrees > 180) {
-      //   showErrorMessage("Rotation angle must be a factor of 45.");
-      //   return
-      // } 
-      // if (stripeWidth < 0 || stripeWidth > 255) {
-      //     showErrorMessage("Stripe width must be between 0 and 255.")
-      //     return;
-      // } 
-      // if (speed < 20 || speed > 255) {
-      //   showErrorMessage("Speed must be between 20 and 255.")
-      //   return;
-      // }
-  
-  
+      if (rotationMin < 0 || rotationMin > rotationMax || rotationMax > 180) {
+        showErrorMessage("Rotation angle must be between 0 anfd 180.");
+        return;
+      }
+    
+      if (tintAlpha >= 230) {
+        showErrorMessage("tint percentage is too high.");
+        return;
+      }
+
+      if (widthMin < 25 || widthMax > widthMax || widthMax > 250) {
+          showErrorMessage("Stripe width must be between 25 and 250.")
+          return;
+      } 
+      if (speedMin < 25 || speedMin > speedMax || speedMax > 250) {
+        showErrorMessage("Speed must be between 25 and 250.")
+        return;
+      }
+
       try {
         const contractWithSigner = await getContractWithSigner(); 
     
-        const rotationMin = this.state.rotationRange[0];
-        const rotationMax = this.state.rotationRange[1];
-        const zoom = this.state.zoom;
-        const tintRed = this.state.tintColour.r;
-        const tintGreen = this.state.tintColour.g;
-        const tintBlue = this.state.tintColour.b;
-        const tintAlpha = Math.round(this.state.tintColour.a * 255);
-        const widthMin = this.state.widthRange[0];
-        const widthMax = this.state.widthRange[1];
-        const speedMin = this.state.speedRange[0];
-        const speedMax = this.state.speedRange[1];
-        
+
         console.log("Minting dynastripes: " + rotationMin + " "  + rotationMax + " " + zoom + " " + widthMin + " " + widthMax + " " + speedMin + " " + speedMax)
 
         const overrides = {

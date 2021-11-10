@@ -91,18 +91,19 @@ export async function fetchAccountDetails() {
   const account = await fetchAccount();
   const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-  var ethAddress = account.toString();
+  const fullAddress = account.toString();
+  var shortenedAddress = fullAddress;
+  console.log("Getting details of account: " + fullAddress); 
 
-  console.log("Getting details of account: " + ethAddress); 
-
-  if (ethAddress.length > 10) {
-    ethAddress = ethAddress.substring(0, 6) +  "..." + ethAddress.slice(-4);        
+  if (shortenedAddress.length > 10) {
+    shortenedAddress = shortenedAddress.substring(0, 6) +  "..." + shortenedAddress.slice(-4);        
   }
 
   const weiBalance = await provider.getBalance(account);
   const displayBalance = Number(ethers.utils.formatEther(weiBalance)).toFixed(4);
 
-  var accountDetails = new AccountDetails(ethAddress.toString(), weiBalance.toString(), displayBalance.toString());
+  console.log("HERE");
+  var accountDetails = new AccountDetails(shortenedAddress, fullAddress, weiBalance.toString(), displayBalance.toString());
 
   localStorage.setItem(AccountDetailsKey, JSON.stringify(accountDetails));
 
@@ -119,9 +120,10 @@ export function fetchCachedAccountDetails() {
      return null;
   }
 
-  if (accountDetails.address === undefined || accountDetails.weiBalance === undefined || accountDetails.displayBalance === undefined) {
+  if (accountDetails.shortenedAddress === undefined || accountDetails.fullAddress === undefined || accountDetails.weiBalance === undefined || accountDetails.displayBalance === undefined) {
     console.log("some element of details is null. " + accountDetails);
-    console.log("address: " + accountDetails.address);
+    console.log("shortened address: " + accountDetails.shortenedAddress);
+    console.log("full address: " + accountDetails.fullAddress);
     console.log("wei balance: " + accountDetails.weiBalance);
     console.log("display balance " + accountDetails.displayBalance);
     clearCachedAccountDetails();
@@ -136,8 +138,9 @@ export function clearCachedAccountDetails() {
 }
 
 class AccountDetails {
-  constructor(address, weiBalance, displayBalance) {
-    this.address = address;
+  constructor(shortenedAddress, fullAddress, weiBalance, displayBalance) {
+    this.shortenedAddress = shortenedAddress;
+    this.fullAddress = fullAddress;
     this.weiBalance = weiBalance;
     this.displayBalance = displayBalance; // ETH
   }

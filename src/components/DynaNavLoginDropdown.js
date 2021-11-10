@@ -143,9 +143,9 @@ class DynaNavLoginDropdown extends React.Component {
       this.setState({
         isLoading: false,
         isWalletConnected: true,
-        accountEthAddress: accountDetails.address,
+        accountEthAddress: accountDetails.shortenedAddress,
         accountEthBalance: accountDetails.displayBalance.toString(),
-        etherscanUrl: "https://etherscan.io/address/" + accountDetails.address.toString(),
+        etherscanUrl: "https://etherscan.io/address/" + accountDetails.fullAddress,
       });
 
       console.log('Address: ', accountDetails.address);
