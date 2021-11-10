@@ -2,7 +2,7 @@
 import { ethers } from 'ethers';
 import DynaStripes from '../artifacts/contracts/DynaStripes.sol/DynaStripes.json';
 import * as Errors from './ErrorMessages';
-import DynaStripesContractAddress from './Constants';
+import DynaStripesContractAddress, { DynaStripesCurrentEthNeworkID } from './Constants';
 
 function checkWallet() {
   // console.log("Checking wallet...");
@@ -25,8 +25,9 @@ export async function getContract() {
   const { chainId } = await provider.getNetwork()
   console.log("CHAIN ID: " + chainId); // 42
   
-  if (chainId !== 4) {
-    console.log("Not on Rinkeby.");
+  if (chainId !== DynaStripesCurrentEthNeworkID) {
+    
+    console.log("Not on right network");
     throw Error(Errors.DS_WRONG_ETH_NETWORK);
   }
   const contract = new ethers.Contract(DynaStripesContractAddress, DynaStripes.abi, provider);
