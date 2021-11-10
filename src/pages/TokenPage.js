@@ -6,6 +6,8 @@ import { Button } from 'react-bootstrap';
 import { getContract } from '../utils/BlockchainAPI';
 import { handleError } from '../utils/ErrorHandler';
 import { Form } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
+import toImg from 'react-svg-to-image';
 
 class TokenPage extends React.Component {
 
@@ -19,6 +21,7 @@ class TokenPage extends React.Component {
     
         this.fetchMetadata = this.fetchMetadata.bind(this);
         this.downloadSvg = this.downloadSvg.bind(this);
+        this.downloadPng = this.downloadPng.bind(this);
     }
     
     componentDidMount() {
@@ -46,6 +49,7 @@ class TokenPage extends React.Component {
           const encodedSvg = encodeURIComponent(svg);
           const svgDataUri = `data:image/svg+xml,${encodedSvg}`;
           console.log("SVG: " + svgDataUri);
+
 
           const attributes = metadataObject.attributes;
   
@@ -91,6 +95,23 @@ class TokenPage extends React.Component {
         link.href = this.state.tokenSvgDataUri;
         link.download = "DynaStripes" + this.state.tokenId +".svg";
         link.click();
+    }
+
+    downloadPng() {
+
+      const pngFileName = "Dynastripes" + this.state.tokenId + ".png";
+      toImg('svg', pngFileName , {
+        scale: 3,
+        format: 'webp',
+        quality: 0.01,
+        download: false,
+        ignore: '.ignored'
+      }).then(fileData => {
+         console.log("PNG DATA: " + fileData);
+      });
+
+
+      
     }
     
 
@@ -139,7 +160,17 @@ class TokenPage extends React.Component {
                   </Form.Control>
                   <br/>
                   <center>
-                    <Button onClick={ this.downloadSvg } >Save</Button>
+
+                  <Dropdown>
+                    <Dropdown.Toggle id="dropdown-basic">
+                      Save Image
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item onClick={ this.downloadSvg }>as SVG, scalable vector image -- best quality at various sizes</Dropdown.Item>
+                      <Dropdown.Item onClick={ this.downloadPng }>as PNG, fixed-size raster image -- good for web, but won't scale well </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
                   </center>
 
               </div>  
