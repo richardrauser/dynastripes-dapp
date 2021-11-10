@@ -282,7 +282,7 @@ class MintPage extends React.Component {
       const speedMin = this.state.speedRange[0];
       const speedMax = this.state.speedRange[1];
 
-      const traits = this.getDescriptiveTraits(zoom, tintColour.r, tintColour.g, tintColour.b, tintColour.a * 155, rotationMin, rotationMax, widthMin, widthMax, speedMin, speedMax);
+      // const traits = this.getDescriptiveTraits(zoom, tintColour.r, tintColour.g, tintColour.b, tintColour.a * 155, rotationMin, rotationMax, widthMin, widthMax, speedMin, speedMax);
 
       const svg = generateDynaStripes(this.state.randomSeed, zoom, tintColour, rotationMin, rotationMax, widthMin, widthMax, speedMin, speedMax, false);
 
@@ -303,14 +303,14 @@ class MintPage extends React.Component {
     getDescriptiveTraits(zoom, tintRed, tintGreen, tintBlue, tintAlpha, rotationMin, rotationMax, stripeWidthMin, stripeWidthMax, speedMin, speedMax) {
       var form;
 
-      if (rotationMin == rotationMax) {
-          if (zoom > 50 && rotationMax % 90 == 0) {
+      if (rotationMin === rotationMax) {
+          if (zoom > 50 && rotationMax % 90 === 0) {
               form = "perfect square";
-          } else if ((rotationMax == 45 || rotationMax == 135) && zoom > 91) {
+          } else if ((rotationMax === 45 || rotationMax === 135) && zoom > 91) {
               form = "perfect diamond";
-          } else if (zoom <= 50 && rotationMax == 90) {
+          } else if (zoom <= 50 && rotationMax === 90) {
               form = "horizontal stripes";
-          } else if (zoom <= 50 && rotationMax % 180 == 0) {
+          } else if (zoom <= 50 && rotationMax % 180 === 0) {
               form = "vertical stripes";
           } else if (zoom <= 25) {
               form = "diagonal stripes";
@@ -380,7 +380,7 @@ class MintPage extends React.Component {
           } else {
               colourWay = "heavy tint";
           }
-      } else if (tintAlpha == 0) {
+      } else if (tintAlpha === 0) {
           colourWay = "super dynamic";
       } else if (tintAlpha < 60) {
           colourWay = "light tint";
@@ -392,11 +392,11 @@ class MintPage extends React.Component {
 
       if (speedMax <= 25 && tintAlpha < 180) {
           speed = "call the police";
-      } else if (speedMin == speedMax && speedMax < 30) {
+      } else if (speedMin === speedMax && speedMax < 30) {
           speed = "blinking";
-      } else if (speedMin == speedMax && speedMax > 200) {
+      } else if (speedMin === speedMax && speedMax > 200) {
           speed = "slow pulse";
-      } else if (speedMin == speedMax) {
+      } else if (speedMin === speedMax) {
           speed = "pulse";        
       } else if (speedMax < 50) {
           speed = "flickering";
