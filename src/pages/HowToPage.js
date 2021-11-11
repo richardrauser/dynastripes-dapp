@@ -77,7 +77,8 @@ class HowToPage extends React.Component {
                   <ol>
                     <li>Open the MetaMask app on your mobile. </li> 
                     <li>Ensure you're connected to the Ethereum Mainnet.</li> 
-                    <li>Hit the Buy button in MetaMask and follow the instructions there. </li> 
+                    <li>Tap the menu button at top left, then tap "Add funds"</li>
+                    <li>Tap the "Buy" button, and follow the instructions for buying Ethereum.</li>
                     <li>You can also purchase Ethereum on <a className="externalLink" href="https://www.coinbase.com" target="_blank" rel="noreferrer">Coinbase</a>, <a className="externalLink" href="https://www.binance.com" target="_blank" rel="noreferrer">Binance</a>, <a className="externalLink" href="https://www.ftx.com" target="_blank" rel="noreferrer">FTX</a>, or some other exchange and send it to your MetaMask wallet. </li> 
                   </ol>
                   
