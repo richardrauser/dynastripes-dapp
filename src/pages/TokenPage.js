@@ -1,7 +1,7 @@
 
 import React from 'react';
 import DynaSpan from '../components/DynaSpan';
-import { Button, Spinner } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 import { getContract } from '../utils/BlockchainAPI';
 import { handleError } from '../utils/ErrorHandler';
 import { Form } from 'react-bootstrap';
@@ -10,6 +10,7 @@ import { Dropdown } from 'react-bootstrap';
 import { DynaStripesEtherscanLink } from '../utils/Constants';
 import { buildDescriptiveTextFromMetadata } from '../utils/Metadata';
 import { showInfoMessage } from '../utils/UIUtils';
+// import { Share } from 'react-twitter-widgets';
 
 class TokenPage extends React.Component {
 
@@ -116,8 +117,8 @@ class TokenPage extends React.Component {
           ethAddress = ethAddress.substring(0, 6) +  "..." + ethAddress.slice(-4);        
         }
 
-
         const tokenLink = "https://www.dynastripes.com/token/" + this.state.tokenId;
+        // const twitterShareOptions = { size: "large" }
         
         console.log("TOKEN LINK: " + tokenLink);
 
@@ -153,11 +154,15 @@ class TokenPage extends React.Component {
                     </Dropdown.Menu>
                   </Dropdown>
 
-                  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="I just minted a DynaStripes NFT artwork. It's generative and 100% on-chain." data-url={ tokenLink } data-related="volstrate,richardrauser" data-show-count="false">
-                  <Button>
+                  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" target ="_blank" rel="noreferrer" class="twitter-share-button" data-size="large" data-text="Check out this generative, 100% on-chain DynaStripes #NFT artwork!" data-url={tokenLink} data-related="volstrate,richardrauser" data-show-count="false">
+                  {/* <Button>
                     Tweet
-                  </Button>
-                  </a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  </Button> */}
+                  </a>
+
+                  {/* <Share url = { tokenLink } options= { twitterShareOptions } /> */}
+
+                  {/* <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> */}
                   </center>
 
               </div>  
