@@ -5,6 +5,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { Link } from 'react-router-dom';
 import { getContract } from '../utils/BlockchainAPI';
 import { handleError } from '../utils/ErrorHandler';
+import { buildDescriptiveTextFromMetadata } from '../utils/Metadata';
 
 class TokenCard extends React.Component {
     constructor(props) {
@@ -35,36 +36,12 @@ class TokenCard extends React.Component {
           const svgDataUri = `data:image/svg+xml,${encodedSvg}`;
           console.log("SVG: " + svgDataUri);
           
-          const attributes = metadataObject.attributes;
-
-          var descriptiveTraits = "";
-
-          const formAttribute = attributes.filter(trait => trait.trait_type === "form")[0];
-          if (formAttribute !== undefined) {
-            descriptiveTraits += formAttribute["value"];            
-          }
-
-          const speedAttribute = attributes.filter(trait => trait.trait_type === "speed")[0];
-          if (speedAttribute !== undefined) {
-            if (descriptiveTraits !== "") {
-              descriptiveTraits += ", ";
-            }
-            descriptiveTraits += speedAttribute["value"];            
-          }
-
-          const colourWayAttribute = attributes.filter(trait => trait.trait_type === "colour way")[0];
-          if (colourWayAttribute !== undefined) {
-            if (descriptiveTraits !== "") {
-              descriptiveTraits += ", ";
-            }
-            descriptiveTraits += colourWayAttribute["value"];            
-          }
-
+          const descriptiveText = buildDescriptiveTextFromMetadata(metadataObject);
 
           this.setState({
             loading: false,
             tokenSvgDataUri: svgDataUri,
-            descriptiveTraits: descriptiveTraits,
+            descriptiveTraits: descriptiveText,
           });
   
         } catch (err) {

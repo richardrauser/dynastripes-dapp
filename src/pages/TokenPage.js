@@ -1,13 +1,15 @@
 
 import React from 'react';
 import DynaSpan from '../components/DynaSpan';
-import { Spinner } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import { getContract } from '../utils/BlockchainAPI';
 import { handleError } from '../utils/ErrorHandler';
 import { Form } from 'react-bootstrap';
 import { Dropdown } from 'react-bootstrap';
 import toImg from 'react-svg-to-image';
 import { DynaStripesEtherscanLink } from '../utils/Constants';
+import { buildDescriptiveTextFromMetadata } from '../utils/Metadata';
+import { showInfoMessage } from '../utils/UIUtils';
 
 class TokenPage extends React.Component {
 
@@ -50,38 +52,14 @@ class TokenPage extends React.Component {
           const svgDataUri = `data:image/svg+xml,${encodedSvg}`;
           console.log("SVG: " + svgDataUri);
 
-
           const attributes = metadataObject.attributes;
-  
-          var descriptiveTraits = "";
-
-          const formAttribute = attributes.filter(trait => trait.trait_type === "form")[0];
-          if (formAttribute !== undefined) {
-            descriptiveTraits += formAttribute["value"];            
-          }
-
-          const speedAttribute = attributes.filter(trait => trait.trait_type === "speed")[0];
-          if (speedAttribute !== undefined) {
-            if (descriptiveTraits !== "") {
-              descriptiveTraits += ", ";
-            }
-            descriptiveTraits += speedAttribute["value"];            
-          }
-
-          const colourWayAttribute = attributes.filter(trait => trait.trait_type === "colour way")[0];
-          if (colourWayAttribute !== undefined) {
-            if (descriptiveTraits !== "") {
-              descriptiveTraits += ", ";
-            }
-            descriptiveTraits += colourWayAttribute["value"];            
-          }
-
+          const descriptiveText = buildDescriptiveTextFromMetadata(metadataObject);
   
           this.setState({
             loading: false,
             tokenOwner: tokenOwner,
             tokenSvgDataUri: svgDataUri,
-            descriptiveTraits: descriptiveTraits,
+            descriptiveTraits: descriptiveText,
             tokenTraits: attributes
           });
   
@@ -99,19 +77,18 @@ class TokenPage extends React.Component {
 
     downloadPng() {
 
-      const pngFileName = "Dynastripes" + this.state.tokenId + ".png";
-      toImg('svg', pngFileName , {
-        scale: 3,
-        format: 'webp',
-        quality: 0.01,
-        download: false,
-        ignore: '.ignored'
-      }).then(fileData => {
-         console.log("PNG DATA: " + fileData);
-      });
+      showInfoMessage("Save PNG functionality coming soon!");
 
-
-      
+      // const pngFileName = "Dynastripes" + this.state.tokenId + ".png";
+      // toImg('svg', pngFileName , {
+      //   scale: 3,
+      //   format: 'webp',
+      //   quality: 0.01,
+      //   download: false,
+      //   ignore: '.ignored'
+      // }).then(fileData => {
+      //    console.log("PNG DATA: " + fileData);
+      // });      
     }
     
 
@@ -140,10 +117,14 @@ class TokenPage extends React.Component {
         }
 
 
+        const tokenLink = "https://www.dynastripes.com/token/" + this.state.tokenId;
+        
+        console.log("TOKEN LINK: " + tokenLink);
+
         return (
             <div className="mainContent">
             <div className="content">
-              <h1><DynaSpan/> token #{this.props.match.params.tokenId}</h1>
+              <h1><DynaSpan/> token #{this.state.tokenId}</h1>
               <div className="deepContent">
 
                   <div className="singleArtwork">
@@ -171,6 +152,12 @@ class TokenPage extends React.Component {
                       <Dropdown.Item onClick={ this.downloadPng }>as PNG, fixed-size raster image -- good for web, but won't scale well </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
+
+                  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="I just minted a DynaStripes NFT artwork. It's generative and 100% on-chain." data-url={ tokenLink } data-related="volstrate,richardrauser" data-show-count="false">
+                  <Button>
+                    Tweet
+                  </Button>
+                  </a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                   </center>
 
               </div>  
