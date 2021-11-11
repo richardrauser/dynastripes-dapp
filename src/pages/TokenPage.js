@@ -6,7 +6,7 @@ import { getContract } from '../utils/BlockchainAPI';
 import { handleError } from '../utils/ErrorHandler';
 import { Form } from 'react-bootstrap';
 import { Dropdown } from 'react-bootstrap';
-import toImg from 'react-svg-to-image';
+// import toImg from 'react-svg-to-image';
 import { DynaStripesEtherscanLink } from '../utils/Constants';
 import { buildDescriptiveTextFromMetadata } from '../utils/Metadata';
 import { showInfoMessage } from '../utils/UIUtils';
