@@ -43,6 +43,20 @@ a {
   text-decoration: none !important;
 }
 
+a.btn {
+  color: #FFFFFF !important;  
+}
+
+.openSeaLogoButton {
+  height: 20px;
+  padding-right: 6px;
+  margin-top: -2px;
+}
+
+div.dropdown {
+  display: inline-block;
+}
+
 
 @keyframes App-logo-spin {
   from {
@@ -71,7 +85,7 @@ a {
   /* border: 1px solid #CCC; */
 }
 
-.homeActions {
+.actions {
   text-align: center;
   margin: auto;
 }
@@ -215,6 +229,14 @@ div#accountDetails {
   background: #FFF;
   border: 10px solid #EEE; 
   width: 500px;
+}
+
+.singleArtworkDetail {
+  margin: 16px;
+}
+
+.singleArtworkTraitsAccordion {
+  margin: 16px 0 8px;
 }
 
 

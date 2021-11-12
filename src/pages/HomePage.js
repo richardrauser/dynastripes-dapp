@@ -71,7 +71,7 @@ class HomePage extends React.Component {
                     </li>              
                   </ul>
                 </div>
-                <div className="homeActions">
+                <div className="actions">
                   <Link to="/mint">
                     <Button variant="primary">Create an Artwork!</Button>
                   </Link>

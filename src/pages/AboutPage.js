@@ -23,7 +23,7 @@ class AboutPage extends React.Component {
                   Overview
               </h3>
                   <p>
-                  <DynaSpan/> is a novel animated NFT art project created by the colour-blind, colour-obsessed visual artist, <a className="externalLink volstrate" rel="noreferrer" href="http://www.volstrate.com" target="_blank">volstrate</a>. <DynaSpan/> NFTs are both <b>generative</b>, in that the artwork is created programatically via the use of an algorithm, and <b>on-chain</b>, meaning that the creation algorithm, user inputs, metadata and the artwork itself are stored directly on the Ethereum blockchain. Uniquely, the minter chooses the input parameters, previews the artwork prior to minting, and collects all royalties on secondary sales in perpetuity. Full copyright and commercial property rights are assigned to the NFT owner.
+                  <DynaSpan/> is a novel animated NFT art project created by the colour-blind, colour-obsessed visual artist, <a className="externalLink volstrate" rel="noreferrer" href="http://www.volstrate.com" target="_blank">volstrate</a>. <DynaSpan/> NFTs are both <b>generative</b>, in that the artwork is created programatically via the use of an algorithm, and <b>on-chain</b>, meaning that the creation algorithm, user inputs, metadata and the artwork itself are stored directly on the Ethereum blockchain. Uniquely, the minter chooses the input parameters, previews the artwork prior to minting, and collects all royalties on secondary sales in perpetuity. Full copyright and commercial property rights are assigned to the NFT owner. The <DynaSpan/> smart contract is restricted to a max supply of 1119 artworks.
                   </p>
 
                   <h3>

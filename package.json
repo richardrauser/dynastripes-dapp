@@ -13,7 +13,7 @@
     "hardhat": "^2.6.3",
     "rc-slider": "^9.7.2",
     "react": "^17.0.2",
-    "react-bootstrap": "^1.6.3",
+    "react-bootstrap": "^2.0.2",
     "react-bootstrap-icons": "^1.5.0",
     "react-bootstrap-range-slider": "^3.0.2",
     "react-color": "^2.19.3",

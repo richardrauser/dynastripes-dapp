@@ -31,7 +31,7 @@ class MintAnotherComponent extends React.Component {
           <Button variant="primary" onClick={this.props.mintAnother}>Mint Another</Button>
           
           <br/>
-          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" target="_blank" rel="noreferrer"  class="twitter-share-button" data-size="large" data-text="I just minted a generative, 100% on-chain DynaStripes #NFT artwork. Check it out!" data-url={tokenLink} data-related="volstrate,richardrauser" data-show-count="false">
+          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" target="_blank" rel="noreferrer" class="twitter-share-button" data-size="large" data-text="I just minted a generative, 100% on-chain DynaStripes #NFT artwork. Check it out!" data-url={tokenLink} data-related="volstrate,richardrauser" data-show-count="false">
                   {/* <Button>
                     Tweet
                   </Button> */}
