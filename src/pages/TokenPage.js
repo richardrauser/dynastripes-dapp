@@ -8,7 +8,6 @@ import { Form } from 'react-bootstrap';
 import { Dropdown } from 'react-bootstrap';
 import { OverlayTrigger } from 'react-bootstrap';
 import { Tooltip } from 'react-bootstrap';
-import { Card } from 'react-bootstrap';
 
 // import toImg from 'react-svg-to-image';
 import DynaStripesContractAddress, { DynaStripesEtherscanLink } from '../utils/Constants';
