@@ -3,6 +3,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import DynaSpan from '../components/DynaSpan';
 import etherscan from '../images/etherscan-logo-light.png';
+import twitter from '../images/twitter.png';
 
 import {
   Link
@@ -17,7 +18,11 @@ class MintAnotherComponent extends React.Component {
 
     console.log("txLink: " + txLink);
     // const tokenLink = "https://www.dynastripes.com/token/" + this.state.tokenId;
-    const tokenLink = "https://www.dynastripes.com/";
+
+    const tokenPageLink = encodeURIComponent("https://www.dynastripes.com/");
+    const tweetText = encodeURIComponent("I just minted a DynaStripes #NFT artwork. It's 100% on-chain, generative art! Check it out.");
+    const tweetRelated = encodeURIComponent("volstrate,richardrauser");
+    const tweetUrl = "https://twitter.com/intent/tweet?url=" + tokenPageLink + "&text=" + tweetText + "&related=" + tweetRelated; 
 
     return (
       <div>
@@ -29,12 +34,11 @@ class MintAnotherComponent extends React.Component {
             <Button variant="primary">Visit Gallery</Button>
           </Link>
           <Button variant="primary" onClick={this.props.mintAnother}>Mint Another</Button>
-          
-          <br/>
-          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" target="_blank" rel="noreferrer" class="twitter-share-button" data-size="large" data-text="I just minted a generative, 100% on-chain DynaStripes #NFT artwork. Check it out!" data-url={tokenLink} data-related="volstrate,richardrauser" data-show-count="false">
-                  {/* <Button>
-                    Tweet
-                  </Button> */}
+          <a href={tweetUrl} target ="_blank" rel="noreferrer">
+            <Button>
+              <img className="buttonLogo" alt="twitter logo" src={twitter}/>
+              Tweet
+            </Button>
           </a>
           <br/>
 

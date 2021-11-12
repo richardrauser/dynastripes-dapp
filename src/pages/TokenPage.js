@@ -13,7 +13,6 @@ import { Tooltip } from 'react-bootstrap';
 import DynaStripesContractAddress, { DynaStripesEtherscanLink } from '../utils/Constants';
 import { buildDescriptiveTextFromMetadata } from '../utils/Metadata';
 import { showInfoMessage } from '../utils/UIUtils';
-// import { Share } from 'react-twitter-widgets';
 import opensea from '../images/opensea.svg';
 import twitter from '../images/twitter.png';
 
@@ -122,13 +121,8 @@ class TokenPage extends React.Component {
           ethAddress = ethAddress.substring(0, 6) +  "..." + ethAddress.slice(-4);        
         }
 
-        const tokenLink = "https://www.dynastripes.com/token/" + this.state.tokenId;
-        // const twitterShareOptions = { size: "large" }
-
         const openSeaLink = "https://opensea.io/assets/" + DynaStripesContractAddress + "/" + this.state.tokenId;
         
-        console.log("TOKEN LINK: " + tokenLink);
-
         const renderSvgTooltip = (props) => (
           <Tooltip id="button-tooltip" {...props}>
             Scalable Vector Image -- best quality at various sizes
@@ -140,7 +134,11 @@ class TokenPage extends React.Component {
             fixed-size raster image -- good for web, but won't scale well
           </Tooltip>
         );
-        
+
+        const tokenPageLink = encodeURIComponent("https://www.dynastripes.com/token/" + this.state.tokenId);
+        const tweetText = encodeURIComponent("Check out this generative, 100% on-chain DynaStripes #NFT artwork!");
+        const tweetRelated = encodeURIComponent("volstrate,richardrauser");
+        const tweetUrl = "https://twitter.com/intent/tweet?url=" + tokenPageLink + "&text=" + tweetText + "&related=" + tweetRelated; 
 
         return (
             <div className="mainContent">
@@ -204,16 +202,18 @@ class TokenPage extends React.Component {
                         </OverlayTrigger>
                       </Dropdown.Menu>
                     </Dropdown>
+
                     <Button href={openSeaLink}  target ="_blank" rel="noreferrer">
-                      <img className="openSeaLogoButton" alt="opensea logo" src={opensea}/>
+                      <img className="buttonLogo" alt="opensea logo" src={opensea}/>
                       OpenSea
-                  </Button>
-                  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" target ="_blank" rel="noreferrer" data-size="large" data-text="Check out this generative, 100% on-chain DynaStripes #NFT artwork!" data-url={tokenLink} data-related="volstrate,richardrauser" data-show-count="false">
-                  <Button>
-                  <img className="openSeaLogoButton" alt="opensea logo" src={twitter}/>
-                    Tweet
-                  </Button>
-                  </a>
+                    </Button>
+
+                    <a href={tweetUrl} target ="_blank" rel="noreferrer">
+                      <Button>
+                        <img className="buttonLogo" alt="twitter logo" src={twitter}/>
+                        Tweet
+                      </Button>
+                    </a>
                 </div>
 
                 <Accordion className="singleArtworkTraitsAccordion">
@@ -226,10 +226,6 @@ class TokenPage extends React.Component {
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
-
-                  {/* <Share url = { tokenLink } options= { twitterShareOptions } /> */}
-
-                  {/* <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> */}
 
               </div>  
             </div>
