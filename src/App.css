@@ -229,6 +229,8 @@ div#accountDetails {
   background: #FFF;
   border: 10px solid #EEE; 
   width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .singleArtworkDetail {
