@@ -34,7 +34,6 @@ class TokenCard extends React.Component {
           const svg = metadataObject.image.replace("data:image/svg+xml,", "");
           const encodedSvg = encodeURIComponent(svg);
           const svgDataUri = `data:image/svg+xml,${encodedSvg}`;
-          console.log("SVG: " + svgDataUri);
           
           const descriptiveText = buildDescriptiveTextFromMetadata(metadataObject);
 

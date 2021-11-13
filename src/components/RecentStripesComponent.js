@@ -32,7 +32,7 @@ class RecentStripesComponent extends React.Component {
   
         const tokenCount = await contract.totalSupply();
         console.log("Total supply: " + tokenCount);
-        const maxToDisplay = 15;
+        const maxToDisplay = 12;
         
         for (var i = tokenCount - 1; i >= 0 && i >= tokenCount - maxToDisplay; i--) {
           const tokenId = await contract.tokenByIndex(i);
