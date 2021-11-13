@@ -98,7 +98,7 @@ class HowToPage extends React.Component {
            </div>
 
 
-            Having trouble? Get in touch via the links below.
+            Having trouble? Get in touch via the links below.<br/>
             <SocialLinks/>
 
             </div>
