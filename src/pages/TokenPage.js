@@ -12,7 +12,7 @@ import { create } from 'ipfs-http-client';
 
 import DynaStripesContractAddress, { DynaStripesEtherscanLink } from '../utils/Constants';
 import { buildDescriptiveTextFromMetadata } from '../utils/Metadata';
-import { convertSvgToPng, showInfoMessage } from '../utils/UIUtils';
+import { convertSvgToPng } from '../utils/UIUtils';
 import opensea from '../images/opensea.svg';
 import twitter from '../images/twitter.png';
 
@@ -51,7 +51,6 @@ class TokenPage extends React.Component {
           const metadataObject = JSON.parse(metadataJson);
   
           console.log(this.state.tokenId);
-          const tokenData = await contract.tokenURI(this.state.tokenId);
   
           const svg = metadataObject.image.replace("data:image/svg+xml,", "");
           const encodedSvg = encodeURIComponent(svg);
@@ -70,7 +69,6 @@ class TokenPage extends React.Component {
           if (pngUrl === undefined || pngUrl === null) {
             const ipfsClient = create('https://ipfs.infura.io:5001/api/v0');
             const pngDataUri = await convertSvgToPng(svg);
-            const pngBase64Data = pngDataUri.replace("data:image/png;base64,", "");
             const pngData = this.convertDataURIToBinary(pngDataUri);
             const createdPng = await ipfsClient.add(pngData);
             pngUrl = `https://ipfs.infura.io/ipfs/${createdPng.path}`;
