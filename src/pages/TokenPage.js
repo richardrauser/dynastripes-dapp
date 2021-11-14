@@ -8,13 +8,15 @@ import { Form } from 'react-bootstrap';
 import { Dropdown } from 'react-bootstrap';
 import { OverlayTrigger } from 'react-bootstrap';
 import { Tooltip } from 'react-bootstrap';
+import { create } from 'ipfs-http-client';
 
-// import toImg from 'react-svg-to-image';
 import DynaStripesContractAddress, { DynaStripesEtherscanLink } from '../utils/Constants';
 import { buildDescriptiveTextFromMetadata } from '../utils/Metadata';
-import { showInfoMessage } from '../utils/UIUtils';
+import { convertSvgToPng, showInfoMessage } from '../utils/UIUtils';
 import opensea from '../images/opensea.svg';
 import twitter from '../images/twitter.png';
+
+import getSvgImageUrlForTokenId, { getPngImageUrlForTokenId, setPngImageUrlForTokenId, setSvgImageUrlForTokenId } from '../utils/ImageStore';
 
 class TokenPage extends React.Component {
 
@@ -27,13 +29,14 @@ class TokenPage extends React.Component {
         }
     
         this.fetchMetadata = this.fetchMetadata.bind(this);
-        this.downloadSvg = this.downloadSvg.bind(this);
-        this.downloadPng = this.downloadPng.bind(this);
+        // this.downloadSvg = this.downloadSvg.bind(this);
+        // this.downloadPng = this.downloadPng.bind(this);
     }
     
     componentDidMount() {
         this.fetchMetadata();
     }
+
 
     async fetchMetadata() {
         console.log("Getting SVG for token ID: " + this.state.tokenId);
@@ -44,19 +47,41 @@ class TokenPage extends React.Component {
           const tokenOwner = await contract.ownerOf(this.state.tokenId);
           const metadataDataUri = await contract.tokenURI(this.state.tokenId);
           const metadataJson = metadataDataUri.replace("data:text/plain,", "");
-          
-          console.log(metadataJson);
   
           const metadataObject = JSON.parse(metadataJson);
   
-          // const tokenData = await contract.tokenURI(this.props.tokenId);
-          // console.log(tokenData);
+          console.log(this.state.tokenId);
+          const tokenData = await contract.tokenURI(this.state.tokenId);
   
           const svg = metadataObject.image.replace("data:image/svg+xml,", "");
           const encodedSvg = encodeURIComponent(svg);
           const svgDataUri = `data:image/svg+xml,${encodedSvg}`;
-          console.log("SVG: " + svgDataUri);
 
+          var svgUrl = getSvgImageUrlForTokenId(this.state.tokenId);
+          if (svgUrl === undefined || svgUrl === null) {
+            const ipfsClient = create('https://ipfs.infura.io:5001/api/v0');
+            const createdSvg = await ipfsClient.add(svg);
+            svgUrl = `https://ipfs.infura.io/ipfs/${createdSvg.path}`;  
+            setSvgImageUrlForTokenId(this.state.tokenId, svgUrl);
+          }
+          console.log("IPFS URL SVG: " + svgUrl);
+
+          var pngUrl = getPngImageUrlForTokenId(this.state.tokenId);
+          if (pngUrl === undefined || pngUrl === null) {
+            const ipfsClient = create('https://ipfs.infura.io:5001/api/v0');
+            const pngDataUri = await convertSvgToPng(svg);
+            const pngBase64Data = pngDataUri.replace("data:image/png;base64,", "");
+            const pngData = this.convertDataURIToBinary(pngDataUri);
+            const createdPng = await ipfsClient.add(pngData);
+            pngUrl = `https://ipfs.infura.io/ipfs/${createdPng.path}`;
+            setPngImageUrlForTokenId(this.state.tokenId, pngUrl);
+          }
+          console.log("IPFS PNG URL: " + pngUrl);
+
+          const filePrefix = "DynaStripes" + this.state.tokenId;
+          const svgFileName = filePrefix + ".svg";
+          const pngFileName = filePrefix + ".png";
+        
           const attributes = metadataObject.attributes;
           const descriptiveText = buildDescriptiveTextFromMetadata(metadataObject);
   
@@ -64,6 +89,10 @@ class TokenPage extends React.Component {
             loading: false,
             tokenOwner: tokenOwner,
             tokenSvgDataUri: svgDataUri,
+            tokenSvgUrl: svgUrl,
+            tokenSvgFileName: svgFileName,
+            tokenPngUrl: pngUrl,
+            tokenPngFileName: pngFileName,
             descriptiveTraits: descriptiveText,
             tokenTraits: attributes
           });
@@ -73,28 +102,37 @@ class TokenPage extends React.Component {
         }
     }
 
-    downloadSvg() {
-        const link = document.createElement("a");
-        link.href = this.state.tokenSvgDataUri;
-        link.download = "DynaStripes" + this.state.tokenId +".svg";
-        link.click();
-    }
+    convertDataURIToBinary(dataURI) {
+      var BASE64_MARKER = ';base64,';
+      var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+      var base64 = dataURI.substring(base64Index);
+      var raw = window.atob(base64);
+      var rawLength = raw.length;
+      var array = new Uint8Array(new ArrayBuffer(rawLength));
+    
+      for(var i = 0; i < rawLength; i++) {
+        array[i] = raw.charCodeAt(i);
+      }
+      return array;
+    };
 
-    downloadPng() {
+    // downloadSvg() {
+    //     const link = document.createElement("a");
+    //     link.href = this.state.tokenSvgDataUri;
+    //     link.download = "DynaStripes" + this.state.tokenId +".svg";
+    //     link.click();
+    // }
 
-      showInfoMessage("Save PNG functionality coming soon!");
+    // downloadPng() {
 
-      // const pngFileName = "Dynastripes" + this.state.tokenId + ".png";
-      // toImg('svg', pngFileName , {
-      //   scale: 3,
-      //   format: 'webp',
-      //   quality: 0.01,
-      //   download: false,
-      //   ignore: '.ignored'
-      // }).then(fileData => {
-      //    console.log("PNG DATA: " + fileData);
-      // });      
-    }
+    //   // showInfoMessage("Save PNG functionality coming soon!");
+
+    //   const link = document.createElement("a");
+    //   link.href = this.state.tokenPngUrl;
+    //   link.download = "DynaStripes" + this.state.tokenId +".png";
+    //   link.click();
+
+    // }
     
 
       render() {
@@ -154,34 +192,6 @@ class TokenPage extends React.Component {
                   Owned by: <a href={etherscanLink}  target="_blank" rel="noreferrer">  { ethAddress } </a> <br/>
                   </div>
 
-
-                  {/* <Accordion defaultActiveKey="0">
-                    <Accordion.Item eventKey="0">
-                      <Accordion.Header>Accordion Item #1</Accordion.Header>
-                      <Accordion.Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                        est laborum.
-                      </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="1">
-                      <Accordion.Header>Accordion Item #2</Accordion.Header>
-                      <Accordion.Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                        est laborum.
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion> */}
-                  
                   <div className="actions">
                     <Dropdown>
                       <Dropdown.Toggle id="dropdown-basic">
@@ -192,13 +202,13 @@ class TokenPage extends React.Component {
                           placement="right"
                           delay={{ show: 50, hide: 400 }} 
                           overlay={renderSvgTooltip}> 
-                          <Dropdown.Item onClick={ this.downloadSvg }>SVG vector image</Dropdown.Item>
+                          <Dropdown.Item href={this.state.tokenSvgUrl} download={this.state.tokenSvgFileName}>SVG vector image</Dropdown.Item>
                         </OverlayTrigger> 
                         <OverlayTrigger
                           placement="right"
                           delay={{ show: 50, hide: 400 }}
                           overlay={renderPngTooltip}> 
-                          <Dropdown.Item onClick={ this.downloadPng }>PNG raster image</Dropdown.Item>
+                          <Dropdown.Item href={this.state.tokenPngUrl} download={this.state.tokenPngUrl}>PNG raster image</Dropdown.Item>
                         </OverlayTrigger>
                       </Dropdown.Menu>
                     </Dropdown>
@@ -216,13 +226,11 @@ class TokenPage extends React.Component {
                     </a>
                 </div>
 
-                <Accordion className="singleArtworkTraitsAccordion">
+                <Accordion className="singletokenTraitsAccordion">
                   <Accordion.Item eventKey="0">
                     <Accordion.Header>Traits JSON</Accordion.Header>
                     <Accordion.Body>
-                    <Form.Control className="traits" as="textarea" rows={10}>
-                        { JSON.stringify(this.state.tokenTraits, null, 2) }
-                    </Form.Control>
+                       <Form.Control className="traits" as="textarea" readOnly={true} rows={10} value={ JSON.stringify(this.state.tokenTraits, null, 2) }/>
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
@@ -233,6 +241,6 @@ class TokenPage extends React.Component {
             </div>
         );
     }
-}
+  }
 
 export default TokenPage;

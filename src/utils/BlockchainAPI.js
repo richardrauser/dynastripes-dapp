@@ -4,6 +4,8 @@ import DynaStripes from '../artifacts/contracts/DynaStripes.sol/DynaStripes.json
 import * as Errors from './ErrorMessages';
 import DynaStripesContractAddress, { DynaStripesCurrentEthNeworkID } from './Constants';
 
+const AccountDetailsKey = "DS_ACCOUNT_DETAILS_KEY";
+
 function checkWallet() {
   // console.log("Checking wallet...");
   if (typeof window.ethereum === 'undefined') {
@@ -53,8 +55,6 @@ export async function getContractWithSigner() {
   const contractWithSigner = contract.connect(signer);  
   return contractWithSigner;
 }
-
-const AccountDetailsKey = "DS_ACCOUNT_DETAILS_KEY";
 
 export async function isAccountConnected() {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
