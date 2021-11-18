@@ -60,8 +60,7 @@ class TokenPage extends React.Component {
 
             const ipfsClient = create('https://ipfs.infura.io:5001/api/v0');
             const svg = metadataObject.image.replace("data:image/svg+xml,", "");
-            const encodedSvg = encodeURIComponent(svg);
-              const createdSvg = await ipfsClient.add(svg);
+            const createdSvg = await ipfsClient.add(svg);
             const svgUrl = `https://ipfs.infura.io/ipfs/${createdSvg.path}`;  
 
             const pngDataUri = await convertSvgToPng(svg);
