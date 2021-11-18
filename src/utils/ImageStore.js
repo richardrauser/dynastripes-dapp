@@ -1,11 +1,8 @@
-import { JsonRpcBatchProvider } from '@ethersproject/providers';
 import faunadb from 'faunadb';
 
-const UrlPrefixSvg = "DS_TOKEN_IMAGE_URL_PREFIX_SVG_";
-const UrlPrefixPng = "DS_TOKEN_IMAGE_SURL_PREFIX_PNG_";
-
 const ImageStoreCollectionName = "token-image-mapping";
-const ImageDataLocalStorageKeyPrefix = "DS_IMAGE_DATA_";
+//const ImageDataLocalStorageKeyPrefix = "DS_IMAGE_DATA_";
+
 class ImageData {
     constructor(svgUrl, pngUrl) {
         this.svgUrl = svgUrl;

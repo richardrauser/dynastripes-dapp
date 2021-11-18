@@ -84,7 +84,7 @@ export async function fetchAccount() {
 
   console.log("Fetching account..");
   const provider = await getProvider();
-  const [account] = await provider.listAccounts();
+  var [account] = await provider.listAccounts();
 
   console.log("GOT ACCOUNT: " + account);
   if (account === undefined || account === null)  {
