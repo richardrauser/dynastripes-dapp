@@ -9,6 +9,7 @@ import { Dropdown } from 'react-bootstrap';
 import { OverlayTrigger } from 'react-bootstrap';
 import { Tooltip } from 'react-bootstrap';
 import { create } from 'ipfs-http-client';
+import { Helmet } from 'react-helmet';
 
 import DynaStripesContractAddress, { DynaStripesEtherscanLink } from '../utils/Constants';
 import { buildDescriptiveTextFromMetadata } from '../utils/Metadata';
@@ -16,13 +17,15 @@ import { convertSvgToPng } from '../utils/UIUtils';
 import opensea from '../images/opensea.svg';
 import twitter from '../images/twitter.png';
 
-import getSvgImageUrlForTokenId, { getPngImageUrlForTokenId, setPngImageUrlForTokenId, setSvgImageUrlForTokenId } from '../utils/ImageStore';
+import ImageStore from '../utils/ImageStore';
 
 class TokenPage extends React.Component {
 
     constructor(props) {
         super(props);
   
+        this.imageStore = new ImageStore();
+
         this.state = {
           loading: true,
           tokenId: this.props.match.params.tokenId,
@@ -50,31 +53,26 @@ class TokenPage extends React.Component {
   
           const metadataObject = JSON.parse(metadataJson);
   
-          console.log(this.state.tokenId);
-  
-          const svg = metadataObject.image.replace("data:image/svg+xml,", "");
-          const encodedSvg = encodeURIComponent(svg);
-          const svgDataUri = `data:image/svg+xml,${encodedSvg}`;
+          var imageData = await this.imageStore.fetchImageDataForTokenId(this.state.tokenId);
 
-          var svgUrl = getSvgImageUrlForTokenId(this.state.tokenId);
-          if (svgUrl === undefined || svgUrl === null) {
-            const ipfsClient = create('https://ipfs.infura.io:5001/api/v0');
-            const createdSvg = await ipfsClient.add(svg);
-            svgUrl = `https://ipfs.infura.io/ipfs/${createdSvg.path}`;  
-            setSvgImageUrlForTokenId(this.state.tokenId, svgUrl);
-          }
-          console.log("IPFS URL SVG: " + svgUrl);
+          if (imageData === undefined || imageData === null) {
+            console.log("Image data not in ImageStore.. getting and persisting..");
 
-          var pngUrl = getPngImageUrlForTokenId(this.state.tokenId);
-          if (pngUrl === undefined || pngUrl === null) {
             const ipfsClient = create('https://ipfs.infura.io:5001/api/v0');
+            const svg = metadataObject.image.replace("data:image/svg+xml,", "");
+            const encodedSvg = encodeURIComponent(svg);
+              const createdSvg = await ipfsClient.add(svg);
+            const svgUrl = `https://ipfs.infura.io/ipfs/${createdSvg.path}`;  
+
             const pngDataUri = await convertSvgToPng(svg);
             const pngData = this.convertDataURIToBinary(pngDataUri);
             const createdPng = await ipfsClient.add(pngData);
-            pngUrl = `https://ipfs.infura.io/ipfs/${createdPng.path}`;
-            setPngImageUrlForTokenId(this.state.tokenId, pngUrl);
+            const pngUrl = `https://ipfs.infura.io/ipfs/${createdPng.path}`;
+
+            imageData = this.imageStore.setImageDataForTokenId(this.state.tokenId, svgUrl, pngUrl);
           }
-          console.log("IPFS PNG URL: " + pngUrl);
+
+          console.log("IMAGE DATA: " + JSON.stringify(imageData));
 
           const filePrefix = "DynaStripes" + this.state.tokenId;
           const svgFileName = filePrefix + ".svg";
@@ -86,10 +84,9 @@ class TokenPage extends React.Component {
           this.setState({
             loading: false,
             tokenOwner: tokenOwner,
-            tokenSvgDataUri: svgDataUri,
-            tokenSvgUrl: svgUrl,
+            tokenSvgUrl: imageData.svgUrl,
             tokenSvgFileName: svgFileName,
-            tokenPngUrl: pngUrl,
+            tokenPngUrl: imageData.pngUrl,
             tokenPngFileName: pngFileName,
             descriptiveTraits: descriptiveText,
             tokenTraits: attributes
@@ -161,13 +158,13 @@ class TokenPage extends React.Component {
         
         const renderSvgTooltip = (props) => (
           <Tooltip id="button-tooltip" {...props}>
-            Scalable Vector Image -- best quality at various sizes
+            animated scalable vector image -- best quality at various sizes
           </Tooltip>
         );
         
         const renderPngTooltip = (props) => (
           <Tooltip id="button-tooltip" {...props}>
-            fixed-size raster image -- good for web, but won't scale well
+            still, fixed-size raster image -- nonanimated first frame of image, good for web, but won't scale well
           </Tooltip>
         );
 
@@ -178,63 +175,71 @@ class TokenPage extends React.Component {
 
         return (
             <div className="mainContent">
-            <div className="content">
-              <h1><DynaSpan/> token #{this.state.tokenId}</h1>
-              <div className="deepContent">
-                  <div className="singleArtwork">
-                      <img alt={"DynaStripes token " + this.state.tokenId} src={ this.state.tokenSvgDataUri } />
-                  </div>
-    
-                  <div className="singleArtworkDetail">
-                  { this.state.descriptiveTraits } <br/>
-                  Owned by: <a href={etherscanLink}  target="_blank" rel="noreferrer">  { ethAddress } </a> <br/>
-                  </div>
+              <Helmet>
+                <meta data-rh="true" name="twitter:title" content="DynaStripes Artwork" />
+                <meta data-rh="true" name="twitter:image:src" content={ this.state.svgUrl }/>
+                <meta data-rh="true" name="twitter:image:alt" content="DynaStripes Artwork"/>
+                <meta property="og:title" content="DynaStripes Artwork"/>
+                <meta property="og:image" content={ this.state.svgUrl }/>
+                <title>DynaStripes Artwork {this.state.tokenId } </title>
+              </Helmet>
+              <div className="content">
+                <h1><DynaSpan/> token #{this.state.tokenId}</h1>
+                <div className="deepContent">
+                    <div className="singleArtwork">
+                        <img alt={"DynaStripes token " + this.state.tokenId} src={ this.state.tokenSvgUrl } />
+                    </div>
+      
+                    <div className="singleArtworkDetail">
+                    { this.state.descriptiveTraits } <br/>
+                    Owned by: <a href={etherscanLink}  target="_blank" rel="noreferrer">  { ethAddress } </a> <br/>
+                    </div>
 
-                  <div className="actions">
-                    <Dropdown>
-                      <Dropdown.Toggle id="dropdown-basic">
-                        Save Image
-                      </Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        <OverlayTrigger
-                          placement="right"
-                          delay={{ show: 50, hide: 400 }} 
-                          overlay={renderSvgTooltip}> 
-                          <Dropdown.Item href={this.state.tokenSvgUrl} download={this.state.tokenSvgFileName}>SVG vector image</Dropdown.Item>
-                        </OverlayTrigger> 
-                        <OverlayTrigger
-                          placement="right"
-                          delay={{ show: 50, hide: 400 }}
-                          overlay={renderPngTooltip}> 
-                          <Dropdown.Item href={this.state.tokenPngUrl} download={this.state.tokenPngUrl}>PNG raster image</Dropdown.Item>
-                        </OverlayTrigger>
-                      </Dropdown.Menu>
-                    </Dropdown>
+                    <div className="actions">
+                      <Dropdown>
+                        <Dropdown.Toggle id="dropdown-basic">
+                          Save Image
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                          <OverlayTrigger
+                            placement="right"
+                            delay={{ show: 50, hide: 400 }} 
+                            overlay={renderSvgTooltip}> 
+                            <Dropdown.Item href={this.state.tokenSvgUrl} download={this.state.tokenSvgFileName}>animated SVG</Dropdown.Item>
+                          </OverlayTrigger> 
+                          <OverlayTrigger
+                            placement="right"
+                            delay={{ show: 50, hide: 400 }}
+                            overlay={renderPngTooltip}> 
+                            <Dropdown.Item href={this.state.tokenPngUrl} download={this.state.tokenPngUrl}>still PNG</Dropdown.Item>
+                          </OverlayTrigger>
+                        </Dropdown.Menu>
+                      </Dropdown>
 
-                    <Button href={openSeaLink}  target ="_blank" rel="noreferrer">
-                      <img className="buttonLogo" alt="opensea logo" src={opensea}/>
-                      OpenSea
-                    </Button>
-
-                    <a href={tweetUrl} target ="_blank" rel="noreferrer">
-                      <Button>
-                        <img className="buttonLogo" alt="twitter logo" src={twitter}/>
-                        Tweet
+                      <Button href={openSeaLink}  target ="_blank" rel="noreferrer">
+                        <img className="buttonLogo" alt="opensea logo" src={opensea}/>
+                        OpenSea
                       </Button>
-                    </a>
-                </div>
 
-                <Accordion className="singletokenTraitsAccordion">
-                  <Accordion.Item eventKey="0">
-                    <Accordion.Header>Traits JSON</Accordion.Header>
-                    <Accordion.Body>
-                       <Form.Control className="traits" as="textarea" readOnly={true} rows={10} value={ JSON.stringify(this.state.tokenTraits, null, 2) }/>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>
+                      <a href={tweetUrl} target ="_blank" rel="noreferrer">
+                        <Button>
+                          <img className="buttonLogo" alt="twitter logo" src={twitter}/>
+                          Tweet
+                        </Button>
+                      </a>
+                  </div>
 
-              </div>  
-            </div>
+                  <Accordion className="singleArtworkTraitsAccordion">
+                    <Accordion.Item eventKey="0">
+                      <Accordion.Header>Traits JSON</Accordion.Header>
+                      <Accordion.Body>
+                        <Form.Control className="traits" as="textarea" readOnly={true} rows={10} value={ JSON.stringify(this.state.tokenTraits, null, 2) }/>
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  </Accordion>
+
+                </div>  
+              </div>
 
             </div>
         );

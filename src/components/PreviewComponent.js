@@ -3,7 +3,6 @@ import React from 'react';
 class PreviewComponent extends React.Component {
 
     render() {
-        console.log("Rendering preview: " + this.props.svg)
         const svgString = encodeURIComponent(this.props.svg);
         const svgDataUri = `data:image/svg+xml,${svgString}`;
 

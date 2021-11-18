@@ -81,13 +81,13 @@ class DynaNavLoginDropdown extends React.Component {
       //   console.log("Metamask lockiepooed.");
       //   showErrorMessage("Please unlock MetaMask.");
       // } else {
-        try {
+        // try {
           this.fetchAccountDetails();
-        } catch (err) {
-          console.log("ERROR: " + err.message);
+        // } catch (err) {
+        //   console.log("ERROR: " + err.message);
 
-          handleError(err);
-        }
+        //   handleError(err);
+        // }
       // }
     }
 
@@ -110,7 +110,6 @@ class DynaNavLoginDropdown extends React.Component {
     }
 
     async fetchAccountDetails() {
-      console.log("Fetching account details..");
 
       this.setState({
         isLoading: true,

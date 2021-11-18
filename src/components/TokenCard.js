@@ -27,8 +27,6 @@ class TokenCard extends React.Component {
           const metadataDataUri = await contract.tokenURI(this.props.tokenId);
           const metadataJson = metadataDataUri.replace("data:text/plain,", "");
           
-          console.log(metadataJson);
-  
           const metadataObject = JSON.parse(metadataJson);
   
           const svg = metadataObject.image.replace("data:image/svg+xml,", "");

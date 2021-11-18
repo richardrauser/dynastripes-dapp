@@ -3,28 +3,44 @@ import { ethers } from 'ethers';
 import DynaStripes from '../artifacts/contracts/DynaStripes.sol/DynaStripes.json';
 import * as Errors from './ErrorMessages';
 import DynaStripesContractAddress, { DynaStripesCurrentEthNeworkID } from './Constants';
+// import Web3Modal from "web3modal";
 
 const AccountDetailsKey = "DS_ACCOUNT_DETAILS_KEY";
 
+async function getProvider() {
+  // const provider = ethers.getDefaultProvider('ropsten');
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  // const provider = new ethers.providers.getDefaultProvider();
+
+  // const providerOptions = {};
+  // const web3Modal = new Web3Modal({
+  //   network: "mainnet",
+  //   cacheProvider: true,
+  //   providerOptions
+  // });
+
+
+  // const provider = await web3Modal.connect();
+
+  // const ethersProvider = new ethers.providers.Web3Provider(provider);
+
+  // return ethersProvider;
+  return provider;
+}
+
 function checkWallet() {
-  // console.log("Checking wallet...");
   if (typeof window.ethereum === 'undefined') {
-    // console.log('Could not get wallet. Throwing error NO_ETH_WALLET');
+    console.log('Could not get wallet. Throwing error NO_ETH_WALLET');
     throw Error(Errors.DS_NO_ETH_WALLET);
   } else {
-    // console.log('Has wallet.');
+    console.log('Has wallet.');
   }
 }
 export async function getContract() {
   checkWallet();
-  // const provider = new ethers.providers.Web3Provider(window.ethereum);
-  // const contract = new ethers.Contract(DynaStripesContractAddress, DynaStripes.abi, provider);
-  // const provider = new ethers.providers.getNetwork("Ropsten");
+  const provider = await getProvider();
 
-  // const provider = ethers.getDefaultProvider('ropsten');
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-  const { chainId } = await provider.getNetwork()
+  const { chainId } = await provider.getNetwork();
   console.log("CHAIN ID: " + chainId); // 42
   
   if (chainId !== DynaStripesCurrentEthNeworkID) {
@@ -38,18 +54,14 @@ export async function getContract() {
 
 export async function getSigner() {
   checkWallet();
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const provider = await getProvider();
   const signer = provider.getSigner();
   return signer;
 }
 
 export async function getContractWithSigner() {
   checkWallet();
-
-  // const provider = new ethers.providers.Web3Provider(window.ethereum);
-  // const contract = new ethers.Contract(DynaStripesContractAddress, DynaStripes.abi, provider);
-  // const provider = ethers.getDefaultProvider('ropsten');
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const provider = await getProvider();
   const contract = new ethers.Contract(DynaStripesContractAddress, DynaStripes.abi, provider);
   const signer = provider.getSigner();
   const contractWithSigner = contract.connect(signer);  
@@ -57,8 +69,9 @@ export async function getContractWithSigner() {
 }
 
 export async function isAccountConnected() {
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const provider = await getProvider();
   const [account] = await provider.listAccounts();
+
   console.log("isAccountConnected, account: " + account);
   if (account === undefined || account === null) {
     return false;
@@ -69,10 +82,11 @@ export async function isAccountConnected() {
 export async function fetchAccount() {
   checkWallet();
 
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  var [account] = await provider.listAccounts();
-  
-  console.log("GOT ACCOUNT FROM LIST ACCOUNTS: " + account);
+  console.log("Fetching account..");
+  const provider = await getProvider();
+  const [account] = await provider.listAccounts();
+
+  console.log("GOT ACCOUNT: " + account);
   if (account === undefined || account === null)  {
     [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
 
@@ -89,7 +103,7 @@ export async function fetchAccountDetails() {
   console.log("Fetching account details..");
     
   const account = await fetchAccount();
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const provider = await getProvider();
 
   const fullAddress = account.toString();
   var shortenedAddress = fullAddress;
@@ -102,7 +116,6 @@ export async function fetchAccountDetails() {
   const weiBalance = await provider.getBalance(account);
   const displayBalance = Number(ethers.utils.formatEther(weiBalance)).toFixed(4);
 
-  console.log("HERE");
   var accountDetails = new AccountDetails(shortenedAddress, fullAddress, weiBalance.toString(), displayBalance.toString());
 
   localStorage.setItem(AccountDetailsKey, JSON.stringify(accountDetails));
