@@ -176,10 +176,10 @@ class TokenPage extends React.Component {
             <div className="mainContent">
               <Helmet>
                 <meta data-rh="true" name="twitter:title" content="DynaStripes Artwork" />
-                <meta data-rh="true" name="twitter:image:src" content={ this.state.tokenSvgUrl }/>
+                <meta data-rh="true" name="twitter:image:src" content={ this.state.tokenPngUrl }/>
                 <meta data-rh="true" name="twitter:image:alt" content="DynaStripes Artwork"/>
                 <meta property="og:title" content="DynaStripes Artwork"/>
-                <meta property="og:image" content={ this.state.tokenSvgUrl }/>
+                <meta property="og:image" content={ this.state.tokenPngUrl }/>
                 <title>DynaStripes Artwork {this.state.tokenId }</title>
               </Helmet>
               <div className="content">
