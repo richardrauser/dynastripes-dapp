@@ -54,10 +54,10 @@ class AboutPage extends React.Component {
                 <h3>
                   Royalties
                 </h3>
-                  <p>The <DynaSpan/> smart contract implements the newly ratified ERC-2981 royalty standard of August 2021 in an unconventional way. Most NFT creators use this standard to collect royalties for themselves in perpetuity, however <DynaSpan/> instead assigns the minter (i.e. the person who creates the work via this dApp) to be the permanent and perpetual recipient of all royalties. The royalty rate is fixed at 10% of all secondary sales.
+                  <p>The <DynaSpan/> smart contract implements the newly ratified EIP-2981 royalty standard of August 2021 in an unconventional way. Most NFT creators use this standard to collect royalties for themselves in perpetuity, however <DynaSpan/> instead assigns the minter (i.e. the person who creates the work via this dApp) to be the permanent and perpetual recipient of all royalties. The royalty rate is fixed at 10% of all secondary sales.
                   </p>
 
-                  <p>ERC-2981 is a new but incredibly popular new Ethereum standard that is likely to be supported by many NFT marketplaces in future as its adoption proliferates. The standard was ratified in August 2021, whith Known Origin supporting it as of October 2021, and plans for OpenSea to support it in 2022.
+                  <p>EIP-2981 is a new but incredibly popular new Ethereum standard that is likely to be supported by many NFT marketplaces in future as its adoption proliferates. The standard was ratified in August 2021, whith Known Origin supporting it as of October 2021, and plans for OpenSea to support it in 2022.
                   </p>
 
                 <h3>
@@ -100,7 +100,7 @@ class AboutPage extends React.Component {
                  Proof podcast has been full of many "ah-ha" moments and NFT idea stimulation. A must listen to anyone interested in the NFT space.
                 </li>
                 <li> 
-                  <a className="externalLink" href="https://twitter.com/dievardump" target="_blank" rel="noreferrer">dievardump</a>: Simon Fremaux created the <a className="externalLink" href="https://github.com/dievardump/EIP2981-implementation" target="_blank" rel="noreferrer">reference implmentation</a> of the ERC-2981 per token royalties contract that is used by <DynaSpan /> to pay royalties. He is also the creator of the awesome  <a className="externalLink" href="https://solseedlings.art/" target="_blank" rel="noreferrer">SolSeedlings</a> project, amongst others.
+                  <a className="externalLink" href="https://twitter.com/dievardump" target="_blank" rel="noreferrer">dievardump</a>: Simon Fremaux created the <a className="externalLink" href="https://github.com/dievardump/EIP2981-implementation" target="_blank" rel="noreferrer">reference implmentation</a> of the EIP-2981 per token royalties contract that is used by <DynaSpan /> to pay royalties. He is also the creator of the awesome  <a className="externalLink" href="https://solseedlings.art/" target="_blank" rel="noreferrer">SolSeedlings</a> project, amongst others.
                 </li>
               </ol>
 
