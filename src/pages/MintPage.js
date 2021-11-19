@@ -87,13 +87,7 @@ class MintPage extends React.Component {
         speedRange: [randomSpeedMin, randomSpeedMax],
       };
 
-      console.log(JSON.stringify(state));
-
       this.setState(state);
-
-      
-      
-      
     }
   
     zoomChanged(value, index) {
@@ -243,7 +237,6 @@ class MintPage extends React.Component {
 
       try {
         const contractWithSigner = await getContractWithSigner(); 
-    
 
         console.log("Minting dynastripes: " + rotationMin + " "  + rotationMax + " " + zoom + " " + widthMin + " " + widthMax + " " + speedMin + " " + speedMax)
 
@@ -282,7 +275,7 @@ class MintPage extends React.Component {
       const speedMin = this.state.speedRange[0];
       const speedMax = this.state.speedRange[1];
 
-      // const traits = this.getDescriptiveTraits(zoom, tintColour.r, tintColour.g, tintColour.b, tintColour.a * 155, rotationMin, rotationMax, widthMin, widthMax, speedMin, speedMax);
+      const traits = this.getDescriptiveTraits(zoom, tintColour.r, tintColour.g, tintColour.b, Math.round(tintColour.a * 255), rotationMin, rotationMax, widthMin, widthMax, speedMin, speedMax);
 
       const svg = generateDynaStripes(this.state.randomSeed, zoom, tintColour, rotationMin, rotationMax, widthMin, widthMax, speedMin, speedMax, false);
 
@@ -293,7 +286,7 @@ class MintPage extends React.Component {
           <div id="mint" className="content">
             <h1>Mint your own <DynaSpan/> NFT</h1>
             <center>
-              { this.state.doneSuccess ? <MintAnotherComponent txHash={this.state.txHash} mintAnother={this.mintAnother} /> : <MintOptions svg={svg} mintPrice={this.state.mintPrice} rotationRange={this.state.rotationRange} rotationRangeChanged={this.rotationRangeChanged} zoom={this.state.zoom} zoomChanged={this.zoomChanged} tintColour={this.state.tintColour} tintColourChanged={this.tintColourChanged} tintAlphaChanged={this.tintAlphaChanged}  widthRange={this.state.widthRange} widthRangeChanged={this.widthRangeChanged} speedRange={this.state.speedRange} speedRangeChanged={this.speedRangeChanged} mint={this.mint} refresh={this.refresh} /> }
+              { this.state.doneSuccess ? <MintAnotherComponent txHash={this.state.txHash} mintAnother={this.mintAnother} /> : <MintOptions svg={svg} traits={traits} mintPrice={this.state.mintPrice} rotationRange={this.state.rotationRange} rotationRangeChanged={this.rotationRangeChanged} zoom={this.state.zoom} zoomChanged={this.zoomChanged} tintColour={this.state.tintColour} tintColourChanged={this.tintColourChanged} tintAlphaChanged={this.tintAlphaChanged}  widthRange={this.state.widthRange} widthRangeChanged={this.widthRangeChanged} speedRange={this.state.speedRange} speedRangeChanged={this.speedRangeChanged} mint={this.mint} refresh={this.refresh} /> }
             </center>
           </div>
         </div>
@@ -354,7 +347,7 @@ class MintPage extends React.Component {
       } else if (stripeWidthMax < 100) {
           form = "thin";
       } else {
-          form = "randomish";
+          form = "abstract";// "randomish";
       }
 
       var colourWay; 

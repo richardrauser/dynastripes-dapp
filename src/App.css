@@ -168,7 +168,7 @@ h5 {
 } */
 
 .mintRow {
-  margin: 16px 0;
+  margin: 16px 0 0;
   display: flex;
   text-align: center;
   /* clear: both; */
@@ -268,6 +268,12 @@ div.mintInput input {
 #mintSpinner {
   height: 16px;
   width: 16px;
+}
+
+.textTraits {
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
 }
 
 .mintEther {

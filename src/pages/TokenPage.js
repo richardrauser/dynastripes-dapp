@@ -52,18 +52,27 @@ class TokenPage extends React.Component {
           const metadataJson = metadataDataUri.replace("data:text/plain,", "");
   
           const metadataObject = JSON.parse(metadataJson);
-  
+          const svgDataUri = metadataObject.image;
+          const svg = svgDataUri.replace("data:image/svg+xml,", "");
+          const encodedSvgDataUri = "data:image/svg+xml," + encodeURIComponent(svg);
+
+          const pngDataUri = await convertSvgToPng(svg);
+          const png = pngDataUri.replace("data:image/png;base64,", "");
+          const encodedPngDataUri = "data:image/png;base64" + encodeURIComponent(png);
+
+          console.log(pngDataUri);
+          console.log("-----");
+          console.log(encodedPngDataUri);
+
           var imageData = await this.imageStore.fetchImageDataForTokenId(this.state.tokenId);
 
           if (imageData === undefined || imageData === null) {
             console.log("Image data not in ImageStore.. getting and persisting..");
 
             const ipfsClient = create('https://ipfs.infura.io:5001/api/v0');
-            const svg = metadataObject.image.replace("data:image/svg+xml,", "");
             const createdSvg = await ipfsClient.add(svg);
             const svgUrl = `https://ipfs.infura.io/ipfs/${createdSvg.path}`;  
 
-            const pngDataUri = await convertSvgToPng(svg);
             const pngData = this.convertDataURIToBinary(pngDataUri);
             const createdPng = await ipfsClient.add(pngData);
             const pngUrl = `https://ipfs.infura.io/ipfs/${createdPng.path}`;
@@ -84,8 +93,10 @@ class TokenPage extends React.Component {
             loading: false,
             tokenOwner: tokenOwner,
             tokenSvgUrl: imageData.svgUrl,
+            tokenSvgDataUri: encodedSvgDataUri,
             tokenSvgFileName: svgFileName,
             tokenPngUrl: imageData.pngUrl,
+            tokenPngDataUri: pngDataUri,
             tokenPngFileName: pngFileName,
             descriptiveTraits: descriptiveText,
             tokenTraits: attributes
@@ -204,13 +215,13 @@ class TokenPage extends React.Component {
                             placement="right"
                             delay={{ show: 50, hide: 400 }} 
                             overlay={renderSvgTooltip}> 
-                            <Dropdown.Item href={this.state.tokenSvgUrl} download={this.state.tokenSvgFileName}>animated SVG</Dropdown.Item>
+                            <Dropdown.Item href={this.state.tokenSvgDataUri} download={this.state.tokenSvgFileName}>animated SVG</Dropdown.Item>
                           </OverlayTrigger> 
                           <OverlayTrigger
                             placement="right"
                             delay={{ show: 50, hide: 400 }}
                             overlay={renderPngTooltip}> 
-                            <Dropdown.Item href={this.state.tokenPngUrl} download={this.state.tokenPngUrl}>still PNG</Dropdown.Item>
+                            <Dropdown.Item href={this.state.tokenPngDataUri} download={this.state.tokenPngFileName}>still PNG</Dropdown.Item>
                           </OverlayTrigger>
                         </Dropdown.Menu>
                       </Dropdown>
