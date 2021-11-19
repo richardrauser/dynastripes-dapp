@@ -67,7 +67,7 @@ class HomePage extends React.Component {
                       <b>NFT:</b> ERC-721 compliant non-fungible token smart contract
                     </li>              
                     <li>
-                      <b>Royalties:</b> ERC-2981 compliant, you earn all royalties
+                      <b>Royalties:</b> EIP-2981 compliant, you earn all royalties
                     </li>              
                   </ul>
                 </div>
