@@ -106,6 +106,11 @@ class ConnectButton extends React.Component {
   
     render() {
         
+        return (
+            <Button disabled="true" onClick>Minting Disabled</Button>
+        );    
+
+
         if (this.state.isLoading === true) {
             return (
                 <Spinner animation="grow" />

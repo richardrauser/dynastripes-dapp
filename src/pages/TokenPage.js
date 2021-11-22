@@ -197,7 +197,7 @@ class TokenPage extends React.Component {
                 <h1><DynaSpan/> token #{this.state.tokenId}</h1>
                 <div className="deepContent">
                     <div className="singleArtwork">
-                        <img alt={"DynaStripes token " + this.state.tokenId} src={ this.state.tokenSvgUrl } />
+                        <img alt={"DynaStripes token " + this.state.tokenId} src={ this.state.tokenSvgDataUri } />
                     </div>
       
                     <div className="singleArtworkDetail">
