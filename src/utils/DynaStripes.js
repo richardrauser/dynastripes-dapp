@@ -24,8 +24,8 @@ function generateRandomStripesDataUri() {
     return `url("data:image/svg+xml,${svgString}")`;
 }
 
-function generateDynaStripes(randomSeed, zoom, tintColour, rotationMin, rotationMax, widthMin, widthMax, speedMin, speedMax) {
-    console.log("Generating dynastripes: " + randomSeed + " " + zoom + " " + rotationMin + " "  + rotationMax + " " + widthMin + " " + widthMax + " " + speedMin + " " + speedMax)
+function generateDynaStripes(randomSeed, zoom, tintColour, rotationDegrees, rotationVariation, widthMin, widthMax, speedMin, speedMax) {
+    console.log("Generating dynastripes: " + randomSeed + " " + zoom + " " + rotationDegrees + " "  + rotationVariation + " " + widthMin + " " + widthMax + " " + speedMin + " " + speedMax)
 
     if (tintColour === null) {
         tintColour = { r: 0, g: 0, b: 0, a: 0 };
@@ -34,9 +34,9 @@ function generateDynaStripes(randomSeed, zoom, tintColour, rotationMin, rotation
     const viewBoxClipRect = getViewBoxClipRect(zoom);
     const viewBox = viewBoxClipRect[0];
     const clipRect = viewBoxClipRect[1];
-    const rendering = rotationMin === rotationMax ? 'crispEdges' : 'auto';
+    const rendering = rotationVariation === 0 ? 'crispEdges' : 'auto';
     const defs = "<defs><clipPath id='masterClip'><rect " + clipRect + "/></clipPath></defs>";
-    const rects = getRects(randomSeed, tintColour, rotationMin, rotationMax, widthMin, widthMax, speedMin, speedMax);
+    const rects = getRects(randomSeed, tintColour, rotationDegrees, rotationVariation, widthMin, widthMax, speedMin, speedMax);
 
     return "<svg xmlns='http://www.w3.org/2000/svg' viewBox='" + viewBox + "' shape-rendering='" + rendering + "'>" + defs + "<g clip-path='url(#masterClip)'>" + rects + "</g></svg>";
 }
@@ -60,7 +60,7 @@ function getViewBoxClipRect(zoom) {
     return [viewBox, clipRect];
 }
 
-function getRects(randomSeed, tintColour, rotationMin, rotationMax, widthMin, widthMax, speedMin, speedMax) {
+function getRects(randomSeed, tintColour, rotationDegrees, rotationRange, widthMin, widthMax, speedMin, speedMax) {
     var xPos = 0;
     var rects = "";
 
@@ -74,7 +74,7 @@ function getRects(randomSeed, tintColour, rotationMin, rotationMax, widthMin, wi
             stripeWidth += (2000 - xPos) - stripeWidth;
         }
 
-        const rotation = randomIntFromInterval(randomSeed + 1, rotationMin, rotationMax);
+        const rotation = getRotation(randomSeed + 1, rotationDegrees, rotationRange);
         const speed = randomIntFromInterval(randomSeed + 2, speedMin, speedMax) * 20;
         const firstColour = getColour(randomSeed + 3, tintColour);
         const secondColour = getColour(randomSeed + 13, tintColour);
@@ -91,6 +91,29 @@ function getRects(randomSeed, tintColour, rotationMin, rotationMax, widthMin, wi
     }
  
     return rects;
+}
+
+function getRotation(randomSeed, rotationDegrees, rotationRange) {
+    const randomDegrees = randomIntFromInterval(randomSeed, 0, rotationRange);
+    var rotation = 0;
+
+    console.log("Rotation range: " + rotationRange);
+    console.log("Random degreees: " + randomDegrees);
+
+    if (randomDegrees === 0) {
+        rotation = rotationDegrees;
+    } else if (randomDegrees < rotationRange) {
+        rotation = 360 + rotationDegrees - randomDegrees + rotationRange / 2; 
+    } else {
+        rotation = rotationDegrees + randomDegrees - rotationRange / 2;
+    }
+
+    if (rotation > 360) {
+        rotation = rotation - 360;
+    }
+
+    console.log("Final rotation: " + rotation);
+    return rotation;
 }
 
 function getColour(randomSeed, tintColour) {

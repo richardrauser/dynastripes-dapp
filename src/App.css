@@ -247,16 +247,13 @@ div#accountDetails {
 
 }
 
-.spinner-grow {
-  
-}
-
 .token {
   margin: 16px;
   opacity: 1;
 }
 
 p.success {
+  margin-top: 16px;
   font-size: 18px;
   max-width: 400px;
 }

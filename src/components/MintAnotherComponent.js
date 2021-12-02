@@ -26,6 +26,10 @@ class MintAnotherComponent extends React.Component {
 
     return (
       <div>
+          <div className="singleArtwork">
+              <img alt={"DynaStripes token"} src={ this.props.svgDataUri } />
+          </div>
+
           <p className="success">
             Your <DynaSpan/> have been successfully minted! Once the transaction is complete, your new artwork will appear in the gallery. Vist the gallery to see it, or mint more <DynaSpan/> now!
           </p>

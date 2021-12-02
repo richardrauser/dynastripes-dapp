@@ -24,7 +24,8 @@ class MintPage extends React.Component {
       this.state = {
         doneSuccess: false,
         randomSeed: randomSeed,
-        rotationRange: [0, 180],
+        rotationDegrees: 0,
+        rotationRange: 0,
         zoom: 50,
         tintColour: defaultColour,
         widthRange: [25, 250],
@@ -36,6 +37,7 @@ class MintPage extends React.Component {
       this.zoomChanged = this.zoomChanged.bind(this);
       this.tintColourChanged = this.tintColourChanged.bind(this);
       this.tintAlphaChanged = this.tintAlphaChanged.bind(this);
+      this.rotationDegreesChanged = this.rotationDegreesChanged.bind(this);
       this.rotationRangeChanged = this.rotationRangeChanged.bind(this);
       this.widthRangeChanged = this.widthRangeChanged.bind(this);
       this.speedRangeChanged = this.speedRangeChanged.bind(this);
@@ -70,8 +72,8 @@ class MintPage extends React.Component {
       const randomAlpha = Math.random() * 0.9;
       const randomColour = { r: randomRed, g: randomGreen, b: randomBlue, a: randomAlpha };
             
-      const randomRotationMin = this.randomIntFromInterval(0, 180);
-      const randomRotationMax = this.randomIntFromInterval(randomRotationMin, 180);
+      const randomRotationDegrees = this.randomIntFromInterval(0, 360);
+      const randomRotationRange = this.randomIntFromInterval(0, 180);
 
       const randomWidthMin = this.randomIntFromInterval(25, 250);
       const randomWidthMax = this.randomIntFromInterval(randomWidthMin, 250);
@@ -82,7 +84,8 @@ class MintPage extends React.Component {
       let state = {
         zoom: randomZoom,
         tintColour: randomColour,
-        rotationRange: [randomRotationMin, randomRotationMax],
+        rotationDegrees: randomRotationDegrees,
+        rotationRange: randomRotationRange,
         widthRange: [randomWidthMin, randomWidthMax],
         speedRange: [randomSpeedMin, randomSpeedMax],
       };
@@ -131,12 +134,19 @@ class MintPage extends React.Component {
     }
 
 
-    rotationRangeChanged(value, index) {
+    rotationDegreesChanged(value, index) {
       console.log("Rotation range changed to: " + value);
+      this.setState({
+        rotationDegrees: value
+      });
+    }  
+    rotationRangeChanged(value, index) {
+      console.log("Rotation variation changed to: " + value);
       this.setState({
         rotationRange: value
       });
     }  
+    
     widthRangeChanged(value, index) {
       this.setState({
         widthRange: value
@@ -191,8 +201,8 @@ class MintPage extends React.Component {
 
     async mint() {
       const zoom = this.state.zoom;
-      const rotationMin = this.state.rotationRange[0];
-      const rotationMax = this.state.rotationRange[1];
+      const rotationDegrees = this.state.rotationDegrees;
+      const rotationRange = this.state.rotationRange;
       const tintRed = this.state.tintColour.r;
       const tintGreen = this.state.tintColour.g;
       const tintBlue = this.state.tintColour.b;
@@ -222,8 +232,12 @@ class MintPage extends React.Component {
         showErrorMessage("Tint percentage is too high.");
         return;
       }
-      if (rotationMin < 0 || rotationMin > rotationMax || rotationMax > 180) {
-        showErrorMessage("Rotation angle must be between 0 and 180.");
+      if (rotationDegrees < 0 || rotationDegrees > 360) {
+        showErrorMessage("Rotation degrees must be between 0 and 360.");
+        return;
+      }
+      if (rotationRange < 0 || rotationRange > 360) {
+        showErrorMessage("Rotation range must be between 0 and 360.");
         return;
       }
       if (widthMin < 25 || widthMin > widthMax || widthMax > 250) {
@@ -238,21 +252,18 @@ class MintPage extends React.Component {
       try {
         const contractWithSigner = await getContractWithSigner(); 
 
-        console.log("Minting dynastripes: " + rotationMin + " "  + rotationMax + " " + zoom + " " + widthMin + " " + widthMax + " " + speedMin + " " + speedMax)
+        console.log("Minting dynastripes: " + rotationDegrees + " " + zoom + " " + widthMin + " " + widthMax + " " + speedMin + " " + speedMax)
 
         const overrides = {
           value: this.state.mintPrice, 
           gasLimit: 270000
         }
-      
-        // TODO: get tint colour into contract
-  
-        const transaction = await contractWithSigner.mintStripes(this.state.randomSeed, zoom, tintRed, tintGreen, tintBlue, tintAlpha, rotationMin, rotationMax, widthMin, widthMax, speedMin, speedMax, overrides);
-  
+        
+        const transaction = await contractWithSigner.mintStripes(this.state.randomSeed, zoom, tintRed, tintGreen, tintBlue, tintAlpha, rotationDegrees, rotationRange, widthMin, widthMax, speedMin, speedMax, overrides);
         console.log("Tx hash: " + transaction.hash);
         this.setState({
           doneSuccess: true,
-          txHash: transaction.hash
+          txHash: transaction.hash,
         });
   
         toast.success("Successfully minted your DynaStripes NFT!");
@@ -268,25 +279,25 @@ class MintPage extends React.Component {
     render() {
       const zoom = this.state.zoom;
       const tintColour = this.state.tintColour;
-      const rotationMin = this.state.rotationRange[0];
-      const rotationMax = this.state.rotationRange[1];
+      const rotationDegrees = this.state.rotationDegrees; 
+      const rotationRange = this.state.rotationRange;
       const widthMin = this.state.widthRange[0];
       const widthMax = this.state.widthRange[1];
       const speedMin = this.state.speedRange[0];
       const speedMax = this.state.speedRange[1];
 
-      const traits = getTextTraits(zoom, tintColour.r, tintColour.g, tintColour.b, Math.round(tintColour.a * 255), rotationMin, rotationMax, widthMin, widthMax, speedMin, speedMax);
+      const traits = getTextTraits(zoom, tintColour.r, tintColour.g, tintColour.b, Math.round(tintColour.a * 255), rotationDegrees, rotationRange, widthMin, widthMax, speedMin, speedMax);
 
-      const svg = generateDynaStripes(this.state.randomSeed, zoom, tintColour, rotationMin, rotationMax, widthMin, widthMax, speedMin, speedMax, false);
-
-      console.log("MintComponent render rotation range: " + this.state.rotationRange);
+      const svg = generateDynaStripes(this.state.randomSeed, zoom, tintColour, rotationDegrees, rotationRange, widthMin, widthMax, speedMin, speedMax, false);
+      const encodedSvg = encodeURIComponent(svg);
+      const svgDataUri = `data:image/svg+xml,${encodedSvg}`;
 
       return (
         <div className="mainContent">
           <div id="mint" className="content">
             <h1>Mint your own <DynaSpan/> NFT</h1>
             <center>
-              { this.state.doneSuccess ? <MintAnotherComponent txHash={this.state.txHash} mintAnother={this.mintAnother} /> : <MintOptions svg={svg} traits={traits} mintPrice={this.state.mintPrice} rotationRange={this.state.rotationRange} rotationRangeChanged={this.rotationRangeChanged} zoom={this.state.zoom} zoomChanged={this.zoomChanged} tintColour={this.state.tintColour} tintColourChanged={this.tintColourChanged} tintAlphaChanged={this.tintAlphaChanged}  widthRange={this.state.widthRange} widthRangeChanged={this.widthRangeChanged} speedRange={this.state.speedRange} speedRangeChanged={this.speedRangeChanged} mint={this.mint} refresh={this.refresh} /> }
+              { this.state.doneSuccess ? <MintAnotherComponent txHash={this.state.txHash} mintAnother={this.mintAnother} svgDataUri={svgDataUri} /> : <MintOptions svg={svg} traits={traits} mintPrice={this.state.mintPrice} rotationDegrees={this.state.rotationDegrees} rotationDegreesChanged={this.rotationDegreesChanged} rotationRange={this.state.rotationRange} rotationRangeChanged={this.rotationRangeChanged} zoom={this.state.zoom} zoomChanged={this.zoomChanged} tintColour={this.state.tintColour} tintColourChanged={this.tintColourChanged} tintAlphaChanged={this.tintAlphaChanged}  widthRange={this.state.widthRange} widthRangeChanged={this.widthRangeChanged} speedRange={this.state.speedRange} speedRangeChanged={this.speedRangeChanged} mint={this.mint} refresh={this.refresh} /> }
             </center>
           </div>
         </div>

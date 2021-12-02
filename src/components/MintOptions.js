@@ -71,24 +71,29 @@ class MintOptions extends React.Component {
                 </div>  
 
                 <div className="mintInput">
-                  Tint colour<br/>
-                  <HuePicker className="mintPicker" width="100%" height="25px" pointer={Thumb} color={this.props.tintColour} onChange={this.props.tintColourChanged} />
-                </div>
+                  Rotation Degrees<br/>
 
+                  <StyledSlider 
+                      value={this.props.rotationDegrees}
+                      renderTrack={OneThumbTrack}
+                      renderThumb={Thumb}
+                      min={0}
+                      max={360}
+                      step={1}
+                      onAfterChange={this.props.rotationDegreesChanged}
+                  />
+                </div>  
+      
                 <div className="mintInput">
-                  Tint % <br/>
-                  <AlphaPicker className="mintPicker" width="100%" height="25px" pointer={AlphaThumb} color={this.props.tintColour} onChange={this.props.tintAlphaChanged} />
-                </div>
-
-                <div className="mintInput">
-                  Rotation<br/>
+                  Rotation Range<br/>
 
                   <StyledSlider 
                       value={this.props.rotationRange}
-                      renderTrack={TwoThumbTrack}
+                      renderTrack={OneThumbTrack}
                       renderThumb={Thumb}
                       min={0}
                       max={180}
+                      step={1}
                       onAfterChange={this.props.rotationRangeChanged}
                   />
                 </div>  
@@ -117,6 +122,17 @@ class MintOptions extends React.Component {
                         onAfterChange={this.props.speedRangeChanged}
                     />
                 </div>
+
+                <div className="mintInput">
+                  Tint colour<br/>
+                  <HuePicker className="mintPicker" width="100%" height="25px" pointer={Thumb} color={this.props.tintColour} onChange={this.props.tintColourChanged} />
+                </div>
+
+                <div className="mintInput">
+                  Tint % <br/>
+                  <AlphaPicker className="mintPicker" width="100%" height="25px" pointer={AlphaThumb} color={this.props.tintColour} onChange={this.props.tintAlphaChanged} />
+                </div>
+
               </div>
             </div>
             <div className="textTraits">{this.props.traits}</div> 

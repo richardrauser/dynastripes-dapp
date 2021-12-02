@@ -12,7 +12,7 @@ import { create } from 'ipfs-http-client';
 import { Helmet } from 'react-helmet';
 
 import DynaStripesContractAddress, { DynaStripesEtherscanLink } from '../utils/Constants';
-import { buildDescriptiveTextFromMetadata } from '../utils/Metadata';
+import buildTraitsText from '../utils/TraitsMetadata';
 import { convertSvgToPng } from '../utils/UIUtils';
 import opensea from '../images/opensea.svg';
 import twitter from '../images/twitter.png';
@@ -87,7 +87,7 @@ class TokenPage extends React.Component {
           const pngFileName = filePrefix + ".png";
         
           const attributes = metadataObject.attributes;
-          const descriptiveText = buildDescriptiveTextFromMetadata(metadataObject);
+          const descriptiveText = buildTraitsText(metadataObject);
   
           this.setState({
             loading: false,

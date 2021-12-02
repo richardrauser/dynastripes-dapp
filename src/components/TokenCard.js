@@ -5,7 +5,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { Link } from 'react-router-dom';
 import { getContract } from '../utils/BlockchainAPI';
 import { handleError } from '../utils/ErrorHandler';
-import { buildDescriptiveTextFromMetadata } from '../utils/Metadata';
+import buildTraitsText from '../utils/TraitsMetadata';
 
 class TokenCard extends React.Component {
     constructor(props) {
@@ -33,12 +33,12 @@ class TokenCard extends React.Component {
           const encodedSvg = encodeURIComponent(svg);
           const svgDataUri = `data:image/svg+xml,${encodedSvg}`;
           
-          const descriptiveText = buildDescriptiveTextFromMetadata(metadataObject);
+          const traitsText = buildTraitsText(metadataObject);
 
           this.setState({
             loading: false,
             tokenSvgDataUri: svgDataUri,
-            descriptiveTraits: descriptiveText,
+            traitsText: traitsText,
           });
   
         } catch (err) {
@@ -91,7 +91,7 @@ class TokenCard extends React.Component {
                         </div>
                       </Link>
                       <div className="cardTraits">
-                      { this.state.descriptiveTraits }
+                      { this.state.traitsText }
                       </div>
                       </Card.Body>
                   </Card>        

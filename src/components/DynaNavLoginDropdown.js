@@ -66,10 +66,10 @@ class DynaNavLoginDropdown extends React.Component {
       }
     }
 
-    componentWillUnmount() {
-      // window.ethereum.removeListener('accountsChanged', func);
-      // window.ethereum.removeListener('chainChanged', func);
-    }
+    // componentWillUnmount() {
+    //   // window.ethereum.removeListener('accountsChanged', func);
+    //   // window.ethereum.removeListener('chainChanged', func);
+    // }
 
     
     async connectWallet() {
