@@ -16,6 +16,7 @@ import {
 import { generateRandomStripesDataUri } from '../utils/DynaStripes.js';
 import SocialLinks from '../components/SocialLinks';
 import DynaSpan from '../components/DynaSpan';
+import { Alert } from 'react-bootstrap';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -37,6 +38,9 @@ class HomePage extends React.Component {
       return (
         // <div className="mainContent"  style={{background: svgDataUri}} onClick={this.update}>
         <div className="mainContent"  style={{backgroundImage: svgDataUri}} onClick={this.update}>
+        <Alert variant="info">
+          DynaStripes will be relaunching with an improved mint interface on Polygon later this month (December 2021). Watch this space! 😎
+        </Alert>
             <div className="content">
 
               <h1 className="homeTitle">
