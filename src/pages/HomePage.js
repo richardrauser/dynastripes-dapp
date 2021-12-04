@@ -39,7 +39,7 @@ class HomePage extends React.Component {
         // <div className="mainContent"  style={{background: svgDataUri}} onClick={this.update}>
         <div className="mainContent"  style={{backgroundImage: svgDataUri}} onClick={this.update}>
         <Alert variant="info">
-          DynaStripes will be relaunching with an improved mint interface on Polygon later this month (December 2021). Watch this space! 😎
+          Relaunching with an improved mint interface on Polygon blockchain with negligible network fees later this month (December 2021). Watch this space! 😎
         </Alert>
             <div className="content">
 
