@@ -5,32 +5,46 @@ function buildTraitsText(_zoom, _tintRed, _tintGreen, _tintBlue, _tintAlpha, _ro
         // adjective
         var speed;
 
-        if (_speedMax <= 25 && _tintAlpha < 180) {
-            speed = "manic";
-        } else if (_speedMin == _speedMax) {
-            if (_speedMax < 30) {
-                speed = "blinking";
-            } else if (_speedMax > 200) {
-                speed = "throbbing";
-            } else {
-                speed = "pulsing";        
-            }
-        } else if (_speedMax < 35) {
-            speed = "quivering";
-        } else if (_speedMax < 100) {
-            speed = "flickering";
-        } else if (_speedMax < 150) {
-            speed = "vibrating";
-        } else if (_speedMin > 200) {
-            speed = "languid";
-        } else if (_speedMin > 150) {
+        if (_tintAlpha > 130 && _speedMin > 220) {
+                speed = "languid";
+        } else if (_tintAlpha > 130 && _speedMin > 200) {
             speed = "pedestrian";
-        } else if (_speedMax - _speedMin > 150) {
-            speed = "scintillating";        
         } else {
-            speed = "oscillating";
-        } 
-        
+            if (_speedMax <= 25 && _tintAlpha < 180) {
+                speed = "manic";
+            } else if (_speedMin == _speedMax) {
+                if (_speedMax < 30) {
+                    speed = "blinking";
+                } else if (_speedMax > 200) {
+                    speed = "throbbing";
+                } else {
+                    speed = "pulsing";        
+                }
+            } else if (_speedMax < 35) {
+                speed = "flashing";
+            } else if (_speedMax < 70) {
+                speed = "flickering";
+            } else if (_speedMax < 105) {
+                speed = "quivering";
+            } else if (_speedMax < 150) {
+                speed = "vibrating";
+            } else if (_speedMax - _speedMin > 150) {
+                speed = "scintillating";        
+            } else {
+                speed = "oscillating";
+            } 
+
+            if (_tintAlpha > 213) {
+                speed = "gently " + speed;
+            } else if (_tintAlpha > 200) {
+                speed = "tepidly " + speed;
+            } else if (_tintAlpha < 20) {
+                speed = "magnificently " + speed;
+            } else if (_tintAlpha < 50) {
+                speed = "powerfully " + speed;
+            }    
+        }
+
          //adjective
         var colourWay; 
 
