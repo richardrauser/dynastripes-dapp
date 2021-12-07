@@ -12,7 +12,7 @@ function buildTraitsText(_zoom, _tintRed, _tintGreen, _tintBlue, _tintAlpha, _ro
         } else {
             if (_speedMax <= 25 && _tintAlpha < 180) {
                 speed = "manic";
-            } else if (_speedMin == _speedMax) {
+            } else if (_speedMin === _speedMax) {
                 if (_speedMax < 30) {
                     speed = "blinking";
                 } else if (_speedMax > 200) {
@@ -69,7 +69,7 @@ function buildTraitsText(_zoom, _tintRed, _tintGreen, _tintBlue, _tintAlpha, _ro
             } else {
                 colourWay = "saturated";
             }
-        } else if (_tintAlpha == 0) {
+        } else if (_tintAlpha === 0) {
             colourWay = "kaleidoscopic";
         } else if (_tintAlpha < 25) {
             colourWay = "chromatic";
@@ -85,14 +85,14 @@ function buildTraitsText(_zoom, _tintRed, _tintGreen, _tintBlue, _tintAlpha, _ro
         var form;
         _rotationDegrees = _rotationDegrees % 180; // because forms rotated 180 degrees are the same.
 
-        if (_rotationRange == 0) {
-            if (_zoom > 50 && _rotationDegrees % 90 == 0) {
+        if (_rotationRange === 0) {
+            if (_zoom > 50 && _rotationDegrees % 90 === 0) {
                 form = "perfect square";
-            } else if (_zoom > 91 && (_rotationDegrees == 45 || _rotationDegrees == 135)) {
+            } else if (_zoom > 91 && (_rotationDegrees === 45 || _rotationDegrees === 135)) {
                 form = "perfect diamond";
-            } else if (_zoom <= 50 && _rotationDegrees == 0) {
+            } else if (_zoom <= 50 && _rotationDegrees === 0) {
                 form = "vertical stripes";
-            } else if (_zoom <= 50 && _rotationDegrees % 90 == 0) {
+            } else if (_zoom <= 50 && _rotationDegrees % 90 === 0) {
                 form = "horizontal stripes";
             } else if (_zoom <= 25) {
                 form = "diagonal stripes";
@@ -164,7 +164,7 @@ function buildTraitsText(_zoom, _tintRed, _tintGreen, _tintBlue, _tintAlpha, _ro
         } else {
             form = "abstraction";
         }
-
+ 
     var descriptiveTraits = "";
 
     if (speed.length > 0) {
