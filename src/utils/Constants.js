@@ -1,8 +1,10 @@
 
 // localhost / Hardhat
-const DynaStripesCurrentEthNeworkID = 1337; 
-const DynaStripesContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'; 
-const DynaStripesEtherscanLink = 'www.superbad.com';
+// const DynaStripesCurrentEthNeworkID = 1337; 
+// const DynaStripesContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'; 
+// const DynaStripesEtherscanLink = 'www.superbad.com';
+
+// ETHEREUM
 
 // Rinkeby
 // const DynaStripesCurrentEthNeworkID = 4; 
@@ -18,6 +20,13 @@ const DynaStripesEtherscanLink = 'www.superbad.com';
 // const DynaStripesCurrentEthNeworkID = 1; 
 // const DynaStripesContractAddress = '0xeD03568eaC21c1D0316c87cC09c0ce85f0000c65'; 
 // const DynaStripesEtherscanLink = 'https://www.etherscan.io/';
+
+// POLYGON
+
+// Mumbai
+const DynaStripesCurrentEthNeworkID = 80001; 
+const DynaStripesContractAddress = '0x39B66EAabD9aA27789bBB47B135C632f17373f0D';
+const DynaStripesEtherscanLink = 'https://rpc-mumbai.maticvigil.com'; 
 
 export { DynaStripesCurrentEthNeworkID, DynaStripesEtherscanLink };
 export default DynaStripesContractAddress;

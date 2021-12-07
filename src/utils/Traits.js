@@ -108,35 +108,43 @@ function buildTraitsText(_zoom, _tintRed, _tintGreen, _tintBlue, _tintAlpha, _ro
                 form = "streamers";
             } else if (_stripeWidthMax < 60 && _rotationRange > 130) {
                 form = "laser beams";
-            } else if (_stripeWidthMin > 120) {
-                form = "streaks";
-            } else if (_stripeWidthMax < 120) {
+            } else if (_stripeWidthMax < 120 && _rotationDegrees >= 45 && _rotationDegrees < 135) {
+                form = "beams";
+            } else if (_stripeWidthMax < 120 && _rotationRange < 90) {
                 form = "poles";
-            } else {
+            } else if (_rotationDegrees >= 45 && _rotationDegrees < 135) {
+                form = "streaks";
+            } else { // rotation < 45 || rotation > 135
                 form = "shafts";
             }
         } else if (_zoom > 50 && _stripeWidthMax < 60 && _rotationRange < 30) {
             form = "match sticks";
-        } else if (_zoom > 50 && _stripeWidthMax < 110 && _stripeWidthMin > 70 && _rotationRange < 60) {
-            form = "french fries";
+        } else if (_zoom > 50 && _stripeWidthMax < 60 && _rotationRange < 60) {
+            form = "scattered match sticks";
+        } else if (_zoom > 50 && _stripeWidthMin > 70 && _stripeWidthMax < 110 && _rotationRange > 10 && _rotationRange < 40) {
+            form = "twigs";
+        } else if (_zoom > 50 && _stripeWidthMin > 70 && _stripeWidthMax < 110 && _rotationRange > 10 && _rotationRange < 60) {
+            form = "scattered twigs";
         } else if (_zoom > 80 &&_stripeWidthMax < 60 && _rotationRange > 130) {
             form = "birds nest";
         } else if ( _zoom > 70 && _rotationRange < 70 && _stripeWidthMin > 200 && (_rotationDegrees <= 25 || _rotationDegrees >= 155)) {
             form = "pillars";
         } else if ( _zoom > 70 && _rotationRange < 70 && _stripeWidthMin > 200 && (_rotationDegrees <= 115 && _rotationDegrees >= 65)) {
             form = "bricks";
-        } else if (_zoom > 60 && _stripeWidthMin > 70 && _rotationRange <= 30 && _rotationRange >= 5 && (_rotationDegrees <= 5 || _rotationDegrees >= 175)) {
+        } else if (_zoom > 55 && _stripeWidthMin > 70 && _rotationRange >= 5 && _rotationRange <= 30 && (_rotationDegrees <= 10 || _rotationDegrees >= 170)) {
             form = "cluttered books";
-        } else if (_zoom > 55 && _stripeWidthMin > 70 && _rotationRange <= 30 && _rotationDegrees >= 85 && _rotationDegrees <= 95) {
+        } else if (_zoom > 55 && _stripeWidthMin > 70 && _rotationRange <= 30 && _rotationDegrees >= 80 && _rotationDegrees <= 100) {
             form = "stacked books";
+        } else if (_zoom > 55 && _stripeWidthMin > 70 && _rotationRange < 60 && _rotationDegrees >= 50 && _rotationDegrees <= 130) {
+            form = "tumbling books";
         } else if (_zoom > 55 && _stripeWidthMin > 50 && _stripeWidthMax < 150 && _rotationRange < 50 && _rotationDegrees >= 80 && _rotationDegrees <= 100) {
             form = "broken ladder";
+        } else if (_zoom > 55 && _rotationRange > 10 && _rotationRange < 60 && _rotationDegrees >= 50 && _rotationDegrees <= 130 && _stripeWidthMax - _stripeWidthMin >= 150) {
+            form = "collapsing building";
         } else if (_stripeWidthMin > 25 && _stripeWidthMax < 200 && _rotationRange <= 15) {
             form = "jitters";
-        } else if (_stripeWidthMax < 40) {
-            form = "twiglets";
-        } else if (_zoom > 60 && _rotationRange < 60 && _rotationDegrees >= 50 && _rotationDegrees <= 130 && _stripeWidthMax - _stripeWidthMin >= 150) {
-            form = "collapsing building";
+        } else if (_stripeWidthMin > 25 && _stripeWidthMax < 200 && _rotationRange <= 45) {
+            form = "wobbles";
         } else if ( _zoom > 50 && _stripeWidthMin > 200) {
             form = "blocks";
         } else if ( _zoom > 90 && _stripeWidthMax - _stripeWidthMin >= 150 && _rotationRange > 150) {
@@ -147,8 +155,12 @@ function buildTraitsText(_zoom, _tintRed, _tintGreen, _tintBlue, _tintAlpha, _ro
             form = "tranquility";
         } else if (_stripeWidthMin > 120) {
             form = "bars";
+        } else if (_stripeWidthMax < 100 && _rotationRange > 60) {
+            form = "scattered lines";
         } else if (_stripeWidthMax < 100) {
             form = "lines";
+        } else if (_zoom > 40 && _rotationRange > 90) {
+            form = "reverie";
         } else {
             form = "abstraction";
         }
