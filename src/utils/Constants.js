@@ -24,7 +24,7 @@
 // POLYGON
 
 // Mumbai
-const DynaStripesCurrentEthNeworkID = 80001; 
+const DynaStripesCurrentEthNeworkID = 80001;
 const DynaStripesContractAddress = '0x39B66EAabD9aA27789bBB47B135C632f17373f0D';
 const DynaStripesEtherscanLink = 'https://rpc-mumbai.maticvigil.com'; 
 
