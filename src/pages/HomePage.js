@@ -38,10 +38,14 @@ class HomePage extends React.Component {
       return (
         // <div className="mainContent"  style={{background: svgDataUri}} onClick={this.update}>
         <div className="mainContent"  style={{backgroundImage: svgDataUri}} onClick={this.update}>
+<<<<<<< HEAD
         <Alert variant="danger">
           The DynaStripes smart contract has been hacked and taken over. This website is unaffected and 100% safe to use, but minting has been disabled to prevent the hackers from earning further mint fees. I am working on a way to  pivot out of this set of unfortunate circumstances. Thanks for your understanding.
+=======
+        <Alert variant="info">
+          Relaunching with an improved mint interface on Polygon blockchain with negligible network fees later this month (December 2021). Watch this space! 😎
+>>>>>>> main
         </Alert>
-
             <div className="content">
 
               <h1 className="homeTitle">
