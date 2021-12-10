@@ -24,10 +24,13 @@ class HowToPage extends React.Component {
             <p>
                If you're new to NFTs, this is a good place to get started. While there are instructions here for both desktop computers (e.g. laptops, PCs, etc) and mobile phones, <b>most people will find it easier from a desktop browser rather than mobile. </b> The mobile experience of web3 is still a bit crude!
             </p>
+            <p>
+               In order to acquire a <DynaSpan/> artwork, you'll need some MATIC tokens on the Polygon Mumbai testnet. Polygon is a complementary blockchain to Ethereum that is much, much cheaper, and way faster. Regardless, creating <DynaSpan/> will cost you nothing as this is just a beta test version.
+            </p>
             <Tabs defaultActiveKey={ selectedTab } id="uncontrolled-tab-example" className="mb-3">
               <Tab eventKey="desktop" title="Desktop">
               <h3>
-                  Install Metamask, an ETH wallet
+                  Install Metamask & configure Mumbai network
                   </h3>
                   <ol>
                     <li>Visit <MetaMaskLink /> in your web browser and download the MetaMask wallet <a className="externalLink" href="https://en.wikipedia.org/wiki/Browser_extension" target="_blank" rel="noreferrer">browser extension</a>. </li>
@@ -35,18 +38,18 @@ class HowToPage extends React.Component {
                         <li>Unfortunately MetaMask is not supported for Safari on MacOS. 😢 Try the <a className="externalLink" href="https://www.google.com/chrome/Chrome" target="_blank" rel="noreferrer">Chrome</a> browser. It's quick and easy to install.</li>
                       </ul>    
                     <li>Once installed, open MetaMask by tapping the little fox icon in your browser's toolbar (usually at top next to the URL bar). </li>
+                    <li>Add Polygon's Mumbai Testnet to MetaMask using <a className="externalLink" href="https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/" target="_blank" rel="noreferrer">these instructions</a>. Be sure to select "Mumbai-Testnet" on that page.</li>
                     <li>Create a new account by following the instructions in MetaMask.</li> 
                   </ol>
 
-                  <h3>Acquire some ETH
+                  <h3>Acquire some MATIC
                   </h3>
-                  <p> You'll need to purchase some Ethereum in order to acquire a DynaStripes artwork. Network fees are currently very high and represent that vast bulk of the acquisition cost.
+                  <p> You'll need to get some MATIC on the Polygon network in order to acquire a DynaStripes artwork. This wont cost you anything as this is only a beta test.
                   </p>
                   <ol>
                     <li>Open MetaMask by tapping the fox icon in your browser's toolbar. </li> 
-                    <li>Ensure you're connected to the Ethereum Mainnet.</li> 
-                    <li>Hit the Buy button in MetaMask and follow the instructions there. </li> 
-                    <li>You can also purchase Ethereum on <a className="externalLink" href="https://www.coinbase.com" target="_blank" rel="noreferrer">Coinbase</a>, <a className="externalLink" href="https://www.binance.com" target="_blank" rel="noreferrer">Binance</a>, <a className="externalLink" href="https://www.ftx.com" target="_blank" rel="noreferrer">FTX</a>, or some other exchange and send it to your MetaMask wallet. </li> 
+                    <li>Ensure you're connected to the Polygon Mumbai Testnet.</li>
+                    <li>Use the <a className="externalLink" href="https://faucet.polygon.technology/" target="_blank" rel="noreferrer">Polygon Faucet</a> to send some test MATIC tokens your wallet. Simply copy your wallet's address from MetaMask and paste into the faucet website. </li> 
                   </ol>
                   
                   <h3>Return to <DynaSpan/>
@@ -55,14 +58,15 @@ class HowToPage extends React.Component {
                   
                   <ol>
                     <li>Browse to <DynaSpan link={true}/> in which ever web browser you installed <MetaMaskLink/>. </li>
+                    <li>Ensure you're connected to the Polygon Mumbai testnet in Metamask.</li>
                     <li>Hit the Connect Wallet button at the top right of the <DynaSpan/> site. If you don't see it or an Install MetaMask button apears, refresh your browser.</li>
-                    <li>Follow the MetaMask prompts to connect your ETH wallet to <DynaSpan/>.</li>
+                    <li>Follow the MetaMask prompts to connect your wallet to <DynaSpan/>.</li>
                     <li>Browse to the <Link to="/mint">Mint page</Link> to create a new NFT!</li> 
                   </ol>
               </Tab>
               <Tab eventKey="mobile" title="Mobile">
               <h3>
-                  Install Metamask, an ETH wallet
+              Install Metamask, a crypto wallet
                   </h3>
                   <ol>
                     <li>Visit <MetaMaskLink /> and download the MetaMask app. </li>
@@ -70,15 +74,15 @@ class HowToPage extends React.Component {
                     <li>Create a new account by following the instructions in MetaMask.</li> 
                   </ol>
 
-                  <h3>Acquire some ETH
+                  <h3>Acquire some MATIC
                   </h3>
-                  <p> You'll need to purchase some Ethereum in order to acquire a DynaStripes artwork. Network fees are currently very high and represent that vast bulk of the acquisition cost.
+                  <p> You'll need to get some MATIC on the Polygon network in order to acquire a DynaStripes artwork. This wont cost you anything as this is only a beta test.
                   </p>
                   <ol>
                     <li>Open the MetaMask app on your mobile. </li> 
-                    <li>Ensure you're connected to the Ethereum Mainnet.</li> 
+                    <li>Add Polygon's Mumbai Testnet to MetaMask using <a className="externalLink" href="https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/" target="_blank" rel="noreferrer">these instructions</a>. Be sure to select "Mumbai-Testnet" on that page.</li>
+                    <li>Ensure you're connected to the Polygon Mumbai testnet in Metamask.</li>
                     <li>Tap the menu button at top left, then tap "Add funds"</li>
-                    <li>Tap the "Buy" button, and follow the instructions for buying Ethereum.</li>
                     <li>You can also purchase Ethereum on <a className="externalLink" href="https://www.coinbase.com" target="_blank" rel="noreferrer">Coinbase</a>, <a className="externalLink" href="https://www.binance.com" target="_blank" rel="noreferrer">Binance</a>, <a className="externalLink" href="https://www.ftx.com" target="_blank" rel="noreferrer">FTX</a>, or some other exchange and send it to your MetaMask wallet. </li> 
                   </ol>
                   
@@ -88,8 +92,9 @@ class HowToPage extends React.Component {
                   
                   <ol>
                     <li>Open the MetaMask app, tap the menu button at top left and select Browser. Then browse to <DynaSpan link={true}/>. </li>
+                    <li>Ensure you're connected to the Polygon Mumbai testnet in Metamask.</li>
                     <li>Hit the Connect Wallet button at the top right of the <DynaSpan/> site.</li>
-                    <li>Follow the MetaMask prompts to connect your ETH wallet to <DynaSpan/>.</li>
+                    <li>Follow the MetaMask prompts to connect your wallet to <DynaSpan/>.</li>
                     <li>Browse to the <Link to="/mint">Mint page</Link> to create a new NFT!</li> 
                   </ol>
               </Tab>
