@@ -23,7 +23,7 @@ class AboutPage extends React.Component {
                   Overview
               </h3>
                   <p>
-                  <DynaSpan/> is a novel animated NFT art project created by the colour-blind, colour-obsessed visual artist, <a className="externalLink volstrate" rel="noreferrer" href="http://www.volstrate.com" target="_blank">volstrate</a>. <DynaSpan/> NFTs are both <b>generative</b>, in that the artwork is created programatically via the use of an algorithm, and <b>on-chain</b>, meaning that the creation algorithm, user inputs, metadata and the artwork itself are stored directly on the Ethereum blockchain. Uniquely, the minter chooses the input parameters, previews the artwork prior to minting, and collects all royalties on secondary sales in perpetuity. Full copyright and commercial property rights are assigned to the NFT owner. The <DynaSpan/> smart contract is restricted to a max supply of 1119 artworks.
+                  <DynaSpan/> is a novel animated NFT art project created by the colour-blind, colour-obsessed visual artist, <a className="externalLink volstrate" rel="noreferrer" href="http://www.twitter.com/richardrauser" target="_blank">Richard Rauser</a>. <DynaSpan/> NFTs are both <b>generative</b>, in that the artwork is created programatically via the use of an algorithm, and <b>on-chain</b>, meaning that the creation algorithm, user inputs, metadata and the artwork itself are stored directly on the Polygon blockchain. Uniquely, the minter chooses the input parameters, previews the artwork prior to minting, and collects all royalties on secondary sales in perpetuity. Full copyright and commercial property rights are assigned to the NFT owner. The <DynaSpan/> smart contract is restricted to a max supply of 1119 artworks.
                   </p>
 
                   <h3>
@@ -64,7 +64,7 @@ class AboutPage extends React.Component {
                   Copyright and commercial rights
                 </h3>
 
-                  <p>Whoever owns the the NFT for a given artwork is its legal owner and holds its copyright. The token owner is entitled to commercial and property rights for that NFT. Selling the NFT to someone else such that they become recorded as its owner on the Ethereum blockchain confers these rights for that artwork, including copyright and commercial rights, to the new owner. By purchasing the artwork, any new owner agrees for future royalties to be paid out to the original minter on any future sales. This is written directly into the <DynaSpan/> smart contract, and so is simply being reiterated here.
+                  <p>Whoever owns the the NFT for a given artwork is its legal owner and holds its copyright. The token owner is entitled to commercial and property rights for that NFT. Selling the NFT to someone else such that they become recorded as its owner on the blockchain confers these rights for that artwork, including copyright and commercial rights, to the new owner. By purchasing the artwork, any new owner agrees for future royalties to be paid out to the original minter on any future sales. This is written directly into the <DynaSpan/> smart contract, and so is simply being reiterated here.
                   </p>
 
                 <h3>
