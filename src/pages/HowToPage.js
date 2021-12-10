@@ -66,11 +66,12 @@ class HowToPage extends React.Component {
               </Tab>
               <Tab eventKey="mobile" title="Mobile">
               <h3>
-              Install Metamask, a crypto wallet
+              Install Metamask & configure Mumbai network
                   </h3>
                   <ol>
                     <li>Visit <MetaMaskLink /> and download the MetaMask app. </li>
                     <li>Once installed, open the MetaMask app. </li>
+                    <li>Add Polygon's Mumbai Testnet to MetaMask using <a className="externalLink" href="https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/" target="_blank" rel="noreferrer">these instructions</a>. Be sure to select "Mumbai-Testnet" on that page.</li>
                     <li>Create a new account by following the instructions in MetaMask.</li> 
                   </ol>
 
@@ -80,10 +81,8 @@ class HowToPage extends React.Component {
                   </p>
                   <ol>
                     <li>Open the MetaMask app on your mobile. </li> 
-                    <li>Add Polygon's Mumbai Testnet to MetaMask using <a className="externalLink" href="https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/" target="_blank" rel="noreferrer">these instructions</a>. Be sure to select "Mumbai-Testnet" on that page.</li>
                     <li>Ensure you're connected to the Polygon Mumbai testnet in Metamask.</li>
-                    <li>Tap the menu button at top left, then tap "Add funds"</li>
-                    <li>You can also purchase Ethereum on <a className="externalLink" href="https://www.coinbase.com" target="_blank" rel="noreferrer">Coinbase</a>, <a className="externalLink" href="https://www.binance.com" target="_blank" rel="noreferrer">Binance</a>, <a className="externalLink" href="https://www.ftx.com" target="_blank" rel="noreferrer">FTX</a>, or some other exchange and send it to your MetaMask wallet. </li> 
+                    <li>Use the <a className="externalLink" href="https://faucet.polygon.technology/" target="_blank" rel="noreferrer">Polygon Faucet</a> to send some test MATIC tokens your wallet. Simply copy your wallet's address from MetaMask and paste into the faucet website. </li> 
                   </ol>
                   
                   <h3>Return to <DynaSpan/>
