@@ -12,7 +12,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import DynaNav from './components/DynaNav';
+// import DynaNav from './components/DynaNav';
 import HomePage from './pages/HomePage';
 import MintPage from './pages/MintPage';
 import GalleryPage from './pages/GalleryPage';
