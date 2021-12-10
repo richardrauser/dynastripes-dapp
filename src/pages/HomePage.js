@@ -62,7 +62,7 @@ class HomePage extends React.Component {
                       <b>Generative:</b> artwork created by an algorithm
                     </li>              
                     <li>
-                    <b>On-chain:</b> artwork stored entirely on Ethereum blockchain
+                    <b>On-chain:</b> artwork stored 100% on blockchain with no external dependencies
                     </li>              
                     <li>
                       <b>NFT:</b> ERC-721 compliant non-fungible token smart contract
