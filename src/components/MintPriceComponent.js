@@ -2,7 +2,7 @@ import React from 'react';
 import { ethers } from 'ethers';
 import Spinner from 'react-bootstrap/Spinner';
 import { Link } from 'react-router-dom';
-import ether from '../images/ethereum.svg';
+import matic from '../images/polygon.svg';
 import { BigNumber } from '@ethersproject/bignumber';
 
 import MetaMaskLink from '../components/MetaMaskLink';
@@ -81,13 +81,13 @@ class MintPriceComponent extends React.Component {
         } else if (this.state.hasEnoughEth === false) {
           return (
             <div>
-              The mint price is <img src={ether} alt="ether logo" className='mintEther'/>{ this.state.mintPrice }, however your balance is <img src={ether} alt="ether logo" className='mintEther'/>{ this.state.balance }. See the <Link to="/howto">How to guide</Link> for info on acquiring ETH.
+              The mint price is <img src={matic} alt="MATIC logo" className='mintMatic'/>{ this.state.mintPrice }, however your balance is <img src={matic} alt="ether logo" className='mintMatic'/>{ this.state.balance }. See the <Link to="/howto">How to guide</Link> for info on acquiring ETH.
             </div>
          );    
         } else {
             return (
                 <div>
-                  Mint price: <img src={ether} alt="ether logo" className='mintEther'/> { this.state.mintPrice }
+                  Mint price: <img src={matic} alt="MATIC  logo" className='mintMatic'/>{ this.state.mintPrice }
                 </div>
             );    
         }    
