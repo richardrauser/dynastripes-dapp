@@ -32,7 +32,9 @@ class HomePage extends React.Component {
               </div>		
               <div id='placeholderContent'>
               <a className="basicLink" href="http://mumbai.dynastripes.com" target="_blank" rel="noreferrer">Public beta now live on Polygon Mumbai testnet</a>
-              <br></br> 😎
+              </div>		
+              <div id='placeholderContent'>
+                Mainnet launch December 2021 😎
               </div>		
               <SocialLinks/>
               {/* <div class ='placeholderAttribution'>

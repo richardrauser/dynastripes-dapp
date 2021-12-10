@@ -79,7 +79,7 @@ class App extends React.Component {
         />
         <Router>
           <RouteChangeTracker />
-          <DynaNav />
+          {/* <DynaNav /> */}
           <Switch>
             <Route path="/mint">
               <MintPage />

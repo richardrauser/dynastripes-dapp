@@ -19,8 +19,8 @@
 
 .mainContent {
   background-color: #777777; 
-  background: cover;
-  min-height: calc(100vh - 1rem - 40px);
+  background-size: 100% 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
