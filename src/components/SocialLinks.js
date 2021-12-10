@@ -2,7 +2,7 @@ import React from 'react';
 
 import twitterLogo from '../images/twitter.png';
 import discordLogo from '../images/discord_logo1600.png';
-import emailLogo from '../images/email.png';
+// import emailLogo from '../images/email.png';
 
 class SocialLinks extends React.Component {
 
