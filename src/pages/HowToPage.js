@@ -48,7 +48,7 @@ class HowToPage extends React.Component {
                   </p>
                   <ol>
                     <li>Open MetaMask by tapping the fox icon in your browser's toolbar. </li> 
-                    <li>Ensure you're connected to the Polygon Mumbai Testnet.</li>
+                    <li>Connect your wallet to the Polygon Mumbai network by tapping the "Ethereum Main Network" text (or whatever the current network is) at the top of the MetaMask window and select "Polygon Mumbai". Mumbai is a test network where you will not be spending real funds.</li>
                     <li>Use the <a className="externalLink" href="https://faucet.polygon.technology/" target="_blank" rel="noreferrer">Polygon Faucet</a> to send some test MATIC tokens your wallet. Simply copy your wallet's address from MetaMask and paste into the faucet website. </li> 
                   </ol>
                   
@@ -81,8 +81,8 @@ class HowToPage extends React.Component {
                   </p>
                   <ol>
                     <li>Open the MetaMask app on your mobile. </li> 
-                    <li>Ensure you're connected to the Polygon Mumbai testnet in Metamask.</li>
-                    <li>Use the <a className="externalLink" href="https://faucet.polygon.technology/" target="_blank" rel="noreferrer">Polygon Faucet</a> to send some test MATIC tokens your wallet. Simply copy your wallet's address from MetaMask and paste into the faucet website. </li> 
+                    <li>Connect your wallet to the Pokygon Mumbai network. Tap the top left menu button in the MetaMask app and select "Wallet". Then tap the "Ethereum Main Network" (or whatever the current network is) text at the top and select "Polygon Mumbai". Mumbai is a test network where you will not be spending real funds.</li>
+                      <li>Use the <a className="externalLink" href="https://faucet.polygon.technology/" target="_blank" rel="noreferrer">Polygon Faucet</a> to send some test MATIC tokens your wallet. Simply copy your wallet's address from MetaMask and paste into the faucet website. </li> 
                   </ol>
                   
                   <h3>Return to <DynaSpan/>
