@@ -29,7 +29,7 @@ export function handleError(err) {
       } else if (DynaStripesCurrentEthNeworkID === 1) {
         showErrorMessage("You're on the wrong ETH network Please switch to mainnet. Read the 'How to' guide for more info.");
       } else {
-        showErrorMessage("You're on the wrong ETH network. Read the 'How to' guide to learn how to change to the right one.");
+        showErrorMessage("You're on the wrong network. Read the 'How to' guide to learn how to change to the right one.");
       }
     } else if (err.code != null) {
       showErrorMessage('An error occurred: (' + err.code + ') ' + err.message);
