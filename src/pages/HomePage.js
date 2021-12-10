@@ -16,6 +16,7 @@ import {
 import { generateRandomStripesDataUri } from '../utils/DynaStripes.js';
 import SocialLinks from '../components/SocialLinks';
 import DynaSpan from '../components/DynaSpan';
+import { Alert } from 'react-bootstrap';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -29,14 +30,15 @@ class HomePage extends React.Component {
       this.setState({});
     }
   
-  
     render() {
       const svgDataUri = generateRandomStripesDataUri();
-      
-  
+        
       return (
-        // <div className="mainContent"  style={{background: svgDataUri}} onClick={this.update}>
-        <div className="mainContent"  style={{backgroundImage: svgDataUri}} onClick={this.update}>
+        <div className="mainContent" style={{backgroundImage: svgDataUri}} onClick={this.update}>
+            <Alert variant="warning">
+              This is a beta test version of <DynaSpan/> running on the Polygon Mumbai testnet.
+            </Alert>
+
             <div className="content">
 
               <h1 className="homeTitle">
