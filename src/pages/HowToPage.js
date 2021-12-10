@@ -38,7 +38,7 @@ class HowToPage extends React.Component {
                         <li>Unfortunately MetaMask is not supported for Safari on MacOS. 😢 Try the <a className="externalLink" href="https://www.google.com/chrome/Chrome" target="_blank" rel="noreferrer">Chrome</a> browser. It's quick and easy to install.</li>
                       </ul>    
                     <li>Once installed, open MetaMask by tapping the little fox icon in your browser's toolbar (usually at top next to the URL bar). </li>
-                    <li>Add Polygon's Mumbai Testnet to MetaMask using <a className="externalLink" href="https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/" target="_blank" rel="noreferrer">these instructions</a>. Be sure to select "Mumbai-Testnet" on that page.</li>
+                    <li>Add Polygon's Mumbai Testnet to MetaMask by browsing to <a className="externalLink" href="https://chainlist.org/" target="_blank" rel="noreferrer">Chainlink</a>and searching for "Mumbai".</li>
                     <li>Create a new account by following the instructions in MetaMask.</li> 
                   </ol>
 
@@ -71,7 +71,7 @@ class HowToPage extends React.Component {
                   <ol>
                     <li>Visit <MetaMaskLink /> and download the MetaMask app. </li>
                     <li>Once installed, open the MetaMask app. </li>
-                    <li>Add Polygon's Mumbai Testnet to MetaMask using <a className="externalLink" href="https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/" target="_blank" rel="noreferrer">these instructions</a>. Be sure to select "Mumbai-Testnet" on that page.</li>
+                    <li>Add Polygon's Mumbai Testnet to MetaMask by browsing to <a className="externalLink" href="https://chainlist.org/" target="_blank" rel="noreferrer">Chainlink</a>and searching for "Mumbai".</li>
                     <li>Create a new account by following the instructions in MetaMask.</li> 
                   </ol>
 
