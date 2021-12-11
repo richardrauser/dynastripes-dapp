@@ -36,6 +36,29 @@ function checkWallet() {
     console.log('Has wallet.');
   }
 }
+
+export async function addMumbai() {
+  console.log("Adding Mumbai..");
+  checkWallet();
+
+  const data = [{
+    chainId: '0x13881',
+    chainName: 'Matic Mumbai',
+    nativeCurrency:
+        {
+            name: 'MATIC',
+            symbol: 'MATIC',
+            decimals: 18
+        },
+    rpcUrls: ['https://rpc-mumbai.maticvigil.com'],
+    blockExplorerUrls: ['https://mumbai.polygonscan.com'],
+  }];
+
+  const tx = await window.ethereum.request({method: 'wallet_addEthereumChain', params:data});
+  if (tx) {
+      console.log(tx)
+  }
+}
 export async function getContract() {
   checkWallet();
   const provider = await getProvider();
