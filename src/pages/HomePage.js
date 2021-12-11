@@ -31,11 +31,12 @@ class HomePage extends React.Component {
                 A first-in-kind generative, on-chain NFT art project.
               </div>		
               <div id='placeholderContent'>
-              <a className="basicLink" href="http://mumbai.dynastripes.com" target="_blank" rel="noreferrer">Public beta now live on Polygon Mumbai testnet</a>
+              <a className="basicLink" href="http://mumbai.dynastripes.com" target="_blank" rel="noreferrer">Public beta now live on Polygon Mumbai testnet!</a>
               </div>		
               <div id='placeholderContent'>
-                Mainnet launch December 2021 😎
+                Mainnet launch December 2021.
               </div>		
+              😎<br/>
               <SocialLinks/>
               {/* <div class ='placeholderAttribution'>
                 <a class="volstrate basicLink" href="https://twitter.com/RichardRauser" target="_blank" rel="noreferrer">RR</a>
