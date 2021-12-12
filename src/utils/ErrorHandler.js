@@ -1,6 +1,7 @@
 import { showErrorMessage } from './UIUtils';
 import * as Errors from './ErrorMessages';
 import { DynaStripesCurrentEthNeworkID } from './Constants';
+import { addMumbai } from './BlockchainAPI';
 
 export function handleError(err) {
     console.log('Handling error ' + err.code + ': ' + err.message);
@@ -29,7 +30,8 @@ export function handleError(err) {
       } else if (DynaStripesCurrentEthNeworkID === 1) {
         showErrorMessage("You're on the wrong ETH network Please switch to mainnet. Read the 'How to' guide for more info.");
       } else if (DynaStripesCurrentEthNeworkID === 80001) {
-        showErrorMessage("You're on the wrong network. Please switch to Matic Mumbai. Read the 'How to' guide for more info.");
+        const onClose = addMumbai;
+        showErrorMessage("You're on the wrong network. Tap to switch to Matic Mumbai, or read the 'How to' guide for more info.", addMumbai);
       } else {
         showErrorMessage("You're on the wrong network. Read the 'How to' guide to learn how to change to the right one.");
       }
