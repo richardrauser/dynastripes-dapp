@@ -3,6 +3,7 @@ import { ethers } from 'ethers';
 import DynaStripes from '../artifacts/contracts/DynaStripes.sol/DynaStripes.json';
 import * as Errors from './ErrorMessages';
 import DynaStripesContractAddress, { DynaStripesCurrentEthNeworkID } from './Constants';
+import { showInfoMessage } from './UIUtils';
 // import Web3Modal from "web3modal";
 
 const AccountDetailsKey = "DS_ACCOUNT_DETAILS_KEY";
@@ -40,6 +41,14 @@ function checkWallet() {
 export async function addMumbai() {
   console.log("Adding Mumbai..");
   checkWallet();
+
+  const provider = await getProvider();
+  const network = await provider.getNetwork();
+  console.log("Network: " + network.chainId);
+  if (network.chainId === 0x13881) {
+    showInfoMessage("You're already on the Matic Mumbai network. Yay.");
+    return;
+  }
 
   const data = [{
     chainId: '0x13881',

@@ -9,18 +9,9 @@ import DynaSpan from '../components/DynaSpan';
 import { generateRandomStripesDataUri } from '../utils/DynaStripes.js';
 import { Link } from 'react-router-dom';
 import SocialLinks from '../components/SocialLinks';
-import { addMumbai } from '../utils/BlockchainAPI';
-import { handleError } from '../utils/ErrorHandler';
+import ChangeNetworkLink from '../components/ChangeNetworkLink';
 
 class HowToPage extends React.Component {
-
-  addMumbaiNetwork() {
-    try {
-      addMumbai();
-    } catch (err) {
-      handleError(err);
-    }
-  }
 
   render() {
     const svgDataUri = generateRandomStripesDataUri();
@@ -48,7 +39,7 @@ class HowToPage extends React.Component {
                       <li>Unfortunately MetaMask is not supported for Safari on MacOS. 😢 Try the <a className="externalLink" href="https://www.google.com/chrome/Chrome" target="_blank" rel="noreferrer">Chrome</a> browser. It's quick and easy to install.</li>
                     </ul>    
                   <li>Once installed, open MetaMask by tapping the little fox icon in your browser's toolbar (usually at top next to the URL bar). </li>
-                  <li>Add Polygon's Mumbai Testnet to MetaMask by <span className="textLink" onClick={ this.addMumbaiNetwork }>tapping here</span>.</li>
+                  <li>Add Polygon's Mumbai Testnet to MetaMask by <ChangeNetworkLink/>.</li>
                   <li>Create a new account by following the instructions in MetaMask.</li> 
                 </ol>
 
@@ -58,7 +49,7 @@ class HowToPage extends React.Component {
                 </p>
                 <ol>
                   <li>Open MetaMask by tapping the fox icon in your browser's toolbar. </li> 
-                  <li>If not already on Polygon's Mumbai Testnet in MetaMask, switch to it by <span className="textLink" onClick={ this.addMumbaiNetwork }>tapping here</span>.</li>
+                  <li>If not already on Polygon's Mumbai Testnet in MetaMask, switch to it by <ChangeNetworkLink/>.</li>
                   <li>Use the <a className="externalLink" href="https://faucet.polygon.technology/" target="_blank" rel="noreferrer">Polygon Faucet</a> to send some test MATIC tokens to your wallet for free. Simply copy your wallet's address from MetaMask and paste into the faucet website. </li> 
                 </ol>
                 
@@ -81,7 +72,7 @@ class HowToPage extends React.Component {
                 <ol>
                   <li>Visit <MetaMaskLink /> and download the MetaMask app. </li>
                   <li>Once installed, open the MetaMask app. </li>
-                  <li>Add Polygon's Mumbai Testnet to MetaMask by <span className="textLink" onClick={ this.addMumbaiNetwork }>tapping here</span>.</li>
+                  <li>Add Polygon's Mumbai Testnet to MetaMask by <ChangeNetworkLink/>.</li>
                   <li>Create a new account by following the instructions in MetaMask.</li> 
                 </ol>
 
@@ -91,7 +82,7 @@ class HowToPage extends React.Component {
                 </p>
                 <ol>
                   <li>Open the MetaMask app on your mobile. </li> 
-                  <li>If not already on Polygon's Mumbai Testnet in MetaMask, switch to it by <span className="textLink" onClick={ this.addMumbaiNetwork }>tapping here</span>.</li>
+                  <li>If not already on Polygon's Mumbai Testnet in MetaMask, switch to it by <ChangeNetworkLink/>.</li>
                   <li>Use the <a className="externalLink" href="https://faucet.polygon.technology/" target="_blank" rel="noreferrer">Polygon Faucet</a> to send some test MATIC tokens to your wallet for free. Simply copy your wallet's address from MetaMask and paste into the faucet website. </li> 
                 </ol>
                 
