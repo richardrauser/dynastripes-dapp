@@ -1,22 +1,32 @@
-
 import { toast } from 'react-toastify';
 
-export function showErrorMessage(message, onClose) {
+export function showErrorMessage(message, onClick) {
   console.log('Displaying error message: ' + message);    
+  // TODO: actually hash?
+  const hash = message;
+  console.log('Hash: ' + hash);    
+
   toast.error(message, {
+      toastId: hash,
       autoClose: 5000,
       hideProgressBar: false,
-      closeOnClick: true,
+      // closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      onClose: onClose
+      onClick: onClick
     });
 }
   
 export function showWarningMessage(message) {
   console.log('Displaying warning message: ' + message);
+
+    // TODO: actually hash?
+    const hash = message;
+    console.log('Hash: ' + hash);    
+  
   toast.warning(message, {
+    toastId: hash,
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -28,7 +38,13 @@ export function showWarningMessage(message) {
 
 export function showInfoMessage(message) {
   console.log('Displaying info message: ' + message);
+
+    // TODO: actually hash?
+    const hash = message;
+    console.log('Hash: ' + hash);    
+  
   toast.info(message, {
+    toastId: hash,
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
