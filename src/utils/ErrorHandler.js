@@ -31,7 +31,7 @@ export function handleError(err) {
         showErrorMessage("You're on the wrong ETH network Please switch to mainnet. Read the 'How to' guide for more info.");
       } else if (DynaStripesCurrentEthNeworkID === 80001) {
         const onClose = addMumbai;
-        showErrorMessage("You're on the wrong network. Tap to switch to Matic Mumbai, or read the 'How to' guide for more info.", addMumbai);
+        showErrorMessage("You're on the wrong network. Tap to switch to Matic Mumbai, or read the 'How to' guide for more info.", onClose);
       } else {
         showErrorMessage("You're on the wrong network. Read the 'How to' guide to learn how to change to the right one.");
       }
