@@ -8,7 +8,7 @@ import { showErrorMessage, showWarningMessage } from '../utils/UIUtils';
 import { handleError } from '../utils/ErrorHandler';
 import * as Errors from '../utils/ErrorMessages';
 
-import { getContractWithSigner, fetchMintPrice } from '../utils/BlockchainAPI';
+import { getContractWithSigner, fetchMintPrice, isOnCorrectNetwork } from '../utils/BlockchainAPI';
 
 import generateDynaStripes from '../utils/DynaStripes';
 import DynaSpan from '../components/DynaSpan';
@@ -248,9 +248,18 @@ class MintPage extends React.Component {
         showErrorMessage("Speed must be between 25 and 250.")
         return;
       }
+    
+      if (this.state.mintPrice === undefined || this.state.mintPrice === null) {
+        // TODO
+      }
 
       try {
-        const contractWithSigner = await getContractWithSigner(); 
+        const correctNetwork = await isOnCorrectNetwork();
+        if (!correctNetwork) {    
+          console.log("Not on right network");
+          throw Error(Errors.DS_WRONG_ETH_NETWORK);
+        }
+          const contractWithSigner = await getContractWithSigner(); 
 
         console.log("Minting dynastripes: " + rotationDegrees + " " + zoom + " " + widthMin + " " + widthMax + " " + speedMin + " " + speedMax)
 

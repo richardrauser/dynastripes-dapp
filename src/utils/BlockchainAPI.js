@@ -38,14 +38,24 @@ function checkWallet() {
   }
 }
 
-export async function addMumbai() {
-  console.log("Adding Mumbai..");
-  checkWallet();
+export async function isOnCorrectNetwork() {
 
   const provider = await getProvider();
   const network = await provider.getNetwork();
   console.log("Network: " + network.chainId);
   if (network.chainId === 0x13881) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export async function addMumbai() {
+  console.log("Adding Mumbai..");
+  checkWallet();
+
+  const correctNetwork = await isOnCorrectNetwork();
+  if (correctNetwork) {
     showInfoMessage("You're already on the Matic Mumbai network. Yay.");
     return;
   }
