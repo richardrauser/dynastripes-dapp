@@ -5,14 +5,14 @@ import { generateRandomStripesDataUri } from '../utils/DynaStripes.js';
 import SocialLinks from '../components/SocialLinks';
 import DynaSpan from '../components/DynaSpan.js';
 import etherscan from '../images/etherscan-logo-light.png';
-import DynaStripesContractAddress, { DynaStripesEtherscanLink } from '../utils/Constants';
+import DynaStripesContractAddress, { DynaStripesCurrentNetworkExplorerUrl } from '../utils/Constants';
 
 class AboutPage extends React.Component {
 
     render() {
       const svgDataUri = generateRandomStripesDataUri();
     
-      const contractAddress = DynaStripesEtherscanLink + "address/" + DynaStripesContractAddress;
+      const contractAddress = DynaStripesCurrentNetworkExplorerUrl + "address/" + DynaStripesContractAddress;
 
       return (
         <div className="mainContent"  style={{background: svgDataUri}}>

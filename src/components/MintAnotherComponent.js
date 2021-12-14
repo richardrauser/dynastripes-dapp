@@ -8,13 +8,13 @@ import twitter from '../images/twitter.png';
 import {
   Link
 } from "react-router-dom";
-import { DynaStripesEtherscanLink } from '../utils/Constants';
+import { DynaStripesCurrentNetworkExplorerUrl } from '../utils/Constants';
 
 class MintAnotherComponent extends React.Component {
   
 
   render() {
-    const txLink = DynaStripesEtherscanLink + "tx/" + this.props.txHash;
+    const txLink = DynaStripesCurrentNetworkExplorerUrl + "tx/" + this.props.txHash;
 
     console.log("txLink: " + txLink);
     // const tokenLink = "https://www.dynastripes.com/token/" + this.state.tokenId;

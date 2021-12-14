@@ -11,7 +11,7 @@ import { Tooltip } from 'react-bootstrap';
 import { create } from 'ipfs-http-client';
 import { Helmet } from 'react-helmet';
 
-import DynaStripesContractAddress, { DynaStripesEtherscanLink } from '../utils/Constants';
+import DynaStripesContractAddress, { DynaStripesCurrentNetworkExplorerUrl } from '../utils/Constants';
 import buildTraitsText from '../utils/TraitsMetadata';
 import { convertSvgToPng } from '../utils/UIUtils';
 import opensea from '../images/opensea.svg';
@@ -158,7 +158,7 @@ class TokenPage extends React.Component {
         }
 
         var ethAddress = this.state.tokenOwner;
-        const etherscanLink =  DynaStripesEtherscanLink + "address/" + ethAddress;
+        const etherscanLink =  DynaStripesCurrentNetworkExplorerUrl + "address/" + ethAddress;
 
         if (ethAddress.length > 10) {
           ethAddress = ethAddress.substring(0, 6) +  "..." + ethAddress.slice(-4);        

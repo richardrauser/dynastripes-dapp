@@ -2,7 +2,7 @@
 import { ethers } from 'ethers';
 import DynaStripes from '../artifacts/contracts/DynaStripes.sol/DynaStripes.json';
 import * as Errors from './ErrorMessages';
-import DynaStripesContractAddress, { DynaStripesCurrentEthNeworkID } from './Constants';
+import DynaStripesContractAddress, { DynaStripesCurrentNeworkID, DynaStripesCurrentNetworkName, DynaStripesCurrentNetworkCurrencySymbol, DynaStripesCurrentNetworkRpcUrl, DynaStripesCurrentNetworkExplorerUrl } from './Constants';
 import { showInfoMessage } from './UIUtils';
 // import Web3Modal from "web3modal";
 
@@ -50,27 +50,28 @@ export async function isOnCorrectNetwork() {
   }
 }
 
-export async function addMumbai() {
-  console.log("Adding Mumbai..");
+export async function switchToCurrentNetwork() {
+  // will attempt to add current network, behaviour is to switch if already present in MetaMask
+  console.log("Switching to " + DynaStripesCurrentNetworkName + "...");
   checkWallet();
 
   const correctNetwork = await isOnCorrectNetwork();
   if (correctNetwork) {
-    showInfoMessage("You're already on the Matic Mumbai network. Yay.");
+    showInfoMessage("You're already on the " + DynaStripesCurrentNetworkName + " network. Yay.");
     return;
   }
 
   const data = [{
-    chainId: '0x13881',
-    chainName: 'Matic Mumbai',
+    chainId: "0x" + DynaStripesCurrentNeworkID.toString(16),
+    chainName: DynaStripesCurrentNetworkName,
     nativeCurrency:
         {
-            name: 'MATIC',
-            symbol: 'MATIC',
+            name: DynaStripesCurrentNetworkCurrencySymbol,
+            symbol: DynaStripesCurrentNetworkCurrencySymbol,
             decimals: 18
         },
-    rpcUrls: ['https://rpc-mumbai.maticvigil.com'],
-    blockExplorerUrls: ['https://mumbai.polygonscan.com'],
+    rpcUrls: [DynaStripesCurrentNetworkRpcUrl],
+    blockExplorerUrls: [DynaStripesCurrentNetworkExplorerUrl],
   }];
 
   const tx = await window.ethereum.request({method: 'wallet_addEthereumChain', params:data});
@@ -85,7 +86,7 @@ export async function getContract() {
   const { chainId } = await provider.getNetwork();
   console.log("CHAIN ID: " + chainId); // 42
   
-  if (chainId !== DynaStripesCurrentEthNeworkID) {
+  if (chainId !== DynaStripesCurrentNeworkID) {
     
     console.log("Not on right network");
     throw Error(Errors.DS_WRONG_ETH_NETWORK);
