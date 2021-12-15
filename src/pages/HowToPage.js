@@ -50,7 +50,8 @@ class HowToPage extends React.Component {
                 <ol>
                   <li>Open MetaMask by tapping the fox icon in your browser's toolbar. </li> 
                   <li>If not already on Polygon's Mumbai Testnet in MetaMask, switch to it by <ChangeNetworkLink/>.</li>
-                  <li>Use the <a className="externalLink" href="https://faucet.polygon.technology/" target="_blank" rel="noreferrer">Polygon Faucet</a> to send some test MATIC tokens to your wallet for free. Simply copy your wallet's address from MetaMask and paste into the faucet website. </li> 
+                  <li> Copy your wallet address from MetaMask by tapping your account name or address under the network selector. </li> 
+                  <li>Use the <a className="externalLink" href="https://faucet.polygon.technology/" target="_blank" rel="noreferrer">Polygon Faucet</a> to send some test MATIC tokens to your wallet for free. Paste your wallet address into the faucet website. </li> 
                 </ol>
                 
                 <h3>Return to <DynaSpan/>
@@ -83,7 +84,8 @@ class HowToPage extends React.Component {
                 <ol>
                   <li>Open the MetaMask app on your mobile. </li> 
                   <li>If not already on Polygon's Mumbai Testnet in MetaMask, switch to it by <ChangeNetworkLink/>.</li>
-                  <li>Use the <a className="externalLink" href="https://faucet.polygon.technology/" target="_blank" rel="noreferrer">Polygon Faucet</a> to send some test MATIC tokens to your wallet for free. Simply copy your wallet's address from MetaMask and paste into the faucet website. </li> 
+                  <li> Copy your wallet address from MetaMask. Tap the top left menu button in the MetaMask mobile app, select Wallet, then tap your address (starts with "0x"). It appears under your account name. </li>
+                  <li>Use the <a className="externalLink" href="https://faucet.polygon.technology/" target="_blank" rel="noreferrer">Polygon Faucet</a> to send some test MATIC tokens to your wallet for free. Paste your wallet address into the faucet website. </li> 
                 </ol>
                 
                 <h3>Return to <DynaSpan/>
@@ -93,7 +95,7 @@ class HowToPage extends React.Component {
                 <ol>
                   <li>Open the MetaMask app, tap the menu button at top left and select Browser. Then browse to <DynaSpan link={true}/>. </li>
                   <li>Ensure you're connected to the Polygon Mumbai testnet in Metamask.</li>
-                  <li>Hit the Connect Wallet button at the top right of the <DynaSpan/> site.</li>
+                  <li>Tap the menu button at the top right of the <DynaSpan/> site, and then tap the Connect Wallet button at the bottom of the menu.</li>
                   <li>Follow the MetaMask prompts to connect your wallet to <DynaSpan/>.</li>
                   <li>Browse to the <Link to="/mint">Mint page</Link> to create a new NFT!</li> 
                 </ol>
