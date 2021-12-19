@@ -404,7 +404,9 @@ h4.dyna {
   }  
   .mintInput {
     margin: 0;
+    font-size: 0.8rem;
   }  
+
   .mintRow {
     margin: 0;
   } 

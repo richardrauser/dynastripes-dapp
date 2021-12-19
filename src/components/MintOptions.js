@@ -15,17 +15,17 @@ class MintOptions extends React.Component {
 
       const StyledSlider = styled(ReactSlider)`
           width: 100%;
-          height: 25px;
+          height: 20px;
       `;
 
       const StyledThumb = styled.div`
-          height: 25px;
-          line-height: 25px;
-          width: 25px;
+          height: 20px;
+          line-height: 20px;
+          width: 20px;
           text-align: center;
           background-color: #777;
           color: #fff;
-          font-size: 12px;
+          font-size: 10px;
           border-radius: 50%;
           cursor: grab;
       `;
@@ -125,12 +125,12 @@ class MintOptions extends React.Component {
 
                 <div className="mintInput">
                   Tint colour<br/>
-                  <HuePicker className="mintPicker" width="100%" height="25px" pointer={Thumb} color={this.props.tintColour} onChange={this.props.tintColourChanged} />
+                  <HuePicker className="mintPicker" width="100%" height="20px" pointer={Thumb} color={this.props.tintColour} onChange={this.props.tintColourChanged} />
                 </div>
 
                 <div className="mintInput">
                   Tint % <br/>
-                  <AlphaPicker className="mintPicker" width="100%" height="25px" pointer={AlphaThumb} color={this.props.tintColour} onChange={this.props.tintAlphaChanged} />
+                  <AlphaPicker className="mintPicker" width="100%" height="20px" pointer={AlphaThumb} color={this.props.tintColour} onChange={this.props.tintAlphaChanged} />
                 </div>
 
               </div>
