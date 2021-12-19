@@ -136,7 +136,8 @@ class MintOptions extends React.Component {
               </div>
             </div>
             <div className="textTraits">{this.props.traits}</div> 
-            <Button variant="primary" onClick={this.props.refresh}>New random seed</Button>
+            <Button variant="primary" onClick={this.props.refreshSeed}>New seed</Button>
+            <Button variant="primary" onClick={this.props.refreshParams}>Randomize params</Button>
             <MintButton mint={this.props.mint}/>
 
           <MintPriceComponent />

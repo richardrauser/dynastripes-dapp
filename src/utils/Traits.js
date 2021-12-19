@@ -47,6 +47,7 @@ function buildTraitsText(_zoom, _tintRed, _tintGreen, _tintBlue, _tintAlpha, _ro
 
          //adjective
         var colourWay; 
+        console.log("Red: " + _tintRed + " Green: "+ _tintGreen + " Blue: " + _tintBlue);
 
         if (_tintAlpha > 127) {
             const difference = 150;

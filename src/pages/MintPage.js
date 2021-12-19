@@ -42,14 +42,15 @@ class MintPage extends React.Component {
       this.widthRangeChanged = this.widthRangeChanged.bind(this);
       this.speedRangeChanged = this.speedRangeChanged.bind(this);
       this.mintAnother = this.mintAnother.bind(this);
-      this.refresh = this.refresh.bind(this);
+      this.generateRandomSeed = this.generateRandomSeed.bind(this);
+      this.generateRandomParams = this.generateRandomParams.bind(this);
       this.mint = this.mint.bind(this);
       this.fetchMintPrice = this.fetchMintPrice.bind(this);
     }
 
     componentDidMount() {
       this.fetchMintPrice();
-      this.setRandomInputs();
+      this.generateRandomParams();
     }
 
     randomIntFromInterval(min, max) { 
@@ -62,8 +63,7 @@ class MintPage extends React.Component {
       return Math.round(randomVal);
     }
 
-
-    setRandomInputs() {
+    generateRandomParams() {
       const randomZoom = this.randomIntFromInterval(0, 100);
 
       const randomRed = this.randomIntFromInterval(0, 255);
@@ -91,6 +91,17 @@ class MintPage extends React.Component {
       };
 
       this.setState(state);
+    }
+  
+    randomSeed() {
+      return Math.trunc(Math.random() * 5_000_000);
+    }
+
+    generateRandomSeed() {
+      const randomSeed = this.randomSeed();
+      this.setState({
+        randomSeed: randomSeed
+      });
     }
   
     zoomChanged(value, index) {
@@ -166,20 +177,9 @@ class MintPage extends React.Component {
         randomSeed: randomSeed
       })
 
-      this.setRandomInputs();
+      this.generateRandomParams();
     }
 
-    randomSeed() {
-      return Math.trunc(Math.random() * 5_000_000);
-    }
-
-    refresh() {
-      const randomSeed = this.randomSeed();
-      this.setState({
-        randomSeed: randomSeed
-      });
-    }
-  
     async fetchMintPrice() {
       try {
         const mintPrice = await fetchMintPrice();
@@ -306,7 +306,7 @@ class MintPage extends React.Component {
           <div id="mint" className="content">
             <h1>Mint your own <DynaSpan/> NFT</h1>
             <center>
-              { this.state.doneSuccess ? <MintAnotherComponent txHash={this.state.txHash} mintAnother={this.mintAnother} svgDataUri={svgDataUri} /> : <MintOptions svg={svg} traits={traits} mintPrice={this.state.mintPrice} rotationDegrees={this.state.rotationDegrees} rotationDegreesChanged={this.rotationDegreesChanged} rotationRange={this.state.rotationRange} rotationRangeChanged={this.rotationRangeChanged} zoom={this.state.zoom} zoomChanged={this.zoomChanged} tintColour={this.state.tintColour} tintColourChanged={this.tintColourChanged} tintAlphaChanged={this.tintAlphaChanged}  widthRange={this.state.widthRange} widthRangeChanged={this.widthRangeChanged} speedRange={this.state.speedRange} speedRangeChanged={this.speedRangeChanged} mint={this.mint} refresh={this.refresh} /> }
+              { this.state.doneSuccess ? <MintAnotherComponent txHash={this.state.txHash} mintAnother={this.mintAnother} svgDataUri={svgDataUri} /> : <MintOptions svg={svg} traits={traits} mintPrice={this.state.mintPrice} rotationDegrees={this.state.rotationDegrees} rotationDegreesChanged={this.rotationDegreesChanged} rotationRange={this.state.rotationRange} rotationRangeChanged={this.rotationRangeChanged} zoom={this.state.zoom} zoomChanged={this.zoomChanged} tintColour={this.state.tintColour} tintColourChanged={this.tintColourChanged} tintAlphaChanged={this.tintAlphaChanged}  widthRange={this.state.widthRange} widthRangeChanged={this.widthRangeChanged} speedRange={this.state.speedRange} speedRangeChanged={this.speedRangeChanged} mint={this.mint} refreshSeed={this.generateRandomSeed} refreshParams={this.generateRandomParams} /> }
             </center>
           </div>
         </div>

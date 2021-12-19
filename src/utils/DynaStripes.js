@@ -25,7 +25,7 @@ function generateRandomStripesDataUri() {
 }
 
 function generateDynaStripes(randomSeed, zoom, tintColour, rotationDegrees, rotationVariation, widthMin, widthMax, speedMin, speedMax) {
-    console.log("Generating dynastripes: " + randomSeed + " " + zoom + " " + rotationDegrees + " "  + rotationVariation + " " + widthMin + " " + widthMax + " " + speedMin + " " + speedMax)
+    // console.log("Generating dynastripes: " + randomSeed + " " + zoom + " " + rotationDegrees + " "  + rotationVariation + " " + widthMin + " " + widthMax + " " + speedMin + " " + speedMax);
 
     if (tintColour === null) {
         tintColour = { r: 0, g: 0, b: 0, a: 0 };
@@ -97,9 +97,6 @@ function getRotation(randomSeed, rotationDegrees, rotationRange) {
     const randomDegrees = randomIntFromInterval(randomSeed, 0, rotationRange);
     var rotation = 0;
 
-    console.log("Rotation range: " + rotationRange);
-    console.log("Random degreees: " + randomDegrees);
-
     if (randomDegrees === 0) {
         rotation = rotationDegrees;
     } else if (randomDegrees < rotationRange) {
@@ -112,7 +109,6 @@ function getRotation(randomSeed, rotationDegrees, rotationRange) {
         rotation = rotation - 360;
     }
 
-    console.log("Final rotation: " + rotation);
     return rotation;
 }
 
