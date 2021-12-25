@@ -34,7 +34,7 @@ class HomePage extends React.Component {
               <a className="basicLink" href="http://mumbai.dynastripes.com" target="_blank" rel="noreferrer">Public beta now live on Polygon Mumbai testnet!</a>
               </div>		
               <div id='placeholderContent'>
-                Mainnet launch December 2021.
+                Mainnet launch January 2022.
               </div>		
               😎<br/>
               <SocialLinks/>
