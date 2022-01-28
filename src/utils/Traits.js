@@ -57,22 +57,22 @@ function buildTraitsText(_zoom, _tintRed, _tintGreen, _tintBlue, _tintAlpha, _ro
                 colourWay = "pale";
             } else if (_tintRed > _tintGreen && _tintRed - _tintGreen >= difference && _tintRed > _tintBlue && _tintRed - _tintBlue >= difference) {
                 colourWay = "red-tinted";
-            } else if (_tintGreen > _tintRed && _tintBlue == 0) {
+            } else if (_tintGreen > _tintRed && _tintBlue === 0) {
                 colourWay = "green-tinted";
             } else if (_tintGreen > _tintRed && _tintGreen - _tintRed >= difference && _tintGreen > _tintBlue && _tintGreen - _tintBlue >= difference) {
                 colourWay = "green-tinted";
             } else if (_tintBlue > _tintRed && _tintBlue - _tintRed >= difference && _tintBlue > _tintGreen && _tintBlue - _tintGreen >= difference) {
                 colourWay = "blue-tinted";
-            } else if (_tintRed == 255 && _tintGreen == 0 && _tintBlue > 100) {
+            } else if (_tintRed === 255 && _tintGreen === 0 && _tintBlue > 100) {
                 colourWay = "pink-tinted";
-            } else if (_tintRed > _tintGreen && _tintRed - _tintGreen >= difference && _tintBlue > _tintGreen && _tintBlue - _tintGreen >= difference) {
+            } else if (_tintRed > _tintGreen && _tintRed - _ftintGreen >= difference && _tintBlue > _tintGreen && _tintBlue - _tintGreen >= difference) {
                 colourWay = "violet-tinted";
             // } else if (_tintRed > _tintBlue && _tintRed - _tintBlue >= difference && _tintGreen > _tintBlue && _tintGreen - _tintBlue >= difference) {            
-            } else if (_tintRed == 255 && _tintBlue == 0 && _tintGreen > 200) {
+            } else if (_tintRed === 255 && _tintBlue === 0 && _tintGreen > 200) {
                 colourWay = "yellow tinted";
-            } else if (_tintRed == 255 && _tintBlue == 0) {
+            } else if (_tintRed === 255 && _tintBlue === 0) {
                 colourWay = "orange-tinted";
-            } else if (_tintRed == 0 && _tintGreen < 200 && _tintBlue == 255) {
+            } else if (_tintRed === 0 && _tintGreen < 200 && _tintBlue === 255) {
                 colourWay = "blue-tinted";
             } else if (_tintBlue > _tintRed && _tintBlue - _tintRed >= difference && _tintGreen > _tintRed && _tintGreen - _tintRed >= difference) {
                 colourWay = "cyan-tinted";
