@@ -69,7 +69,7 @@ function buildTraitsText(_zoom, _tintRed, _tintGreen, _tintBlue, _tintAlpha, _ro
                 colourWay = "violet-tinted";
             // } else if (_tintRed > _tintBlue && _tintRed - _tintBlue >= difference && _tintGreen > _tintBlue && _tintGreen - _tintBlue >= difference) {            
             } else if (_tintRed === 255 && _tintBlue === 0 && _tintGreen > 200) {
-                colourWay = "yellow tinted";
+                colourWay = "yellow-tinted";
             } else if (_tintRed === 255 && _tintBlue === 0) {
                 colourWay = "orange-tinted";
             } else if (_tintRed === 0 && _tintGreen < 200 && _tintBlue === 255) {
