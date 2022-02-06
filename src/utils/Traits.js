@@ -1,56 +1,56 @@
 
-function buildTraitsText(_zoom, _tintRed, _tintGreen, _tintBlue, _tintAlpha, _rotationDegrees, _rotationRange, _stripeWidthMin, _stripeWidthMax, _speedMin, _speedMax) {
+function buildTraitsText(zoom, tintRed, tintGreen, tintBlue, tintAlpha, rotationDegrees, rotationRange, stripeWidthMin, stripeWidthMax, speedMin, speedMax) {
 
     // adjective
-    var speed = getSpeed(_tintAlpha, _speedMin, _speedMax);        
+    var speed = getSpeed(tintAlpha, speedMin, speedMax);        
     //adjective
-    var color = getColor(_tintRed, _tintGreen, _tintBlue, _tintAlpha);
+    var color = getColor(tintRed, tintGreen, tintBlue, tintAlpha);
     // noun
-    var form = getForm(_zoom, _rotationDegrees, _rotationRange, _stripeWidthMin, _stripeWidthMax);
+    var form = getForm(zoom, rotationDegrees, rotationRange, stripeWidthMin, stripeWidthMax);
 
     return speed + " " + color + " " + form;
 }
 
-function getSpeed(_tintAlpha, _speedMin, _speedMax) { 
+function getSpeed(tintAlpha, speedMin, speedMax) { 
     
     var speed = "";
 
-    if (_tintAlpha > 130 && _speedMin > 220) {
+    if (tintAlpha > 130 && speedMin > 220) {
         speed = "languid";
-    } else if (_tintAlpha > 130 && _speedMin > 200) {
+    } else if (tintAlpha > 130 && speedMin > 200) {
         speed = "pedestrian";
     } else {
-        if (_speedMax <= 25 && _tintAlpha < 180) {
+        if (speedMax <= 25 && tintAlpha < 180) {
             speed = "manic";
-        } else if (_speedMin === _speedMax) {
-            if (_speedMax < 30) {
+        } else if (speedMin === speedMax) {
+            if (speedMax < 30) {
                 speed = "blinking";
-            } else if (_speedMax > 200) {
+            } else if (speedMax > 200) {
                 speed = "throbbing";
             } else {
                 speed = "pulsing";        
             }
-        } else if (_speedMax < 35) {
+        } else if (speedMax < 35) {
             speed = "flashing";
-        } else if (_speedMax < 70) {
+        } else if (speedMax < 70) {
             speed = "flickering";
-        } else if (_speedMax < 105) {
+        } else if (speedMax < 105) {
             speed = "quivering";
-        } else if (_speedMax < 150) {
+        } else if (speedMax < 150) {
             speed = "vibrating";
-        } else if (_speedMax - _speedMin > 150) {
+        } else if (speedMax - speedMin > 150) {
             speed = "scintillating";        
         } else {
             speed = "oscillating";
         } 
 
-        if (_tintAlpha > 213) {
+        if (tintAlpha > 213) {
             speed = "gently " + speed;
-        } else if (_tintAlpha > 200) {
+        } else if (tintAlpha > 200) {
             speed = "tepidly " + speed;
-        } else if (_tintAlpha < 20) {
+        } else if (tintAlpha < 20) {
             speed = "magnificently " + speed;
-        } else if (_tintAlpha < 50) {
+        } else if (tintAlpha < 50) {
             speed = "powerfully " + speed;
         }    
     }
@@ -59,48 +59,48 @@ function getSpeed(_tintAlpha, _speedMin, _speedMax) {
 }
 
 
-function getColor(_tintRed, _tintGreen, _tintBlue, _tintAlpha) { 
+function getColor(tintRed, tintGreen, tintBlue, tintAlpha) { 
     var color = "";
 
-    console.log("Red: " + _tintRed + " Green: "+ _tintGreen + " Blue: " + _tintBlue);
+    console.log("Red: " + tintRed + " Green: "+ tintGreen + " Blue: " + tintBlue);
 
-    if (_tintAlpha > 127) {
+    if (tintAlpha > 127) {
         const difference = 150;
-        if (_tintAlpha > 200 && _tintRed < 50 && _tintGreen < 50 && _tintBlue < 50) {
+        if (tintAlpha > 200 && tintRed < 50 && tintGreen < 50 && tintBlue < 50) {
             color = "gloomy";
-        } else if (_tintAlpha > 200 && _tintRed > 200 && _tintGreen > 200 && _tintBlue > 200) {
+        } else if (tintAlpha > 200 && tintRed > 200 && tintGreen > 200 && tintBlue > 200) {
             color = "pale";
-        } else if (_tintRed > _tintGreen && _tintRed - _tintGreen >= difference && _tintRed > _tintBlue && _tintRed - _tintBlue >= difference) {
-            color = "red-tinted";
-        } else if (_tintGreen > _tintRed && _tintBlue === 0) {
-            color = "green-tinted";
-        } else if (_tintGreen > _tintRed && _tintGreen - _tintRed >= difference && _tintGreen > _tintBlue && _tintGreen - _tintBlue >= difference) {
-            color = "green-tinted";
-        } else if (_tintBlue > _tintRed && _tintBlue - _tintRed >= difference && _tintBlue > _tintGreen && _tintBlue - _tintGreen >= difference) {
-            color = "blue-tinted";
-        } else if (_tintRed === 255 && _tintGreen === 0 && _tintBlue > 100) {
-            color = "pink-tinted";
-        } else if (_tintRed > _tintGreen && _tintRed - _tintGreen >= difference && _tintBlue > _tintGreen && _tintBlue - _tintGreen >= difference && _tintRed > 200) {
-            color = "purple-tinted";
-        // } else if (_tintRed > _tintBlue && _tintRed - _tintBlue >= difference && _tintGreen > _tintBlue && _tintGreen - _tintBlue >= difference) {            
-        } else if (_tintRed === 255 && _tintBlue === 0 && _tintGreen > 200) {
-            color = "yellow-tinted";
-        } else if (_tintRed === 255 && _tintBlue === 0) {
-            color = "orange-tinted";
-        } else if (_tintRed === 0 && _tintGreen < 200 && _tintBlue === 255) {
-            color = "blue-tinted";
-        } else if (_tintBlue > _tintRed && _tintBlue - _tintRed >= difference && _tintGreen > _tintRed && _tintGreen - _tintRed >= difference) {
-            color = "cyan-tinted";
+        } else if (tintRed > tintGreen && tintRed - tintGreen >= difference && tintRed > tintBlue && tintRed - tintBlue >= difference) {
+            color = "red";
+        } else if (tintGreen > tintRed && tintBlue === 0) {
+            color = "green";
+        } else if (tintGreen > tintRed && tintGreen - tintRed >= difference && tintGreen > tintBlue && tintGreen - tintBlue >= difference) {
+            color = "green";
+        } else if (tintBlue > tintRed && tintBlue - tintRed >= difference && tintBlue > tintGreen && tintBlue - tintGreen >= difference) {
+            color = "blue";
+        } else if (tintRed === 255 && tintGreen === 0 && tintBlue > 100) {
+            color = "pink";
+        } else if (tintRed > tintGreen && tintRed - tintGreen >= difference && tintBlue > tintGreen && tintBlue - tintGreen >= difference && tintRed > 200) {
+            color = "purple";
+        // } else if (tintRed > tintBlue && tintRed - tintBlue >= difference && tintGreen > tintBlue && tintGreen - tintBlue >= difference) {            
+        } else if (tintRed === 255 && tintBlue === 0 && tintGreen > 200) {
+            color = "yellow";
+        } else if (tintRed === 255 && tintBlue === 0) {
+            color = "orange";
+        } else if (tintRed === 0 && tintGreen < 200 && tintBlue === 255) {
+            color = "blue";
+        } else if (tintBlue > tintRed && tintBlue - tintRed >= difference && tintGreen > tintRed && tintGreen - tintRed >= difference) {
+            color = "cyan";
         } else {
             color = "saturated";
         }
-    } else if (_tintAlpha === 0) {
+    } else if (tintAlpha === 0) {
         color = "kaleidoscopic";
-    } else if (_tintAlpha < 25) {
+    } else if (tintAlpha < 25) {
         color = "chromatic";
-    } else if (_tintAlpha < 50) {
+    } else if (tintAlpha < 50) {
         color = "vivid";
-    } else if (_tintAlpha < 85) {
+    } else if (tintAlpha < 85) {
         color = "tinged";
     } else {
         color = "tinted"; // medium tint
@@ -109,86 +109,86 @@ function getColor(_tintRed, _tintGreen, _tintBlue, _tintAlpha) {
     return color;
 }
 
-function getForm(_zoom, _rotationDegrees, _rotationRange, _stripeWidthMin, _stripeWidthMax) { 
+function getForm(zoom, rotationDegrees, rotationRange, stripeWidthMin, stripeWidthMax) { 
 
     var form = "";
-    _rotationDegrees = _rotationDegrees % 180; // because forms rotated 180 degrees are the same.
+    rotationDegrees = rotationDegrees % 180; // because forms rotated 180 degrees are the same.
 
-    if (_rotationRange === 0) {
-        if (_zoom > 50 && _rotationDegrees % 90 === 0) {
+    if (rotationRange === 0) {
+        if (zoom > 50 && rotationDegrees % 90 === 0) {
             form = "perfect square";
-        } else if (_zoom > 91 && (_rotationDegrees === 45 || _rotationDegrees === 135)) {
+        } else if (zoom > 91 && (rotationDegrees === 45 || rotationDegrees === 135)) {
             form = "perfect diamond";
-        } else if (_zoom <= 50 && _rotationDegrees === 0) {
+        } else if (zoom <= 50 && rotationDegrees === 0) {
             form = "vertical stripes";
-        } else if (_zoom <= 50 && _rotationDegrees % 90 === 0) {
+        } else if (zoom <= 50 && rotationDegrees % 90 === 0) {
             form = "horizontal stripes";
-        } else if (_zoom <= 25) {
+        } else if (zoom <= 25) {
             form = "diagonal stripes";
         } else {
             form = "rotated square";
         }
-    } else if (_zoom < 30) {
-        if (_zoom < 20 && _stripeWidthMin > 70 && _rotationRange < 60 && _rotationRange > 10) {
+    } else if (zoom < 30) {
+        if (zoom < 20 && stripeWidthMin > 70 && rotationRange < 60 && rotationRange > 10) {
             form = "ribbons";
-        } else if ( _zoom < 20 && _rotationRange < 30 && _stripeWidthMin > 200) {
+        } else if ( zoom < 20 && rotationRange < 30 && stripeWidthMin > 200) {
             form = "banners";
-        } else if (_zoom < 20 && _stripeWidthMax < 75 && _rotationRange < 60 && _rotationRange > 10) {
+        } else if (zoom < 20 && stripeWidthMax < 75 && rotationRange < 60 && rotationRange > 10) {
             form = "streamers";
-        } else if (_stripeWidthMax < 60 && _rotationRange > 130) {
+        } else if (stripeWidthMax < 60 && rotationRange > 130) {
             form = "laser beams";
-        } else if (_stripeWidthMax < 120 && _rotationDegrees >= 45 && _rotationDegrees < 135) {
+        } else if (stripeWidthMax < 120 && rotationDegrees >= 45 && rotationDegrees < 135) {
             form = "beams";
-        } else if (_stripeWidthMax < 120 && _rotationRange < 90) {
+        } else if (stripeWidthMax < 120 && rotationRange < 90) {
             form = "poles";
-        } else if (_rotationDegrees >= 45 && _rotationDegrees < 135) {
+        } else if (rotationDegrees >= 45 && rotationDegrees < 135) {
             form = "streaks";
         } else { // rotation < 45 || rotation > 135
             form = "shafts";
         }
-    } else if (_zoom > 50 && _stripeWidthMax < 60 && _rotationRange < 30) {
+    } else if (zoom > 50 && stripeWidthMax < 60 && rotationRange < 30) {
         form = "match sticks";
-    } else if (_zoom > 50 && _stripeWidthMax < 60 && _rotationRange < 60) {
+    } else if (zoom > 50 && stripeWidthMax < 60 && rotationRange < 60) {
         form = "scattered match sticks";
-    } else if (_zoom > 50 && _stripeWidthMin > 70 && _stripeWidthMax < 110 && _rotationRange > 10 && _rotationRange < 40) {
+    } else if (zoom > 50 && stripeWidthMin > 70 && stripeWidthMax < 110 && rotationRange > 10 && rotationRange < 40) {
         form = "twigs";
-    } else if (_zoom > 50 && _stripeWidthMin > 70 && _stripeWidthMax < 110 && _rotationRange > 10 && _rotationRange < 60) {
+    } else if (zoom > 50 && stripeWidthMin > 70 && stripeWidthMax < 110 && rotationRange > 10 && rotationRange < 60) {
         form = "scattered twigs";
-    } else if (_zoom > 80 &&_stripeWidthMax < 60 && _rotationRange > 130) {
+    } else if (zoom > 80 &&stripeWidthMax < 60 && rotationRange > 130) {
         form = "birds nest";
-    } else if ( _zoom > 70 && _rotationRange < 70 && _stripeWidthMin > 200 && (_rotationDegrees <= 25 || _rotationDegrees >= 155)) {
+    } else if ( zoom > 70 && rotationRange < 70 && stripeWidthMin > 200 && (rotationDegrees <= 25 || rotationDegrees >= 155)) {
         form = "pillars";
-    } else if ( _zoom > 70 && _rotationRange < 70 && _stripeWidthMin > 200 && (_rotationDegrees <= 115 && _rotationDegrees >= 65)) {
+    } else if ( zoom > 70 && rotationRange < 70 && stripeWidthMin > 200 && (rotationDegrees <= 115 && rotationDegrees >= 65)) {
         form = "bricks";
-    } else if (_zoom > 55 && _stripeWidthMin > 70 && _rotationRange >= 5 && _rotationRange <= 30 && (_rotationDegrees <= 10 || _rotationDegrees >= 170)) {
+    } else if (zoom > 55 && stripeWidthMin > 70 && rotationRange >= 5 && rotationRange <= 30 && (rotationDegrees <= 10 || rotationDegrees >= 170)) {
         form = "cluttered books";
-    } else if (_zoom > 55 && _stripeWidthMin > 70 && _rotationRange <= 30 && _rotationDegrees >= 80 && _rotationDegrees <= 100) {
+    } else if (zoom > 55 && stripeWidthMin > 70 && rotationRange <= 30 && rotationDegrees >= 80 && rotationDegrees <= 100) {
         form = "stacked books";
-    } else if (_zoom > 55 && _stripeWidthMin > 70 && _rotationRange < 60 && _rotationDegrees >= 50 && _rotationDegrees <= 130) {
+    } else if (zoom > 55 && stripeWidthMin > 70 && rotationRange < 60 && rotationDegrees >= 50 && rotationDegrees <= 130) {
         form = "tumbling books";
-    } else if (_zoom > 55 && _stripeWidthMin > 50 && _stripeWidthMax < 150 && _rotationRange < 50 && _rotationDegrees >= 80 && _rotationDegrees <= 100) {
+    } else if (zoom > 55 && stripeWidthMin > 50 && stripeWidthMax < 150 && rotationRange < 50 && rotationDegrees >= 80 && rotationDegrees <= 100) {
         form = "broken ladder";
-    } else if (_zoom > 55 && _rotationRange > 10 && _rotationRange < 60 && _rotationDegrees >= 50 && _rotationDegrees <= 130 && _stripeWidthMax - _stripeWidthMin >= 150) {
+    } else if (zoom > 55 && rotationRange > 10 && rotationRange < 60 && rotationDegrees >= 50 && rotationDegrees <= 130 && stripeWidthMax - stripeWidthMin >= 150) {
         form = "collapsing building";
-    } else if (_stripeWidthMin > 25 && _stripeWidthMax < 200 && _rotationRange <= 15) {
+    } else if (stripeWidthMin > 25 && stripeWidthMax < 200 && rotationRange <= 15) {
         form = "jitters";
-    } else if (_stripeWidthMin > 25 && _stripeWidthMax < 200 && _rotationRange <= 45) {
+    } else if (stripeWidthMin > 25 && stripeWidthMax < 200 && rotationRange <= 45) {
         form = "wobbles";
-    } else if ( _zoom > 50 && _stripeWidthMin > 200) {
+    } else if ( zoom > 50 && stripeWidthMin > 200) {
         form = "blocks";
-    } else if ( _zoom > 90 && _stripeWidthMax - _stripeWidthMin >= 150 && _rotationRange > 150) {
+    } else if ( zoom > 90 && stripeWidthMax - stripeWidthMin >= 150 && rotationRange > 150) {
         form = "masterpiece";
-    } else if (_rotationRange > 100 && _stripeWidthMax < 150) {
+    } else if (rotationRange > 100 && stripeWidthMax < 150) {
         form = "lunacy";
-    } else if (_rotationRange < 60 && _stripeWidthMin > 150) {
+    } else if (rotationRange < 60 && stripeWidthMin > 150) {
         form = "tranquility";
-    } else if (_stripeWidthMin > 120) {
+    } else if (stripeWidthMin > 120) {
         form = "bars";
-    } else if (_stripeWidthMax < 100 && _rotationRange > 60) {
+    } else if (stripeWidthMax < 100 && rotationRange > 60) {
         form = "scattered lines";
-    } else if (_stripeWidthMax < 100) {
+    } else if (stripeWidthMax < 100) {
         form = "lines";
-    } else if (_zoom > 40 && _rotationRange > 90) {
+    } else if (zoom > 40 && rotationRange > 90) {
         form = "reverie";
     } else {
         form = "abstraction";

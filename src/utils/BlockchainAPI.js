@@ -43,7 +43,7 @@ export async function isOnCorrectNetwork() {
   const provider = await getProvider();
   const network = await provider.getNetwork();
   console.log("Network: " + network.chainId);
-  if (network.chainId === 0x13881) {
+  if (network.chainId === DynaStripesCurrentNeworkID) {
     return true;
   } else {
     return false;

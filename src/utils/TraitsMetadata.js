@@ -13,12 +13,12 @@ function buildTraitsText(metadata) {
       traitsText += speedAttribute["value"];            
     }
 
-    const colourWayAttribute = attributes.filter(trait => trait.trait_type === "colour way")[0];
-    if (colourWayAttribute !== undefined) {
+    const colorAttribute = attributes.filter(trait => trait.trait_type === "color")[0];
+    if (colorAttribute !== undefined) {
       if (traitsText !== "") {
         traitsText += " ";
       }
-      traitsText += colourWayAttribute["value"];            
+      traitsText += colorAttribute["value"];            
     }
 
     const formAttribute = attributes.filter(trait => trait.trait_type === "form")[0];
@@ -29,9 +29,7 @@ function buildTraitsText(metadata) {
       var form = formAttribute["value"];
       traitsText += form;
     }
-
-
-
+    
     return traitsText;
 }
 
