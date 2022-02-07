@@ -1,11 +1,11 @@
 
 // localhost / Hardhat
-const DynaStripesCurrentNeworkID = 1337; 
-const DynaStripesCurrentNetworkName = "localhost";
-const DynaStripesCurrentNetworkCurrencySymbol = "MATIC";
-const DynaStripesCurrentNetworkRpcUrl = "https://www.superbad.com/";
-const DynaStripesCurrentNetworkExplorerUrl = 'https://www.superbad.com/';
-const DynaStripesContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'; 
+// const DynaStripesCurrentNeworkID = 1337; 
+// const DynaStripesCurrentNetworkName = "localhost";
+// const DynaStripesCurrentNetworkCurrencySymbol = "MATIC";
+// const DynaStripesCurrentNetworkRpcUrl = "https://www.superbad.com/";
+// const DynaStripesCurrentNetworkExplorerUrl = 'https://www.superbad.com/';
+// const DynaStripesContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'; 
 
 // ETHEREUM
 
@@ -30,12 +30,12 @@ const DynaStripesContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
 // POLYGON
 
 // Mumbai
-// const DynaStripesCurrentNeworkID = 80001;
-// const DynaStripesCurrentNetworkName = "Matic Mumbai";
-// const DynaStripesCurrentNetworkCurrencySymbol = "MATIC";
-// const DynaStripesCurrentNetworkRpcUrl = "https://rpc-mumbai.maticvigil.com/";
-// const DynaStripesCurrentNetworkExplorerUrl = "https://mumbai.polygonscan.com/";
-// const DynaStripesContractAddress = '0x6821E3753822de63D6BAfb0F0381140686fCB71c';
+const DynaStripesCurrentNeworkID = 80001;
+const DynaStripesCurrentNetworkName = "Matic Mumbai";
+const DynaStripesCurrentNetworkCurrencySymbol = "MATIC";
+const DynaStripesCurrentNetworkRpcUrl = "https://rpc-mumbai.maticvigil.com/";
+const DynaStripesCurrentNetworkExplorerUrl = "https://mumbai.polygonscan.com/";
+const DynaStripesContractAddress = '0x6821E3753822de63D6BAfb0F0381140686fCB71c';
 
 export { DynaStripesCurrentNeworkID, 
          DynaStripesCurrentNetworkName, 
