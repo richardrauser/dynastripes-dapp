@@ -1,12 +1,12 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-import sample1 from '../images/dynasample2.svg';
-import sample2 from '../images/dynasample3.svg';
-import sample3 from '../images/dynasample8.svg';
-import sample4 from '../images/dynasample6.svg';
-import sample5 from '../images/dynasample9.svg';
-import sample6 from '../images/dynasample7.svg';
+import sample1 from '../images/dynasample3.svg';
+import sample2 from '../images/dynasample2.svg';
+import sample3 from '../images/dynasample1.svg';
+import sample4 from '../images/dynasample5.svg';
+import sample5 from '../images/dynasample4.svg';
+import sample6 from '../images/dynasample6.svg';
 
 
 import {
@@ -81,6 +81,7 @@ class HomePage extends React.Component {
                   </Link>
                 </div>
               </div>
+              <br/>
               <SocialLinks/>
             </div>
           </div>
