@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import sample1 from '../images/dynasample3.svg';
 import sample2 from '../images/dynasample2.svg';
 import sample3 from '../images/dynasample1.svg';
-import sample4 from '../images/dynasample5.svg';
+import sample4 from '../images/dynasample9.svg';
 import sample5 from '../images/dynasample4.svg';
 import sample6 from '../images/dynasample6.svg';
 
@@ -36,7 +36,7 @@ class HomePage extends React.Component {
       return (
         <div className="mainContent" style={{backgroundImage: svgDataUri}} onClick={this.update}>
             <Alert variant="warning">
-              This is a beta test version of <DynaSpan/> running on the Polygon Mumbai testnet that does not use real funds.
+              This is a beta test version of <DynaSpan/> running on the Polygon Mumbai testnet that doe§s not use real funds.
             </Alert>
 
             <div className="content">
@@ -62,7 +62,7 @@ class HomePage extends React.Component {
                       <b>Generative:</b> artwork created by an algorithm
                     </li>              
                     <li>
-                    <b>On-chain:</b> artwork stored 100% on blockchain with no external dependencies
+                    <b>On-chain:</b> artwork & metadata stored 100% on the blockchain
                     </li>              
                     <li>
                       <b>NFT:</b> ERC-721 compliant non-fungible token smart contract
