@@ -38,6 +38,14 @@ function getSpeed(tintAlpha, speedMin, speedMax) {
             speed = "quivering";
         } else if (speedMax < 150) {
             speed = "vibrating";
+        } else if (speedMin > 200) {
+            speed = "meandering";
+        } else if (speedMin > 150) {
+            speed = "drifting";
+        } else if (speedMin > 120) {
+            speed = "flowing";
+        } else if (speedMin > 100) {
+            speed = "shifting";
         } else if (speedMax - speedMin > 150) {
             speed = "scintillating";        
         } else {

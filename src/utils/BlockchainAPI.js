@@ -2,7 +2,7 @@
 import { ethers } from 'ethers';
 import DynaStripes from '../artifacts/contracts/DynaStripes.sol/DynaStripes.json';
 import * as Errors from './ErrorMessages';
-import DynaStripesContractAddress, { DynaStripesCurrentNeworkID, DynaStripesCurrentNetworkName, DynaStripesCurrentNetworkCurrencySymbol, DynaStripesCurrentNetworkRpcUrl, DynaStripesCurrentNetworkExplorerUrl } from './Constants';
+import DynaStripesContractAddress, { DynaStripesCurrentNetworkID, DynaStripesCurrentNetworkName, DynaStripesCurrentNetworkCurrencySymbol, DynaStripesCurrentNetworkRpcUrl, DynaStripesCurrentNetworkExplorerUrl } from './Constants';
 import { showInfoMessage } from './UIUtils';
 // import Web3Modal from "web3modal";
 
@@ -43,7 +43,7 @@ export async function isOnCorrectNetwork() {
   const provider = await getProvider();
   const network = await provider.getNetwork();
   console.log("Network: " + network.chainId);
-  if (network.chainId === DynaStripesCurrentNeworkID) {
+  if (network.chainId === DynaStripesCurrentNetworkID) {
     return true;
   } else {
     return false;
@@ -62,7 +62,7 @@ export async function switchToCurrentNetwork() {
   }
 
   const data = [{
-    chainId: "0x" + DynaStripesCurrentNeworkID.toString(16),
+    chainId: "0x" + DynaStripesCurrentNetworkID.toString(16),
     chainName: DynaStripesCurrentNetworkName,
     nativeCurrency:
         {
@@ -86,10 +86,11 @@ export async function getContract() {
   const { chainId } = await provider.getNetwork();
   console.log("CHAIN ID: " + chainId); // 42
   
-  if (chainId !== DynaStripesCurrentNeworkID) {
-    
+  if (chainId !== DynaStripesCurrentNetworkID) {
     console.log("Not on right network");
     throw Error(Errors.DS_WRONG_ETH_NETWORK);
+  } else {
+    console.log("On right network");    
   }
   const contract = new ethers.Contract(DynaStripesContractAddress, DynaStripes.abi, provider);
   return contract;

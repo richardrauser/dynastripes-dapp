@@ -13,6 +13,8 @@ import { getContractWithSigner, fetchMintPrice, isOnCorrectNetwork } from '../ut
 import generateDynaStripes from '../utils/DynaStripes';
 import DynaSpan from '../components/DynaSpan';
 import getTextTraits from '../utils/Traits';
+import { DynaStripesMaxTokensPerUser } from '../utils/Constants';
+
 class MintPage extends React.Component {
 
     constructor(props) {
@@ -259,7 +261,15 @@ class MintPage extends React.Component {
           console.log("Not on right network");
           throw Error(Errors.DS_WRONG_ETH_NETWORK);
         }
-          const contractWithSigner = await getContractWithSigner(); 
+        const contractWithSigner = await getContractWithSigner(); 
+
+        const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const tokenCount = await contractWithSigner.balanceOf(account);
+        console.log("User's token count: " + tokenCount);
+        if (tokenCount >= DynaStripesMaxTokensPerUser) {
+          showErrorMessage("You already have " + tokenCount + " DynaStripes artworks. You've reached the mint limit!");
+          return;
+        }
 
         console.log("Minting dynastripes: " + rotationDegrees + " " + zoom + " " + widthMin + " " + widthMax + " " + speedMin + " " + speedMax)
 
