@@ -49,7 +49,7 @@ function getSpeed(alpha, min, max) {
         } else if (max - min > 150) {
             speed = "scintillating";        
         } else {
-            speed = "oscillating";
+            speed = "oscillating"; 
         } 
 
         if (alpha > 213) {
@@ -90,7 +90,6 @@ function getColor(red, green, blue, alpha) {
             color = "pink";
         } else if (red > green && red - green >= difference && blue > green && blue - green >= difference && red > 200) {
             color = "purple";
-        // } else if (red > blue && red - blue >= difference && green > blue && green - blue >= difference) {            
         } else if (red === 255 && blue === 0 && green > 200) {
             color = "yellow";
         } else if (red === 255 && blue === 0) {
