@@ -3,8 +3,8 @@ const DynaStripesMaxTokensPerUser = 2000;
 const DynaStripesLocalhostNetwork = "localhost";
 const DynaStripesMumbaiNetwork = "mumbai";
 
-const currentNetwork = DynaStripesLocalhostNetwork;
-// const currentNetwork = DynaStripesMumbaiNetwork;
+// const currentNetwork = DynaStripesLocalhostNetwork;
+ const currentNetwork = DynaStripesMumbaiNetwork;
 
 const DynaStripesCurrentNetworkIDKey = "DynaStripesCurrentNetworkIDKey";
 const DynaStripesCurrentNetworkNameKey = "DynaStripesCurrentNetworkNameKey";
