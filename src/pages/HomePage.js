@@ -36,7 +36,7 @@ class HomePage extends React.Component {
       return (
         <div className="mainContent" style={{backgroundImage: svgDataUri}} onClick={this.update}>
             <Alert variant="warning">
-              This is a beta test version of <DynaSpan/> running on the Polygon Mumbai testnet that doe§s not use real funds.
+              This is a beta test version of <DynaSpan/> running on the Polygon Mumbai testnet that does not use real funds.
             </Alert>
 
             <div className="content">
