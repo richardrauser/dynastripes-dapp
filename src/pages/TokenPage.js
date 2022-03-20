@@ -50,7 +50,9 @@ class TokenPage extends React.Component {
           const tokenOwner = await contract.ownerOf(this.state.tokenId);
           const metadataDataUri = await contract.tokenURI(this.state.tokenId);
           const metadataJson = metadataDataUri.replace("data:text/plain,", "");
-  
+
+          console.log("Metadata JSON: " + metadataJson);
+
           const metadataObject = JSON.parse(metadataJson);
           const svgDataUri = metadataObject.image;
           const svg = svgDataUri.replace("data:image/svg+xml,", "");
