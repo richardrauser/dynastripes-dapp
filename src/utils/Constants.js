@@ -2,9 +2,11 @@
 const DynaStripesMaxTokensPerUser = 2000;
 const DynaStripesLocalhostNetwork = "localhost";
 const DynaStripesMumbaiNetwork = "mumbai";
+const DynaStripeRinkebyNetwork = "rinkeby";
 
 // const currentNetwork = DynaStripesLocalhostNetwork;
- const currentNetwork = DynaStripesMumbaiNetwork;
+// const currentNetwork = DynaStripesMumbaiNetwork;
+const currentNetwork = DynaStripeRinkebyNetwork;
 
 const DynaStripesCurrentNetworkIDKey = "DynaStripesCurrentNetworkIDKey";
 const DynaStripesCurrentNetworkNameKey = "DynaStripesCurrentNetworkNameKey";
@@ -43,7 +45,15 @@ function networkConfigFor(currentNetwork) {
             // DynaStripesContractAddressKey: '0x62d33C51d63C84A2b9F4E5A4102E3C0a5D5a227E' // second Mumbai deploy (3/2022)
             // DynaStripesContractAddressKey: '0x6821E3753822de63D6BAfb0F0381140686fCB71c' // first Mumbai deploy (early 2022)
         }
-    }     
+    } else if (currentNetwork === DynaStripeRinkebyNetwork) {
+        DynaStripesCurrentNetworkIDKey: 4, 
+        DynaStripesCurrentNetworkNameKey: "rinkeby",
+        DynaStripesCurrentNetworkCurrencySymbolKey: "ETH",
+        DynaStripesCurrentNetworkRpcUrlKey: "https://rinkeby.infura.io/v3/",
+        DynaStripesCurrentNetworkExplorerUrlKey: 'https://rinkeby.etherscan.io/',
+        DynaStripesContractAddressKey: '0xD2921b75fBbFE3FA4B9B99DFd7B173f20E35507d'
+
+    }
 }
 
 // ETHEREUM
