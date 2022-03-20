@@ -24,7 +24,7 @@ const DynaStripesCurrentNetworkRpcUrl = networkConfig[DynaStripesCurrentNetworkR
 const DynaStripesCurrentNetworkExplorerUrl = networkConfig[DynaStripesCurrentNetworkExplorerUrlKey];
 const DynaStripesContractAddress = networkConfig[DynaStripesContractAddressKey];
 
-function networkConfigFor(currentNetwork) {
+function networkConfigFor(currentNetwork) { 
     if (currentNetwork === DynaStripesLocalhostNetwork) {
         return {
             DynaStripesCurrentNetworkIDKey: 1337, 
