@@ -77,11 +77,16 @@ class MintPage extends React.Component {
       const randomRotationDegrees = this.randomIntFromInterval(0, 360);
       const randomRotationRange = this.randomIntFromInterval(0, 180);
 
-      const randomWidthMin = this.randomIntFromInterval(25, 250);
-      const randomWidthMax = this.randomIntFromInterval(randomWidthMin, 250);
+      const randomWidthA = this.randomIntFromInterval(25, 250);
+      const randomWidthB = this.randomIntFromInterval(25, 250);
+      console.log("randomWidthA " + randomWidthA + " randomWidthB " + randomWidthB);
+      const randomWidthMin = randomWidthA < randomWidthB ? randomWidthA : randomWidthB;
+      const randomWidthMax = randomWidthA >= randomWidthB ? randomWidthA : randomWidthB;
 
-      const randomSpeedMin = this.randomIntFromInterval(25, 250);
-      const randomSpeedMax = this.randomIntFromInterval(randomSpeedMin, 250);
+      const randomSpeedA = this.randomIntFromInterval(25, 250);
+      const randomSpeedB = this.randomIntFromInterval(25, 250);
+      const randomSpeedMin = (randomSpeedA < randomSpeedB) ? randomSpeedA : randomSpeedB;
+      const randomSpeedMax = (randomSpeedA >= randomSpeedB) ? randomSpeedA : randomSpeedB;
 
       let state = {
         zoom: randomZoom,
