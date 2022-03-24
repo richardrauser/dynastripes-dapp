@@ -6,8 +6,8 @@ const DynaStripeRinkebyNetwork = "rinkeby";
 
 // Change this to control which environment you're pointing at.
 // const currentNetwork = DynaStripesLocalhostNetwork;
-// const currentNetwork = DynaStripesMumbaiNetwork;
-const currentNetwork = DynaStripeRinkebyNetwork;
+const currentNetwork = DynaStripesMumbaiNetwork;
+// const currentNetwork = DynaStripeRinkebyNetwork;
 
 const DynaStripesCurrentNetworkIDKey = "DynaStripesCurrentNetworkIDKey";
 const DynaStripesCurrentNetworkNameKey = "DynaStripesCurrentNetworkNameKey";
@@ -42,9 +42,7 @@ function networkConfigFor(currentNetwork) {
             DynaStripesCurrentNetworkCurrencySymbolKey: "MATIC",
             DynaStripesCurrentNetworkRpcUrlKey: "https://rpc-mumbai.maticvigil.com/",
             DynaStripesCurrentNetworkExplorerUrlKey: "https://mumbai.polygonscan.com/",
-            DynaStripesContractAddressKey: '0x5fa46B68c459FE8f4ee9e762A579768A7D588C71' // third Mumbai deploy (19/3/2022)
-            // DynaStripesContractAddressKey: '0x62d33C51d63C84A2b9F4E5A4102E3C0a5D5a227E' // second Mumbai deploy (3/2022)
-            // DynaStripesContractAddressKey: '0x6821E3753822de63D6BAfb0F0381140686fCB71c' // first Mumbai deploy (early 2022)
+            DynaStripesContractAddressKey: '0xfE5b53733fA92D335e08dAe84fC98f98Fb8BD535'
         }
     } else if (currentNetwork === DynaStripeRinkebyNetwork) {
         return {
