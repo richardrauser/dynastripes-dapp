@@ -3,14 +3,8 @@
     "description": "DynaStripes is generative, on-chain NFT art composed of colourful, animated stripes! 100% on-chain, zero backend. 😎",
     "image": "https://www.dynastripes.com/opensea-storefront.png",
     "external_link": "https://www.dynastripes.com"
-<<<<<<< HEAD
   }
 
 
     // "seller_fee_basis_points": 0,
     // "fee_recipient": "0x4a607Ee9381EeAD4F862B5321e58a403B4034c71" 
-=======
-    // "seller_fee_basis_points": 0,
-    // "fee_recipient": "0x4a607Ee9381EeAD4F862B5321e58a403B4034c71" 
-  }
->>>>>>> 47a89ec869dc7329dc88621ff051f5788e52a98a
