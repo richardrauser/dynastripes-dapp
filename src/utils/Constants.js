@@ -3,11 +3,13 @@ const DynaStripesMaxTokensPerUser = 2000;
 const DynaStripesLocalhostNetwork = "localhost";
 const DynaStripesMumbaiNetwork = "mumbai";
 const DynaStripeRinkebyNetwork = "rinkeby";
+const DynaStripesPolygonNetwork = "mainnet"; // polygon
 
 // Change this to control which environment you're pointing at.
 // const currentNetwork = DynaStripesLocalhostNetwork;
-const currentNetwork = DynaStripesMumbaiNetwork;
+// const currentNetwork = DynaStripesMumbaiNetwork;
 // const currentNetwork = DynaStripeRinkebyNetwork;
+const currentNetwork = DynaStripesPolygonNetwork;
 
 const DynaStripesCurrentNetworkIDKey = "DynaStripesCurrentNetworkIDKey";
 const DynaStripesCurrentNetworkNameKey = "DynaStripesCurrentNetworkNameKey";
@@ -44,6 +46,15 @@ function networkConfigFor(currentNetwork) {
             DynaStripesCurrentNetworkExplorerUrlKey: "https://mumbai.polygonscan.com/",
             DynaStripesContractAddressKey: '0xfE5b53733fA92D335e08dAe84fC98f98Fb8BD535'
         }
+    } else if (currentNetwork === DynaStripesPolygonNetwork) {
+        return {
+            DynaStripesCurrentNetworkIDKey: 137, 
+            DynaStripesCurrentNetworkNameKey: "mainnet",
+            DynaStripesCurrentNetworkCurrencySymbolKey: "MATIC",
+            DynaStripesCurrentNetworkRpcUrlKey: "https://rpc-mainnet.maticvigil.com/",
+            DynaStripesCurrentNetworkExplorerUrlKey: 'https://www.polygonscan.com/',
+            DynaStripesContractAddressKey: '0xF6b1B14E9887c64327800E25554202f09a7FC158'
+        }        
     } else if (currentNetwork === DynaStripeRinkebyNetwork) {
         return {
             DynaStripesCurrentNetworkIDKey: 4, 
