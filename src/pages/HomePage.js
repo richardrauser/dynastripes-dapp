@@ -16,7 +16,6 @@ import {
 import { generateRandomStripesDataUri } from '../utils/DynaStripes.js';
 import SocialLinks from '../components/SocialLinks';
 import DynaSpan from '../components/DynaSpan';
-import { Alert } from 'react-bootstrap';
 
 class HomePage extends React.Component {
     constructor(props) {
