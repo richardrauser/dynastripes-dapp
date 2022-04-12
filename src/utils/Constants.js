@@ -42,7 +42,7 @@ function networkConfigFor(currentNetwork) {
             DynaStripesCurrentNetworkCurrencySymbolKey: "MATIC",
             DynaStripesCurrentNetworkRpcUrlKey: "https://rpc-mumbai.maticvigil.com/",
             DynaStripesCurrentNetworkExplorerUrlKey: "https://mumbai.polygonscan.com/",
-            DynaStripesContractAddressKey: '0x7C1E4Df00deC995e56c6feDbd4151462bf634aA8' //pre-opensea support: '0xfE5b53733fA92D335e08dAe84fC98f98Fb8BD535'
+            DynaStripesContractAddressKey: '0xe68853B394Ee9048b8B47C89d743bB15D8e78400' //pre-opensea support: '0xfE5b53733fA92D335e08dAe84fC98f98Fb8BD535'
         }
     } else if (currentNetwork === DynaStripeRinkebyNetwork) {
         return {
