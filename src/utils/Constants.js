@@ -6,8 +6,8 @@ const DynaStripeRinkebyNetwork = "rinkeby";
 
 // Change this to control which environment you're pointing at.
 // const currentNetwork = DynaStripesLocalhostNetwork;
-const currentNetwork = DynaStripesMumbaiNetwork;
-// const currentNetwork = DynaStripeRinkebyNetwork;
+// const currentNetwork = DynaStripesMumbaiNetwork;
+const currentNetwork = DynaStripeRinkebyNetwork;
 
 const DynaStripesCurrentNetworkIDKey = "DynaStripesCurrentNetworkIDKey";
 const DynaStripesCurrentNetworkNameKey = "DynaStripesCurrentNetworkNameKey";
@@ -51,7 +51,7 @@ function networkConfigFor(currentNetwork) {
             DynaStripesCurrentNetworkCurrencySymbolKey: "ETH",
             DynaStripesCurrentNetworkRpcUrlKey: "https://rinkeby.infura.io/v3/",
             DynaStripesCurrentNetworkExplorerUrlKey: 'https://rinkeby.etherscan.io/',
-            DynaStripesContractAddressKey: '0x26E2aaaDfADc86Cf4A704126ef27d4B802dBBB93'
+            DynaStripesContractAddressKey: '0x1103cbFf6efDadbEB1a18D942A4743117b67B77c'
         }
     }
 }
