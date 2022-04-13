@@ -6,8 +6,8 @@ const DynaStripeRinkebyNetwork = "rinkeby";
 
 // Change this to control which environment you're pointing at.
 // const currentNetwork = DynaStripesLocalhostNetwork;
-// const currentNetwork = DynaStripesMumbaiNetwork;
-const currentNetwork = DynaStripeRinkebyNetwork;
+const currentNetwork = DynaStripesMumbaiNetwork;
+// const currentNetwork = DynaStripeRinkebyNetwork;
 
 const DynaStripesCurrentNetworkIDKey = "DynaStripesCurrentNetworkIDKey";
 const DynaStripesCurrentNetworkNameKey = "DynaStripesCurrentNetworkNameKey";
