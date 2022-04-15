@@ -3,7 +3,7 @@ const DynaStripesMaxTokensPerUser = 5;
 const DynaStripesLocalhostNetwork = "localhost";
 const DynaStripesMumbaiNetwork = "mumbai";
 const DynaStripeRinkebyNetwork = "rinkeby";
-const DynaStripesPolygonNetwork = "mainnet"; // polygon
+const DynaStripesPolygonNetwork = "Polygon Mainnet"; // polygon
 
 // Change this to control which environment you're pointing at.
 // const currentNetwork = DynaStripesLocalhostNetwork;
@@ -49,7 +49,7 @@ function networkConfigFor(currentNetwork) {
     } else if (currentNetwork === DynaStripesPolygonNetwork) {
         return {
             DynaStripesCurrentNetworkIDKey: 137, 
-            DynaStripesCurrentNetworkNameKey: "mainnet",
+            DynaStripesCurrentNetworkNameKey: "Polygon Mainnet",
             DynaStripesCurrentNetworkCurrencySymbolKey: "MATIC",
             DynaStripesCurrentNetworkRpcUrlKey: "https://rpc-mainnet.maticvigil.com/",
             DynaStripesCurrentNetworkExplorerUrlKey: 'https://www.polygonscan.com/',
