@@ -25,10 +25,21 @@ class TokenCard extends React.Component {
           const contract = await getContract();
     
           const metadataDataUri = await contract.tokenURI(this.props.tokenId);
-          const metadataJson = metadataDataUri.replace("data:text/plain,", "");
           
+          var metadataJson = "";
+
+          if (metadataDataUri.startsWith("data:text/plain,")) {
+            metadataJson = metadataDataUri.replace("data:text/plain,", "");          
+
+          } else if (metadataDataUri.startsWith("data:application/json;base64,")) {
+            const metadataJsonBase64Encoded = metadataDataUri.replace("data:application/json;base64,", "");          
+            let buffer = new Buffer(metadataJsonBase64Encoded, 'base64');
+
+            metadataJson = buffer.toString('utf-8');
+          }
+
           const metadataObject = JSON.parse(metadataJson);
-  
+
           const svg = metadataObject.image.replace("data:image/svg+xml,", "");
           const encodedSvg = encodeURIComponent(svg);
           const svgDataUri = `data:image/svg+xml,${encodedSvg}`;

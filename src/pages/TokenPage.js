@@ -49,7 +49,18 @@ class TokenPage extends React.Component {
     
           const tokenOwner = await contract.ownerOf(this.state.tokenId);
           const metadataDataUri = await contract.tokenURI(this.state.tokenId);
-          const metadataJson = metadataDataUri.replace("data:text/plain,", "");
+
+          var metadataJson = "";
+
+          if (metadataDataUri.startsWith("data:text/plain,")) {
+            metadataJson = metadataDataUri.replace("data:text/plain,", "");          
+
+          } else if (metadataDataUri.startsWith("data:application/json;base64,")) {
+            const metadataJsonBase64Encoded = metadataDataUri.replace("data:application/json;base64,", "");          
+            let buffer = new Buffer(metadataJsonBase64Encoded, 'base64');
+
+            metadataJson = buffer.toString('utf-8');
+          }
 
           console.log("Metadata JSON: " + metadataJson);
 

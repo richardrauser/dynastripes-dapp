@@ -44,7 +44,7 @@ function networkConfigFor(currentNetwork) {
             DynaStripesCurrentNetworkCurrencySymbolKey: "MATIC",
             DynaStripesCurrentNetworkRpcUrlKey: "https://rpc-mumbai.maticvigil.com/",
             DynaStripesCurrentNetworkExplorerUrlKey: "https://mumbai.polygonscan.com/",
-            DynaStripesContractAddressKey: '0xfE5b53733fA92D335e08dAe84fC98f98Fb8BD535'
+            DynaStripesContractAddressKey: '0x694b0dC535c38bee5f168b753B60dd79AC12cc1a' //pre-opensea support: '0xfE5b53733fA92D335e08dAe84fC98f98Fb8BD535'
         }
     } else if (currentNetwork === DynaStripesPolygonNetwork) {
         return {
@@ -62,7 +62,7 @@ function networkConfigFor(currentNetwork) {
             DynaStripesCurrentNetworkCurrencySymbolKey: "ETH",
             DynaStripesCurrentNetworkRpcUrlKey: "https://rinkeby.infura.io/v3/",
             DynaStripesCurrentNetworkExplorerUrlKey: 'https://rinkeby.etherscan.io/',
-            DynaStripesContractAddressKey: '0x26E2aaaDfADc86Cf4A704126ef27d4B802dBBB93'
+            DynaStripesContractAddressKey: '0x10eF52f63160E3526cb85997169d25D2f5cD7514'
         }
     }
 }
