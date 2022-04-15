@@ -20,13 +20,13 @@ class HowToPage extends React.Component {
     return (
       <div className="mainContent"  style={{background: svgDataUri}}>
         <div className="content">
-          <h1>How to acquire a <DynaSpan/> NFT</h1>
+          <h1>How to buy a <DynaSpan/> NFT</h1>
           <div className="deepContent">
           <p>
               If you're new to NFTs, this is a good place to get started. While there are instructions here for both desktop computers (e.g. laptops, PCs, etc) and mobile phones, <b>most people will find it easier from a desktop browser rather than mobile. </b> The mobile experience of web3 is still a bit crude!
           </p>
           <p>
-              In order to acquire a <DynaSpan/> artwork, you'll need some MATIC tokens on the Polygon network. Polygon is a complementary blockchain to Ethereum that is much, much cheaper, and way faster. 
+              In order to buy a <DynaSpan/> artwork, you'll need some MATIC tokens on the Polygon network. Polygon is a complementary blockchain to Ethereum that is much, much cheaper, and way faster. 
           </p>
           <Tabs defaultActiveKey={ selectedTab } id="uncontrolled-tab-example" className="mb-3">
             <Tab eventKey="desktop" title="Desktop">
@@ -40,16 +40,16 @@ class HowToPage extends React.Component {
                     </ul>    
                   <li>Once installed, open MetaMask by tapping the little fox icon in your browser's toolbar (usually at top next to the URL bar). </li>
                   <li>Add Polygon Network to MetaMask by <ChangeNetworkLink/>.</li>
-                  <li>Create a new account by following the instructions in MetaMask.</li> 
+                  <li>If you have an account already in Metamask, you can use this immediately on Polygon. If not, create a new account by following the instructions in MetaMask.</li> 
                 </ol>
 
-                <h3>Acquire some MATIC
+                <h3>Buy some MATIC
                 </h3>
-                <p> You'll need to get some MATIC on the Polygon network in order to acquire a DynaStripes artwork. This wont cost you anything as this is only a beta test.
+                <p> You'll need to get some MATIC on the Polygon network in order to acquire a DynaStripes artwork.
                 </p>
                 <ol>
                   <li>Open MetaMask by tapping the fox icon in your browser's toolbar. </li> 
-                  <li>If not alre ady on Polygon network in MetaMask, switch to it by <ChangeNetworkLink/>.</li>
+                  <li>If not already on Polygon network in MetaMask, switch to it by <ChangeNetworkLink/>.</li>
                   <li> Copy your wallet address from MetaMask by tapping your account name or address under the network selector. </li> 
                   <li>Buy some MATIC from within MetaMask, or transfer some in from an exchange. </li> 
                 </ol>
@@ -74,12 +74,12 @@ class HowToPage extends React.Component {
                   <li>Visit <MetaMaskLink /> and download the MetaMask app. </li>
                   <li>Once installed, open the MetaMask app. </li>
                   <li>Add Polygon network to MetaMask by <ChangeNetworkLink/>.</li>
-                  <li>Create a new account by following the instructions in MetaMask.</li> 
+                  <li>If you have an account already in Metamask, you can use this immediately on Polygon. If not, create a new account by following the instructions in MetaMask.</li> 
                 </ol>
 
-                <h3>Acquire some MATIC
+                <h3>Buy some MATIC
                 </h3>
-                <p> You'll need to get some MATIC on the Polygon network in order to acquire a DynaStripes artwork. This wont cost you anything as this is only a beta test.
+                <p> You'll need to get some MATIC on the Polygon network in order to acquire a DynaStripes artwork. 
                 </p>
                 <ol>
                   <li>Open the MetaMask app on your mobile. </li> 
