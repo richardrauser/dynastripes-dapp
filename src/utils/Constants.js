@@ -53,7 +53,7 @@ function networkConfigFor(currentNetwork) {
             DynaStripesCurrentNetworkCurrencySymbolKey: "MATIC",
             DynaStripesCurrentNetworkRpcUrlKey: "https://rpc-mainnet.maticvigil.com/",
             DynaStripesCurrentNetworkExplorerUrlKey: 'https://www.polygonscan.com/',
-            DynaStripesContractAddressKey: '0xF6b1B14E9887c64327800E25554202f09a7FC158'
+            DynaStripesContractAddressKey: '0x9F5C4Ea4d13339D2379412141268032DD9bC7329'
         }        
     } else if (currentNetwork === DynaStripeRinkebyNetwork) {
         return {
