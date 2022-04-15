@@ -45,7 +45,7 @@ class HowToPage extends React.Component {
 
                 <h3>Buy some MATIC
                 </h3>
-                <p> You'll need to get some MATIC on the Polygon network in order to acquire a DynaStripes artwork.
+                <p> You'll need to get some MATIC on the Polygon network in order to buy a DynaStripes artwork.
                 </p>
                 <ol>
                   <li>Open MetaMask by tapping the fox icon in your browser's toolbar. </li> 
@@ -79,7 +79,7 @@ class HowToPage extends React.Component {
 
                 <h3>Buy some MATIC
                 </h3>
-                <p> You'll need to get some MATIC on the Polygon network in order to acquire a DynaStripes artwork. 
+                <p> You'll need to get some MATIC on the Polygon network in order to buy a DynaStripes artwork. 
                 </p>
                 <ol>
                   <li>Open the MetaMask app on your mobile. </li> 
