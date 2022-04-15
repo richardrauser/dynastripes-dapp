@@ -51,7 +51,7 @@ function networkConfigFor(currentNetwork) {
             DynaStripesCurrentNetworkCurrencySymbolKey: "ETH",
             DynaStripesCurrentNetworkRpcUrlKey: "https://rinkeby.infura.io/v3/",
             DynaStripesCurrentNetworkExplorerUrlKey: 'https://rinkeby.etherscan.io/',
-            DynaStripesContractAddressKey: '0xA9CFEf1245334AE210FbaBdDbD9C31D2c4d97C21'
+            DynaStripesContractAddressKey: '0xb778b69D9a16444365195aD1aB5DDffc86806136'
         }
     }
 }
