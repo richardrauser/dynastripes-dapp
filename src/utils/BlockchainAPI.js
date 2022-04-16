@@ -33,6 +33,8 @@ async function getProvider() {
 
     // if the provider is not detected, detectEthereumProvider resolves to null
     console.error('Please install MetaMask!');
+    console.log('Could not get wallet. Throwing error NO_ETH_WALLET');
+    throw Error(Errors.DS_NO_ETH_WALLET);
   }
   // const provider = new 
 
@@ -57,14 +59,14 @@ async function getProvider() {
   return provider;
 }
 
-function checkWallet() {
-  if (typeof window.ethereum === 'undefined') {
-    console.log('Could not get wallet. Throwing error NO_ETH_WALLET');
-    throw Error(Errors.DS_NO_ETH_WALLET);
-  } else {
-    console.log('Has wallet.');
-  }
-}
+// function checkWallet() {
+//   if (typeof window.ethereum === 'undefined') {
+    // console.log('Could not get wallet. Throwing error NO_ETH_WALLET');
+//     throw Error(Errors.DS_NO_ETH_WALLET);
+//   } else {
+//     console.log('Has wallet.');
+//   }
+// }
 
 export async function isOnCorrectNetwork() {
 
@@ -81,7 +83,7 @@ export async function isOnCorrectNetwork() {
 export async function switchToCurrentNetwork() {
   // will attempt to add current network, behaviour is to switch if already present in MetaMask
   console.log("Switching to " + DynaStripesCurrentNetworkName + "...");
-  checkWallet();
+  // checkWallet();
 
   const correctNetwork = await isOnCorrectNetwork();
   if (correctNetwork) {
@@ -108,7 +110,7 @@ export async function switchToCurrentNetwork() {
   }
 }
 export async function getContract() {
-  checkWallet();
+  // checkWallet();
   const provider = await getProvider();
 
   const { chainId } = await provider.getNetwork();
@@ -125,14 +127,14 @@ export async function getContract() {
 }
 
 export async function getSigner() {
-  checkWallet();
+  // checkWallet();
   const provider = await getProvider();
   const signer = provider.getSigner();
   return signer;
 }
 
 export async function getContractWithSigner() {
-  checkWallet();
+  // checkWallet();
   const provider = await getProvider();
   const contract = new ethers.Contract(DynaStripesContractAddress, DynaStripes.abi, provider);
   const signer = provider.getSigner();
@@ -152,7 +154,7 @@ export async function isAccountConnected() {
 }
 
 export async function fetchAccount() {
-  checkWallet();
+  // checkWallet();
 
   console.log("Fetching account..");
   const provider = await getProvider();
@@ -253,7 +255,7 @@ export async function isCurrentAccountOwner() {
 }
 
 export async function fetchMintPrice() {
-  checkWallet();
+  // checkWallet();
   const contract = await getContract();
   const mintPrice = await contract.getMintPrice();
   return mintPrice;
