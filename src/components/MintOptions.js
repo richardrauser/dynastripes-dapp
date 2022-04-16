@@ -7,6 +7,7 @@ import { HuePicker, AlphaPicker } from 'react-color'
 
 import PreviewComponent from './PreviewComponent';
 import MintPriceComponent from './MintPriceComponent';
+import TokenCountComponent from './TokenCountComponent';
 import MintButton from './MintButton';
 
 class MintOptions extends React.Component {
@@ -141,6 +142,7 @@ class MintOptions extends React.Component {
             <MintButton mint={this.props.mint}/>
 
           <MintPriceComponent />
+          <TokenCountComponent />
         </div>
       );
     }
