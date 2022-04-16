@@ -177,7 +177,7 @@ class TokenPage extends React.Component {
           ethAddress = ethAddress.substring(0, 6) +  "..." + ethAddress.slice(-4);        
         }
 
-        const openSeaLink = "https://opensea.io/assets/" + DynaStripesContractAddress + "/" + this.state.tokenId;
+        const openSeaLink = "https://opensea.io/assets/matic/" + DynaStripesContractAddress + "/" + this.state.tokenId;
         
         const renderSvgTooltip = (props) => (
           <Tooltip id="button-tooltip" {...props}>
