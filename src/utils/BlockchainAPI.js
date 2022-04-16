@@ -4,15 +4,42 @@ import DynaStripes from '../artifacts/contracts/DynaStripes.sol/DynaStripes.json
 import * as Errors from './ErrorMessages';
 import DynaStripesContractAddress, { DynaStripesCurrentNetworkID, DynaStripesCurrentNetworkName, DynaStripesCurrentNetworkCurrencySymbol, DynaStripesCurrentNetworkRpcUrl, DynaStripesCurrentNetworkExplorerUrl } from './Constants';
 import { showInfoMessage } from './UIUtils';
+import detectEthereumProvider from '@metamask/detect-provider'
+
 // import Web3Modal from "web3modal";
 
 const AccountDetailsKey = "DS_ACCOUNT_DETAILS_KEY";
 
 async function getProvider() {
   // const provider = ethers.getDefaultProvider('ropsten');
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  // const provider = new ethers.providers.getDefaultProvider();
+  // const provider = new ethers.providers.Web3Provider(window.ethereum);
+  
+  const provider = await detectEthereumProvider();
+  
+  if (provider) {
 
+    console.log('Ethereum successfully detected!')
+
+    // From now on, this should always be true:
+    // provider === window.ethereum
+
+    // Access the decentralized web!
+
+    // Legacy providers may only have ethereum.sendAsync
+    const chainId = await provider.request({
+      method: 'eth_chainId'
+    });
+  } else {
+
+    // if the provider is not detected, detectEthereumProvider resolves to null
+    console.error('Please install MetaMask!');
+  }
+  // const provider = new 
+
+  return new ethers.providers.Web3Provider(provider);
+  
+  // const provider = new ethers.providers.getDefaultProvider();
+  
   // const providerOptions = {};
   // const web3Modal = new Web3Modal({
   //   network: "mainnet",
@@ -20,6 +47,7 @@ async function getProvider() {
   //   providerOptions
   // });
 
+  
 
   // const provider = await web3Modal.connect();
 
