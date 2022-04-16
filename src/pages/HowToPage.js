@@ -40,7 +40,7 @@ class HowToPage extends React.Component {
                     </ul>    
                   <li>Once installed, open MetaMask by tapping the little fox icon in your browser's toolbar (usually at top next to the URL bar). </li>
                   <li>Add Polygon Network to MetaMask by <ChangeNetworkLink/>.</li>
-                  <li>If you have an account already in Metamask, you can use this immediately on Polygon. If not, create a new account by following the instructions in MetaMask.</li> 
+                  <li>If you have an account already in Metamask, you can use this immediately on Polygon. Wallet addresses in Metamask can be used on both Ethereum and Polygon. If not, create a new account by following the instructions in MetaMask.</li> 
                 </ol>
 
                 <h3>Buy some MATIC
@@ -50,8 +50,8 @@ class HowToPage extends React.Component {
                 <ol>
                   <li>Open MetaMask by tapping the fox icon in your browser's toolbar. </li> 
                   <li>If not already on Polygon network in MetaMask, switch to it by <ChangeNetworkLink/>.</li>
-                  <li> Copy your wallet address from MetaMask by tapping your account name or address under the network selector. </li> 
-                  <li>Buy some MATIC from within MetaMask, or transfer some in from an exchange. </li> 
+                  <li>Buy some MATIC from within MetaMask by hitting the "Buy" button and following the instructions. </li> 
+                  <li>Alternatively, transfer some MATIC to you wallet from an exchange. Ensure that you buy the MATIC on the Polygon network using your exchange, and no on the Ethereum network!</li>
                 </ol>
                 
                 <h3>Return to <DynaSpan/>
@@ -74,7 +74,7 @@ class HowToPage extends React.Component {
                   <li>Visit <MetaMaskLink /> and download the MetaMask app. </li>
                   <li>Once installed, open the MetaMask app. </li>
                   <li>Add Polygon network to MetaMask by <ChangeNetworkLink/>.</li>
-                  <li>If you have an account already in Metamask, you can use this immediately on Polygon. If not, create a new account by following the instructions in MetaMask.</li> 
+                  <li>If you have an account already in Metamask, you can use this immediately on Polygon. Wallet addresses in Metamask can be used on both Ethereum and Polygon. If not, create a new account by following the instructions in MetaMask.</li> 
                 </ol>
 
                 <h3>Buy some MATIC
@@ -84,7 +84,8 @@ class HowToPage extends React.Component {
                 <ol>
                   <li>Open the MetaMask app on your mobile. </li> 
                   <li>If not already on Polygon network in MetaMask, switch to it by <ChangeNetworkLink/>.</li>
-                  <li>Buy some MATIC from within MetaMask, or transfer some in from an exchange. </li> 
+                  <li>Buy some MATIC from within MetaMask by hitting the "Buy" button and following the instructions. </li> 
+                  <li>Alternatively, transfer some MATIC to you wallet from an exchange. Ensure that you buy the MATIC on the Polygon network using your exchange, and no on the Ethereum network!</li>
                 </ol>
                 
                 <h3>Return to <DynaSpan/>
