@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from 'react-bootstrap/Button';
 import DynaSpan from '../components/DynaSpan';
-import etherscan from '../images/etherscan-logo-light.png';
+import polygonscan from '../images/polygonscan.svg';
 import twitter from '../images/twitter.png';
 
 import {
@@ -47,7 +47,7 @@ class MintAnotherComponent extends React.Component {
           <br/>
 
           <a href={ txLink }  target="_blank" rel="noreferrer"> 
-            <img className="etherscan" alt="etherscan" src= { etherscan } />
+            <img className="polygonscan" alt="polygonscan" src= { polygonscan } />
           </a>
       </div>
     );

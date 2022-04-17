@@ -166,9 +166,9 @@ class DynaNavLoginDropdown extends React.Component {
         );
       } else {
         return (
-          <NavDropdown title="Your ETH Details" id="basic-nav-dropdown">
+          <NavDropdown title="Your Details" id="basic-nav-dropdown">
             <NavDropdown.Item href={this.state.etherscanUrl} target="_blank"><Wallet2 className='navDropdownIcon'/>{ this.state.accountEthAddress }</NavDropdown.Item>
-            <NavDropdown.Item href={this.state.etherscanUrl} target="_blank"><img src={matic} alt="MATIC  logo" className='mintMatic'/><img src={matic} alt="ether logo" className='navDropdownIcon' />{ this.state.accountEthBalance }</NavDropdown.Item>
+            <NavDropdown.Item href={this.state.etherscanUrl} target="_blank"><img src={matic} alt="matic logo" className='navDropdownIcon' />{ this.state.accountEthBalance }</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={this.refreshWallet}>Refresh</NavDropdown.Item>
             <NavDropdown.Item onClick={this.disconnectWallet}>Disconnect</NavDropdown.Item>

@@ -4,7 +4,7 @@ import { generateRandomStripesDataUri } from '../utils/DynaStripes.js';
 
 import SocialLinks from '../components/SocialLinks';
 import DynaSpan from '../components/DynaSpan.js';
-import etherscan from '../images/etherscan-logo-light.png';
+import polygonscan from '../images/polygonscan.svg';
 import DynaStripesContractAddress, { DynaStripesCurrentNetworkExplorerUrl } from '../utils/Constants';
 
 class AboutPage extends React.Component {
@@ -73,7 +73,7 @@ class AboutPage extends React.Component {
 
               <p>
                 The verified <DynaSpan/> smart contract can be viewed on <a href={ contractAddress } target="_blank" rel="noreferrer"> 
-                  <img className="etherscan" alt="etherscan" src= { etherscan } />
+                  <img className="polygonscan" alt="polygonscan" src= { polygonscan } />
                 </a>
                      
               </p>
