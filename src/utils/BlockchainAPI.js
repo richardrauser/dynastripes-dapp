@@ -26,9 +26,9 @@ async function getProvider() {
     // Access the decentralized web!
 
     // Legacy providers may only have ethereum.sendAsync
-    const chainId = await provider.request({
-      method: 'eth_chainId'
-    });
+    // const chainId = await provider.request({
+    //   method: 'eth_chainId'
+    // });
   } else {
 
     // if the provider is not detected, detectEthereumProvider resolves to null
@@ -56,7 +56,7 @@ async function getProvider() {
   // const ethersProvider = new ethers.providers.Web3Provider(provider);
 
   // return ethersProvider;
-  return provider;
+  // return provider;
 }
 
 // function checkWallet() {

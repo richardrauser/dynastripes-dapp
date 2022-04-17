@@ -1,5 +1,4 @@
 import React from 'react';
-import { ethers } from 'ethers';
 import Spinner from 'react-bootstrap/Spinner';
 
 import { getContract } from '../utils/BlockchainAPI';
