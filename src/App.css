@@ -504,8 +504,9 @@ div.placeholderAttribution {
   font-family: 'Rajdhani';
 }
 
-.textLink {
-  color: #8888BB !important;
+.externalLink, .textLink { 
+  font-weight: 700; 
+  color: #6363e6!important; 
   text-decoration: none !important;
   cursor: pointer;
 }
