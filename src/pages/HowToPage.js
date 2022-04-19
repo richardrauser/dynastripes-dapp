@@ -51,7 +51,7 @@ class HowToPage extends React.Component {
                   <li>Open MetaMask by tapping the fox icon in your browser's toolbar. </li> 
                   <li>If not already on Polygon network in MetaMask, switch to it by <ChangeNetworkLink/>.</li>
                   <li>Buy some MATIC from within MetaMask by hitting the "Buy" button and following the instructions. </li> 
-                  <li>Alternatively, transfer some MATIC to you wallet from an exchange. Ensure that you buy the MATIC on the Polygon network using your exchange, and no on the Ethereum network!</li>
+                  <li>Alternatively, transfer some MATIC to you wallet from an exchange. Ensure that you buy the MATIC on the Polygon network using your exchange, and not on the Ethereum network!</li>
                 </ol>
                 
                 <h3>Return to <DynaSpan/>
@@ -85,7 +85,7 @@ class HowToPage extends React.Component {
                   <li>Open the MetaMask app on your mobile. </li> 
                   <li>If not already on Polygon network in MetaMask, switch to it by <ChangeNetworkLink/>.</li>
                   <li>Buy some MATIC from within MetaMask by hitting the "Buy" button and following the instructions. </li> 
-                  <li>Alternatively, transfer some MATIC to you wallet from an exchange. Ensure that you buy the MATIC on the Polygon network using your exchange, and no on the Ethereum network!</li>
+                  <li>Alternatively, transfer some MATIC to you wallet from an exchange. Ensure that you buy the MATIC on the Polygon network using your exchange, and not on the Ethereum network!</li>
                 </ol>
                 
                 <h3>Return to <DynaSpan/>
