@@ -75,13 +75,13 @@ class MintPriceComponent extends React.Component {
         } else if (this.state.hasWallet === false) {
           return (
             <div>
-              An ETH wallet is required for minting. Install <MetaMaskLink />.
+              A crypto wallet is required for minting. Install <MetaMaskLink />.
             </div>
           );    
         } else if (this.state.hasEnoughEth === false) {
           return (
             <div>
-              The mint price is <img src={matic} alt="MATIC logo" className='mintMatic'/>{ this.state.mintPrice }, however your balance is <img src={matic} alt="ether logo" className='mintMatic'/>{ this.state.balance }. See the <Link to="/howto">How to guide</Link> for info on acquiring ETH.
+              The mint price is <img src={matic} alt="MATIC logo" className='mintMatic'/>{ this.state.mintPrice }, however your balance is <img src={matic} alt="ether logo" className='mintMatic'/>{ this.state.balance }. See the <Link to="/howto">How to guide</Link> for info on acquiring MATIC.
             </div>
          );    
         } else {
