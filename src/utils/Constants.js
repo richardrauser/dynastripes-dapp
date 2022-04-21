@@ -1,5 +1,5 @@
 
-const DynaStripesMaxTokensPerUser = 5;
+const DynaStripesMaxTokensPerUser = 50;
 const DynaStripesLocalhostNetwork = "localhost";
 const DynaStripesMumbaiNetwork = "mumbai";
 const DynaStripeRinkebyNetwork = "rinkeby";

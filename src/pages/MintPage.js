@@ -271,7 +271,7 @@ class MintPage extends React.Component {
         const tokenCount = await contractWithSigner.balanceOf(account);
         console.log("User's token count: " + tokenCount);
         if (tokenCount >= DynaStripesMaxTokensPerUser && account !== "0xBC10a3aE909B1b94f4C3E39607aD19D386dCe32a") {
-          showErrorMessage("You already have " + tokenCount + " DynaStripes artworks. You've reached the mint limit!");
+          showErrorMessage("You already have " + tokenCount + " DynaStripes artworks. You've reached the mint limit of " + DynaStripesMaxTokensPerUser + " tokens!");
           return;
         }
 
