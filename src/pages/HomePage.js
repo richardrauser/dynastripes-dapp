@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import { Alert } from 'react-bootstrap';
 import sample1 from '../images/dynasample3.svg';
 import sample2 from '../images/dynasample2.svg';
 import sample3 from '../images/dynasample1.svg';
