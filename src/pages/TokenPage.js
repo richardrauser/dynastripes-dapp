@@ -11,8 +11,8 @@ import { Tooltip } from 'react-bootstrap';
 import { create } from 'ipfs-http-client';
 import { Helmet } from 'react-helmet';
 
-import DynaStripesContractAddress, { DynaStripesEtherscanLink } from '../utils/Constants';
-import { buildDescriptiveTextFromMetadata } from '../utils/Metadata';
+import DynaStripesContractAddress, { DynaStripesCurrentNetworkExplorerUrl } from '../utils/Constants';
+import buildTraitsText from '../utils/TraitsMetadata';
 import { convertSvgToPng } from '../utils/UIUtils';
 import opensea from '../images/opensea.svg';
 import twitter from '../images/twitter.png';
@@ -49,8 +49,21 @@ class TokenPage extends React.Component {
     
           const tokenOwner = await contract.ownerOf(this.state.tokenId);
           const metadataDataUri = await contract.tokenURI(this.state.tokenId);
-          const metadataJson = metadataDataUri.replace("data:text/plain,", "");
-  
+
+          var metadataJson = "";
+
+          if (metadataDataUri.startsWith("data:text/plain,")) {
+            metadataJson = metadataDataUri.replace("data:text/plain,", "");          
+
+          } else if (metadataDataUri.startsWith("data:application/json;base64,")) {
+            const metadataJsonBase64Encoded = metadataDataUri.replace("data:application/json;base64,", "");          
+            let buffer = new Buffer(metadataJsonBase64Encoded, 'base64');
+
+            metadataJson = buffer.toString('utf-8');
+          }
+
+          console.log("Metadata JSON: " + metadataJson);
+
           const metadataObject = JSON.parse(metadataJson);
           const svgDataUri = metadataObject.image;
           const svg = svgDataUri.replace("data:image/svg+xml,", "");
@@ -87,7 +100,7 @@ class TokenPage extends React.Component {
           const pngFileName = filePrefix + ".png";
         
           const attributes = metadataObject.attributes;
-          const descriptiveText = buildDescriptiveTextFromMetadata(metadataObject);
+          const descriptiveText = buildTraitsText(metadataObject);
   
           this.setState({
             loading: false,
@@ -158,13 +171,13 @@ class TokenPage extends React.Component {
         }
 
         var ethAddress = this.state.tokenOwner;
-        const etherscanLink =  DynaStripesEtherscanLink + "address/" + ethAddress;
+        const etherscanLink =  DynaStripesCurrentNetworkExplorerUrl + "address/" + ethAddress;
 
         if (ethAddress.length > 10) {
           ethAddress = ethAddress.substring(0, 6) +  "..." + ethAddress.slice(-4);        
         }
 
-        const openSeaLink = "https://opensea.io/assets/" + DynaStripesContractAddress + "/" + this.state.tokenId;
+        const openSeaLink = "https://opensea.io/assets/matic/" + DynaStripesContractAddress + "/" + this.state.tokenId;
         
         const renderSvgTooltip = (props) => (
           <Tooltip id="button-tooltip" {...props}>

@@ -45,8 +45,9 @@ class DynaNav extends React.Component {
       
     render() {
         return (
-            <Navbar bg="light" expand="lg" sticky="top">
-            <Container>
+          // <Navbar bg="light" expand="lg" sticky="top">
+          <Navbar bg="light" expand="lg">
+          <Container>
                 <Navbar.Brand href="/" className="dyna">DynaStripes</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -58,7 +59,6 @@ class DynaNav extends React.Component {
                     <Nav.Link href="/feedback">Feedback</Nav.Link>
                     { this.state.isOwner === true ? <Nav.Link href="/admin">Admin</Nav.Link> : null }
                 </Nav>
-                {/* <div className="betaMessage">Live mainnet beta</div> */}
                 <Nav>
                     <DynaNavLoginDropdown />
                 </Nav>

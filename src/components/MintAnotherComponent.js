@@ -2,19 +2,19 @@ import React from 'react';
 
 import Button from 'react-bootstrap/Button';
 import DynaSpan from '../components/DynaSpan';
-import etherscan from '../images/etherscan-logo-light.png';
+import polygonscan from '../images/polygonscan.svg';
 import twitter from '../images/twitter.png';
 
 import {
   Link
 } from "react-router-dom";
-import { DynaStripesEtherscanLink } from '../utils/Constants';
+import { DynaStripesCurrentNetworkExplorerUrl } from '../utils/Constants';
 
 class MintAnotherComponent extends React.Component {
   
 
   render() {
-    const txLink = DynaStripesEtherscanLink + "tx/" + this.props.txHash;
+    const txLink = DynaStripesCurrentNetworkExplorerUrl + "tx/" + this.props.txHash;
 
     console.log("txLink: " + txLink);
     // const tokenLink = "https://www.dynastripes.com/token/" + this.state.tokenId;
@@ -26,6 +26,10 @@ class MintAnotherComponent extends React.Component {
 
     return (
       <div>
+          <div className="singleArtwork">
+              <img alt={"DynaStripes token"} src={ this.props.svgDataUri } />
+          </div>
+
           <p className="success">
             Your <DynaSpan/> have been successfully minted! Once the transaction is complete, your new artwork will appear in the gallery. Vist the gallery to see it, or mint more <DynaSpan/> now!
           </p>
@@ -43,7 +47,7 @@ class MintAnotherComponent extends React.Component {
           <br/>
 
           <a href={ txLink }  target="_blank" rel="noreferrer"> 
-            <img className="etherscan" alt="etherscan" src= { etherscan } />
+            <img className="polygonscan" alt="polygonscan" src= { polygonscan } />
           </a>
       </div>
     );

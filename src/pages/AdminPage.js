@@ -92,29 +92,6 @@ class AdminPage extends React.Component {
       }
     }
 
-    
-    async enableDescriptiveTraits() {
-  
-      try {
-        const contractWithSigner = await getContractWithSigner();
-        await contractWithSigner.setDescTraitsEnabled(true);
-        toast.success('Enabled descriptive traits.');
-      } catch (err) {
-        handleError(err);
-      }
-    }
-  
-    async disableDescriptiveTraits() {  
-      try {
-        const contractWithSigner = await getContractWithSigner();
-        await contractWithSigner.setDescTraitsEnabled(false);
-        toast.success('Disabled descriptive traits.');
-      } catch (err) {
-        handleError(err);
-      }
-    }
-
-    
     async fetchMintPrice() {
       this.setState({
         mintPrice: "-"
@@ -324,10 +301,6 @@ class AdminPage extends React.Component {
                     <input ref={this.paymentInput} /><br/>
                     <Button variant="primary" onClick={this.makePayment}>Pay owner</Button>               
                     <br/><hr/> 
-                    Descriptive traits status: ? <br/>
-                    <Button variant="primary" onClick={this.enableDescriptiveTraits}>Enable Descriptive Traits</Button>
-                    <Button variant="primary" onClick={this.disableDescriptiveTraits}>Disable DescriptiveTraits</Button>
-                    <br/><hr/>
                     Current owner ETH address:<br/> { this.state.ownerAddress } <br/>
                     <input ref={ this.ownerInput } /><br/>
                   <Button variant="primary" onClick={this.updateOwner}>Update owner</Button>               

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import ether from '../images/ethereum.svg';
-
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
@@ -12,6 +10,8 @@ import { fetchAccountDetails, fetchCachedAccountDetails, clearCachedAccountDetai
 import '../utils/UIUtils';
 import { handleError } from '../utils/ErrorHandler';
 import * as Errors from '../utils/ErrorMessages';
+import { DynaStripesCurrentNetworkExplorerUrl } from '../utils/Constants';
+import matic from '../images/polygon.svg';
 
 class DynaNavLoginDropdown extends React.Component {
 
@@ -66,10 +66,10 @@ class DynaNavLoginDropdown extends React.Component {
       }
     }
 
-    componentWillUnmount() {
-      // window.ethereum.removeListener('accountsChanged', func);
-      // window.ethereum.removeListener('chainChanged', func);
-    }
+    // componentWillUnmount() {
+    //   // window.ethereum.removeListener('accountsChanged', func);
+    //   // window.ethereum.removeListener('chainChanged', func);
+    // }
 
     
     async connectWallet() {
@@ -144,7 +144,7 @@ class DynaNavLoginDropdown extends React.Component {
         isWalletConnected: true,
         accountEthAddress: accountDetails.shortenedAddress,
         accountEthBalance: accountDetails.displayBalance.toString(),
-        etherscanUrl: "https://etherscan.io/address/" + accountDetails.fullAddress,
+        etherscanUrl: DynaStripesCurrentNetworkExplorerUrl + "address/" + accountDetails.fullAddress,
       });
 
       console.log('Address: ', accountDetails.address);
@@ -166,9 +166,9 @@ class DynaNavLoginDropdown extends React.Component {
         );
       } else {
         return (
-          <NavDropdown title="Your ETH Details" id="basic-nav-dropdown">
+          <NavDropdown title="Your Details" id="basic-nav-dropdown">
             <NavDropdown.Item href={this.state.etherscanUrl} target="_blank"><Wallet2 className='navDropdownIcon'/>{ this.state.accountEthAddress }</NavDropdown.Item>
-            <NavDropdown.Item href={this.state.etherscanUrl} target="_blank"><img src={ether} alt="ether logo" className='navDropdownIcon' />{ this.state.accountEthBalance }</NavDropdown.Item>
+            <NavDropdown.Item href={this.state.etherscanUrl} target="_blank"><img src={matic} alt="matic logo" className='navDropdownIcon' />{ this.state.accountEthBalance }</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={this.refreshWallet}>Refresh</NavDropdown.Item>
             <NavDropdown.Item onClick={this.disconnectWallet}>Disconnect</NavDropdown.Item>

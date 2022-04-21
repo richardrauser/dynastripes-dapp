@@ -2,16 +2,46 @@
 import { ethers } from 'ethers';
 import DynaStripes from '../artifacts/contracts/DynaStripes.sol/DynaStripes.json';
 import * as Errors from './ErrorMessages';
-import DynaStripesContractAddress, { DynaStripesCurrentEthNeworkID } from './Constants';
+import DynaStripesContractAddress, { DynaStripesCurrentNetworkID, DynaStripesCurrentNetworkName, DynaStripesCurrentNetworkCurrencySymbol, DynaStripesCurrentNetworkRpcUrl, DynaStripesCurrentNetworkExplorerUrl } from './Constants';
+import { showInfoMessage } from './UIUtils';
+import detectEthereumProvider from '@metamask/detect-provider'
+
 // import Web3Modal from "web3modal";
 
 const AccountDetailsKey = "DS_ACCOUNT_DETAILS_KEY";
 
 async function getProvider() {
   // const provider = ethers.getDefaultProvider('ropsten');
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  // const provider = new ethers.providers.getDefaultProvider();
+  // const provider = new ethers.providers.Web3Provider(window.ethereum);
+  
+  const provider = await detectEthereumProvider();
+  
+  if (provider) {
 
+    console.log('Ethereum successfully detected!')
+
+    // From now on, this should always be true:
+    // provider === window.ethereum
+
+    // Access the decentralized web!
+
+    // Legacy providers may only have ethereum.sendAsync
+    // const chainId = await provider.request({
+    //   method: 'eth_chainId'
+    // });
+  } else {
+
+    // if the provider is not detected, detectEthereumProvider resolves to null
+    console.error('Please install MetaMask!');
+    console.log('Could not get wallet. Throwing error NO_ETH_WALLET');
+    throw Error(Errors.DS_NO_ETH_WALLET);
+  }
+  // const provider = new 
+
+  return new ethers.providers.Web3Provider(provider);
+  
+  // const provider = new ethers.providers.getDefaultProvider();
+  
   // const providerOptions = {};
   // const web3Modal = new Web3Modal({
   //   network: "mainnet",
@@ -19,48 +49,92 @@ async function getProvider() {
   //   providerOptions
   // });
 
+  
 
   // const provider = await web3Modal.connect();
 
   // const ethersProvider = new ethers.providers.Web3Provider(provider);
 
   // return ethersProvider;
-  return provider;
+  // return provider;
 }
 
-function checkWallet() {
-  if (typeof window.ethereum === 'undefined') {
-    console.log('Could not get wallet. Throwing error NO_ETH_WALLET');
-    throw Error(Errors.DS_NO_ETH_WALLET);
+// function checkWallet() {
+//   if (typeof window.ethereum === 'undefined') {
+    // console.log('Could not get wallet. Throwing error NO_ETH_WALLET');
+//     throw Error(Errors.DS_NO_ETH_WALLET);
+//   } else {
+//     console.log('Has wallet.');
+//   }
+// }
+
+export async function isOnCorrectNetwork() {
+
+  const provider = await getProvider();
+  const network = await provider.getNetwork();
+  console.log("Network: " + network.chainId);
+  if (network.chainId === DynaStripesCurrentNetworkID) {
+    return true;
   } else {
-    console.log('Has wallet.');
+    return false;
+  }
+}
+
+export async function switchToCurrentNetwork() {
+  // will attempt to add current network, behaviour is to switch if already present in MetaMask
+  console.log("Switching to " + DynaStripesCurrentNetworkName + "...");
+  // checkWallet();
+
+  const correctNetwork = await isOnCorrectNetwork();
+  if (correctNetwork) {
+    showInfoMessage("You're already on the " + DynaStripesCurrentNetworkName + " network. Yay.");
+    return;
+  }
+
+  const data = [{
+    chainId: "0x" + DynaStripesCurrentNetworkID.toString(16),
+    chainName: DynaStripesCurrentNetworkName,
+    nativeCurrency:
+        {
+            name: DynaStripesCurrentNetworkCurrencySymbol,
+            symbol: DynaStripesCurrentNetworkCurrencySymbol,
+            decimals: 18
+        },
+    rpcUrls: [DynaStripesCurrentNetworkRpcUrl],
+    blockExplorerUrls: [DynaStripesCurrentNetworkExplorerUrl],
+  }];
+
+  const tx = await window.ethereum.request({method: 'wallet_addEthereumChain', params:data});
+  if (tx) {
+      console.log(tx)
   }
 }
 export async function getContract() {
-  checkWallet();
+  // checkWallet();
   const provider = await getProvider();
 
   const { chainId } = await provider.getNetwork();
   console.log("CHAIN ID: " + chainId); // 42
   
-  if (chainId !== DynaStripesCurrentEthNeworkID) {
-    
+  if (chainId !== DynaStripesCurrentNetworkID) {
     console.log("Not on right network");
     throw Error(Errors.DS_WRONG_ETH_NETWORK);
+  } else {
+    console.log("On right network");    
   }
   const contract = new ethers.Contract(DynaStripesContractAddress, DynaStripes.abi, provider);
   return contract;
 }
 
 export async function getSigner() {
-  checkWallet();
+  // checkWallet();
   const provider = await getProvider();
   const signer = provider.getSigner();
   return signer;
 }
 
 export async function getContractWithSigner() {
-  checkWallet();
+  // checkWallet();
   const provider = await getProvider();
   const contract = new ethers.Contract(DynaStripesContractAddress, DynaStripes.abi, provider);
   const signer = provider.getSigner();
@@ -80,7 +154,7 @@ export async function isAccountConnected() {
 }
 
 export async function fetchAccount() {
-  checkWallet();
+  // checkWallet();
 
   console.log("Fetching account..");
   const provider = await getProvider();
@@ -181,7 +255,7 @@ export async function isCurrentAccountOwner() {
 }
 
 export async function fetchMintPrice() {
-  checkWallet();
+  // checkWallet();
   const contract = await getContract();
   const mintPrice = await contract.getMintPrice();
   return mintPrice;

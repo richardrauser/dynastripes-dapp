@@ -59,7 +59,7 @@ class AccountComponent extends React.Component {
         return (
           <Card variant="top" className="appCard">
             <Card.Title>
-              Your ETH Account Details
+              Your Polygon Account Details
             </Card.Title>
           <div id='accountDetails'>
             <Card.Body>

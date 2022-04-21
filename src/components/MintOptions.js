@@ -7,6 +7,7 @@ import { HuePicker, AlphaPicker } from 'react-color'
 
 import PreviewComponent from './PreviewComponent';
 import MintPriceComponent from './MintPriceComponent';
+import TokenCountComponent from './TokenCountComponent';
 import MintButton from './MintButton';
 
 class MintOptions extends React.Component {
@@ -15,17 +16,17 @@ class MintOptions extends React.Component {
 
       const StyledSlider = styled(ReactSlider)`
           width: 100%;
-          height: 25px;
+          height: 20px;
       `;
 
       const StyledThumb = styled.div`
-          height: 25px;
-          line-height: 25px;
-          width: 25px;
+          height: 20px;
+          line-height: 20px;
+          width: 20px;
           text-align: center;
           background-color: #777;
           color: #fff;
-          font-size: 12px;
+          font-size: 10px;
           border-radius: 50%;
           cursor: grab;
       `;
@@ -71,24 +72,29 @@ class MintOptions extends React.Component {
                 </div>  
 
                 <div className="mintInput">
-                  Tint colour<br/>
-                  <HuePicker className="mintPicker" width="100%" height="25px" pointer={Thumb} color={this.props.tintColour} onChange={this.props.tintColourChanged} />
-                </div>
+                  Rotation Degrees<br/>
 
+                  <StyledSlider 
+                      value={this.props.rotationDegrees}
+                      renderTrack={OneThumbTrack}
+                      renderThumb={Thumb}
+                      min={0}
+                      max={360}
+                      step={1}
+                      onAfterChange={this.props.rotationDegreesChanged}
+                  />
+                </div>  
+      
                 <div className="mintInput">
-                  Tint % <br/>
-                  <AlphaPicker className="mintPicker" width="100%" height="25px" pointer={AlphaThumb} color={this.props.tintColour} onChange={this.props.tintAlphaChanged} />
-                </div>
-
-                <div className="mintInput">
-                  Rotation<br/>
+                  Rotation Range<br/>
 
                   <StyledSlider 
                       value={this.props.rotationRange}
-                      renderTrack={TwoThumbTrack}
+                      renderTrack={OneThumbTrack}
                       renderThumb={Thumb}
                       min={0}
                       max={180}
+                      step={1}
                       onAfterChange={this.props.rotationRangeChanged}
                   />
                 </div>  
@@ -117,13 +123,26 @@ class MintOptions extends React.Component {
                         onAfterChange={this.props.speedRangeChanged}
                     />
                 </div>
+
+                <div className="mintInput">
+                  Tint colour<br/>
+                  <HuePicker className="mintPicker" width="100%" height="20px" pointer={Thumb} color={this.props.tintColour} onChange={this.props.tintColourChanged} />
+                </div>
+
+                <div className="mintInput">
+                  Tint % <br/>
+                  <AlphaPicker className="mintPicker" width="100%" height="20px" pointer={AlphaThumb} color={this.props.tintColour} onChange={this.props.tintAlphaChanged} />
+                </div>
+
               </div>
             </div>
             <div className="textTraits">{this.props.traits}</div> 
-            <Button variant="primary" onClick={this.props.refresh}>New random seed</Button>
+            <Button variant="primary" onClick={this.props.refreshSeed}>New seed</Button>
+            <Button variant="primary" onClick={this.props.refreshParams}>Randomize params</Button>
             <MintButton mint={this.props.mint}/>
 
           <MintPriceComponent />
+          <TokenCountComponent />
         </div>
       );
     }

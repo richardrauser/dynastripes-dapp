@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import { Spinner } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 
 import Button from 'react-bootstrap/Button';
 
@@ -106,28 +106,28 @@ class ConnectButton extends React.Component {
   
     render() {
         
-        return (
-            <Button disabled="true" onClick>Minting Disabled</Button>
-        );    
+        // return (
+        //     <Button disabled="true" onClick>Minting Disabled</Button>
+        // );    
 
-        // if (this.state.isLoading === true) {
-        //     return (
-        //         <Spinner animation="grow" />
-        //         );    
-        // }
-        // if (this.state.isWalletInstalled === false) {
-        //     return (
-        //         <Button target="_blank" href="https://metamask.io">Install MetaMask</Button>
-        //     );    
-        // } else if (this.state.isAccountConnected === true) {
-        //     return (
-        //         <Button variant="primary" onClick={this.props.mint}>Mint, baby!</Button>
-        //         );        
-        // } else  {
-        //     return (
-        //         <Button onClick={ this.connectWallet }>Connect wallet</Button>
-        //     );    
-        // }
+        if (this.state.isLoading === true) {
+            return (
+                <Spinner animation="grow" />
+                );    
+        }
+        if (this.state.isWalletInstalled === false) {
+            return (
+                <Button target="_blank" href="https://metamask.io">Install MetaMask</Button>
+            );    
+        } else if (this.state.isAccountConnected === true) {
+            return (
+                <Button variant="primary" onClick={this.props.mint}>Mint, baby!</Button>
+                );        
+        } else  {
+            return (
+                <Button onClick={ this.connectWallet }>Connect wallet</Button>
+            );    
+        }
 
     }
 }
