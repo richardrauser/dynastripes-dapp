@@ -34,9 +34,6 @@ class HomePage extends React.Component {
         
       return (
         <div className="mainContent" style={{backgroundImage: svgDataUri}} onClick={this.update}>
-            <Alert variant="info">
-              This is a presale of <DynaSpan/> for special people like you. 😉 You get 5 free mints! The actual sale will start on April 19/20.
-            </Alert>
             <div className="content">
 
               <h1 className="homeTitle">
