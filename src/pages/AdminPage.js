@@ -99,7 +99,7 @@ class AdminPage extends React.Component {
       try {
         const mintPrice = await fetchMintPrice();       
         const formattedEthPrice = ethers.utils.formatEther(mintPrice);
-        console.log("Got formatted ETH price: " + mintPrice);
+        console.log("Got formatted price: " + mintPrice);
 
         this.setState({
           mintPrice: formattedEthPrice
@@ -111,10 +111,10 @@ class AdminPage extends React.Component {
 
     async updateMintPrice() {
       const newMintPrice = this.mintPriceInput.current.value;  
-      console.log("Updating ETH price: " + newMintPrice);
+      console.log("Updating price: " + newMintPrice);
   
       const wei = ethers.utils.parseEther(newMintPrice);
-      console.log("Updating ETH price: " + wei);
+      console.log("Updating price: " + wei);
   
       try {
         const contractWithSigner = await getContractWithSigner();
@@ -170,7 +170,7 @@ class AdminPage extends React.Component {
   
     async makePayment() {
       const amount = this.paymentInput.current.value;  
-      console.log("Making payment (ETH): " + amount);
+      console.log("Making payment (MATIC): " + amount);
   
       const wei = ethers.utils.parseEther(amount);
       console.log("Making payment wei: " + wei);
@@ -182,7 +182,7 @@ class AdminPage extends React.Component {
         this.setState({
         });
 
-        toast.success('Made payment of ' + amount + " ETH");
+        toast.success('Made payment of ' + amount + " MATIC");
 
       } catch (err) {
         handleError(err);

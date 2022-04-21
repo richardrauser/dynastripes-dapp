@@ -19,9 +19,9 @@ export function handleError(err) {
         showErrorMessage('Oops, an Internal JSON RPC error occurred. ');
       }
     } else if (err.message === Errors.DS_NO_ETH_WALLET) {
-      showErrorMessage("No ETH wallet detected. Please install MetaMask. Read the 'How to' guide for more info.");
+      showErrorMessage("No crypto wallet detected. Please install MetaMask. Read the 'How to' guide for more info.");
     } else if (err.message === Errors.DS_NO_ETH_ACCOUNT) {
-      showErrorMessage("You need to connect an account via your ETH wallet before you can do that. Read the 'How to' guide for more info.");      
+      showErrorMessage("You need to connect an account via your crypto wallet before you can do that. Read the 'How to' guide for more info.");      
     } else if (err.message === Errors.DS_WRONG_ETH_NETWORK) {
 
       const errorMessage = "You're on the wrong network. Tap to switch to " + DynaStripesCurrentNetworkName + ", or read the 'How to' guide for more info.";

@@ -32,7 +32,7 @@ class RecentStripesComponent extends React.Component {
   
         const tokenCount = await contract.totalSupply();
         console.log("Total supply: " + tokenCount);
-        const maxToDisplay = 12;
+        const maxToDisplay = 100;
         
         for (var i = tokenCount - 1; i >= 0 && i >= tokenCount - maxToDisplay; i--) {
           const tokenId = await contract.tokenByIndex(i);
@@ -77,7 +77,7 @@ class RecentStripesComponent extends React.Component {
         return (
             <div className="content">
               <h1>Recently minted <DynaSpan /> NFTs</h1>
-              An ETH wallet is required to view recent <DynaSpan />. Install <MetaMaskLink />.
+              A crypto wallet is required to view recent <DynaSpan />. Install <MetaMaskLink />.
             </div>
         );
       } else if (tokenIds === null || tokenIds.length === 0) {
