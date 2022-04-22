@@ -75,7 +75,7 @@ class YourStripesComponent extends React.Component {
         return (
             <div className="content">
               <h1>Your <DynaSpan /> NFTs</h1>
-              An ETH wallet is required to view your <DynaSpan />. Install <MetaMaskLink />.
+              A crypto wallet is required to view your <DynaSpan />. Install <MetaMaskLink />.
             </div>
         );
 
